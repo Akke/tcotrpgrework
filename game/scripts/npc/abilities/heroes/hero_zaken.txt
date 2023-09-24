@@ -1,0 +1,425 @@
+"DOTAAbilities"
+{
+    "zaken_stitching_strikes"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "arena/zaken_stitching_strikes"
+        "MaxLevel"                      "10"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "AbilityCastRange"              "300"
+        "AbilityManaCost" "125 135 145 155 165 175 185 195 205 215"
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityChannelTime"            "%duration"
+        "AbilityCooldown"               "30 26 24 20 16 15 12 9 6 3"
+
+        "AbilityUnitDamageSubType"  "DAMAGE_SUBTYPE_AIR"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "damage_interval"   "0.4"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "max_health_damage_pct" "0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "300 400 500 600 700 800 900 1000 1100 1200"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Arena.Hero_Zaken.StitchingStrikes"
+                "Target"        "TARGET"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_zaken_stitching_strikes"
+                "Target"        "TARGET"
+            }
+        }
+
+        "OnChannelFinish"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_zaken_stitching_strikes"
+                "Target"        "TARGET"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_zaken_stitching_strikes"
+            {
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+                "Duration"          "%duration"
+                "EffectName"        "particles/arena/units/heroes/hero_zaken/stitching_strikes.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"     "MODIFIER_STATE_VALUE_ENABLED"
+                }
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "kv.lua"
+                        "Function"      "StopEndableSound"
+                        "sound"         "Arena.Hero_Zaken.StitchingStrikes"
+                    }
+                }
+
+                "ThinkInterval"  "%damage_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "kv.lua"
+                        "Function"      "PercentDamage"
+                        "Damage"            "%damage"
+                        "MaxHealthPercent"  "%max_health_damage_pct"
+                        "multiplier"        "%damage_interval"
+                    }
+                }
+            }
+        }
+    }
+
+    "zaken_last_chance"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "arena/zaken_last_chance"
+        "MaxLevel"                      "10"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "1.0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "crit_chance_pct"   "10 15 20 25 30 35 40 45 50 55"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "crit_damage_pct"   "200 250 300 350 400 450 500 550 600 650"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "crit_health_pct"   "50"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "stun_chance_pct"   "5"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "stun_health_pct"   "25"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "stun_duration"     "0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "root_chance_pct"   "5"
+            }
+            "08"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "root_health_pct"   "75"
+            }
+            "09"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "root_duration"     "0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0"
+            }
+            "10"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "silence_chance_pct"    "5"
+            }
+            "11"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "silence_health_pct"    "90"
+            }
+            "12"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "silence_duration"  "0.0 0.15 0.3 0.45 0.6 0.75 1.0 1.25 1.50 1.75"
+            }
+        }
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
+            "particle"  "particles/arena/units/heroes/hero_zaken/last_chance_root.vpcf"
+            "particle"  "particles/arena/units/heroes/hero_zaken/last_chance_silence.vpcf"
+            "particle"  "particles/arena/units/heroes/hero_zaken/last_chance_stun.vpcf"
+        }
+
+        "Modifiers"
+        {
+            "modifier_zaken_last_chance"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+
+                "OnAttackStart"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_zaken_last_chance_crit"
+                        "Target"        "CASTER"
+                    }
+
+                    "RunScript"
+                    {
+                        "ScriptFile"    "heroes/hero_zaken/last_chance.lua"
+                        "Function"      "CheckHealthCrit"
+                    }
+                }
+
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "heroes/hero_zaken/last_chance.lua"
+                        "Function"      "CheckHealth"
+                    }
+                }
+            }
+
+            "modifier_zaken_last_chance_crit"
+            {
+                "IsHidden"  "1"
+                "IsHidden"  "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_damage_pct"
+                }
+
+                "OnAttackLanded"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Arena.Hero_Zaken.LastChance.Proc"
+                        "Target"        "CASTER"
+                    }
+
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"            "CASTER"
+                    }
+
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_zaken_last_chance_crit"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+        }
+    }
+
+    "zaken_summon_sailors"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "arena/zaken_summon_sailors"
+        "MaxLevel"                      "10"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "30"
+        "AbilityManaCost"               "100 200 300 400 500 600 700 800 900 1000"
+        "AbilityCastPoint"              "0.2"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "sailors_amount"            "1 2 3 4 5 6 7 8 9 10"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "sailor_duration"           "12"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "sailor_health"             "300 600 900 1200 1500 1800 2100 2400 2700 3000"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "sailor_damage"             "20 35 50 65 80 95 110 125 140 155"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "sailor_armor"              "5 10 15 20 25 30 35 40 45 50"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "sailor_health_regen"       "2 10 18 26 34 42 50 58 66 74"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "sailor_bounty"             "60 120 180 240 320 360 400 440 480 520"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Arena.Hero_Zaken.SummonSailors"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "kv.lua"
+                "Function"      "SummonUnit"
+                "summoned"      "npc_arena_zaken_sailor"
+                "summon_random_radius"  "200"
+                "duration"              "%sailor_duration"
+                "health"                "%sailor_health"
+                "damage"                "%sailor_damage"
+                "armor"                 "%sailor_armor"
+                "health_regeneration"   "%sailor_health_regen"
+                "gold"                  "%sailor_bounty"
+                "amount"                "%sailors_amount"
+            }
+        }
+    }
+
+    "zaken_sword_control"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "arena/zaken_sword_control"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCooldown"               "120"
+        "AbilityManaCost"               "150 400 800 1500"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityCastRange"              "200 250 300 350"
+        "AbilityCastPoint"              "0.2"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "4 8 12 20"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "incoming_damage_reduction" "-5 -10 -20 -40"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "attack_time"       "0.3 0.2 0.1 0.05"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius_tooltip"    "200 250 300 350"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Arena.Hero_Zaken.SwordControl"
+                "Target"        "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_zaken_sword_control"
+                "Target"        "CASTER"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_zaken_sword_control"
+            {
+                "IsPurgable"            "0"
+                "Duration"              "%duration"
+                "OverrideAnimation"     "ACT_DOTA_CHANNEL_ABILITY_4"
+
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%incoming_damage_reduction"
+                }
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "kv.lua"
+                        "Function"      "StopEndableSound"
+                        "sound"         "Arena.Hero_Zaken.SwordControl"
+                    }
+                }
+
+                "ThinkInterval"  "%attack_time"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "heroes/hero_zaken/sword_control.lua"
+                        "Function"      "Attacks"
+                    }
+                }
+            }
+        }
+    }
+}

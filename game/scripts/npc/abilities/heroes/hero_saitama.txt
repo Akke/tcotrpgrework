@@ -1,0 +1,227 @@
+"DOTAAbilities"
+{
+	"saitama_push_ups"
+	{
+		"BaseClass"             		"ability_lua"
+		"AbilityTextureName"			"arena/saitama_push_ups"
+		"ScriptFile"					"heroes/hero_saitama/push_ups.lua"
+		"MaxLevel" 						"10"
+		"AbilityChannelTime"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"150 180 160 140 120 100 80"
+		"LevelsBetweenUpgrades"         "3"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"5 10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_amount"			"1"
+			}
+		}
+	}
+
+	"saitama_squats"
+	{
+		"BaseClass"             		"ability_lua"
+		"AbilityTextureName"			"arena/saitama_squats"
+		"ScriptFile"					"heroes/hero_saitama/squats.lua"
+		"MaxLevel" 						"10"
+		"AbilityChannelTime"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"150 180 160 140 120 100 80"
+		"LevelsBetweenUpgrades"         "3"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"		"2 4 6 8 10 12 14 16 18 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_amount"			"1"
+			}
+		}
+	}
+
+	"saitama_sit_ups"
+	{
+		"BaseClass"             		"ability_lua"
+		"AbilityTextureName"			"arena/saitama_sit_ups"
+		"ScriptFile"					"heroes/hero_saitama/sit_ups.lua"
+		"MaxLevel" 						"10"
+		"AbilityChannelTime"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"150 180 160 140 120 100 80"
+		"LevelsBetweenUpgrades"         "3"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"		"40 80 120 160 200 240 280 320 360 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_amount"			"1"
+			}
+		}
+	}
+
+	"saitama_jogging"
+	{
+		"BaseClass"             		"ability_lua"
+		"AbilityTextureName"			"arena/saitama_jogging"
+		"ScriptFile"					"heroes/hero_saitama/jogging.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LevelsBetweenUpgrades"			"3"
+		"RequiredLevel"                 "4"
+		"MaxLevel"						"7"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_amount"			"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"10000 9500 9000 8500 8000 7500 7000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_limit"			"400"
+			}
+		}
+	}
+
+	"saitama_serious_punch"
+	{
+		"BaseClass"             		"ability_lua"
+		"AbilityTextureName"			"arena/saitama_serious_punch"
+		"ScriptFile"					"heroes/hero_saitama/serious_punch.lua"
+		"MaxLevel" 						"1"
+		"IsGrantedByScepter"			"1"
+		"HasInnateModifiers"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityManaCost" "300"
+		"AbilityCooldown"				"5"
+		//"AbilityCastRange"				"25"
+		//"AbilityCastPoint"				"0.4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage_multiplier_pct"	"200"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_multiplier_per_stack_pct"	"3"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_duration_step"	"10000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_distance_step"	"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_height_step"	"80"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"24"
+			}
+		}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+			"particle"  "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_fallback_mid_egset.vpcf"
+		}
+	}
+
+	"saitama_limiter"
+	{
+		"BaseClass"             		"ability_lua"
+		"AbilityTextureName"			"arena/saitama_limiter"
+		"ScriptFile"					"heroes/hero_saitama/limiter.lua"
+		"MaxLevel" 						"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		//"AbilityCooldown"				"100"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HasScepterUpgrade"				"1"
+		"HasInnateModifiers"			"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_strength_pct"	"0.01 0.02 0.03 0.04"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_pct"			"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"loss_stacks_pct"		"70"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_for_kill"		"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost"				"300 250 200 150 100 50 0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"8"
+			}
+		}
+	}
+}

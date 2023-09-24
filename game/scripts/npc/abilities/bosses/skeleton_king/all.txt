@@ -1,0 +1,242 @@
+"DOTAAbilities"
+{
+    "boss_skeleton_king_hellfire_blast"
+    {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "heroes/bosses/skeleton_king/boss_skeleton_king_hellfire_blast.lua"
+        "AbilityTextureName" "boss_skeleton_king_wraithfire_blast_1"
+        "MaxLevel"  "5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_SkeletonKing.Hellfire_Blast"
+
+        "precache"
+        {
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_wraithfireblast.vpcf"
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_wraithfireblast_debuff.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+        }
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.35"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "5"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blast_speed"           "1200"
+            }           
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"   "2 3 4 5 6"
+            } 
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "stun_duration"   "2.0 2.5 3.0 3.5 4.0"
+            }            
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blast_slow"            "-30"
+            }   
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blast_max_hp_damage_pct"      "50"
+            }        
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blast_dot_current_hp_damage_pct"      "25"
+            }           
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    }
+
+    "boss_skeleton_king_mortal_strike"
+    {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "heroes/bosses/skeleton_king/boss_skeleton_king_mortal_strike.lua"
+        "AbilityTextureName" "boss_skeleton_king_mortal_strike_1"
+        "MaxLevel"  "5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilitySound"                  "Hero_SkeletonKing.CriticalStrike"
+
+        "precache"
+        {
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_weapon_blur_critical.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "3.0 2.75 2.50 2.25 2.0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "crit_mult"                 "150 175 200 225 250"
+            }
+        }
+        
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    }
+
+    "boss_skeleton_king_undead_spirit"
+    {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "heroes/bosses/skeleton_king/boss_skeleton_king_undead_spirit.lua"
+        "AbilityTextureName" "boss_skeleton_king_undead_spirit_1"
+        "MaxLevel"  "5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "precache"
+        {
+            "particle" "particles/generic_gameplay/generic_lifesteal.vpcf"
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_toast.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_damage_pct"                 "1.0 1.25 1.50 1.75 2.0"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "base_lifesteal"                 "10.0"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "lifesteal_increase"                 "5.0"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "attack_speed_bonus"                 "50"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "missing_hp_pct"                 "10"
+            }
+        }
+        
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    }
+
+    "boss_skeleton_king_reincarnation"
+    {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "heroes/bosses/skeleton_king/boss_skeleton_king_reincarnation.lua"
+        "AbilityTextureName" "boss_skeleton_king_reincarnation"
+        "MaxLevel"  "5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "2"
+
+        "AbilitySound"                  "Hero_SkeletonKing.Reincarnate"
+        
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+
+        "precache"
+        {
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_reincarn.vpcf"
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_reincarn_tombstone.vpcf"
+            "particle" "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_style2_reincarn_tombstone.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+        }
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "300 240 180 120 60"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.2"   // Slow isn't the main function of this ability.
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "reincarnate_time"      "3.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"           "1200"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movespeed"             "-75"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "degen"             "-50"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"             "6 7 8 9 10"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "dr"             "-50"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "dr_duration"             "10"
+            }
+        }
+    }
+}

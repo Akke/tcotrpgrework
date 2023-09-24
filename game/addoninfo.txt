@@ -1,0 +1,44 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	HideInTools = false
+	IsPlayable = true
+	IsTemplate = false
+	maps = 
+	[
+		"tcotrpgv2",
+		"tcotrpg1v1",
+	]
+	CheckAFKPlayers = false
+	DefaultMap = "tcotrpgv2"
+	Default_Keys = 
+	[
+		{
+			Key = "U"
+			Command = "CustomGameKeyU"
+		},
+	]
+	DisableIK = false
+	EnablePickRules = true
+	EventGame = false
+	hero_picker = null
+	HeroGuidesSupported = true
+	ForceDefaultGuide = true
+	MinimalPrecache = false
+	MinPlayers = 1
+	MaxPlayers = 6
+	map_options = 
+	[
+		{
+			map = "tcotrpgv2"
+			MinPlayers = 1
+			MaxPlayers = 5
+		},
+		{
+			map = "tcotrpg1v1"
+			MinPlayers = 1
+			MaxPlayers = 6
+		},
+	]
+	PenaltiesEnabled = false
+	TeamCount = -1
+}
