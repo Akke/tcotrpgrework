@@ -1,0 +1,2 @@
+mklink /j "D:\GitHub\tcotrpgrework\tcotrpgrework\game" "D:\SteamLibrary\steamapps\common\dota 2 beta\game\dota_addons\tcotrpg"
+mklink /j "D:\GitHub\tcotrpgrework\tcotrpgrework\content" "D:\SteamLibrary\steamapps\common\dota 2 beta\content\dota_addons\tcotrpg"
