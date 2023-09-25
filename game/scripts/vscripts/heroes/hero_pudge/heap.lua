@@ -26,39 +26,19 @@ end
 
 function modifier_pudge_flesh_heap_custom_buff_permanent:DeclareFunctions()
     local funcs = {
-        --MODIFIER_PROPERTY_STATS_STRENGTH_BONUS , --GetModifierBonusStats_Strength
-        MODIFIER_PROPERTY_TOOLTIP,
+        MODIFIER_PROPERTY_STATS_STRENGTH_BONUS , --GetModifierBonusStats_Strength
         MODIFIER_PROPERTY_MODEL_SCALE, --GetModifierModelScale
     }
 
     return funcs
 end
 
-function modifier_pudge_flesh_heap_custom_buff_permanent:OnCreated()
-    self.total = 0
-end
-
-function modifier_pudge_flesh_heap_custom_buff_permanent:OnTooltip()
-    return self.total
-end
-
 function modifier_pudge_flesh_heap_custom_buff_permanent:GetModifierModelScale()
-    local stack = self:GetStackCount() * 0.2
-    if stack > 200 then
-        stack = 200
-    end
-
-    return stack
+    return math.min(self:GetStackCount() * 0.2, 200)
 end
 
-function modifier_pudge_flesh_heap_custom_buff_permanent:OnRefresh()
-    local gain = self:GetAbility():GetSpecialValueFor("str_gain")
-
-    self.total = self.total + gain
-    
-    if not IsServer() then return end
-
-    self:GetParent():ModifyStrength(gain)
+function modifier_pudge_flesh_heap_custom_buff_permanent:GetModifierBonusStats_Strength()
+    return self:GetStackCount() * self:GetAbility():GetSpecialValueFor("str_gain")
 end
 -------------
 function pudge_flesh_heap_custom:GetIntrinsicModifierName()
@@ -80,34 +60,27 @@ function modifier_pudge_flesh_heap_custom:GetModifierPhysical_ConstantBlock(even
     return block
 end
 
-function modifier_pudge_flesh_heap_custom:OnCreated()
-    self.parent = self:GetParent()
-end
-
 function modifier_pudge_flesh_heap_custom:OnDeath(event)
-    local unit = event.attacker
+    local attacker = event.attacker
     local parent = self:GetParent()
-    local caster = self:GetCaster()
     local victim = event.unit
 
-    if unit ~= parent then
+    if attacker ~= parent then
         return
     end
 
     local ability = self:GetAbility()
 
-    local buff = unit:FindModifierByNameAndCaster("modifier_pudge_flesh_heap_custom_buff_permanent", unit)
-    local stacks = unit:GetModifierStackCount("modifier_pudge_flesh_heap_custom_buff_permanent", unit)
+    local buff = parent:FindModifierByNameAndCaster("modifier_pudge_flesh_heap_custom_buff_permanent", parent)
     
     if not buff then
-        buff = unit:AddNewModifier(unit, ability, "modifier_pudge_flesh_heap_custom_buff_permanent", {})
+        buff = parent:AddNewModifier(parent, ability, "modifier_pudge_flesh_heap_custom_buff_permanent", {})
     end
 
     if buff ~= nil then
         local preTotal = (buff:GetStackCount() * ability:GetSpecialValueFor("str_gain"))
-        if preTotal >= 1000000 then return false end
+        if preTotal >= 1000000 then return end
 
-        unit:SetModifierStackCount("modifier_pudge_flesh_heap_custom_buff_permanent", unit, (stacks + 1))
-        buff:ForceRefresh()
+        buff:IncrementStackCount()
     end
 end

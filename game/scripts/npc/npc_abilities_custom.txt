@@ -18479,17 +18479,17 @@
     {
         // General
         "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_pudge/pudge_meat_hook_lua.lua"
         "AbilityTextureName"            "pudge_meat_hook"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "FightRecapLevel"               "1"
-        "ScriptFile"                    "heroes/hero_pudge/pudge_meat_hook_lua.lua"
         "MaxLevel"                      "10"
         "HasScepterUpgrade"             "1"
         "HasShardUpgrade" "1"
-        "AbilityCooldown"               "20"
         "AbilityManaCost"               "120 150 180 220 240 280 320 360 400 440"
+        "AbilityCastRange"              "1000 1050 1100 1150 1200 1250 1300 1350 1400 1450"
 
         // Precache
         //-------------------------------------------------------------------------------------------------------------
@@ -18507,6 +18507,7 @@
             {
                 "value"            "90 140 190 240 290 340 390 440 490 540"
                 "LinkedSpecialBonus"            "special_bonus_unique_pudge_7"
+                "special_bonus_scepter" "+160"
             }
             "hook_speed"
             {
@@ -18524,16 +18525,10 @@
             {
                 "value"         "500"
             }
-            "damage_scepter"
+            "AbilityCooldown"
             {
-                "value"        "200 250 300 350 400 450 500 550 600 650"
-                "LinkedSpecialBonus"            "special_bonus_unique_pudge_7"
-                "RequiresScepter" "1"
-            }
-            "cooldown_scepter"
-            {
-                "value"      "8.0"
-                "RequiresScepter" "1"
+                "value"      "20.0"
+                "special_bonus_scepter" "=8.0"
             }
             "hook_followthrough_constant"
             {
@@ -18541,7 +18536,7 @@
             }
             "hook_damage_per_stack"
             {
-                "value" "10 14 18 22 26 30 30 34 38 42"
+                "value" "10 15 20 25 30 35 40 45 50 55"
             }
             "damage_str"
             {
@@ -18638,7 +18633,7 @@
         "01"
         {
             "var_type"              "FIELD_FLOAT"
-            "str_gain"              "1"
+            "str_gain"              "0.5 0.5 0.5 0.6 0.6 0.7 0.8 0.9 1.0 1.1"
             "CalculateSpellDamageTooltip"   "0"
         }
         "02"

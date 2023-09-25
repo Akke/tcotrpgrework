@@ -6,33 +6,10 @@ pudge_meat_hook_lua = class({
 	GetIntrinsicModifierName = function() return "modifier_meat_hook_bloodstained_lua" end,
 })
 
-function pudge_meat_hook_lua:GetCooldown(nLevel)
-	if IsServer() then
-		local cd = self.BaseClass.GetCooldown(self, nLevel)
-		if self:GetCaster():HasScepter() then
-			cd = self:GetSpecialValueFor("cooldown_scepter")
-		end
+function pudge_meat_hook_lua:GetBehavior()
+	if self:GetCaster():HasModifier("modifier_item_aghanims_shard") then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING +DOTA_ABILITY_BEHAVIOR_AUTOCAST end
 
-		if self:GetCaster() and not self:GetCaster():IsNull() and self:GetCaster():HasAbility("special_bonus_unique_pudge_5") then
-	    	if self:GetCaster():FindAbilityByName("special_bonus_unique_pudge_5"):GetLevel() > 0 then cd = cd - 4 end
-	    end
-
-		return cd
-	end
-end
-
-function pudge_meat_hook_lua:GetCastRange()
-	--[[
-	local range = self:GetSpecialValueFor("hook_distance") + self:GetSpecialValueFor("hook_distance_per_stack") * self:GetCaster():GetModifierStackCount(self:GetIntrinsicModifierName(), self:GetCaster())
-
-	if range > 5000 then
-		range = 5000
-	end
-	--]]
-
-	local range = self:GetSpecialValueFor("hook_distance")
-
-	return range
+	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
 if IsServer() then
@@ -69,11 +46,8 @@ if IsServer() then
 		local hook_damage = self:GetSpecialValueFor("damage")
 		local hook_speed = self:GetSpecialValueFor("hook_speed")
 		local hook_width = self:GetSpecialValueFor("hook_width")
-		local hook_distance = self:GetCastRange()
+		local hook_distance = self:GetSpecialValueFor("hook_distance")
 		local hook_followthrough_constant = self:GetSpecialValueFor("hook_followthrough_constant")
-		if caster:HasScepter() then
-			hook_damage = self:GetSpecialValueFor("damage_scepter")
-		end
 
 		local bloodMod = caster:FindModifierByName("modifier_meat_hook_bloodstained_lua")
 		if bloodMod ~= nil then
@@ -350,6 +324,7 @@ function modifier_meat_hook_bloodstained_lua:OnAttack(event)
     local victim = event.target
 
     if not parent:HasModifier("modifier_item_aghanims_shard") then return end
+	if ability:GetAutoCastState() then return end
     if not RollPercentage(ability:GetSpecialValueFor("chance")) then return end
 
     SpellCaster:Cast(ability, victim, false)
