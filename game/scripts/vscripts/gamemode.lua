@@ -33,7 +33,7 @@ require("modules/waves/main")
 require("modules/effects/PlayerEffects")
 
 require("bosses/skafian")
-require("bosses/spider")
+require("bosses/zombie")
 require("bosses/reef")
 require("bosses/mine")
 require("bosses/lava")

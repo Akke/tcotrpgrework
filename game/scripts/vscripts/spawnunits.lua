@@ -396,7 +396,7 @@ function SpawnAllUnits()
                         posZ = unit:GetAbsOrigin().z,
                     })  
                 elseif unitName == "npc_dota_creature_40_boss" then 
-                    unit:AddNewModifier(unit, nil, "modifier_boss_spider", {
+                    unit:AddNewModifier(unit, nil, "modifier_boss_zombie", {
                         posX = unit:GetAbsOrigin().x,
                         posY = unit:GetAbsOrigin().y,
                         posZ = unit:GetAbsOrigin().z,
@@ -457,8 +457,8 @@ function SpawnAllUnits()
                             posY = unit:GetAbsOrigin().y,
                             posZ = unit:GetAbsOrigin().z,
                         }):ForceRefresh() 
-                    elseif modifier_boss_spider:IsFollower(unit) then 
-                        unit:AddNewModifier(unit, nil, "modifier_boss_spider_follower", {
+                    elseif modifier_boss_zombie:IsFollower(unit) then 
+                        unit:AddNewModifier(unit, nil, "modifier_boss_zombie_follower", {
                             posX = unit:GetAbsOrigin().x,
                             posY = unit:GetAbsOrigin().y,
                             posZ = unit:GetAbsOrigin().z,
@@ -514,11 +514,7 @@ function SpawnAllUnits()
 
         -- Desert Zone --
         SpawnBossInZone("spawn_boss_spider", "npc_dota_creature_40_boss")
-        SpawnUnitsInZone("spawn_creep_3", "npc_dota_creature_40_crip", 1) -- Spider
-        SpawnUnitsInZone("spawn_creep_14", "npc_dota_creature_40_crip_2", 1) -- Spider
-        SpawnUnitsInZone("spawn_creep_24", "npc_dota_creature_40_crip_4", 1) -- Spider
-        SpawnUnitsInZone("spawn_creep_25", "npc_dota_creature_40_crip_5", 1) -- Spider
-        SpawnUnitsInZone("spawn_creep_26", "npc_dota_creature_40_crip_6", 1) -- Spider
+        SpawnUnitsInZone("spawn_creep_27", "npc_dota_creature_40_crip_7", 1) -- Tombstone
 
         -- Winter Zone --
         SpawnBossInZone("spawn_boss_morphling", "npc_dota_creature_80_boss")

@@ -39,6 +39,7 @@ function Precache(context)
 	-- Particles can be precached individually or by folder
 	-- It it likely that precaching a single particle system will precache all of its children, but this may not be guaranteed
 	
+	PrecacheResource("particle", "particles/status_fx/status_effect_earth_spirit_petrify.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/radiant_fountain_regen.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_slardar/slardar_water_puddle_2.vpcf", context)

@@ -7267,8 +7267,120 @@
         }
                 	
 	}
-
     "npc_dota_creature_40_boss"
+    {                                       
+        // General
+        //----------------------------------------------------------------
+        "Model"                     "models/heroes/undying/undying_flesh_golem.vmdl"  // Model.
+        "BaseClass"                 "npc_dota_creature"
+        "SoundSet"                  "Hero_Undying"
+        "Level"                     "30"
+        "ModelScale"                    "2"
+        "IsNeutralUnitType"            "1"
+        "ConsideredHero" "1"
+        "IsAncient" "1"
+        "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"   
+        "MinimapIcon"               "minimap_death" 
+        "MinimapIconSize"           "500"
+        "MinimapDisableTint"        "1" 
+
+        "precache"
+        {
+            "model" "models/heroes/undying/undying_flesh_golem.vmdl"
+        }
+
+        // Abilities
+        //----------------------------------------------------------------
+        "Ability1"                  "boss_shell_custom"
+        "Ability2"                                      "necronomicon_warrior_sight"
+        "Ability3"                                      ""
+        "Ability4"                                      ""
+        "Ability5"                  ""
+        // Armor
+        //----------------------------------------------------------------
+        "ArmorPhysical"             "60"           // Physical protection.
+            "MagicalResistance" "50"
+
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamageMin"           "58500"     // Damage range min.
+        "AttackDamageMax"           "59250"     // Damage range max.    
+        "AttackRate"                "0.5"       // Speed of attack.
+        "AttackAnimationPoint"      "0.1"       // Normalized time in animation cycle to attack.
+        "AttackAcquisitionRange"    "500"       // Range within a target can be acquired.
+        "AttackRange"               "150"       // Range within a target can be attacked.
+        "ProjectileModel"           ""          // Particle system model for projectile.
+        "ProjectileSpeed"           "0"         // Speed of projectile.        
+
+        // Bounds
+        //----------------------------------------------------------------
+        "RingRadius"                "70"
+        "HealthBarOffset"           "215"
+
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyXP"                  "400"       // Experience earn.
+        "BountyGoldMin"             "0"      // Gold earned min.
+        "BountyGoldMax"             "0"      // Gold earned max.
+
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"             "600"       // Speed.
+        "MovementTurnRate"          "0.6"       // Turning rate.
+
+        // Status
+        //----------------------------------------------------------------
+        "StatusHealth"              "150000"        // Base health.
+        "StatusHealthRegen"         "500"           // Health regeneration rate.
+        "StatusMana"                "12500"        // Base mana.
+        "StatusManaRegen"           "0"     // Mana regeneration rate.       
+        
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"        "1400"      // Range of vision during day light.
+        "VisionNighttimeRange"      "800"       // Range of vision at night time.
+
+        // Team
+        //----------------------------------------------------------------
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"                            // Team name.
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+        //Inventory
+        "HasInventory"              "1"
+        "Creature"
+        {
+            "EquippedItems"
+              {
+                "soul" { "Item"  "item_spider_soul" }
+              }
+
+            "AttachWearables" // Default npc_dota_hero_lone_druid
+            {
+                "1" { "ItemDef" "8395" }
+                "2" { "ItemDef" "8397" }
+                "3" { "ItemDef" "8399" }
+                "4" { "ItemDef" "8392" }
+            }
+            "ItemDrops"
+          {
+            "Trinkets"
+            {
+              "Item"
+              {
+                    "1" ""
+              }
+              "Chance"      "100"
+            }
+          }
+        }
+                    
+    }
+
+    "npc_dota_creature_40_boss_v2"
     {                                       
         // General
         //----------------------------------------------------------------
@@ -7377,8 +7489,7 @@
               "Chance"      "100"
             }
           }
-        }
-                    
+        }       
     }
 
     "npc_dota_creature_100_boss_4"
@@ -13394,5 +13505,237 @@
         "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
         "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
         "UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    }
+
+    "npc_dota_creature_40_crip_7"
+    {										
+      // General
+      //----------------------------------------------------------------
+      "Model"						"models/heroes/undying/undying_tower.vmdl"	// Model.
+      "BaseClass"					"npc_dota_creature"
+      "SoundSet"					"n_creep_Melee"
+      "Level"						"30"
+      "IsNeutralUnitType"            "1"
+      "ModelScale"                    "1.00"
+      "ConsideredHero" "0"
+      "IsAncient" "1"
+      "UseNeutralCreepBehavior"  "1" 
+      "BaseAttackSpeed" "100"	
+      "MagicalResistance" "100"	
+
+      // Abilities
+      //----------------------------------------------------------------
+      "Ability1"					""
+
+      // Armor
+      //----------------------------------------------------------------
+      "ArmorPhysical"				"0"			// Physical protection.
+
+      // Attack
+      //----------------------------------------------------------------
+      "AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+      "AttackDamageMin"			"0"		// Damage range min.
+      "AttackDamageMax"			"0"		// Damage range max.	
+      "AttackRate"				"1"		// Speed of attack.
+      "AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+      "AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+      "AttackRange"				"100"		// Range within a target can be attacked.
+      "ProjectileModel"			""			// Particle system model for projectile.
+      "ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+      // Bounds
+      //----------------------------------------------------------------
+      "RingRadius"				"70"
+      "HealthBarOffset"			"215"
+
+      // Bounty
+      //----------------------------------------------------------------
+      "BountyXP"					"0"		// Experience earn.
+      "BountyGoldMin"				"0"		// Gold earned min.
+      "BountyGoldMax"				"0"		// Gold earned max.
+
+      // Movement
+      //----------------------------------------------------------------
+      "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+      "MovementSpeed"				"0"		// Speed.
+      "MovementTurnRate"			"0.6"		// Turning rate.
+
+      // Status
+      //----------------------------------------------------------------
+      "StatusHealth"				"5"		// Base health.
+      "StatusHealthRegen"			"0"			// Health regeneration rate.
+      "StatusMana"				"0"		// Base mana.
+      "StatusManaRegen"			"0"		// Mana regeneration rate.		 
+      
+      // Vision
+      //----------------------------------------------------------------
+      "VisionDaytimeRange"		"1400"		// Range of vision during day light.
+      "VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+      // Team
+      //----------------------------------------------------------------
+      "TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+      "CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+      "CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+      "UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+      //Inventory
+      "HasInventory"				"1"
+    }
+
+    "npc_dota_creature_40_crip_8"
+    {										
+      // General
+      //----------------------------------------------------------------
+      "Model"						"models/heroes/undying/undying_minion_torso.vmdl"	// Model.
+      "BaseClass"					"npc_dota_creature"
+      "SoundSet"					"Undying_Zombie"
+      "Level"						"30"
+      "IsNeutralUnitType"            "1"
+      "ModelScale"                    "1.05"
+      "wearable"				"8630"
+      "ConsideredHero" "0"
+      "IsAncient" "1"
+      "UseNeutralCreepBehavior"  "1" 
+      "BaseAttackSpeed" "100"	
+      "MagicalResistance" "33"	
+
+      // Abilities
+      //----------------------------------------------------------------
+      "Ability1"					"undying_tombstone_zombie_deathstrike"
+      "Ability2"					"neutral_spell_immunity"
+
+      // Armor
+      //----------------------------------------------------------------
+      "ArmorPhysical"				"50"			// Physical protection.
+
+      // Attack
+      //----------------------------------------------------------------
+      "AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+      "AttackDamageMin"			"15000"		// Damage range min.
+      "AttackDamageMax"			"20000"		// Damage range max.	
+      "AttackRate"				"1.6"		// Speed of attack.
+      "AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+      "AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+      "AttackRange"				"128"		// Range within a target can be attacked.
+      "ProjectileModel"			""			// Particle system model for projectile.
+      "ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+      // Bounds
+      //----------------------------------------------------------------
+      "RingRadius"				"70"
+      "HealthBarOffset"			"160"
+      "BoundsHullName"			"DOTA_HULL_SIZE_SMALLEST"	
+
+      // Bounty
+      //----------------------------------------------------------------
+      "BountyXP"					"0"		// Experience earn.
+      "BountyGoldMin"				"40"		// Gold earned min.
+      "BountyGoldMax"				"50"		// Gold earned max.
+
+      // Movement
+      //----------------------------------------------------------------
+      "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+      "MovementSpeed"				"375"		// Speed.
+      "MovementTurnRate"			"0.5"		// Turning rate.
+
+      // Status
+      //----------------------------------------------------------------
+      "StatusHealth"				"10000"		// Base health.
+      "StatusHealthRegen"			"100"			// Health regeneration rate.
+      "StatusMana"				"0"		// Base mana.
+      "StatusManaRegen"			"0"		// Mana regeneration rate.		 
+      
+      // Vision
+      //----------------------------------------------------------------
+      "VisionDaytimeRange"		"1400"		// Range of vision during day light.
+      "VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+      // Team
+      //----------------------------------------------------------------
+      "TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+      "CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+      "CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+      "UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+      //Inventory
+      "HasInventory"				"1"
+    }
+
+    "npc_dota_creature_40_crip_9"
+    {										
+      // General
+      //----------------------------------------------------------------
+      "Model"						"models/items/undying/flesh_golem/spring2021_bristleback_paganism_pope_golem/spring2021_bristleback_paganism_pope_golem.vmdl"	// Model.
+      "BaseClass"					"npc_dota_creature"
+      "SoundSet"					"Hero_Undying"
+      "Level"						"40"
+      "IsNeutralUnitType"            "1"
+      "ModelScale"                    "1"
+      "wearable"				"8630"
+      "ConsideredHero" "0"
+      "IsAncient" "1"
+      "UseNeutralCreepBehavior"  "1" 
+      "BaseAttackSpeed" "100"	
+      "MagicalResistance" "66"	
+
+      // Abilities
+      //----------------------------------------------------------------
+      "Ability1"					"undying_tombstone_zombie_deathstrike"
+
+      // Armor
+      //----------------------------------------------------------------
+      "ArmorPhysical"				"100"			// Physical protection.
+
+      // Attack
+      //----------------------------------------------------------------
+      "AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+      "AttackDamageMin"			"50000"		// Damage range min.
+      "AttackDamageMax"			"100000"		// Damage range max.	
+      "AttackRate"				"0.7"		// Speed of attack.
+      "AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+      "AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+      "AttackRange"				"300"		// Range within a target can be attacked.
+      "ProjectileModel"			""			// Particle system model for projectile.
+      "ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+      // Bounds
+      //----------------------------------------------------------------
+      "RingRadius"				"70"
+      "HealthBarOffset"			"215"
+
+      // Bounty
+      //----------------------------------------------------------------
+      "BountyXP"					"3000"		// Experience earn.
+      "BountyGoldMin"				"1000"		// Gold earned min.
+      "BountyGoldMax"				"5000"		// Gold earned max.
+
+      // Movement
+      //----------------------------------------------------------------
+      "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+      "MovementSpeed"				"375"		// Speed.
+      "MovementTurnRate"			"0.5"		// Turning rate.
+
+      // Status
+      //----------------------------------------------------------------
+      "StatusHealth"				"50000"		// Base health.
+      "StatusHealthRegen"			"100"			// Health regeneration rate.
+      "StatusMana"				"0"		// Base mana.
+      "StatusManaRegen"			"0"		// Mana regeneration rate.		 
+      
+      // Vision
+      //----------------------------------------------------------------
+      "VisionDaytimeRange"		"1400"		// Range of vision during day light.
+      "VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+      // Team
+      //----------------------------------------------------------------
+      "TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+      "CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+      "CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+      "UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+      //Inventory
+      "HasInventory"				"1"
     }
 }
