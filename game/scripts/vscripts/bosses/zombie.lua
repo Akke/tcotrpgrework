@@ -282,8 +282,6 @@ function modifier_boss_zombie_follower:OnIntervalThink()
     
     if parent:GetAggroTarget() == nil then return end
     if parent:IsSilenced() or parent:IsStunned() or parent:IsHexed() then return end
-
-
 end
 
 function modifier_boss_zombie_follower:OnDeath(event)
@@ -365,7 +363,7 @@ function modifier_boss_zombie_tombstone_follower:OnTakeDamage(params)
     if IsServer() then
         if self:GetParent() == params.unit then
             local nDamage = 0
-            if params.attacker and params.damage_type == DAMAGE_TYPE_PHYSICAL and not self:GetParent():HasModifier("modifier_boss_zombie_tombstone_follower_recharging") then
+            if params.attacker and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK  and params.damage_type == DAMAGE_TYPE_PHYSICAL and not self:GetParent():HasModifier("modifier_boss_zombie_tombstone_follower_recharging") then
                 local bDeathWard = params.attacker:FindModifierByName( "modifier_aghsfort_witch_doctor_death_ward" ) ~= nil
                 local bValidAttacker = params.attacker:IsRealHero() or bDeathWard
                 if not bValidAttacker then
@@ -380,6 +378,8 @@ function modifier_boss_zombie_tombstone_follower:OnTakeDamage(params)
                     self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_boss_zombie_tombstone_follower_recharging", {
                         duration = 15
                     })
+
+                    EmitSoundOn("Hero_Undying.Tombstone.Exit", self:GetParent())
                 end
             end
         end
@@ -440,17 +440,6 @@ function modifier_boss_zombie_tombstone_follower_recharging:OnIntervalThink()
 
     if self:IsNull() then return end
 
-    CreateUnitByNameAsync("npc_dota_creature_40_crip_8", spawnOrigin, true, nil, nil, parent:GetTeam(), function(unit)
-        --Async is faster and will help reduce stutter
-        unit:AddNewModifier(unit, nil, "modifier_boss_zombie_follower", {
-            posX = spawnOrigin.x,
-            posY = spawnOrigin.y,
-            posZ = spawnOrigin.z,
-        })
-
-        unit:AddNewModifier(parent, nil, "modifier_boss_zombie_tombstone_follower_zombie", { duration = 15 })
-    end)
-
     if not self.spawnedElite and parent:GetHealth() == 1 then
         self.spawnedElite = true
 
@@ -464,6 +453,29 @@ function modifier_boss_zombie_tombstone_follower_recharging:OnIntervalThink()
     
             unit:AddNewModifier(parent, nil, "modifier_boss_zombie_tombstone_follower_zombie", { duration = 15 })
         end)
+    elseif parent:GetHealth() > 1 then
+        CreateUnitByNameAsync("npc_dota_creature_40_crip_8", spawnOrigin, true, nil, nil, parent:GetTeam(), function(unit)
+            --Async is faster and will help reduce stutter
+            unit:AddNewModifier(unit, nil, "modifier_boss_zombie_follower", {
+                posX = spawnOrigin.x,
+                posY = spawnOrigin.y,
+                posZ = spawnOrigin.z,
+            })
+    
+            unit:AddNewModifier(parent, nil, "modifier_boss_zombie_tombstone_follower_zombie", { duration = 15 })
+        end)
+    end
+end
+
+function modifier_boss_zombie_tombstone_follower_recharging:OnDestroy()
+    if not IsServer() then return end 
+
+    local parent = self:GetParent()
+
+    EmitSoundOn("Hero_Undying.Tombstone", parent)
+
+    if not parent:IsNull() and parent:IsAlive() and parent:GetHealth() == "1" then
+        parent:ForceKill(false)
     end
 end
 ------------
@@ -479,10 +491,20 @@ function modifier_boss_zombie_tombstone_follower_zombie:OnDestroy()
     if not parent:IsNull() and parent:IsAlive() then
         UTIL_Remove(parent)
     end
+
+    local caster = self:GetCaster()
+
+    if not caster:IsNull() and caster:IsAlive() then
+        if parent:GetUnitName() == "npc_dota_creature_40_crip_9" then
+            caster:ForceKill(false)
+        end
+    end
 end
 
 function modifier_boss_zombie_tombstone_follower_zombie:OnCreated()
     if not IsServer() then return end
+
+    self.target = nil
 
     self:StartIntervalThink(FrameTime())
 end
@@ -492,5 +514,39 @@ function modifier_boss_zombie_tombstone_follower_zombie:OnIntervalThink()
 
     if caster:IsNull() or (not caster:IsNull() and not caster:IsAlive()) then 
         self:Destroy()
+        return
+    end
+
+    local parent = self:GetParent()
+
+    if (parent:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() > 1200 then
+        self.target = nil
+        parent:MoveToPosition(caster:GetAbsOrigin())
+        return
+    end
+
+    if not caster:IsAlive() then
+        self:Destroy()
+        return
+    end
+
+    if self.target ~= nil then
+        if self.target:IsAlive() then
+            parent:SetForceAttackTarget(self.target)
+        else
+            parent:SetForceAttackTarget(nil)
+            self.target = nil
+        end
+    end
+
+    local victims = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
+            600, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC), DOTA_UNIT_TARGET_FLAG_NONE,
+            FIND_CLOSEST, false)
+
+    for _,victim in ipairs(victims) do
+        if not victim:IsAlive() then break end
+
+        self.target = victim 
+        break
     end
 end

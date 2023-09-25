@@ -6,6 +6,7 @@
 #base "hephaestus/all.txt"
 #base "lake/all.txt"
 #base "skeleton_king/all.txt"
+#base "zombie/all.txt"
 
 "DOTAAbilities"
 {

@@ -13546,7 +13546,7 @@
       // Bounds
       //----------------------------------------------------------------
       "RingRadius"				"70"
-      "HealthBarOffset"			"215"
+      "HealthBarOffset"			"250"
 
       // Bounty
       //----------------------------------------------------------------
@@ -13602,7 +13602,7 @@
 
       // Abilities
       //----------------------------------------------------------------
-      "Ability1"					"undying_tombstone_zombie_deathstrike"
+      "Ability1"					"zombie_death_lust"
       "Ability2"					"neutral_spell_immunity"
 
       // Armor
@@ -13671,7 +13671,7 @@
       "SoundSet"					"Hero_Undying"
       "Level"						"40"
       "IsNeutralUnitType"            "1"
-      "ModelScale"                    "1"
+      "ModelScale"                    "1.2"
       "wearable"				"8630"
       "ConsideredHero" "0"
       "IsAncient" "1"
@@ -13681,7 +13681,7 @@
 
       // Abilities
       //----------------------------------------------------------------
-      "Ability1"					"undying_tombstone_zombie_deathstrike"
+      "Ability1"					"zombie_death_lust"
 
       // Armor
       //----------------------------------------------------------------
@@ -13695,7 +13695,7 @@
       "AttackRate"				"0.7"		// Speed of attack.
       "AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
       "AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-      "AttackRange"				"300"		// Range within a target can be attacked.
+      "AttackRange"				"128"		// Range within a target can be attacked.
       "ProjectileModel"			""			// Particle system model for projectile.
       "ProjectileSpeed"			"0"			// Speed of projectile.		   
 
