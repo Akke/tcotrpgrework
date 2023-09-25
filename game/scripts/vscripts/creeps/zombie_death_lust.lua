@@ -83,7 +83,9 @@ function modifier_zombie_death_lust_debuff:DeclareFunctions()
 end
 
 function modifier_zombie_death_lust_debuff:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetAbility():GetSpecialValueFor("slow") * self:GetStackCount()
+    if not self:IsNull() and not self:GetAbility():IsNull() then
+        return self:GetAbility():GetSpecialValueFor("slow") * self:GetStackCount()
+    end
 end
 ------------
 function modifier_zombie_death_lust_buff:DeclareFunctions()
@@ -94,9 +96,13 @@ function modifier_zombie_death_lust_buff:DeclareFunctions()
 end
 
 function modifier_zombie_death_lust_buff:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetAbility():GetSpecialValueFor("bonus_move_speed")
+    if not self:IsNull() and not self:GetAbility():IsNull() then
+        return self:GetAbility():GetSpecialValueFor("bonus_move_speed")
+    end
 end
 
 function modifier_zombie_death_lust_buff:GetModifierAttackSpeedBonus_Constant()
-    return self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+    if not self:IsNull() and not self:GetAbility():IsNull() then
+        return self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+    end
 end
