@@ -1,3 +1,4 @@
+-- testing 123
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
 BAREBONES_VERSION = "2.0.16"
 
