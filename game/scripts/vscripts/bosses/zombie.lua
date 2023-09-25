@@ -313,7 +313,7 @@ function modifier_boss_zombie_follower:OnDeath(event)
                 posZ = self.spawnPosition.z,
             })
 
-            if RollPercentage(ELITE_SPAWN_CHANCE) and event.unit:GetUnitName() ~= "npc_dota_creature_40_crip_7" then
+            if RollPercentage(ELITE_SPAWN_CHANCE) and not event.unit:IsNull() and event.unit:GetUnitName() ~= "npc_dota_creature_40_crip_7" then
                 unit:AddNewModifier(unit, nil, "modifier_creep_elite", {})
             end
 
