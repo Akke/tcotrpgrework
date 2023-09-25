@@ -2661,23 +2661,23 @@ function barebones:DamageFilter(event)
         
         GameRules:SendCustomMessage("Starting damage parse for <span color='red'>"..name.."</span>! Ends in 30 seconds...", attackerID, 0)
         _G.PlayerDamageTimer[attackerID] = Timers:CreateTimer(DUMMY_TARGET_DPS_CHECK_DURATION, function()
-          GameRules:SendCustomMessage("========= (<span color='red'>"..name.."</span>) ===========", attackerID, 0)
+          --GameRules:SendCustomMessage("========= (<span color='red'>"..name.."</span>) ===========", attackerID, 0)
           
           if GameRules:IsCheatMode() then
             --[[
             GameRules:SendCustomMessage("<span color='gold'>Total Damage (<span color='red'>"..name.."</span>) [CHEATS]: " .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID])) .. "</span>", attackerID, 0)
             GameRules:SendCustomMessage("<span color='lightgreen'>DPS (<span color='red'>"..name.."</span>) [CHEATS]: " .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID]/30)) .. "</span>", attackerID, 0)
             ]]--
-            GameRules:SendCustomMessage("<span color='red'>" .. name .. "</span> [CHEATS]: <span color='gold'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID])) .. "Damage Dealt</span> (<span color='lightgreen'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID]/30)) .. "</span> DPS)", attackerID, 0)
+            GameRules:SendCustomMessage("<span color='red'>" .. name .. "</span> [CHEATS]: <span color='gold'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID])) .. " Damage Dealt</span> (<span color='lightgreen'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID]/30)) .. " DPS</span>)", attackerID, 0)
           else
             --[[
             GameRules:SendCustomMessage("<span color='gold'>Total Damage (<span color='red'>"..name.."</span>): " .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID])) .. "</span>", attackerID, 0)
             GameRules:SendCustomMessage("<span color='lightgreen'>DPS (<span color='red'>"..name.."</span>): " .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID]/30)) .. "</span>", attackerID, 0)
             ]]--
-            GameRules:SendCustomMessage("<span color='red'>" .. name .. "</span>: <span color='gold'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID])) .. "Damage Dealt</span> (<span color='lightgreen'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID]/30)) .. "</span> DPS)", attackerID, 0)
+            GameRules:SendCustomMessage("<span color='red'>" .. name .. "</span>: <span color='gold'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID])) .. " Damage Dealt</span> (<span color='lightgreen'>" .. FormatLongNumber(math.floor(_G.PlayerDamageTest[attackerID]/30)) .. " DPS</span>)", attackerID, 0)
           end
 
-          GameRules:SendCustomMessage("====================", attackerID, 0)
+          --GameRules:SendCustomMessage("====================", attackerID, 0)
 
           _G.PlayerDamageTest[attackerID] = 0
           
