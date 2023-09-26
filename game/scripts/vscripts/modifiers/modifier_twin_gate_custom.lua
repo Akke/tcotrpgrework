@@ -28,3 +28,7 @@ function modifier_twin_gate_custom:CheckState()
         [MODIFIER_STATE_NO_HEALTH_BAR] = true
     }
 end
+
+function modifier_twin_gate_custom:CanParentBeAutoAttacked()
+    return false
+end
