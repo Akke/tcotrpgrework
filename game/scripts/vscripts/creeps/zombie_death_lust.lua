@@ -10,7 +10,7 @@ local ItemBaseClass = {
 }
 
 local ItemBaseClassDebuff = {
-    IsPurgable = function(self) return false end,
+    IsPurgable = function(self) return true end,
     RemoveOnDeath = function(self) return true end,
     IsHidden = function(self) return false end,
     IsStackable = function(self) return false end,
@@ -18,7 +18,7 @@ local ItemBaseClassDebuff = {
 }
 
 local ItemBaseClassBuff = {
-    IsPurgable = function(self) return false end,
+    IsPurgable = function(self) return true end,
     RemoveOnDeath = function(self) return true end,
     IsHidden = function(self) return false end,
     IsStackable = function(self) return false end,
@@ -53,16 +53,18 @@ function modifier_zombie_death_lust:OnAttackLanded(event)
     local duration = ability:GetSpecialValueFor("duration")
     local healthPct = ability:GetSpecialValueFor("health_threshold_pct")
 
-    local debuff = target:FindModifierByName("modifier_zombie_death_lust_debuff")
-    if not debuff then
-        debuff = target:AddNewModifier(parent, ability, "modifier_zombie_death_lust_debuff", {
-            duration = duration
-        })
-    end
+    if not target:IsMagicImmune() then
+        local debuff = target:FindModifierByName("modifier_zombie_death_lust_debuff")
+        if not debuff then
+            debuff = target:AddNewModifier(parent, ability, "modifier_zombie_death_lust_debuff", {
+                duration = duration
+            })
+        end
 
-    if debuff then
-        debuff:IncrementStackCount()
-        debuff:ForceRefresh()
+        if debuff then
+            debuff:IncrementStackCount()
+            debuff:ForceRefresh()
+        end
     end
 
     if target:GetHealthPercent() <= healthPct then

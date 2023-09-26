@@ -144,8 +144,6 @@ end
 
 function modifier_boss_zombie:OnIntervalThink()
     if self.boss:GetAggroTarget() == nil then return end
-
-    --
 end
 
 function modifier_boss_zombie:IsFollower(follower)
