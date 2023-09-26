@@ -28039,6 +28039,35 @@
             }
         }
     }
+
+    "twin_gate_portal_warp_custom"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/twin_gate_portal_warp_custom.lua"
+        "AbilityTextureName"            "twin_gate_portal_warp"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOASSIST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"IsCastableWhileHidden"			"1"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityChannelTime"			"2.0"
+		"MaxLevel"						"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"200"
+        "AbilityCastPoint" "0"
+        
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+
+			"animation_rate"		"0.8"
+			"stop_distance"			"500"
+		}
+	}
 }
 
 #base "abilities/bosses/all.txt"

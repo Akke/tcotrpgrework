@@ -852,6 +852,13 @@ function barebones:OnGameInProgress()
       --CustomNetTables:SetTableValue("waves_disable", "game_info", { enabled = false })
     end
   end
+
+  if GetMapName() == "tcotrpgv3" then
+    local twinGates = Entities:FindAllByModel("models/props_gameplay/team_portal/team_portal.vmdl")
+    for _,gate in ipairs(twinGates) do
+      gate:AddNewModifier(gate, nil, "modifier_twin_gate_custom", {})
+    end
+  end
   --
 
 	-- If the day/night is not changed at 00:00, uncomment the following line:
@@ -1867,6 +1874,32 @@ function barebones:OrderFilter(event)
       return false
     end
 
+    if event.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
+      local target = EntIndexToHScript(event.entindex_target)
+      local player = PlayerResource:GetSelectedHeroEntity(event.issuer_player_id_const)
+
+      if target == nil then return end
+      if player == nil then return end
+
+      if target:IsBaseNPC() and target:GetUnitName() == "npc_dota_unit_twin_gate_custom" then
+        local distance = (player:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
+        if distance <= 200 then
+          local tOrder =  {
+            UnitIndex = player:entindex(),
+            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+            AbilityIndex = player:FindAbilityByName("twin_gate_portal_warp_custom"):entindex(),
+            TargetIndex = target:entindex()
+          }
+          ExecuteOrderFromTable(tOrder)
+        else
+          player:MoveToPosition(target:GetAbsOrigin())
+          player:CastAbilityOnTarget(target, player:FindAbilityByName("twin_gate_portal_warp_custom"), -1)
+        end
+
+        return false
+      end
+    end
+
     if event.order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then
       local purchasedPlayerIssuer = EntIndexToHScript(event.units["0"])
       local purchasedItemName = event.shop_item_name
@@ -1920,7 +1953,11 @@ function barebones:OrderFilter(event)
     if event.order_type == DOTA_UNIT_ORDER_CAST_TARGET then
       local target = EntIndexToHScript(event.entindex_target)
       local player = PlayerResource:GetSelectedHeroEntity(event.issuer_player_id_const)
+      
       if target == nil then return end
+
+      if target:GetUnitName() == "npc_dota_unit_twin_gate_custom" then return true end
+
       if player == nil then return end
 
       if player:HasModifier("modifier_zuus_transcendence_custom_transport") then
@@ -2258,7 +2295,7 @@ function barebones:DamageFilter(event)
       --ability = EntIndexToHScript(event.entindex_inflictor_const)
     --end
 
-    if victim:IsBuilding() and victim:GetTeam() == DOTA_TEAM_GOODGUYS then
+    if victim:IsBuilding() and (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom") then
       event.damage = 0
     end
 
@@ -2827,7 +2864,11 @@ function barebones:OnNPCSpawned(keys)
       npc:HeroLevelUp(false)
       npc:HeroLevelUp(false)
 
-      npc:AddAbility("twin_gate_portal_warp")
+      local twinGateCustom = npc:AddAbility("twin_gate_portal_warp_custom")
+      if twinGateCustom ~= nil then
+        twinGateCustom:SetLevel(1)
+        twinGateCustom:SetActivated(true)
+      end
 
       --
       npc:AddItemByName("item_swiftness_boots")

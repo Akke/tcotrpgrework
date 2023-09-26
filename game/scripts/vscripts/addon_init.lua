@@ -159,3 +159,5 @@ LinkLuaModifier("modifier_xp_all_talent_23", "abilities/talents/all/xp_all_talen
 LinkLuaModifier("modifier_xp_manager_player", "modules/xp_manager/XpManager.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_auto_pickup", "modifiers/modifier_auto_pickup.lua", LUA_MODIFIER_MOTION_NONE)
+
+LinkLuaModifier("modifier_twin_gate_custom", "modifiers/modifier_twin_gate_custom.lua", LUA_MODIFIER_MOTION_NONE)

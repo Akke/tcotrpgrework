@@ -13732,11 +13732,11 @@
       "HasInventory"				"1"
     }
 
-    "npc_dota_unit_twin_gate"
+    "npc_dota_unit_twin_gate_custom"
     {
       // General
       //
-      "BaseClass"					"npc_dota_unit_twin_gate"	// Class of entity of link to.
+      "BaseClass"					"npc_dota_building"	// Class of entity of link to.
       // General
       //
       "Model"						"models/heroes/abyssal_underlord/abyssal_underlord_portal_model.vmdl"	// Model.
@@ -13797,7 +13797,6 @@
       "BoundsHullName"			"DOTA_HULL_SIZE_FILLER"			// Hull type used for navigation/locomotion.
       "RingRadius"				"100"
       "HealthBarOffset"			"475"
-      "MinimapIconSize"			"500"
 
       // Movement
       //----------------------------------------------------------------
@@ -13814,7 +13813,7 @@
 
       // Team
       //----------------------------------------------------------------
-      "TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+      "TeamName"					"DOTA_TEAM_NEUTRALS"			// Team name.
       "UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
       
       // Vision
