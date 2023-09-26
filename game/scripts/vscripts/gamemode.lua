@@ -1878,22 +1878,21 @@ function barebones:OrderFilter(event)
       local target = EntIndexToHScript(event.entindex_target)
       local player = PlayerResource:GetSelectedHeroEntity(event.issuer_player_id_const)
 
-      if target == nil then return end
-      if player == nil then return end
+      if not target or not player then return end
 
-      if target:IsBaseNPC() and target:GetUnitName() == "npc_dota_unit_twin_gate_custom" then
+      if target:GetUnitName() == "npc_dota_unit_twin_gate_custom" then
         local distance = (player:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
+        local twinGateWarp = player:FindAbilityByName("twin_gate_portal_warp_custom")
         if distance <= 200 then
-          local tOrder =  {
+          ExecuteOrderFromTable({
             UnitIndex = player:entindex(),
             OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = player:FindAbilityByName("twin_gate_portal_warp_custom"):entindex(),
+            AbilityIndex = twinGateWarp:entindex(),
             TargetIndex = target:entindex()
-          }
-          ExecuteOrderFromTable(tOrder)
+          })
         else
           player:MoveToPosition(target:GetAbsOrigin())
-          player:CastAbilityOnTarget(target, player:FindAbilityByName("twin_gate_portal_warp_custom"), -1)
+          player:CastAbilityOnTarget(target, twinGateWarp, -1)
         end
 
         return false
