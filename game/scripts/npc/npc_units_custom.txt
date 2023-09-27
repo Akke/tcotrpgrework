@@ -4441,11 +4441,11 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/items/lycan/ultimate/hunter_kings_trueform/hunter_kings_trueform.vmdl"	// Model.
+		"Model"						"models/creeps/knoll_1/werewolf_boss.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Lycan"
 		"Level"						"30"
-		"ModelScale" 					"1.5"
+		"ModelScale" 					"3"
 	"IsNeutralUnitType"            "1"
         "ConsideredHero" "1"
         "IsAncient" "1"
@@ -4458,10 +4458,10 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"boss_shell_custom"
-        "Ability2"                                      "necronomicon_warrior_sight"
-        "Ability3" "boss_skafian_howl"
-        "Ability4" "boss_skafian_wolf_bite"
-        "Ability5" "boss_skafian_lycanthropy"
+    "Ability2"                                      "necronomicon_warrior_sight"
+    "Ability3" "boss_skafian_howl"
+    "Ability4" "boss_skafian_wolf_bite"
+    "Ability5" "boss_skafian_lycanthropy"
 
 		// Armor
 		//----------------------------------------------------------------
@@ -9002,9 +9002,9 @@
 	{										
 		// General
         //----------------------------------------------------------------
-        "Model"                     "models/heroes/ancient_apparition/ancient_apparition.vmdl"    // Model.
+        "Model"                     "models/heroes/tuskarr/tuskarr.vmdl"    // Model.
         "BaseClass"                 "npc_dota_creature"
-        "SoundSet"                  "Hero_ancient_apparition"
+        "SoundSet"                  "Hero_Tusk"
         "Level"                     "50"
         "ModelScale"                    "2.2"
     "IsNeutralUnitType"            "1"
@@ -9017,19 +9017,16 @@
 
         "precache"
         {
-            "model" "models/heroes/ancient_apparition/ancient_apparition.vmdl"
         }    
 
         // Abilities
         //----------------------------------------------------------------
         "Ability1"                  "Respawn"
-                "Ability2"                                      ""
-                "Ability3"                                      "boss_shell_custom"
-                "Ability4"                                      "necronomicon_warrior_sight"
-                "Ability5"                                      "boss_ancient_apparition_chilling_touch_custom"
-                "Ability6"                                      "boss_ancient_apparition_chilling_ground"
-                "Ability7"                                      "ancient_apparition_ice_blast"
-                "Ability8"                                      "ancient_apparition_ice_blast_release"
+        "Ability2"                                      "boss_shell_custom"
+        "Ability3"                                      "necronomicon_warrior_sight"
+        "Ability4"                                      "creep_ancient_apparition_punch"
+        "Ability5"                                      "boss_tusk_tag_team"
+        "Ability6"                                      "boss_tusk_walrus_kick"
         // Armor
         //----------------------------------------------------------------
         "ArmorPhysical"             "100"           // Physical protection.
@@ -9037,14 +9034,14 @@
 
         // Attack
         //----------------------------------------------------------------
-        "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
         "AttackDamageMin"           "120000"        // Damage range min.
         "AttackDamageMax"           "160000"        // Damage range max.    
         "AttackRate"                "0.3"       // Speed of attack.
         "AttackAnimationPoint"      "0.3"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "850"       // Range within a target can be acquired.
-        "AttackRange"               "850"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"          // Particle system model for projectile.
+        "AttackRange"               "150"       // Range within a target can be attacked.
+        "ProjectileModel"           ""          // Particle system model for projectile.
         "ProjectileSpeed"           "1100"          // Speed of projectile.        
 
         // Bounds
@@ -9090,10 +9087,11 @@
     {
     "AttachWearables"
             {
-                "1" { "ItemDef" "14887" }
-                "2" { "ItemDef" "14888" }
-                "3" { "ItemDef" "14889" }
-                "4" { "ItemDef" "14890" }
+                "1" { "ItemDef" "18287" }
+                "2" { "ItemDef" "18288" }
+                "3" { "ItemDef" "18289" }
+                "4" { "ItemDef" "18290" }
+                "4" { "ItemDef" "18291" }
             }
     "EquippedItems"
               {
@@ -9158,7 +9156,7 @@
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Ranged"
 		"Level"						"40"
-		"ModelScale"                  "1.2"
+		"ModelScale"                  "0.7"
     "IsNeutralUnitType"            "1"
         "ConsideredHero" "0"
         "IsAncient" "1"
@@ -9189,7 +9187,7 @@
         "AttackDamageMax"           "46875"     // Damage range max.    
         "AttackRate"                "0.6"     // Speed of attack.
         "AttackAnimationPoint"      "0.4"       // Normalized time in animation cycle to attack.
-        "AttackAcquisitionRange"    "500"       // Range within a target can be acquired.
+        "AttackAcquisitionRange"    "0"       // Range within a target can be acquired.
         "AttackRange"               "600"       // Range within a target can be attacked.
         "ProjectileModel"           "particles/neutral_fx/ghost_frost_attack.vpcf"          // Particle system model for projectile.
         "ProjectileSpeed"           "1100"         // Speed of projectile.        
@@ -9220,8 +9218,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"100"		// Range of vision during day light.
+		"VisionNighttimeRange"		"100"		// Range of vision at night time.
 
 		// Team
 		//----------------------------------------------------------------
@@ -9251,7 +9249,7 @@
           "Item"
           {
           }
-          "Chance"      "0"
+          "Chance"      "3"
         }
         "GoldBag"
             {
@@ -9265,121 +9263,13 @@
     }
 	}
 
-    "npc_dota_creature_130_crip4_death"
-    {                                       
-        // General
-        //----------------------------------------------------------------
-        "Model"                     "models/creeps/pine_cone/pine_cone.vmdl"   // Model.
-        "BaseClass"                 "npc_dota_creature"
-        "SoundSet"                  "n_creep_Melee"
-        "Level"                     "40"
-        "ModelScale"                  "1.1"
-    "IsNeutralUnitType"            "1"
-        "ConsideredHero" "0"
-        "IsAncient" "1"
-        "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"  
-        "MagicalResistance" "30"    
-
-        // Abilities
-        //----------------------------------------------------------------
-        "Ability1"                  "Respawn"
-        "Ability3" "follower_reef_thick_bark"
-                "Ability5"                                      "follower_reef_bleed"
-
-        // Armor
-        //----------------------------------------------------------------
-        "ArmorPhysical"             "75"            // Physical protection.
-
-        // Attack
-        //----------------------------------------------------------------
-        "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
-        "AttackDamageMin"           "37500"      // Damage range min.
-        "AttackDamageMax"           "50000"     // Damage range max.    
-        "AttackRate"                "0.6"     // Speed of attack.
-        "AttackAnimationPoint"      "0.4"       // Normalized time in animation cycle to attack.
-        "AttackAcquisitionRange"    "500"       // Range within a target can be acquired.
-        "AttackRange"               "150"       // Range within a target can be attacked.
-        "ProjectileModel"           ""          // Particle system model for projectile.
-        "ProjectileSpeed"           "900"         // Speed of projectile.        
-
-        // Bounds
-        //----------------------------------------------------------------
-        "RingRadius"                "70"
-        "HealthBarOffset"           "215"
-
-        // Bounty
-        //----------------------------------------------------------------
-        "BountyXP"                  "1841"      // Experience earn.
-        "BountyGoldMin"             "80"      // Gold earned min.
-        "BountyGoldMax"             "90"      // Gold earned max.
-
-        // Movement
-        //----------------------------------------------------------------
-        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
-        "MovementSpeed"             "300"       // Speed.
-        "MovementTurnRate"          "0.6"       // Turning rate.
-
-        // Status
-        //----------------------------------------------------------------
-        "StatusHealth"              "24000"     // Base health.
-        "StatusHealthRegen"         "0"           // Health regeneration rate.
-        "StatusMana"                "7481"      // Base mana.
-        "StatusManaRegen"           "0"        // Mana regeneration rate.        
-        
-        // Vision
-        //----------------------------------------------------------------
-        "VisionDaytimeRange"        "1400"      // Range of vision during day light.
-        "VisionNighttimeRange"      "800"       // Range of vision at night time.
-
-        // Team
-        //----------------------------------------------------------------
-        "TeamName"                  "DOTA_TEAM_BAD_GUYS"                            // Team name.
-        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
-        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
-        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-        //Inventory
-        "HasInventory"              "0"
-                "Creature"
-    {
-      "ItemDrops"
-      {
-        "Consumables"
-        {
-          "Item"
-          {
-            "1" "item_tome_str_60"
-            "2" "item_tome_agi_60"
-            "3" "item_tome_int_60"
-          }
-          "Chance"      "0"
-        }
-        "Trinkets"
-        {
-          "Item"
-          {
-          }
-          "Chance"      "0"
-        }
-        "GoldBag"
-            {
-              "Item"
-              {
-                "1" ""
-              }
-              "Chance"      "7.5"
-            }
-      }
-    }
-    }
-
     "npc_dota_creature_130_crip5_death"
     {                                       
         // General
         //----------------------------------------------------------------
-        "Model"                     "models/items/furion/treant/allfather_of_nature_treant/allfather_of_nature_treant.vmdl"   // Model.
+        "Model"                     "models/creeps/ice_biome/tuskfolk/tuskfolk001b_f.vmdl"   // Model.
         "BaseClass"                 "npc_dota_creature"
-        "SoundSet"                  "Furion_Treant"
+        "SoundSet"                  "Hero_Tusk"
         "Level"                     "40"
         "ModelScale"                  "0.80"
     "IsNeutralUnitType"            "1"
@@ -9391,9 +9281,6 @@
         // Abilities
         //----------------------------------------------------------------
         "Ability1"                  "Respawn"
-        "Ability3" "follower_reef_thick_bark"
-                //"Ability5"                                      "follower_reef_entangling_treant" THIS CRASHES DONT USE IT
-                "Ability6" "follower_reef_slow"
 
         // Armor
         //----------------------------------------------------------------
@@ -9482,28 +9369,25 @@
     }
     }
 
-        //================================================================================= 
-        // Creature: Death
-        //=================================================================================
-                "npc_dota_creature_130_crip2_death"
-	{										
+    "npc_dota_creature_130_crip2_death"
+	  {										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl"	// Model.
+		"Model"						"models/creeps/ice_biome/ogreseal/ogreseal.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"40"
-		"ModelScale" 					"1.1"
-	"IsNeutralUnitType"            "1"
-        "ConsideredHero" "0"
-        "IsAncient" "1"
-        "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"	
-        "MagicalResistance" "30"	
+		"ModelScale" 					"1"
+	  "IsNeutralUnitType"            "1"
+    "ConsideredHero" "0"
+    "IsAncient" "1"
+    "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"	
+    "MagicalResistance" "30"	
 
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"Respawn"
-                "Ability5"                                      "creep_ancient_apparition_punch"
+    "Ability2"          "ogre_seal_flop"
 
 		// Armor
 		//----------------------------------------------------------------
@@ -9516,7 +9400,7 @@
 		"AttackDamageMax"			"39063"		// Damage range max.	
 		"AttackRate"				"0.7"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"0"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.		   
@@ -9529,8 +9413,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                  "1242"      // Experience earn.
-        "BountyGoldMin"             "90"      // Gold earned min.
-        "BountyGoldMax"             "100"      // Gold earned max.
+    "BountyGoldMin"             "90"      // Gold earned min.
+    "BountyGoldMax"             "100"      // Gold earned max.
 
 		// Movement
 		//----------------------------------------------------------------
@@ -9547,8 +9431,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"100"		// Range of vision during day light.
+		"VisionNighttimeRange"		"100"		// Range of vision at night time.
 
 		// Team
 		//----------------------------------------------------------------
@@ -9598,7 +9482,7 @@
         "BaseClass"                 "npc_dota_creature"
         "SoundSet"                  "n_creep_Ranged"
         "Level"                     "40"
-        "ModelScale"                    "1.6"
+        "ModelScale"                    "1.05"
     "IsNeutralUnitType"            "1"
         "ConsideredHero" "0"
         "IsAncient" "1"
@@ -9613,7 +9497,7 @@
         // Abilities
         //----------------------------------------------------------------
         "Ability1"                  "Respawn"
-                "Ability5"                                      "creep_ancient_apparition_crystal_nova_custom"
+                "Ability5"                                      "shaman_frost_nova"
 
         // Armor
         //----------------------------------------------------------------
@@ -9626,7 +9510,7 @@
         "AttackDamageMax"           "50781"     // Damage range max.    
         "AttackRate"                "0.7"       // Speed of attack.
         "AttackAnimationPoint"      "0.4"       // Normalized time in animation cycle to attack.
-        "AttackAcquisitionRange"    "500"       // Range within a target can be acquired.
+        "AttackAcquisitionRange"    "0"       // Range within a target can be acquired.
         "AttackRange"               "600"       // Range within a target can be attacked.
         "ProjectileModel"           "particles/units/heroes/hero_witchdoctor/witchdoctor_base_attack.vpcf"          // Particle system model for projectile.
         "ProjectileSpeed"           "1200"          // Speed of projectile.        
@@ -9657,8 +9541,8 @@
         
         // Vision
         //----------------------------------------------------------------
-        "VisionDaytimeRange"        "1400"      // Range of vision during day light.
-        "VisionNighttimeRange"      "800"       // Range of vision at night time.
+        "VisionDaytimeRange"        "100"      // Range of vision during day light.
+        "VisionNighttimeRange"      "100"       // Range of vision at night time.
 
         // Team
         //----------------------------------------------------------------
@@ -9669,6 +9553,110 @@
 
         //Inventory
         "HasInventory"              "0"
+                "Creature"
+    {
+      "ItemDrops"
+      {
+        "Consumables"
+        {
+          "Item"
+          {
+          }
+          "Chance"      "60"
+        }
+        "Trinkets"
+        {
+          "Item"
+          {
+          }
+          "Chance"      "3"
+        }
+        "GoldBag"
+            {
+              "Item"
+              {
+                "1" ""
+              }
+              "Chance"      "7.5"
+            }
+      }
+    }
+    }
+
+    "npc_dota_creature_130_crip4_death"
+	  {										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/ice_biome/tuskfolk/tuskfolk001a_f.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Tusk"
+		"Level"						"40"
+		"ModelScale" 					"1"
+	  "IsNeutralUnitType"            "1"
+    "ConsideredHero" "0"
+    "IsAncient" "1"
+    "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"	
+    "MagicalResistance" "30"	
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"Respawn"
+    "Ability2"          "creep_ancient_apparition_punch"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"90"			// Physical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"26025"		// Damage range min.
+		"AttackDamageMax"			"39063"		// Damage range max.	
+		"AttackRate"				"0.7"		// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"70"
+		"HealthBarOffset"			"215"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"                  "1242"      // Experience earn.
+    "BountyGoldMin"             "90"      // Gold earned min.
+    "BountyGoldMax"             "100"      // Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"250"		// Speed.
+		"MovementTurnRate"			"0.6"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"25665"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"17110"		// Base mana.
+		"StatusManaRegen"			"0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"100"		// Range of vision during day light.
+		"VisionNighttimeRange"		"100"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BAD_GUYS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		//Inventory
+		"HasInventory"				"0"
                 "Creature"
     {
       "ItemDrops"
@@ -9698,7 +9686,7 @@
             }
       }
     }
-    }
+	}
         //================================================================================= 
         // Creature: Robo
         //=================================================================================

@@ -107,33 +107,8 @@ function modifier_boss_lake:OnCreated(kv)
     self.status = 25 * BOSS_STAGE
     self:InvokeStatusResistance()
 
-    self.chillingTouch = self.boss:FindAbilityByName("boss_ancient_apparition_chilling_touch_custom")
-
-    if not self.boss:HasAbility("boss_ancient_apparition_chilling_touch_custom") then
-        self.chillingTouch = self.boss:AddAbility("boss_ancient_apparition_chilling_touch_custom") 
-    end
-
-    --if not self.boss:HasAbility("boss_ancient_apparition_chilling_barrier") then
-    --    self.chillingBarrier = self.boss:AddAbility("boss_ancient_apparition_chilling_barrier") 
-    --end
-
-    self.chillingGround = self.boss:FindAbilityByName("boss_ancient_apparition_chilling_ground")
-
-    if not self.boss:HasAbility("boss_ancient_apparition_chilling_ground") then
-        self.chillingGround = self.boss:AddAbility("boss_ancient_apparition_chilling_ground") 
-    end
-
-    self.iceBlast = self.boss:FindAbilityByName("ancient_apparition_ice_blast")
-
-    if not self.boss:HasAbility("ancient_apparition_ice_blast") then
-        self.iceBlast = self.boss:AddAbility("ancient_apparition_ice_blast") 
-    end
-
-    self.iceBlastRelease = self.boss:FindAbilityByName("ancient_apparition_ice_blast_release")
-
-    if not self.boss:HasAbility("ancient_apparition_ice_blast_release") then
-        self.iceBlastRelease = self.boss:AddAbility("ancient_apparition_ice_blast_release") 
-    end
+    self.tagTeam = self.boss:FindAbilityByName("boss_tusk_tag_team")
+    self.walrusKick = self.boss:FindAbilityByName("boss_tusk_walrus_kick")
 
     -- Making sure they get leveled up properly --
     Timers:CreateTimer(1.0, function()
@@ -141,15 +116,17 @@ function modifier_boss_lake:OnCreated(kv)
             local abil = self.boss:GetAbilityByIndex(i)
             if abil ~= nil then
                 abil:SetLevel(level)
-                if abil == self.chillingTouch and not abil:GetAutoCastState() then
+                if abil:GetAbilityName() == "boss_tusk_walrus_kick" then
+                    abil:SetHidden(false)
+                    abil:SetActivated(true)
+                end
+                
+                if not abil:GetAutoCastState() then
                     abil:ToggleAutoCast()
                 end
             end
         end
     end)
-
-    self.boss:AddItemByName("item_ultimate_scepter")
-    self.boss:AddItemByName("item_aghanims_shard")
 
     self:StartIntervalThink(1)
 end
@@ -160,20 +137,18 @@ function modifier_boss_lake:OnIntervalThink()
     if self.boss:GetAggroTarget() == nil then return end
     if self.boss:IsSilenced() or self.boss:IsStunned() or self.boss:IsHexed() then return end
 
-    local enemies = FindUnitsInRadius(self.boss:GetTeam(), self.boss:GetAbsOrigin(), nil,
-        850, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
-        FIND_CLOSEST, false)
-
-    for _,enemy in ipairs(enemies) do
-        if self.chillingGround:IsCooldownReady() and not self.boss:IsSilenced() and not self.boss:IsStunned() and not self.boss:IsHexed() then
-            SpellCaster:Cast(self.chillingGround, enemy, true)
+    if self.tagTeam and self.tagTeam:GetLevel() > 0 then
+        if self.tagTeam:IsFullyCastable() and not self.boss:IsStunned() and not self.boss:IsSilenced() and not self.boss:IsHexed() then
+            SpellCaster:Cast(self.tagTeam, self.boss, true)
         end
+    end
 
-        if self.iceBlast:IsCooldownReady() and self.iceBlastRelease:IsCooldownReady() and not self.boss:IsSilenced() and not self.boss:IsStunned() and not self.boss:IsHexed() then
-            SpellCaster:Cast(self.iceBlast, enemy, true)
-            Timers:CreateTimer(0.5, function()
-                SpellCaster:Cast(self.iceBlastRelease, self.boss, true)
-            end)
+    local target = self.boss:GetAggroTarget()
+    if target then
+        if self.walrusKick and self.walrusKick:GetLevel() > 0 then
+            if self.walrusKick:IsFullyCastable() and not self.boss:IsStunned() and not self.boss:IsSilenced() and not self.boss:IsHexed() then
+                SpellCaster:Cast(self.walrusKick, target, true)
+            end
         end
     end
 end
@@ -181,6 +156,8 @@ end
 function modifier_boss_lake:IsFollower(follower)
     if not follower or follower:IsNull() then return false end
 
+    if follower:GetUnitName() == "npc_dota_creature_130_crip5_death" then return true end
+    if follower:GetUnitName() == "npc_dota_creature_130_crip4_death" then return true end
     if follower:GetUnitName() == "npc_dota_creature_130_crip3_death" then return true end
     if follower:GetUnitName() == "npc_dota_creature_130_crip2_death" then return true end
     if follower:GetUnitName() == "npc_dota_creature_130_crip1_death" then return true end
@@ -201,8 +178,11 @@ function modifier_boss_lake:ProgressToNext()
         FIND_CLOSEST, false)
 
     for _,minion in ipairs(followers) do
-        if minion:GetUnitName() == "npc_dota_creature_130_crip3_death" or
-        minion:GetUnitName() == "npc_dota_creature_130_crip2_death" then
+        if minion:GetUnitName() == "npc_dota_creature_130_crip4_death" or
+        minion:GetUnitName() == "npc_dota_creature_130_crip5_death" or 
+        minion:GetUnitName() == "npc_dota_creature_130_crip3_death" or 
+        minion:GetUnitName() == "npc_dota_creature_130_crip2_death" or 
+        minion:GetUnitName() == "npc_dota_creature_130_crip1_death" then
             minion:FindModifierByNameAndCaster("modifier_boss_lake_follower", minion):ForceRefresh()
         end
     end
@@ -287,6 +267,15 @@ function modifier_boss_lake_follower:OnCreated(kv)
 
     self.spawnPosition = Vector(kv.posX, kv.posY, kv.posZ)
 
+    self.frostNova = parent:FindAbilityByName("shaman_frost_nova")
+    self.coldEmbrace = parent:FindAbilityByName("creep_ancient_apparition_cold_embrace")
+    self.ogreSealFlop = parent:FindAbilityByName("ogre_seal_flop")
+    self.walrusPunch = parent:FindAbilityByName("creep_ancient_apparition_punch")
+
+    if self.walrusPunch then
+        self.walrusPunch:ToggleAutoCast()
+    end
+
     self:StartIntervalThink(1.0)
 end
 
@@ -309,20 +298,39 @@ function modifier_boss_lake_follower:OnIntervalThink()
         end
     end
 
-    if parent:GetUnitName() == "npc_dota_creature_130_crip1_death" then
-        if self.embrace ~= nil and self.embrace:GetLevel() > 0 then
+    if self.frostNova and self.frostNova:GetLevel() > 0 then
+        local target = parent:GetAggroTarget()
+        if target and self.frostNova:IsFullyCastable() and not parent:IsStunned() and not parent:IsSilenced() and not parent:IsHexed() then
+            if (target:GetAbsOrigin()-parent:GetAbsOrigin()):Length2D() <= self.frostNova:GetEffectiveCastRange(parent:GetAbsOrigin(), parent) then
+                SpellCaster:Cast(self.frostNova, target:GetAbsOrigin(), true)
+            end
+        end
+    end
+
+    if self.ogreSealFlop and self.ogreSealFlop:GetLevel() > 0 then
+        local target = parent:GetAggroTarget()
+        if target and self.ogreSealFlop:IsFullyCastable() and not parent:IsStunned() and not parent:IsSilenced() and not parent:IsHexed() then
+            if (target:GetAbsOrigin()-parent:GetAbsOrigin()):Length2D() <= self.ogreSealFlop:GetEffectiveCastRange(parent:GetAbsOrigin(), parent) then
+                SpellCaster:Cast(self.ogreSealFlop, target:GetAbsOrigin(), true)
+            end
+        end
+    end
+
+    if self.coldEmbrace and self.coldEmbrace:GetLevel() > 0 then
+        if self.coldEmbrace:IsFullyCastable() and not parent:IsStunned() and not parent:IsSilenced() and not parent:IsHexed() then
             local allies = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
-                600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
+                400, DOTA_UNIT_TARGET_TEAM_FRIENDLY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
                 FIND_CLOSEST, false)
 
             for _,ally in ipairs(allies) do
-                if self.embrace:IsCooldownReady() and ally:GetHealthPercent() <= 30 then
-                    SpellCaster:Cast(self.embrace, ally, true)
+                if ally ~= parent and ally:GetHealthPercent() <= self.coldEmbrace:GetSpecialValueFor("hp_threshold_pct") then
+                    if (ally:GetAbsOrigin()-parent:GetAbsOrigin()):Length2D() <= self.coldEmbrace:GetEffectiveCastRange(parent:GetAbsOrigin(), parent) then
+                        SpellCaster:Cast(self.coldEmbrace, ally, true)
+                    end
                     return
                 end
             end
         end
-
     end
 end
 
@@ -376,32 +384,6 @@ function modifier_boss_lake_follower:OnRefresh()
     local parent = self:GetParent()
 
     local level = GetLevelFromDifficulty()
-
-    self.nova = parent:FindAbilityByName("creep_ancient_apparition_crystal_nova_custom")
-
-    if parent:GetUnitName() == "npc_dota_creature_130_crip3_death" and not parent:HasAbility("creep_ancient_apparition_crystal_nova_custom") then
-        self.nova = parent:AddAbility("creep_ancient_apparition_crystal_nova_custom") 
-    end
-
-    if self.nova ~= nil then
-        self.nova:ToggleAutoCast()
-    end
-
-    self.punch = parent:FindAbilityByName("creep_ancient_apparition_punch")
-
-    if parent:GetUnitName() == "npc_dota_creature_130_crip2_death" and not parent:HasAbility("creep_ancient_apparition_punch") then
-        self.punch = parent:AddAbility("creep_ancient_apparition_punch") 
-    end
-
-    if self.punch ~= nil then
-        self.punch:ToggleAutoCast()
-    end
-
-    self.embrace = parent:FindAbilityByName("creep_ancient_apparition_cold_embrace")
-
-    if parent:GetUnitName() == "npc_dota_creature_130_crip1_death" and not parent:HasAbility("creep_ancient_apparition_cold_embrace") then
-        self.embrace = parent:AddAbility("creep_ancient_apparition_cold_embrace") 
-    end
 
     -- Making sure they get leveled up properly --
     Timers:CreateTimer(1.0, function()

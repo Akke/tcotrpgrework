@@ -410,18 +410,18 @@
             "01"
             {   
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "4.0"
+                "duration"          "4 5 6 7 8"
             }
             "02"
             {   
                 "var_type"          "FIELD_INTEGER"
-                "heal_additive"     "30"
+                "heal_additive"     "1000"
                 "LinkedSpecialBonus"    "special_bonus_unique_winter_wyvern_5"
             }
             "03"
             {   
                 "var_type"          "FIELD_FLOAT"
-                "heal_percentage"   "4 8 12 16 20"
+                "heal_percentage"   "10"
             }
             "04"
             {
@@ -435,7 +435,202 @@
                 "shard_splinter_range"          "1200"  
                 "RequiresShard"             "1"
             }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "hp_threshold_pct"          "75"  
+                "RequiresShard"             "1"
+            }
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    }
+
+    "shaman_frost_nova"
+    {
+        "BaseClass"       "ability_lua"
+        "ScriptFile" "creeps/shaman_frost_nova.lua"
+        "AbilityTextureName"      "crystal_maiden_crystal_nova"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Crystal.CrystalNova"
+        "MaxLevel" "5"
+        "HasShardUpgrade" "1"
+
+        "precache"
+        {
+          "particle" "particles/units/heroes/hero_crystalmaiden/maiden_base_attack.vpcf"
+          "particle" "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+          "particle" "particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
+          "soundfile" "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+        }
+
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "5"
+        "AbilityManaCost"               "0"
+        "AbilityCastRange" "600"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "radius"            "550"
+            "duration"          "3"
+            "damage"            "5000 10000 15000 20000 25000"
+            "degen"             "-50"
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    } 
+
+    "ogre_seal_flop"
+    {
+        "BaseClass"       "ability_lua"
+        "ScriptFile" "creeps/ogre_seal_flop.lua"
+        "AbilityTextureName"      "tusk_walrus_kick"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "MaxLevel" "5"
+        "HasShardUpgrade" "1"
+
+        "precache"
+        {
+          "particle" "particles/neutral_fx/ogre_bruiser_smash.vpcf"
+          "particle" "particles/act_2/ogre_seal_warcry.vpcf"
+          "particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+        }
+
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "0"
+        "AbilityCastRange"              "400"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "radius"					"275"
+            "flop_damage"				"10000 15000 20000 25000 30000"
+            "slow_duration"				"1.0"
+            "stun_duration"				"1.0"
+            "leap_distance"				"400"
+            "leap_speed"				"800.0"
+            "leap_acceleration"			"1250.0"
+            "slow"           			"-100"
+            "max_bounces"				"2"
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    } 
+
+    "boss_tusk_tag_team"
+    {
+        "BaseClass"       "tusk_tag_team"
+        "AbilityTextureName"      "tusk_tag_team"      
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilitySound"                  "Hero_Tusk.FrozenSigil"
+
+        "MaxLevel" "5"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0"
+        "AbilityCastRange"              "500"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityCastGestureSlot"        "DEFAULT"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "10"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_damage"          "2500 5000 7500 10000 12500"       
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "movement_slow"             "75"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "slow_duration"             "0.4"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "debuff_duration"           "10"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                "600"
+            }
+        }
+    }
+
+    "boss_tusk_walrus_kick"
+    {
+        "BaseClass" "tusk_walrus_kick"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+        "IsGrantedByScepter"            "0"
+        "HasScepterUpgrade"         "0"
+        "AbilitySound"                  "Hero_Tusk.WalrusKick.Target"
+
+        "MaxLevel" "5"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.2"
+        "AbilityCastRange"              "250"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "12"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "air_time"                  "1.0"
+            "push_length"               "1400"
+            "move_slow"                 "40"
+            "slow_duration"             "4"
+            "damage"                    "10000 20000 30000 40000 50000"
+            "search_radius"                 "250"
+            "creep_cooldown_reduction_pct"  "50"
+        }
     }
 }
