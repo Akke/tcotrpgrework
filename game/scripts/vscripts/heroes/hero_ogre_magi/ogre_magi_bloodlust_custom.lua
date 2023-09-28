@@ -230,7 +230,8 @@ function modifier_ogre_magi_bloodlust_custom:OnIntervalThink()
         -- check if ally doesn't have buff yet
         if not ally:HasModifier( "modifier_ogre_magi_bloodlust_custom_buff" ) then
             -- cast ability
-            self.caster:CastAbilityOnTarget( ally, self.ability, self.caster:GetPlayerOwnerID() )
+            -- self.caster:CastAbilityOnTarget( ally, self.ability, self.caster:GetPlayerOwnerID() )
+            SpellCaster:Cast(self.ability, ally, true)
             break
         end
     end
