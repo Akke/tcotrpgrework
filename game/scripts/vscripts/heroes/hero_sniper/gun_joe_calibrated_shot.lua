@@ -79,5 +79,5 @@ end
 function ability:OnSpellStart( keys )
 	if not IsServer() then return end
 
-	self:Start( self:GetCursorTarget(), false)
+	self:Start( self:GetCursorTarget() )
 end

@@ -1,23 +1,28 @@
+LinkLuaModifier("modifier_slark_essence_shift_custom", "heroes/hero_slark/slark_essence_shift_custom.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_slark_essence_shift_custom_creeps", "heroes/hero_slark/slark_essence_shift_custom.lua", LUA_MODIFIER_MOTION_NONE)
+
 slark_essence_shift_custom = class({})
 
 function slark_essence_shift_custom:GetIntrinsicModifierName()
     return "modifier_slark_essence_shift_custom"
 end
 
-modifier_slark_essence_shift_custom = class({
-    IsHidden = function(self) return self:GetStackCount() > 1 end
-})
+modifier_slark_essence_shift_custom = class({})
 
 function modifier_slark_essence_shift_custom:OnCreated(keys)
-    local parent = self:GetParent()
-    parent:AddNewModifier(parent, self:GetAbility(), "modifier_slark_essence_shift_custom_creeps", {})
+    self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_slark_essence_shift_custom_creeps", {})
+end
+
+function modifier_slark_essence_shift_custom:OnDestroy()
+    self:GetParent():RemoveModifierByName("modifier_slark_essence_shift_custom_creeps")
 end
 
 function modifier_slark_essence_shift_custom:DeclareFunctions()
     return {
         MODIFIER_EVENT_ON_DEATH,
         MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-        MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE
+        MODIFIER_PROPERTY_TOOLTIP,
+        MODIFIER_PROPERTY_TOOLTIP2
     }
 end
 
@@ -34,7 +39,7 @@ function modifier_slark_essence_shift_custom:OnDeath(event)
 
     if IsBossTCOTRPG(event.unit) then
        self:IncrementStackCount()
-    else if IsCreepTCOTRPG(event.unit) then
+    elseif IsCreepTCOTRPG(event.unit) then
         modifier:IncrementStackCount()
 
         if modifier:GetStackCount() >= self:GetAbility():GetSpecialValueFor("creep_to_agi") then
@@ -48,11 +53,17 @@ function modifier_slark_essence_shift_custom:OnDeath(event)
 end
 
 function modifier_slark_essence_shift_custom:GetModifierBonusStats_Agility()
-    return self:GetStackCount() * self:GetAbility():GetSpecialValueFor("agi_gain")
-end
+    local stacks = self:GetStackCount() * self:GetAbility():GetSpecialValueFor("agi_gain")
 
-function modifier_slark_essence_shift_custom:GetModifierBonusStats_Agility_Percentage()
-    return self:GetAbility():GetSpecialValueFor("bonus_base_agi_pct")
+    if self.lock then return end
+
+    self.lock = true
+    local agi = self:GetCaster():GetAgility()
+    self.lock = false
+
+    local bonus = agi / 100 * self:GetAbility():GetSpecialValueFor("bonus_agi_pct")
+
+    return stacks + bonus
 end
 
 function modifier_slark_essence_shift_custom:PlayEffects(target)
@@ -62,8 +73,16 @@ function modifier_slark_essence_shift_custom:PlayEffects(target)
 end
 
 modifier_slark_essence_shift_custom_creeps = class({
-    IsHidden = function(self) return self:GetStackCount() > 1 end,
     IsPurgable = function(self) return false end,
-    RemoveOnDeath = function(self) return false end,
-    GetAttributes = function(self) return MODIFIER_ATTRIBUTE_PERMANENT end
+    RemoveOnDeath = function(self) return false end
 })
+
+function modifier_slark_essence_shift_custom_creeps:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_TOOLTIP
+    }
+end
+
+function modifier_slark_essence_shift_custom_creeps:OnTooltip()
+    return self:GetAbility():GetSpecialValueFor("creep_to_agi")
+end

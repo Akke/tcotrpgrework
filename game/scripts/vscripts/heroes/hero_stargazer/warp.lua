@@ -32,7 +32,6 @@ local BaseClass = {
     RemoveOnDeath = function(self) return false end,
     IsHidden = function(self) return true end,
     IsStackable = function(self) return false end,
-    RemoveOnDeath = function(self) return false end,
 }
 
 stargazer_warp = class(BaseClass)
