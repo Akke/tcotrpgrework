@@ -1,5 +1,4 @@
 LinkLuaModifier("modifier_windranger_focus_fire_custom", "heroes/hero_windrunner/focus_fire_custom.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_windranger_focus_fire_custom_buff", "heroes/hero_windrunner/focus_fire_custom.lua", LUA_MODIFIER_MOTION_NONE)
 
 local ItemBaseClass = {
     IsPurgable = function(self) return false end,
@@ -10,7 +9,6 @@ local ItemBaseClass = {
 
 windranger_focus_fire_custom = class(ItemBaseClass)
 modifier_windranger_focus_fire_custom = class(windranger_focus_fire_custom)
-modifier_windranger_focus_fire_custom_buff = class(windranger_focus_fire_custom)
 -------------
 function windranger_focus_fire_custom:GetIntrinsicModifierName()
     return "modifier_windranger_focus_fire_custom"
@@ -21,6 +19,7 @@ function windranger_focus_fire_custom:OnProjectileHit( target, location )
 
     -- perform attack
     self.split_shot_attack = true
+
     self:GetCaster():PerformAttack(
         target, -- hTarget
         false, -- bUseCastAttackOrb
@@ -34,41 +33,7 @@ function windranger_focus_fire_custom:OnProjectileHit( target, location )
     self.split_shot_attack = false
 end
 
-function modifier_windranger_focus_fire_custom:DeclareFunctions()
-    local funcs = {
-         
-    }
-    return funcs
-end
-
 function modifier_windranger_focus_fire_custom:OnCreated()
-    if not IsServer() then return end
-
-    local caster = self:GetCaster()
-    caster:AddNewModifier(caster, self:GetAbility(), "modifier_windranger_focus_fire_custom_buff", {})
-end
------------------
-function modifier_windranger_focus_fire_custom_buff:IsHidden()
-    return true
-end
-
-function modifier_windranger_focus_fire_custom_buff:GetTexture()
-    return "windrunner_focusfire"
-end
-
-function modifier_windranger_focus_fire_custom_buff:IsDebuff()
-    return false
-end
-
-function modifier_windranger_focus_fire_custom_buff:IsPurgable()
-    return false
-end
-
-function modifier_windranger_focus_fire_custom_buff:GetPriority()
-    return MODIFIER_PRIORITY_HIGH
-end
-
-function modifier_windranger_focus_fire_custom_buff:OnCreated()
     if not IsServer() then return end
 
     self.count = self:GetAbility():GetSpecialValueFor("max_targets")
@@ -85,13 +50,13 @@ function modifier_windranger_focus_fire_custom_buff:OnCreated()
     self.projectile_speed = self.parent:GetProjectileSpeed()
 end
 
-function modifier_windranger_focus_fire_custom_buff:OnRefresh( kv )
+function modifier_windranger_focus_fire_custom:OnRefresh( kv )
     -- references
     self.count = self:GetAbility():GetSpecialValueFor( "arrow_count" )
     self.bonus_range = self:GetAbility():GetSpecialValueFor("bonus_range")
 end
 
-function modifier_windranger_focus_fire_custom_buff:DeclareFunctions()
+function modifier_windranger_focus_fire_custom:DeclareFunctions()
     local funcs = {
         MODIFIER_EVENT_ON_ATTACK,
         MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
@@ -102,7 +67,7 @@ function modifier_windranger_focus_fire_custom_buff:DeclareFunctions()
 end
 
 
-function modifier_windranger_focus_fire_custom_buff:GetModifierDamageOutgoing_Percentage()
+function modifier_windranger_focus_fire_custom:GetModifierDamageOutgoing_Percentage()
     if not IsServer() then return end
     
     -- if uses modifier
@@ -116,11 +81,11 @@ function modifier_windranger_focus_fire_custom_buff:GetModifierDamageOutgoing_Pe
     end
 end
 
-function modifier_windranger_focus_fire_custom_buff:GetModifierBaseAttackTimeConstant()
+function modifier_windranger_focus_fire_custom:GetModifierBaseAttackTimeConstant()
     return self:GetAbility():GetSpecialValueFor("bonus_bat")
 end
 
-function modifier_windranger_focus_fire_custom_buff:OnAttack( params )
+function modifier_windranger_focus_fire_custom:OnAttack( params )
     if not IsServer() then return end
     if params.attacker~=self.parent then return end
 
@@ -147,7 +112,7 @@ function modifier_windranger_focus_fire_custom_buff:OnAttack( params )
     end
 end
 
-function modifier_windranger_focus_fire_custom_buff:SplitShotModifier( target )
+function modifier_windranger_focus_fire_custom:SplitShotModifier( target )
     -- get radius
     local radius = self.parent:Script_GetAttackRange() + self.bonus_range
 
@@ -169,7 +134,6 @@ function modifier_windranger_focus_fire_custom_buff:SplitShotModifier( target )
     for _,enemy in pairs(enemies) do
         -- not target itself
         if enemy~=target then
-
             -- perform attack
             self.split_shot = true
             self.parent:PerformAttack(
@@ -196,7 +160,7 @@ function modifier_windranger_focus_fire_custom_buff:SplitShotModifier( target )
     end
 end
 
-function modifier_windranger_focus_fire_custom_buff:SplitShotNoModifier( target )
+function modifier_windranger_focus_fire_custom:SplitShotNoModifier( target )
     -- get radius
     local radius = self.parent:Script_GetAttackRange() + self.bonus_range
 
@@ -241,4 +205,8 @@ function modifier_windranger_focus_fire_custom_buff:SplitShotNoModifier( target 
         local sound_cast = "Hero_Medusa.AttackSplit"
         EmitSoundOn( sound_cast, self.parent )
     end
+end
+
+function modifier_windranger_focus_fire_custom:GetPriority()
+    return MODIFIER_PRIORITY_HIGH
 end

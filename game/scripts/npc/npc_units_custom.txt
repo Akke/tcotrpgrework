@@ -11576,7 +11576,8 @@
         // Abilities
         //----------------------------------------------------------------
         "Ability1"                  "Respawn"
-        "Ability3"                  ""
+        "Ability2"                  "lava_drake_flames"
+        "Ability3"                  "lava_drake_skin"
 
         // Armor
         //----------------------------------------------------------------
@@ -11684,6 +11685,7 @@
         "Ability1"                  "Respawn"
         "Ability2"                  "creature_lava_flame_guard"
         "Ability3"                  "invoker_chaos_meteor_lua"
+        "Ability4"                  "lava_elemental_attack"
 
         "precache"
         {

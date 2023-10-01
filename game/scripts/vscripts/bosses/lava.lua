@@ -103,14 +103,8 @@ function modifier_boss_lava_follower:OnCreated(kv)
 
     self.spawnPosition = Vector(kv.posX, kv.posY, kv.posZ)
 
-    if parent:GetUnitName() == "npc_dota_creature_lava_1" then
-        self.particle = ParticleManager:CreateParticle("particles/econ/items/warlock/warlock_lost_ores/golem_lost_ores_ambients.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
-        ParticleManager:SetParticleControlEnt(self.particle, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-        ParticleManager:SetParticleControlEnt(self.particle, 7, parent, PATTACH_POINT_FOLLOW, "attach_mane2", parent:GetAbsOrigin(), true)
-        ParticleManager:SetParticleControlEnt(self.particle, 10, parent, PATTACH_POINT_FOLLOW, "attach_attack1", parent:GetAbsOrigin(), true)
-        ParticleManager:SetParticleControlEnt(self.particle, 11, parent, PATTACH_POINT_FOLLOW, "attach_attack2", parent:GetAbsOrigin(), true)
-        ParticleManager:SetParticleControlEnt(self.particle, 12, parent, PATTACH_POINT_FOLLOW, "attach_mane2", parent:GetAbsOrigin(), true)
-    end
+    self.fireball = parent:FindAbilityByName("lava_drake_flames")
+    self.meteor = parent:FindAbilityByName("invoker_chaos_meteor_lua")
 
     if parent:GetUnitName() == "npc_dota_creature_lava_2" then
         self.particle = ParticleManager:CreateParticle("particles/econ/items/invoker/glorious_inspiration/invoker_forge_spirit_ambient_esl.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
@@ -157,19 +151,22 @@ function modifier_boss_lava_follower:OnIntervalThink()
         end
     end
 
-    if parent:GetAggroTarget() == nil then return end
+    local target = parent:GetAggroTarget()
 
-    local chaosMeteor = parent:FindAbilityByName("invoker_chaos_meteor_lua")
-    
-    local enemiesNearby = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
-        parent:Script_GetAttackRange()+300, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_CREEP), DOTA_UNIT_TARGET_FLAG_NONE,
-        FIND_CLOSEST, false)
+    if target then
+        if self.meteor and self.meteor:GetLevel() > 0 then
+            if self.meteor:IsFullyCastable() and not parent:IsStunned() and not parent:IsSilenced() and not parent:IsHexed() then
+                if (target:GetAbsOrigin()-parent:GetAbsOrigin()):Length2D() <= self.meteor:GetEffectiveCastRange(parent:GetAbsOrigin(), parent) then
+                    SpellCaster:Cast(self.meteor, target:GetAbsOrigin(), true)
+                end
+            end
+        end
 
-    for _,enemy in ipairs(enemiesNearby) do
-        if enemy:IsAlive() then
-            if chaosMeteor ~= nil and parent:GetAggroTarget() ~= nil and chaosMeteor:IsCooldownReady() and not parent:IsSilenced() and not parent:IsStunned() and not parent:IsHexed() then
-                SpellCaster:Cast(chaosMeteor, enemy, true)
-                break
+        if self.fireball and self.fireball:GetLevel() > 0 then
+            if self.fireball:IsFullyCastable() and not parent:IsStunned() and not parent:IsSilenced() and not parent:IsHexed() then
+                if (target:GetAbsOrigin()-parent:GetAbsOrigin()):Length2D() <= self.fireball:GetEffectiveCastRange(parent:GetAbsOrigin(), parent) then
+                    SpellCaster:Cast(self.fireball, target:GetAbsOrigin(), true)
+                end
             end
         end
     end
@@ -254,32 +251,12 @@ function modifier_boss_lava_follower:OnRefresh()
 
     local level = GetLevelFromDifficulty()
 
-    if parent:GetUnitName() == "npc_dota_creature_lava_1" or parent:GetUnitName() == "npc_dota_creature_140_crip_Robo" then
-        if not parent:FindAbilityByName("invoker_chaos_meteor_lua") then 
-            parent:AddAbility("invoker_chaos_meteor_lua") 
-        end
-    end
-
-    if parent:GetUnitName() == "npc_dota_creature_lava_2" or parent:GetUnitName() == "npc_dota_creature_140_crip_Robo" then
-        if not parent:FindAbilityByName("creature_lava_flame_guard") then 
-            parent:AddAbility("creature_lava_flame_guard") 
-        end
-
-        if not parent:FindAbilityByName("creature_lava_melting_strike") then 
-            parent:AddAbility("creature_lava_melting_strike") 
-        end
-    end
-
      -- Making sure they get leveled up properly --
     Timers:CreateTimer(1.0, function()
         for i = 0, parent:GetAbilityCount() - 1 do
             local abil = parent:GetAbilityByIndex(i)
             if abil ~= nil then
                 abil:SetLevel(level)
-                if abil:GetAbilityName() == "creature_lava_melting_strike" then
-                    abil:SetActivated(true)
-                    abil:SetHidden(false)
-                end
             end
         end
     end)
