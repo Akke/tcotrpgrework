@@ -60,7 +60,7 @@ function item_swiftness_boots:CastFilterResultTarget(target)
         return nResult
     end
 
-    if not target:IsBuilding() then
+    if not target:IsNull() and target ~= nil and not target:IsBuilding() then
         if not target:IsAlive() or not caster:IsAlive() or target:IsCourier() then
             return UF_FAIL_CUSTOM
         end

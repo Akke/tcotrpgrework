@@ -18,7 +18,7 @@ BOSS_STAGE = 1
 BOSS_MAX_STAGE = 3
 PARTICLE_ID = nil
 
-BOSS_NAME = ""
+BOSS_NAME = "npc_dota_creature_100_boss"
 --------------------
 function boss_lava:GetIntrinsicModifierName()
     return "modifier_boss_lava"
@@ -30,6 +30,7 @@ function modifier_boss_lava:DeclareFunctions()
         MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
         MODIFIER_EVENT_ON_TAKEDAMAGE,
         MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, --GetModifierHealthRegenPercentage
+        MODIFIER_PROPERTY_STATUS_RESISTANCE
     }
     return funcs
 end
@@ -66,13 +67,87 @@ function modifier_boss_lava:GetModifierHealthRegenPercentage()
     if self.canRegen then return 10 end
 end
 
+function modifier_boss_lava:AddCustomTransmitterData()
+    return
+    {
+        status = self.fStatus,
+    }
+end
+
+function modifier_boss_lava:HandleCustomTransmitterData(data)
+    if data.status ~= nil then
+        self.fStatus = tonumber(data.status)
+    end
+end
+
+function modifier_boss_lava:InvokeStatusResistance()
+    if IsServer() == true then
+        self.fStatus = self.status
+
+        self:SendBuffRefreshToClients()
+    end
+end
+
+function modifier_boss_lava:GetModifierStatusResistance()
+    return self.fStatus
+end
+
 function modifier_boss_lava:OnCreated(kv)
+    self:SetHasCustomTransmitterData(true)
+
     if not IsServer() then return end
+
+    print("dragon mod added")
 
     self.boss = self:GetParent()
     self.spawnPosition = Vector(kv.posX, kv.posY, kv.posZ)
     self.canRegen = true
     self.regenTimer = nil
+
+    local level = GetLevelFromDifficulty()
+
+    self.status = 25 * BOSS_STAGE
+    self:InvokeStatusResistance()
+
+    self.dragonTail = self.boss:FindAbilityByName("boss_dragon_tail_explosion")
+    self.sunApocalypse = self.boss:FindAbilityByName("boss_dragon_sun_apocalypse")
+
+    -- Making sure they get leveled up properly --
+    Timers:CreateTimer(1.0, function()
+        for i = 0, self.boss:GetAbilityCount() - 1 do
+            local abil = self.boss:GetAbilityByIndex(i)
+            if abil ~= nil then
+                abil:SetLevel(level)
+            end
+        end
+    end)
+
+    self:StartIntervalThink(1)
+end
+
+function modifier_boss_lava:OnIntervalThink()
+    self.boss:SetSkin(1)
+    
+    if not self.boss:IsAlive() then return end
+
+    local target = self.boss:GetAggroTarget()
+    if target then
+        if self.dragonTail and self.dragonTail:GetLevel() > 0 then
+            if self.dragonTail:IsFullyCastable() and not self.boss:IsStunned() and not self.boss:IsSilenced() and not self.boss:IsHexed() then
+                if (target:GetAbsOrigin()-self.boss:GetAbsOrigin()):Length2D() <= self.dragonTail:GetEffectiveCastRange(self.boss:GetAbsOrigin(), self.boss) then
+                    SpellCaster:Cast(self.dragonTail, target:GetAbsOrigin(), true)
+                end
+            end
+        end
+
+        if self.sunApocalypse and self.sunApocalypse:GetLevel() > 0 then
+            if self.sunApocalypse:IsFullyCastable() and not self.boss:IsStunned() and not self.boss:IsSilenced() and not self.boss:IsHexed() then
+                if (target:GetAbsOrigin()-self.boss:GetAbsOrigin()):Length2D() <= self.sunApocalypse:GetEffectiveCastRange(self.boss:GetAbsOrigin(), self.boss) then
+                    SpellCaster:Cast(self.sunApocalypse, target:GetAbsOrigin(), true)
+                end
+            end
+        end
+    end
 end
 
 function modifier_boss_lava:IsFollower(follower)
@@ -87,6 +162,53 @@ end
 
 function modifier_boss_lava:OnDeath(event)
     if not IsServer() then return end
+
+    local victim = event.unit
+
+    if victim ~= self:GetParent() then return end
+
+    local respawnTime = BOSS_RESPAWN_TIME
+
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
+        respawnTime = respawnTime / 2
+    end
+
+    Timers:CreateTimer(respawnTime, function()
+        if IsPvP() then return end
+        
+        CreateUnitByNameAsync(BOSS_NAME, self.spawnPosition, true, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
+            --Async is faster and will help reduce stutter
+            unit:AddNewModifier(unit, nil, "modifier_boss_lava", {
+                posX = self.spawnPosition.x,
+                posY = self.spawnPosition.y,
+                posZ = self.spawnPosition.z,
+            })
+        end)
+    end)
+
+    if BOSS_STAGE < BOSS_MAX_STAGE then
+        BOSS_STAGE = BOSS_STAGE + 1
+
+        self.status = 25 * BOSS_STAGE
+        self:InvokeStatusResistance()
+
+        self:ProgressToNext()
+    end
+
+    local heroes = HeroList:GetAllHeroes()
+    for _,hero in ipairs(heroes) do
+        if UnitIsNotMonkeyClone(hero) and not hero:IsTempestDouble() then
+            if PlayerResource:GetConnectionState(hero:GetPlayerID()) == DOTA_CONNECTION_STATE_CONNECTED then
+                if hero:FindItemInAnyInventory("item_last_soul") == nil and _G.autoPickup[hero:GetPlayerID()] ~= AUTOLOOT_ON_NO_SOULS then
+                    --hero:AddItemByName("item_elder_soul")
+                end
+                
+                hero:ModifyGold(35000, false, 0)
+            end
+        end
+    end
+
+    DropNeutralItemAtPositionForHero("item_last_soul", victim:GetAbsOrigin(), victim, -1, true)
 end
 -----------
 function modifier_boss_lava_follower:DeclareFunctions(props)

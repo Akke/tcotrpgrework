@@ -245,23 +245,6 @@ function modifier_unit_on_death:OnDeath(event)
         return
     end
 
-    if creep:GetUnitName() == "npc_dota_creature_100_boss"then
-        local heroes = HeroList:GetAllHeroes()
-        for _,hero in ipairs(heroes) do
-            if UnitIsNotMonkeyClone(hero) and not hero:IsTempestDouble() then
-                if PlayerResource:GetConnectionState(hero:GetPlayerID()) == DOTA_CONNECTION_STATE_CONNECTED then
-                    if hero:FindItemInAnyInventory(soulDrop) == nil then
-                        --hero:AddItemByName("item_last_soul")
-                    end
-
-                    hero:ModifyGold(35000, false, 0)
-                end
-            end
-        end
-
-        DropNeutralItemAtPositionForHero("item_last_soul", event.unit:GetAbsOrigin(), event.unit, 1, false)
-    end
-
     if creep:GetUnitName() == "npc_dota_creature_roshan_boss" then
         local heroes = HeroList:GetAllHeroes()
         for _,hero in ipairs(heroes) do
@@ -344,7 +327,7 @@ function modifier_unit_on_death:OnDeath(event)
             end
 
             if IsBossTCOTRPG(unit) then
-                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" or unit:GetUnitName() == "npc_dota_creature_100_boss" or unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
+                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" or unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss", {})
                 else
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss_2", {})
@@ -372,7 +355,7 @@ function SpawnAllUnits()
                 end
 
                 --Async is faster and will help reduce stutter
-                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" or unit:GetUnitName() == "npc_dota_creature_100_boss" or unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
+                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" or unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss", {})
                 else
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss_2", {})
@@ -409,6 +392,12 @@ function SpawnAllUnits()
                     }) 
                 elseif unitName == "npc_dota_creature_130_boss_death" then 
                     unit:AddNewModifier(unit, nil, "modifier_boss_lake", {
+                        posX = unit:GetAbsOrigin().x,
+                        posY = unit:GetAbsOrigin().y,
+                        posZ = unit:GetAbsOrigin().z,
+                    }) 
+                elseif unitName == "npc_dota_creature_100_boss" then 
+                    unit:AddNewModifier(unit, nil, "modifier_boss_lava", {
                         posX = unit:GetAbsOrigin().x,
                         posY = unit:GetAbsOrigin().y,
                         posZ = unit:GetAbsOrigin().z,
