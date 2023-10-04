@@ -1178,7 +1178,7 @@
     "npc_dota_hero_slark"
     {
         "Ability1"      "generic_hidden"
-        "Ability2"      "generic_hidden"
+        "Ability2"      "slark_fish_bait_custom"
         "Ability3"      "slark_essence_shift_custom"
         "Ability4"      "generic_hidden"
         "Ability5"      "generic_hidden"
