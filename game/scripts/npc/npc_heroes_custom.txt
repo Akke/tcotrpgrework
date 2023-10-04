@@ -367,11 +367,11 @@
     
     "npc_dota_hero_alchemist"
     {
-        "Ability6" "alchemist_chemical_rage_custom"
-        "Ability4" "alchemist_berserk_potion"
         "Ability2" "alchemist_chemical_gold_transfusion_custom"
         "Ability3" "alchemist_chemical_greevils_greed_custom"
+        "Ability4" "alchemist_berserk_potion"
         "Ability5" "generic_hidden"
+        "Ability6" "alchemist_chemical_rage_custom"
         "Ability7" "generic_hidden"
         "Ability8" "generic_hidden"
         "Ability9" "generic_hidden"
@@ -1182,7 +1182,7 @@
         "Ability3"      "slark_essence_shift_custom"
         "Ability4"      "generic_hidden"
         "Ability5"      "generic_hidden"
-        "Ability6"      "generic_hidden"
+        "Ability6"      "slark_depth_shroud_custom"
 
         "Ability10"     "special_bonus_evasion_15"
         "Ability11"     "special_bonus_magic_resistance_15"

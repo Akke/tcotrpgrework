@@ -1,7 +1,6 @@
 LinkLuaModifier("modifier_slark_fish_bait_custom_buff", "heroes/hero_slark/slark_fish_bait_custom.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_slark_fish_bait_custom_debuff", "heroes/hero_slark/slark_fish_bait_custom.lua", LUA_MODIFIER_MOTION_NONE)
 
-
 slark_fish_bait_custom = class({})
 
 function slark_fish_bait_custom:OnSpellStart()
@@ -83,7 +82,7 @@ function modifier_slark_fish_bait_custom_debuff:GetModifierAttackSpeedBonus_Cons
     return self.attack_speed
 end
 
-function modifier_slark_fish_bait_custom_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_slark_fish_bait_custom_debuff:GetModifierMoveSpeedBonus_Percentage()
     return self.movespeed
 end
 
@@ -120,7 +119,7 @@ function modifier_slark_fish_bait_custom_buff:GetModifierAttackSpeedBonus_Consta
     return self.attack_speed
 end
 
-function modifier_slark_fish_bait_custom_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_slark_fish_bait_custom_buff:GetModifierMoveSpeedBonus_Percentage()
     return self.movespeed
 end
 

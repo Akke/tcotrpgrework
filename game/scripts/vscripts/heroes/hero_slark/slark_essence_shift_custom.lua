@@ -10,11 +10,15 @@ end
 modifier_slark_essence_shift_custom = class({})
 
 function modifier_slark_essence_shift_custom:OnCreated(keys)
-    self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_slark_essence_shift_custom_creeps", {})
+    if IsServer() then
+        self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_slark_essence_shift_custom_creeps", {})
+    end
 end
 
 function modifier_slark_essence_shift_custom:OnDestroy()
-    self:GetParent():RemoveModifierByName("modifier_slark_essence_shift_custom_creeps")
+    if IsServer() then
+        self:GetParent():RemoveModifierByName("modifier_slark_essence_shift_custom_creeps")
+    end
 end
 
 function modifier_slark_essence_shift_custom:DeclareFunctions()

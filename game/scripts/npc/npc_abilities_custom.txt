@@ -28125,6 +28125,59 @@
             }
         }
     }
+
+    "slark_depth_shroud_custom"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_slark/slark_depth_shroud_custom.lua"
+
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "FightRecapLevel"               "2"
+        "MaxLevel"                      "4"
+
+        "AbilityManaCost"               "120 130 140 150"
+        "AbilityCooldown"               "75 60 45 30"
+        "AbilityCastRange"				"250"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+
+        "AbilityTextureName"            "slark_depth_shroud"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "250"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "4.0 5.0 6.0 7.0"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "fade_time"             "0.1"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "bonus_movement_speed"  "20.0 30.0 40.0 50.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "bonus_regen_pct"       "5.0 7.5 10.0 12.5"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "agi_to_bonus_damage"   "50.0 75.0 100.0 125.0"
+            }
+        }
+    }
 }
 
 #base "abilities/bosses/all.txt"

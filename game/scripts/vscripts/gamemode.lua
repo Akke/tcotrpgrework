@@ -1880,7 +1880,7 @@ function barebones:OrderFilter(event)
 
       if not target or not player then return end
 
-      if target:GetUnitName() == "npc_dota_unit_twin_gate_custom" then
+      if (target.GetUnitName and target:GetUnitName() == "npc_dota_unit_twin_gate_custom") then
         local distance = (player:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
         local twinGateWarp = player:FindAbilityByName("twin_gate_portal_warp_custom")
         if distance <= 200 then
