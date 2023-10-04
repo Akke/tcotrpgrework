@@ -233,6 +233,7 @@ function Precache(context)
 	PrecacheModel("models/creeps/nyx_swarm/nyx_swarm.vmdl", context)
 	PrecacheModel("models/creeps/spiders/spider_kidnap.vmdl", context)
 	PrecacheModel("models/creeps/spiders/spidersack.vmdl", context)
+	PrecacheModel("models/creeps/omniknight_golem/omniknight_golem.vmdl", context)
 	
 
 	PrecacheResource("particle_folder", "particles/dazzle/dazzle_shadow_step.vpcf", context)

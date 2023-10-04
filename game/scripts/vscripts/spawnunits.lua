@@ -290,10 +290,6 @@ function modifier_unit_on_death:OnDeath(event)
             if UnitIsNotMonkeyClone(hero) and not hero:IsTempestDouble() then
                 if PlayerResource:GetConnectionState(hero:GetPlayerID()) == DOTA_CONNECTION_STATE_CONNECTED then
                     if hero:FindItemInAnyInventory(soulDrop) == nil then
-                        if creep:GetUnitName() == "npc_dota_creature_150_boss_last" then
-                            --hero:AddItemByName("item_tome_un_250")
-                        end
-
                         if _G.autoPickup[hero:GetPlayerID()] ~= AUTOLOOT_ON_NO_SOULS then
                             --hero:AddItemByName(soulDrop)
                         end
@@ -322,12 +318,9 @@ function modifier_unit_on_death:OnDeath(event)
                 posZ = self.spawnPos.z,
                 name = self.unitName
             })
-            if unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
-                unit:AddNewModifier(unit, nil, "modifier_boss_zeus_secret", {})
-            end
 
             if IsBossTCOTRPG(unit) then
-                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" or unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
+                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" then
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss", {})
                 else
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss_2", {})
@@ -355,7 +348,7 @@ function SpawnAllUnits()
                 end
 
                 --Async is faster and will help reduce stutter
-                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" or unit:GetUnitName() == "npc_dota_creature_150_boss_last" then
+                if unit:GetUnitName() == "npc_dota_creature_100_boss_2" then
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss", {})
                 else
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss_2", {})
@@ -534,44 +527,12 @@ function SpawnAllUnits()
         SpawnUnitsInZone("spawn_creep_9", "npc_dota_creature_100_crip", 1) 
         SpawnUnitsInZone("spawn_creep_12", "npc_dota_creature_140_crip_Robo", 1)
 
-        if GetMapName() == "tcotrpgv2" then
-            CreateUnitByNameAsync("npc_dota_creature_150_boss_last", Entities:FindByName(nil, "spawn_boss_zeus"):GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
-                unit:AddNewModifier(unit, nil, "modifier_unit_boss", {})
-                unit:AddNewModifier(unit, nil, "modifier_unit_on_death", {
-                    posX = unit:GetAbsOrigin().x,
-                    posY = unit:GetAbsOrigin().y,
-                    posZ = unit:GetAbsOrigin().z,
-                    name = "npc_dota_creature_150_boss_last"
-                })
-
-                unit:AddNewModifier(unit, nil, "modifier_boss_zeus_secret", {})
-
-                unit:AddNewModifier(unit, nil, "MODIFIER_STATE_CANNOT_MISS", {})
-                unit:AddNewModifier(unit, nil, "MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED", {})
-                _G.SummonedZeus = true
-            end)
-        end
+        -- Divine --
+        SpawnBossInZone("spawn_boss_zeus", "npc_dota_creature_150_boss_last")
     end
     --
     
     if _G.DebugEnabled then
         SpawnBossInZone("spawn_boss_aghanim", "npc_dota_boss_aghanim")
-    end
-    
-    if GetMapName() == "5v5" then
-        if _G.SummonedZeus then return end
-        CreateUnitByNameAsync("npc_dota_creature_150_boss_last", Entities:FindByName(nil, "spawn_boss_zeus"):GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
-            unit:AddNewModifier(unit, nil, "modifier_unit_boss", {})
-            unit:AddNewModifier(unit, nil, "modifier_unit_on_death", {
-                posX = unit:GetAbsOrigin().x,
-                posY = unit:GetAbsOrigin().y,
-                posZ = unit:GetAbsOrigin().z,
-                name = "npc_dota_creature_150_boss_last"
-            })
-
-            unit:AddNewModifier(unit, nil, "MODIFIER_STATE_CANNOT_MISS", {})
-            unit:AddNewModifier(unit, nil, "MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED", {})
-            _G.SummonedZeus = true
-        end)
     end
 end

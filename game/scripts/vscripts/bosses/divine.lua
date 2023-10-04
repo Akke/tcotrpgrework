@@ -182,6 +182,10 @@ function modifier_boss_divine:OnDeath(event)
     end
 
     DropNeutralItemAtPositionForHero("item_zeus_soul", victim:GetAbsOrigin(), victim, -1, true)
+
+    if RollPercentage(50) then
+        DropNeutralItemAtPositionForHero("item_forgotten_book", victim:GetAbsOrigin(), victim, -1, true)
+    end
 end
 -----------
 function modifier_boss_divine_follower:DeclareFunctions(props)

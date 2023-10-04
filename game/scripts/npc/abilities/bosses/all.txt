@@ -8,6 +8,7 @@
 #base "skeleton_king/all.txt"
 #base "zombie/all.txt"
 #base "lava/all.txt"
+#base "divine/all.txt"
 
 "DOTAAbilities"
 {

@@ -38,6 +38,7 @@ require("bosses/spider")
 require("bosses/mine")
 require("bosses/lava")
 require("bosses/lake")
+require("bosses/divine")
 
 require("modules/rune_manager/RuneManager")
 require("modules/talent_manager/TalentManager")
