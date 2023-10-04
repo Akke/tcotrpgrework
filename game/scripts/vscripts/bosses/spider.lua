@@ -32,7 +32,7 @@ BOSS_MAX_STAGE = 3
 PARTICLE_ID = nil
 HAS_SPIN_WEB = false
 
-BOSS_NAME = "npc_dota_creature_40_boss"
+BOSS_NAME = "npc_dota_creature_80_boss"
 --------------------
 function boss_spider:GetIntrinsicModifierName()
     return "modifier_boss_spider"
@@ -134,11 +134,6 @@ function modifier_boss_spider:OnCreated(kv)
         self.silkenBola = self.boss:AddAbility("boss_spider_silken_bola")
     end
 
-    self.createSpidersacks = self.boss:FindAbilityByName("boss_spider_create_spidersacks")
-    if not self.boss:FindAbilityByName("boss_spider_create_spidersacks") then
-        self.createSpidersacks = self.boss:AddAbility("boss_spider_create_spidersacks")
-    end
-
     self.status = 25 * BOSS_STAGE
     self:InvokeStatusResistance()
 
@@ -171,10 +166,6 @@ function modifier_boss_spider:OnIntervalThink()
     if self.silkenBola ~= nil and self.silkenBola:IsCooldownReady() then
         SpellCaster:Cast(self.silkenBola, self.boss, true)
     end
-
-    if self.createSpidersacks ~= nil and self.createSpidersacks:IsCooldownReady() then
-        SpellCaster:Cast(self.createSpidersacks, self.boss, true)
-    end
 end
 
 function modifier_boss_spider:IsFollower(follower)
@@ -186,6 +177,7 @@ function modifier_boss_spider:IsFollower(follower)
     if follower:GetUnitName() == "npc_dota_creature_40_crip_4" then return true end
     if follower:GetUnitName() == "npc_dota_creature_40_crip_5" then return true end
     if follower:GetUnitName() == "npc_dota_creature_40_crip_6" then return true end
+    if follower:GetUnitName() == "npc_dota_creature_40_crip_10" then return true end
 
     return false
 end
@@ -208,7 +200,8 @@ function modifier_boss_spider:ProgressToNext()
         minion:GetUnitName() == "npc_dota_creature_40_crip_3" or
         minion:GetUnitName() == "npc_dota_creature_40_crip_4" or
         minion:GetUnitName() == "npc_dota_creature_40_crip_5" or
-        minion:GetUnitName() == "npc_dota_creature_40_crip_6" then
+        minion:GetUnitName() == "npc_dota_creature_40_crip_6" or
+        minion:GetUnitName() == "npc_dota_creature_40_crip_10" then
             if minion ~= nil then
                 local mod = minion:FindModifierByNameAndCaster("modifier_boss_spider_follower", minion)
                 if mod ~= nil then
@@ -302,8 +295,10 @@ function modifier_boss_spider_follower:OnCreated(kv)
 
     self.spawnPosition = Vector(kv.posX, kv.posY, kv.posZ)
 
+    self.respawnTimer = nil
+
     local parent = self:GetParent()
-    if parent:GetUnitName() == "npc_dota_creature_40_crip_2" then
+    if parent:GetUnitName() == "npc_dota_creature_40_crip_2" or parent:GetUnitName() == "npc_dota_creature_40_crip_10" then
         parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_spider_follower_web_ai", {})
     end
 
@@ -331,32 +326,6 @@ function modifier_boss_spider_follower:OnIntervalThink()
 
     if parent:GetAggroTarget() == nil then return end
     if parent:IsSilenced() or parent:IsStunned() or parent:IsHexed() then return end
-
-    if self.sandstorm ~= nil and self.sandstorm:IsCooldownReady() then
-        local victims = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
-            self.sandstorm:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
-            FIND_CLOSEST, false)
-
-        for _,victim in ipairs(victims) do
-            if victim:IsAlive() and parent:CanEntityBeSeenByMyTeam(victim) then
-                SpellCaster:Cast(self.sandstorm, victim, true)
-                break
-            end
-        end
-    end
-
-    if self.burrow ~= nil and self.burrow:IsCooldownReady() then
-        local victims = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
-            self.burrow:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
-            FIND_CLOSEST, false)
-
-        for _,victim in ipairs(victims) do
-            if victim:IsAlive() and parent:CanEntityBeSeenByMyTeam(victim) then
-                SpellCaster:Cast(self.burrow, victim, true)
-                break
-            end
-        end
-    end
 end
 
 function modifier_boss_spider_follower:OnDeath(event)
@@ -367,8 +336,6 @@ function modifier_boss_spider_follower:OnDeath(event)
 
     if event.unit ~= parent then return end
 
-    if event.unit:GetUnitName() == "npc_dota_creature_40_crip_2" then return end
-
     local respawnTime = CREEP_RESPAWN_TIME
 
     if GetMapName() == "tcotrpg_1v1" then respawnTime = 15 end
@@ -377,8 +344,12 @@ function modifier_boss_spider_follower:OnDeath(event)
         respawnTime = respawnTime / 2
     end
 
-    Timers:CreateTimer(respawnTime, function()
+    if self.respawnTimer ~= nil then return end 
+
+    self.respawnTimer = Timers:CreateTimer(respawnTime, function()
       CreateUnitByNameAsync(unitName, self.spawnPosition, true, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
+            self.respawnTimer = nil
+
             --Async is faster and will help reduce stutter
             unit:AddNewModifier(unit, nil, "modifier_boss_spider_follower", {
                 posX = self.spawnPosition.x,
@@ -386,8 +357,7 @@ function modifier_boss_spider_follower:OnDeath(event)
                 posZ = self.spawnPosition.z,
             })
 
-
-            if RollPercentage(ELITE_SPAWN_CHANCE) and unit:GetUnitName() ~= "npc_dota_creature_40_crip_2" then
+            if RollPercentage(ELITE_SPAWN_CHANCE) and unit:GetUnitName() ~= "npc_dota_creature_40_crip_2" and unit:GetUnitName() ~= "npc_dota_creature_40_crip_10" then
                 unit:AddNewModifier(unit, nil, "modifier_creep_elite", {})
             end
 
@@ -400,21 +370,6 @@ function modifier_boss_spider_follower:OnRefresh()
     if not IsServer() then return end
 
     local parent = self:GetParent()
-
-    self.sandstorm = parent:FindAbilityByName("follower_spider_sandstorm")
-    if parent:GetUnitName() == "npc_dota_creature_40_crip_4" and not parent:FindAbilityByName("follower_spider_sandstorm") then
-        self.sandstorm = parent:AddAbility("follower_spider_sandstorm")
-    end
-
-    self.burrow = parent:FindAbilityByName("follower_spider_burrow")
-    if parent:GetUnitName() == "npc_dota_creature_40_crip_5" and not parent:FindAbilityByName("follower_spider_burrow") then
-        self.burrow = parent:AddAbility("follower_spider_burrow")
-    end
-
-    self.earthquake = parent:FindAbilityByName("follower_spider_earthquake")
-    if parent:GetUnitName() == "npc_dota_creature_40_crip_6" and not parent:FindAbilityByName("follower_spider_earthquake") then
-        self.earthquake = parent:AddAbility("follower_spider_earthquake")
-    end
 
     local level = GetLevelFromDifficulty()
 
@@ -442,6 +397,9 @@ end
 
 function modifier_boss_spider_follower_web_ai:OnIntervalThink()
     local parent = self:GetParent()
+
+    if parent:GetUnitName() == "npc_dota_creature_40_crip_10" then return end -- Don't spawn spiders from the trapped ogres 
+
     local victims = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
         700, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
         FIND_CLOSEST, false)
@@ -479,7 +437,43 @@ function modifier_boss_spider_follower_web_ai:DeclareFunctions()
         MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
         MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
         MODIFIER_EVENT_ON_TAKEDAMAGE,
+        MODIFIER_EVENT_ON_DEATH
     }
+end
+
+function modifier_boss_spider_follower_web_ai:OnDeath(event)
+    if not IsServer() then return end
+
+    local parent = self:GetParent()
+    local unitName = parent:GetUnitName()
+
+    if event.unit ~= parent then return end
+
+    if unitName ~= "npc_dota_creature_40_crip_10" then return end 
+
+    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf", PATTACH_WORLDORIGIN, nil)
+    ParticleManager:SetParticleControl(particle, 0, parent:GetAbsOrigin())
+    ParticleManager:ReleaseParticleIndex(particle)
+
+    EmitSoundOn("Hero_Broodmother.SpawnSpiderlings", parent)
+
+    -- We spawn spiders when the ogre-spidersacks are killed
+    local victims = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
+        700, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
+        FIND_CLOSEST, false)
+
+    if #victims < 1 then return end
+
+    for _,victim in ipairs(victims) do
+        if victim:IsAlive() and parent:CanEntityBeSeenByMyTeam(victim) then
+            local numSpiders = RandomInt(2,5)
+            for i = 1, numSpiders, 1 do
+                self:SpawnSpider(victim)
+            end
+
+            break
+        end
+    end
 end
 
 function modifier_boss_spider_follower_web_ai:GetAbsoluteNoDamagePhysical( params )
@@ -590,7 +584,7 @@ function modifier_boss_spider_follower_web_spider_ai:OnRemoved()
 
     parent:AddNewModifier(parent, nil, "modifier_boss_spider_follower_web_spider_ai_detonating", {})
 
-    DrawWarningCircle(parent, parent:GetAbsOrigin(), 400, 2)
+    DrawWarningCircle(parent, parent:GetAbsOrigin(), 300, 2)
 
     local level = GetLevelFromDifficulty()
     local spiderDamage = 3500 * level
@@ -603,7 +597,7 @@ function modifier_boss_spider_follower_web_spider_ai:OnRemoved()
         EmitSoundOn("Hero_Broodmother.SpawnSpiderlings", parent)
 
         local victims = FindUnitsInRadius(parent:GetTeam(), parent:GetAbsOrigin(), nil,
-            400, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
+            300, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
             FIND_CLOSEST, false)
 
         for _,victim in ipairs(victims) do
@@ -633,7 +627,13 @@ end
 function modifier_boss_spider_follower_web_spider_ai_detonating:CheckState()
     local state = {
         [MODIFIER_STATE_STUNNED] = true,
+        [MODIFIER_STATE_INVULNERABLE] = true,
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
     }   
 
     return state
+end
+
+function modifier_boss_spider_follower_web_spider_ai_detonating:GetEffectName()
+    return "particles/units/heroes/hero_broodmother/broodmother_hunger_buff.vpcf"
 end

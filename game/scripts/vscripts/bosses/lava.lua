@@ -97,8 +97,6 @@ function modifier_boss_lava:OnCreated(kv)
 
     if not IsServer() then return end
 
-    print("dragon mod added")
-
     self.boss = self:GetParent()
     self.spawnPosition = Vector(kv.posX, kv.posY, kv.posZ)
     self.canRegen = true

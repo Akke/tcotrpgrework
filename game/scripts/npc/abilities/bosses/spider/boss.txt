@@ -57,10 +57,10 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-            "miss_chance"        "5 10 15 20 25"
-            "damage"         "90 180 270 360 450"
-            "degen" "-1"
-            "duration"              "7.0"
+            "miss_chance"        "50 55 60 65 70"
+            "damage"         "1250 2500 3750 5000 6250"
+            "degen" "-1 -2 -3 -4 -5"
+            "duration"              "15.0"
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
     }
@@ -164,5 +164,32 @@
             "count" "3 4 5 6 7"
             "duration"              "7"
         }
+    }
+
+    "boss_spider_hunger"
+    {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "heroes/bosses/spider/boss_spider_hunger.lua"
+        "AbilityTextureName" "broodmother_insatiable_hunger"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "MaxLevel" "5"
+
+        "precache"
+        {
+            "particle" "particles/units/heroes/hero_broodmother/broodmother_hunger_buff.vpcf"
+            "particle" "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf"
+        }
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "lifesteal" "10 15 20 25 30"
+            "heal_on_kill_pct" "50"
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
     }
 }

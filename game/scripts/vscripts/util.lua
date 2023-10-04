@@ -873,6 +873,7 @@ function IsCreepTCOTRPG(unit)
     "npc_dota_creature_40_crip_7",
     "npc_dota_creature_40_crip_8",
     "npc_dota_creature_40_crip_9",
+    "npc_dota_creature_40_crip_10",
   }
 
   for _,theUnit in ipairs(unitNames) do

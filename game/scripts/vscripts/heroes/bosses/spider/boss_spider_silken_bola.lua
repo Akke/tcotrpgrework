@@ -29,7 +29,7 @@ function boss_spider_silken_bola:OnSpellStart()
         Ability = self, 
         
         EffectName = "particles/units/heroes/hero_broodmother/broodmother_silken_bola_projectile.vpcf",
-        iMoveSpeed = 900,
+        iMoveSpeed = 2000,
         bDodgeable = false,                           -- Optional
     
         bVisibleToEnemies = true,                         -- Optional

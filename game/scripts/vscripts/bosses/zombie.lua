@@ -268,10 +268,15 @@ function modifier_boss_zombie_follower:OnCreated(kv)
 end
 
 function modifier_boss_zombie_follower:CheckState()
-    local state = {
-        --[MODIFIER_STATE_NO_HEALTH_BAR] = true
-    }
-    return state
+    local parent = self:GetParent()
+
+    if parent:GetUnitName() == "npc_dota_creature_40_crip_7" then
+        return {
+            [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
+            [MODIFIER_STATE_ROOTED] = true,
+            [MODIFIER_STATE_MAGIC_IMMUNE] = true,
+        }
+    end
 end
 
 function modifier_boss_zombie_follower:OnIntervalThink()

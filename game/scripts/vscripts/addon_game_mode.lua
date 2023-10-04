@@ -228,6 +228,12 @@ function Precache(context)
 	PrecacheModel("models/creeps/ice_biome/tuskfolk/tuskfolk001b_f.vmdl", context)
 	PrecacheModel("models/heroes/tuskarr/tusk_fish_basket.vmdl", context)
 	PrecacheModel("models/heroes/tuskarr/tusk_fish.vmdl", context)
+	PrecacheModel("models/creeps/ogre_1/ogre_web.vmdl", context)
+	PrecacheModel("models/creeps/ogre_1/large_ogre.vmdl", context)
+	PrecacheModel("models/creeps/nyx_swarm/nyx_swarm.vmdl", context)
+	PrecacheModel("models/creeps/spiders/spider_kidnap.vmdl", context)
+	PrecacheModel("models/creeps/spiders/spidersack.vmdl", context)
+	
 
 	PrecacheResource("particle_folder", "particles/dazzle/dazzle_shadow_step.vpcf", context)
   PrecacheResource("particle_folder", "particles/dazzle/wd_ti10_immortal_voodoo_center.vpcf", context)
@@ -239,6 +245,7 @@ function Precache(context)
   PrecacheResource("particle_folder", "particles/dazzle/wd_ti10_immortal_voodoo_projection.vpcf", context)
   PrecacheResource("particle_folder", "particles/dazzle/wd_ti10_immortal_voodoo_ring.vpcf", context)
   PrecacheResource("particle_folder", "particles/dazzle/wd_ti10_immortal_voodoo_spore.vpcf", context)
+  PrecacheResource("particle_folder", "particles/units/heroes/hero_broodmother/broodmother_hunger_buff.vpcf", context)
 
   PrecacheResource("particle_folder", "particles/econ/items/lanaya/lanaya_epit_trap/templar_assassin_epit_trap_explode.vpcf", context)
   

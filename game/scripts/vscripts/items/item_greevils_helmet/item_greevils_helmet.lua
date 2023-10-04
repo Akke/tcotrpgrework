@@ -163,7 +163,7 @@ function modifier_item_greevils_helmet:OnDeath(event)
 
     local chickenMod = attacker:FindModifierByName("modifier_chicken_ability_1_target_transmute")
 
-    local gold = (victim:GetGoldBounty() * (ability:GetSpecialValueFor("gold_pct")/100))
+    local gold = (victim:GetGoldBounty() * (ability:GetSpecialValueFor("gold_pct")/100)) + ability:GetSpecialValueFor("gold_per_kill")
 
     if chickenMod ~= nil then
       local chicken = chickenMod:GetCaster()

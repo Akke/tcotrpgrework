@@ -27,6 +27,7 @@ function modifier_twin_gate_custom:CheckState()
     return {
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+        [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
     }
 end
 

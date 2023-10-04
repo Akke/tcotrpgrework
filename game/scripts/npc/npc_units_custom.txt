@@ -4719,7 +4719,6 @@
 
             // Abilities
             //----------------------------------------------------------------
-            "Ability1"                  "Respawn"
 
             // Armor
             //----------------------------------------------------------------
@@ -4806,7 +4805,7 @@
         {                                       
             // General
             //----------------------------------------------------------------
-            "Model"                     "models/heroes/broodmother/broodmother.vmdl"  // Model.
+            "Model"                     "models/creeps/nyx_swarm/nyx_swarm.vmdl"  // Model.
             "BaseClass"                 "npc_dota_creature"
             "SoundSet"                  "n_creep_Melee"
             "Level"                     "35"
@@ -4877,13 +4876,6 @@
             "HasInventory"              "1"
             "Creature"
             {
-                "AttachWearables"
-                {
-                    "1" { "ItemDef" "19776" }
-                    "2" { "ItemDef" "19777" }
-                    "3" { "ItemDef" "19779" }
-                    "4" { "ItemDef" "19780" }
-                }
 
               "ItemDrops"
               {
@@ -4913,12 +4905,12 @@
         {                                       
             // General
             //----------------------------------------------------------------
-            "Model"                     "models/items/broodmother/spiderling/spiderling_dlotus_red/spiderling_dlotus_red.vmdl"    // Model.
+            "Model"                     "models/creeps/ogre_1/large_ogre.vmdl"    // Model.
             "BaseClass"                 "npc_dota_creature"
             "SoundSet"                  "n_creep_Melee"
             "Level"                     "35"
             "IsNeutralUnitType"            "1"
-            "ModelScale"                    "0.50"
+            "ModelScale"                    "1.1"
             "ConsideredHero" "0"
             "IsAncient" "1"
             "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"  
@@ -4927,8 +4919,7 @@
             // Abilities
             //----------------------------------------------------------------
             "Ability1"                  "Respawn"
-            "Ability2"                  "spider_bite"
-            "Ability3" "follower_spider_sandstorm"
+            "Ability2"                  "large_mine_ogre_bash"
 
             // Armor
             //----------------------------------------------------------------
@@ -5129,6 +5120,105 @@
             "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
             "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
             "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+        }
+
+        "npc_dota_creature_40_crip_10"
+        {                                       
+            // General
+            //----------------------------------------------------------------
+            "Model"                     "models/creeps/ogre_1/ogre_web.vmdl"  // Model.
+            "BaseClass"                 "npc_dota_creature"
+            "SoundSet"                  "n_creep_Melee"
+            "Level"                     "301"
+            "IsNeutralUnitType"            "1"
+            "ModelScale"                    "1.1"
+            "ConsideredHero" "0"
+            "IsAncient" "1"
+            "UseNeutralCreepBehavior"  "1" "BaseAttackSpeed" "100"  
+            "MagicalResistance" "0"        
+
+            // Abilities
+            //----------------------------------------------------------------
+
+            // Armor
+            //----------------------------------------------------------------
+            "ArmorPhysical"             "0"            // Physical protection.
+
+            // Attack
+            //----------------------------------------------------------------
+            "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+            "AttackDamageMin"           "1"      // Damage range min.
+            "AttackDamageMax"           "1"      // Damage range max.    
+            "AttackRate"                "0.9"     // Speed of attack.
+            "AttackAnimationPoint"      "0.4"       // Normalized time in animation cycle to attack.
+            "AttackAcquisitionRange"    "0"       // Range within a target can be acquired.
+            "AttackRange"               "0"       // Range within a target can be attacked.
+            "ProjectileModel"           ""          // Particle system model for projectile.
+            "ProjectileSpeed"           "0"         // Speed of projectile.        
+
+            // Bounds
+            //----------------------------------------------------------------
+            "RingRadius"                "70"
+            "HealthBarOffset"           "215"
+            "BoundsHullName"            "DOTA_HULL_SIZE_HUGE"
+
+            // Bounty
+            //----------------------------------------------------------------
+            "BountyXP"                  "561"       // Experience earn.
+            "BountyGoldMin"             "110"       // Gold earned min.
+            "BountyGoldMax"             "120"       // Gold earned max.
+
+            // Movement
+            //----------------------------------------------------------------
+            "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+            "MovementSpeed"             "0"       // Speed.
+            "MovementTurnRate"          "0.6"       // Turning rate.
+
+            // Status
+            //----------------------------------------------------------------
+            "StatusHealth"              "5"      // Base health.
+            "StatusHealthRegen"         "0"         // Health regeneration rate.
+            "StatusMana"                "0"      // Base mana.
+            "StatusManaRegen"           "0"        // Mana regeneration rate.       
+            
+            // Vision
+            //----------------------------------------------------------------
+            "VisionDaytimeRange"        "1400"      // Range of vision during day light.
+            "VisionNighttimeRange"      "800"       // Range of vision at night time.
+
+            // Team
+            //----------------------------------------------------------------
+            "TeamName"                  "DOTA_TEAM_NEUTRALS"                            // Team name.
+            "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+            "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+            "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+            //Inventory
+            "HasInventory"              "1"
+                    "Creature"
+            {
+              "ItemDrops"
+              {
+                "StatTomes"
+                {
+                  "Item"
+                  {
+                    "1" "item_tome_str_60"
+                    "2" "item_tome_agi_60"
+                    "3" "item_tome_int_60"
+                  }
+                  "Chance"      "0"
+                }
+                "Trinkets"
+                    {
+                      "Item"
+                      {
+                        "1" ""
+                      }
+                      "Chance"      "5"
+                    }
+              }
+            }   
         }
 
                 "npc_dota_creature_40_crip"
@@ -6553,9 +6643,9 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/winterwyvern/winterwyvern.vmdl"	// Model.
+		"Model"						"models/creeps/spiders/spider_kidnap.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
-		"SoundSet"      "Hero_Winter_Wyvern"
+		"SoundSet"      "Hero_Broodmother"
 		"Level"						"150"
 		"ModelScale" 					"2.5"
 	   "IsNeutralUnitType"            "1"
@@ -6586,12 +6676,13 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"Respawn"
-                "Ability2"                                      "boss_shell_custom"
-                "Ability3"                                      "necronomicon_warrior_sight"
-                "Ability4"                                      "boss_ice_wyvern_arctic_burn"
-                "Ability5" "boss_ice_wyvern_splinter_blast"
-                "Ability6" "boss_ice_wyvern_cold_embrace"
-                "Ability7" "boss_ice_wyvern_winters_curse"
+    "Ability2"                                      "boss_shell_custom"
+    "Ability3"                                      "necronomicon_warrior_sight"
+    "Ability4"                                      "boss_spider_poison_bite"
+    "Ability5"                                      "boss_spider_hunger"
+    "Ability6"                                      "boss_spider_spin_web"
+    "Ability7"                                      "boss_spider_silken_bola"
+    
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"125"			// Physical protection.
@@ -6599,15 +6690,15 @@
 
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"375000"		// Damage range min.
 		"AttackDamageMax"			"400000"		// Damage range max.	
 		"AttackRate"				"0.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
-		"AttackRange"       "425"
-        "ProjectileModel"       "particles/units/heroes/hero_winter_wyvern/winter_wyvern_base_attack.vpcf"
-        "ProjectileSpeed"       "700"   
+		"AttackRange"       "150"
+        "ProjectileModel"       ""
+        "ProjectileSpeed"       ""   
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -6649,11 +6740,6 @@
 		"HasInventory"				"1"	
                 "Creature"
     {
-    "AttachWearables"
-            {
-                "1" { "ItemDef" "8017" }
-                "2" { "ItemDef" "9036" }
-            }
     "EquippedItems"
               {
                 "soul" { "Item"  "item_elder_soul" }
@@ -13497,7 +13583,9 @@
       "IsNeutralUnitType"            "1"
       "ModelScale"                    "1.00"
       "ConsideredHero" "0"
-      "IsAncient" "1"
+      "IsAncient"					"1"
+      "IsSummoned"				"1"
+      "UntargetableByExorcismSpirits"		"1"
       "UseNeutralCreepBehavior"  "1" 
       "BaseAttackSpeed" "100"	
       "MagicalResistance" "100"	
@@ -13727,8 +13815,8 @@
       //
       "Model"						"models/heroes/abyssal_underlord/abyssal_underlord_portal_model.vmdl"	// Model.
       "SoundSet"					"Creep_Good_Melee"					// Name of sound set.
-      "MinimapIcon"				"minimap_underlord_portal"
-      "MinimapIconSize"				"0"
+      //"MinimapIcon"				"minimap_underlord_portal"
+      //"MinimapIconSize"				"0"
       "IsAncient"					"1"
       "IsSummoned"				"1"
       "UntargetableByExorcismSpirits"		"1"

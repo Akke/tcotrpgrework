@@ -11445,7 +11445,7 @@
         "01"
         {
           "var_type"          "FIELD_FLOAT"
-          "base_capture_time"     "7.0"
+          "base_capture_time"     "2.0"
         }
         "02"
         {

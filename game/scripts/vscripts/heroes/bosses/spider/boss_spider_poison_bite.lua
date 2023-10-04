@@ -104,7 +104,7 @@ function modifier_boss_spider_poison_bite_debuff:DeclareFunctions()
 end
 
 function modifier_boss_spider_poison_bite_debuff:GetModifierMiss_Percentage()
-    return self:GetAbility():GetSpecialValueFor("miss_chance") * self:GetStackCount()
+    return self:GetAbility():GetSpecialValueFor("miss_chance")
 end
 
 function modifier_boss_spider_poison_bite_debuff:GetModifierHealAmplify_PercentageTarget()

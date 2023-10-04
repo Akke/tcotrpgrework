@@ -252,4 +252,30 @@
             }
         }
     }
+
+    "large_mine_ogre_bash"
+    {
+        "BaseClass"                                           "ability_lua"
+        "ScriptFile"                                          "creeps/large_mine_ogre_bash.lua"
+        "AbilityTextureName" "ogre_bruiser_ogre_smash"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "MaxLevel" "5"
+
+        "precache"
+        {
+            "particle" "particles/neutral_fx/ogre_bruiser_smash.vpcf"
+        }
+            
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "chance" "18"
+            "stun_duration" "2"
+            "damage_pct" "8 16 24 32 40"
+            "radius" "230"
+        }
+    }
 }

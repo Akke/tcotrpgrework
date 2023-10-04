@@ -34,7 +34,7 @@ require("modules/effects/PlayerEffects")
 
 require("bosses/skafian")
 require("bosses/zombie")
-require("bosses/reef")
+require("bosses/spider")
 require("bosses/mine")
 require("bosses/lava")
 require("bosses/lake")

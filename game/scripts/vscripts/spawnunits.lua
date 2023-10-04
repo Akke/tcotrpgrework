@@ -373,7 +373,7 @@ function SpawnAllUnits()
                         posZ = unit:GetAbsOrigin().z,
                     })
                 elseif unitName == "npc_dota_creature_80_boss" then 
-                    unit:AddNewModifier(unit, nil, "modifier_boss_reef", {
+                    unit:AddNewModifier(unit, nil, "modifier_boss_spider", {
                         posX = unit:GetAbsOrigin().x,
                         posY = unit:GetAbsOrigin().y,
                         posZ = unit:GetAbsOrigin().z,
@@ -440,8 +440,8 @@ function SpawnAllUnits()
                             posY = unit:GetAbsOrigin().y,
                             posZ = unit:GetAbsOrigin().z,
                         }):ForceRefresh() 
-                    elseif modifier_boss_reef:IsFollower(unit) then 
-                        unit:AddNewModifier(unit, nil, "modifier_boss_reef_follower", {
+                    elseif modifier_boss_spider:IsFollower(unit) then 
+                        unit:AddNewModifier(unit, nil, "modifier_boss_spider_follower", {
                             posX = unit:GetAbsOrigin().x,
                             posY = unit:GetAbsOrigin().y,
                             posZ = unit:GetAbsOrigin().z,
@@ -505,8 +505,13 @@ function SpawnAllUnits()
         SpawnBossInZone("spawn_boss_spider", "npc_dota_creature_40_boss")
         SpawnUnitsInZone("spawn_creep_27", "npc_dota_creature_40_crip_7", 1) -- Tombstone
 
-        -- Winter Zone --
+        -- Mines -- 
         SpawnBossInZone("spawn_boss_morphling", "npc_dota_creature_80_boss")
+        SpawnUnitsInZone("spawn_creep_28", "npc_dota_creature_40_crip_2", 1)
+        SpawnUnitsInZone("spawn_creep_29", "npc_dota_creature_40_crip_10", 1)
+        SpawnUnitsInZone("spawn_creep_30", "npc_dota_creature_40_crip_4", 1)
+
+        -- Winter Zone --
         SpawnBossInZone("spawn_boss_necro", "npc_dota_creature_130_boss_death")
         SpawnUnitsInZone("spawn_creep_4", "npc_dota_creature_130_crip2_death", 1) -- Creep in frozen lake
         SpawnUnitsInZone("spawn_creep_5", "npc_dota_creature_130_crip1_death", 1) -- Regular frozen lake (outside lake) enemy
