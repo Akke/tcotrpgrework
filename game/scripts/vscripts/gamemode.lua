@@ -811,46 +811,6 @@ function barebones:OnGameInProgress()
     end)
   end)
 
-  if GetMapName() == "tcotrpg" then
-    -- Add outpost ability --
-    local outposts = Entities:FindAllByModel("models/props_structures/outpost.vmdl")
-    for _,outpost in ipairs(outposts) do
-      outpost:AddAbility("outpost_placeholder_ability")
-    end
-
-    -- Make the tower near Zeus invulnerable --
-    local evilTowers = Entities:FindAllByName("dota_badguys_tower1_bot")
-    for _,evilTower in ipairs(evilTowers) do
-      if not evilTower:HasModifier("modifier_invulnerable") then
-        evilTower:AddNewModifier(evilTower, nil, "modifier_invulnerable", {})
-      end
-    end
-
-    local evilCitadel = Entities:FindByName(nil, "evil_citadel")
-    Timers:CreateTimer(1.0, function()
-      local evilTowers = Entities:FindAllByName("dota_badguys_tower1_bot")
-
-      if #evilTowers < 1 then 
-        evilCitadel:RemoveModifierByName("modifier_invulnerable")
-        return
-      end
-
-      return 1.0
-    end)
-
-    evilCitadel:AddNewModifier(evilCitadel, nil, "modifier_evil_citadel", {})
-    if WAVE_VOTE_RESULT == "ENABLE" and GetMapName() == "tcotrpg" then
-      _G.bWavesEnabled = true
-      Timers:CreateTimer(60.0, function()
-        InitiateWaves()
-      end)
-    else
-      _G.bWavesEnabled = false
-      CustomGameEventManager:Send_ServerToAllClients("waves_disable", {})
-      --CustomNetTables:SetTableValue("waves_disable", "game_info", { enabled = false })
-    end
-  end
-
   if GetMapName() == "tcotrpgv3" then
     local twinGates = Entities:FindAllByModel("models/props_gameplay/team_portal/team_portal.vmdl")
     for _,gate in ipairs(twinGates) do
@@ -860,6 +820,11 @@ function barebones:OnGameInProgress()
     local aghanimTowers = Entities:FindAllByModel("models/props_structures/radiant_checkpoint_01.vmdl")
     for _,tower in ipairs(aghanimTowers) do
       tower:AddNewModifier(tower, nil, "modifier_aghanim_tower", {})
+    end
+
+    local outposts = Entities:FindAllByModel("models/props_structures/outpost.vmdl")
+    for _,outpost in ipairs(outposts) do
+      outpost:RemoveModifierByName("modifier_invulnerable")
     end
   end
   --
@@ -2288,7 +2253,7 @@ function barebones:DamageFilter(event)
       --ability = EntIndexToHScript(event.entindex_inflictor_const)
     --end
 
-    if victim:IsBuilding() and (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom" or victim:GetUnitName() == "npc_dota_unit_aghanim_tower_custom") then
+    if victim:IsBuilding() or (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom" or victim:GetUnitName() == "npc_dota_unit_aghanim_tower_custom") then
       event.damage = 0
     end
 
@@ -2775,10 +2740,6 @@ function barebones:OnNPCSpawned(keys)
 
     if IsPvP() and not npc:HasModifier("modifier_pvp_damage_layers") then
       npc:AddNewModifier(npc, nil, "modifier_pvp_damage_layers", {})
-    end
-
-    if not npc:HasModifier("modifier_outpost_capture") then
-      npc:AddNewModifier(npc, nil, "modifier_outpost_capture", {})
     end
 
     if npc:HasModifier("modifier_fountain_invulnerability") then
