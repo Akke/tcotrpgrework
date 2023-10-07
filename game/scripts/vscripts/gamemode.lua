@@ -41,14 +41,12 @@ require("bosses/lake")
 require("bosses/divine")
 
 require("modules/rune_manager/RuneManager")
-require("modules/talent_manager/TalentManager")
+--require("modules/talent_manager/TalentManager")
 require("modules/wave_manager/WaveManager")
 require("modules/xp_manager/XpManager")
 require("modules/player_buffs/PlayerBuffs")
 
-require("heroes/bosses/akasha/ai")
-require("heroes/bosses/hephaestus/ai")
---require("heroes/bosses/keymaster/ai")
+require("heroes/bosses/destruction_lord/ai")
 
 require("capture_point")
 
@@ -745,8 +743,7 @@ function barebones:OnGameInProgress()
         _G.PlayerList = GetSteamIDPlayerList()
       end)
 
-      boss_queen_of_pain:Spawn("boss_queen_of_pain")
-      boss_hephaestus:Spawn("boss_hephaestus")
+      boss_destruction_lord:Spawn("boss_destruction_lord")
 
       -- Aghanim's Portal
       local aghanimPortalSpawnPoint = Entities:FindByName(nil, "trigger_entrance_aghanim")
@@ -810,7 +807,7 @@ function barebones:OnGameInProgress()
       end
 
       RuneManager:Init()
-      TalentManager:Init()
+      --TalentManager:Init()
     end)
   end)
 
@@ -858,6 +855,11 @@ function barebones:OnGameInProgress()
     local twinGates = Entities:FindAllByModel("models/props_gameplay/team_portal/team_portal.vmdl")
     for _,gate in ipairs(twinGates) do
       gate:AddNewModifier(gate, nil, "modifier_twin_gate_custom", {})
+    end
+
+    local aghanimTowers = Entities:FindAllByModel("models/props_structures/radiant_checkpoint_01.vmdl")
+    for _,tower in ipairs(aghanimTowers) do
+      tower:AddNewModifier(tower, nil, "modifier_aghanim_tower", {})
     end
   end
   --
@@ -1048,7 +1050,7 @@ function barebones:OnPlayerReconnect(keys)
           Timers:CreateTimer(5.0, function()
             CustomGameEventManager:Send_ServerToAllClients("duel_timer_changed", { isDuelActive = KILL_VOTE_RESULT:upper() })
             
-            TalentManager:ResetTalents(player, hero)
+            --TalentManager:ResetTalents(player, hero)
 
             XpManager:LoadPlayerTalentData(hero)
 
@@ -1067,6 +1069,7 @@ function barebones:OnPlayerReconnect(keys)
                 c = RandomFloat(1,1000),
             })
 
+            --[[
             Timers:CreateTimer(1.0, function()
               local data = TalentManager:LoadKVDataForHero(hero:GetUnitName())
               local exists = 0 
@@ -1084,6 +1087,7 @@ function barebones:OnPlayerReconnect(keys)
       
               return 10.0
             end)
+            --]]
           end)
       end
     else
@@ -1123,10 +1127,17 @@ function barebones:OnPlayerLearnedAbility(keys)
 
   -- PlayerResource:GetBarebonesAssignedHero(index) is custom-made; can be found in 'player_resource.lua' library
   -- This could return a wrong hero if you change your hero often during gameplay
+  --[[
   local hero = PlayerResource:GetBarebonesAssignedHero(playerID)
   local talentsExist = TalentManager:LoadKVDataForHero(hero:GetUnitName())
 
   if string.match(ability_name, "special_bonus") and talentsExist ~= nil then
+    hero:RemoveAbility(ability_name)
+  end
+  --]]
+  -- Remove talents
+  local hero = PlayerResource:GetBarebonesAssignedHero(playerID)
+  if string.match(ability_name, "special_bonus") then
     hero:RemoveAbility(ability_name)
   end
 end
@@ -1879,24 +1890,32 @@ function barebones:OrderFilter(event)
       local target = EntIndexToHScript(event.entindex_target)
       local player = PlayerResource:GetSelectedHeroEntity(event.issuer_player_id_const)
 
-      if not target or not player then return end
+      if target ~= nil and player ~= nil then
+        if player:IsRealHero() and UnitIsNotMonkeyClone(player) and not IsCreepTCOTRPG(player) and not IsBossTCOTRPG(player) and (target.GetUnitName and (target:GetUnitName() == "npc_dota_unit_twin_gate_custom" or target:GetUnitName() == "npc_dota_unit_aghanim_tower_custom")) then
+          local distance = (player:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
+          local channelAbilityName = "twin_gate_portal_warp_custom"
 
-      if (target.GetUnitName and target:GetUnitName() == "npc_dota_unit_twin_gate_custom") then
-        local distance = (player:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
-        local twinGateWarp = player:FindAbilityByName("twin_gate_portal_warp_custom")
-        if distance <= 200 then
-          ExecuteOrderFromTable({
-            UnitIndex = player:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-            AbilityIndex = twinGateWarp:entindex(),
-            TargetIndex = target:entindex()
-          })
-        else
-          player:MoveToPosition(target:GetAbsOrigin())
-          player:CastAbilityOnTarget(target, twinGateWarp, -1)
+          if target:GetUnitName() == "npc_dota_unit_aghanim_tower_custom" then
+            channelAbilityName = "aghanim_tower_capture"
+          end
+
+          local targetChannelAbility = player:FindAbilityByName(channelAbilityName)
+          if targetChannelAbility ~= nil then
+            if distance <= 200 then
+              ExecuteOrderFromTable({
+                UnitIndex = player:entindex(),
+                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                AbilityIndex = targetChannelAbility:entindex(),
+                TargetIndex = target:entindex()
+              })
+            else
+              player:MoveToPosition(target:GetAbsOrigin())
+              player:CastAbilityOnTarget(target, targetChannelAbility, -1)
+            end
+
+            return false
+          end
         end
-
-        return false
       end
     end
 
@@ -1918,47 +1937,21 @@ function barebones:OrderFilter(event)
       end
     end
 
-    if event.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
-      local target = EntIndexToHScript(event.entindex_target)
-      local player = PlayerResource:GetSelectedHeroEntity(event.issuer_player_id_const)
-      if target == nil then return end
-      if player == nil then return end
-
-      if target:GetName() == "outpost_zone_skafian" and player:GetLevel() < 15 then
-        DisplayError(player:GetPlayerID(), "Level 15 Is Required To Capture This Outpost.")
-        return false
-      end
-
-      if target:GetName() == "outpost_zone_spider" and player:GetLevel() < 30 then
-        DisplayError(player:GetPlayerID(), "Level 30 Is Required To Capture This Outpost.")
-        return false
-      end
-
-      if target:GetName() == "outpost_zone_reef" and player:GetLevel() < 50 then
-        DisplayError(player:GetPlayerID(), "Level 50 Is Required To Capture This Outpost.")
-        return false
-      end
-
-      if target:GetName() == "outpost_zone_mine" and player:GetLevel() < 75 then
-        DisplayError(player:GetPlayerID(), "Level 75 Is Required To Capture This Outpost.")
-        return false
-      end
-
-      if target:GetName() == "outpost_zone_zeus" and player:GetLevel() < 100 then
-        DisplayError(player:GetPlayerID(), "Level 100 Is Required To Capture This Outpost.")
-        return false
-      end
-    end
-
     if event.order_type == DOTA_UNIT_ORDER_CAST_TARGET then
       local target = EntIndexToHScript(event.entindex_target)
       local player = PlayerResource:GetSelectedHeroEntity(event.issuer_player_id_const)
       
       if target == nil then return end
 
-      if target:GetUnitName() == "npc_dota_unit_twin_gate_custom" then return true end
-
       if player == nil then return end
+
+      if target:GetUnitName() == "npc_dota_unit_twin_gate_custom" or target:GetUnitName() == "npc_dota_unit_aghanim_tower_custom" then 
+        if not player:IsRealHero() or not UnitIsNotMonkeyClone(player) or IsCreepTCOTRPG(player) or IsBossTCOTRPG(player) then
+          return false
+        end
+        
+        return true 
+      end
 
       if player:HasModifier("modifier_zuus_transcendence_custom_transport") then
         DisplayError(player:GetPlayerID(), "You Cannot Do That.")
@@ -2295,7 +2288,7 @@ function barebones:DamageFilter(event)
       --ability = EntIndexToHScript(event.entindex_inflictor_const)
     --end
 
-    if victim:IsBuilding() and (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom") then
+    if victim:IsBuilding() and (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom" or victim:GetUnitName() == "npc_dota_unit_aghanim_tower_custom") then
       event.damage = 0
     end
 
@@ -2870,6 +2863,12 @@ function barebones:OnNPCSpawned(keys)
         twinGateCustom:SetActivated(true)
       end
 
+      local aghanimTowerCapture = npc:AddAbility("aghanim_tower_capture")
+      if aghanimTowerCapture ~= nil then
+        aghanimTowerCapture:SetLevel(1)
+        aghanimTowerCapture:SetActivated(true)
+      end
+
       --
       npc:AddItemByName("item_swiftness_boots")
 
@@ -2880,6 +2879,7 @@ function barebones:OnNPCSpawned(keys)
         end
       end)
 
+      --[[
       Timers:CreateTimer(1.0, function()
         local data = TalentManager:LoadKVDataForHero(npc:GetUnitName())
         local exists = 0 
@@ -2902,6 +2902,7 @@ function barebones:OnNPCSpawned(keys)
         print("[Talent Manager] Attempting to load talents...")
         XpManager:LoadPlayerTalentData(npc)
       end)
+      --]]
       
       --[[local bootLevelCount = 1
       Timers:CreateTimer(600, function()

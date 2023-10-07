@@ -37,19 +37,23 @@ function modifier_item_witchbane_custom:GetModifierTotalDamageOutgoing_Percentag
     if IsServer() then
         local parent = self:GetParent()
 
+        local ability = self:GetAbility()
+
         if event.target ~= event.attacker and event.attacker == parent and event.inflictor ~= self:GetAbility() then
-            if event.damage_type == DAMAGE_TYPE_MAGICAL then
+            if event.damage_type == DAMAGE_TYPE_MAGICAL and ability:IsCooldownReady() then
                 ApplyDamage({
                     attacker = parent,
                     victim = event.target,
-                    damage = parent:GetMaxMana() * (self:GetAbility():GetSpecialValueFor("bonus_damage_from_max_mana")/100),
+                    damage = parent:GetMaxMana() * (ability:GetSpecialValueFor("bonus_damage_from_max_mana")/100),
                     damage_type = DAMAGE_TYPE_PURE,
-                    ability = self:GetAbility()
+                    ability = ability
                 })
+
+                ability:UseResources(false, false, false, true)
             end
             
-            if event.target:GetHealthPercent() <= self:GetAbility():GetSpecialValueFor("bonus_damage_hp_threshold") then
-                return self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
+            if event.target:GetHealthPercent() <= ability:GetSpecialValueFor("bonus_damage_hp_threshold") then
+                return ability:GetSpecialValueFor("bonus_damage_pct")
             end
         end
     end

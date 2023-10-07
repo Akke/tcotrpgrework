@@ -172,12 +172,12 @@ var WaveManagerCounter = (function() {
         this.SeasonalUIContainer.style.opacity = _this.opacity
         
         this.SeasonalEffect = $.CreatePanel("Label", this.SeasonalUIContainer, "SeasonalEffect")
-        this.SeasonalEffect.text = $.Localize("#season_effect_title_voidshock")
+        this.SeasonalEffect.text = $.Localize("#season_effect_title_frenzy")
 
         this.SeasonalEffect.SetPanelEvent(
             "onmouseover", 
             function(){
-                $.DispatchEvent("DOTAShowTextTooltip", _this.SeasonalEffect, $.Localize("#season_effect_description_voidshock"))
+                $.DispatchEvent("DOTAShowTextTooltip", _this.SeasonalEffect, $.Localize("#season_effect_description_frenzy"))
             }
         )
 

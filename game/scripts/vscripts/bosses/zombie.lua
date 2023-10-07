@@ -191,10 +191,6 @@ function modifier_boss_zombie:OnDeath(event)
 
     local respawnTime = BOSS_RESPAWN_TIME
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
-    end
-
     Timers:CreateTimer(respawnTime, function()
         if IsPvP() then return end
         
@@ -307,8 +303,8 @@ function modifier_boss_zombie_follower:OnRemoved(event)
 
     local respawnTime = CREEP_RESPAWN_TIME
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(parent) then
+        respawnTime = 1
     end
 
     Timers:CreateTimer(respawnTime, function()

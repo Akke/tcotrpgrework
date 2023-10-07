@@ -124,13 +124,7 @@ end
 function modifier_bloodstone_strygwyr:GetModifierSpellAmplify_Percentage()
     local defaultValue = self:GetAbility():GetSpecialValueFor("spell_amp")
 
-    if self.fAttr == DOTA_ATTRIBUTE_INTELLECT or self.fAttr == DOTA_ATTRIBUTE_ALL then
-        local bonusValue = self:GetAbility():GetSpecialValueFor("int_amp_per_charge") * self:GetAbility():GetCurrentCharges()
-        
-        return defaultValue + bonusValue
-    else
-        return defaultValue
-    end
+    return defaultValue
 end
 
 function modifier_bloodstone_strygwyr:OnTakeDamage(event)
@@ -263,7 +257,15 @@ function modifier_bloodstone_strygwyr:OnRemoved()
 end
 
 function modifier_bloodstone_strygwyr:GetModifierBonusStats_Intellect()
-    return self:GetAbility():GetLevelSpecialValueFor("bonus_intellect", (self:GetAbility():GetLevel() - 1))
+    local defaultValue = self:GetAbility():GetSpecialValueFor("bonus_intellect")
+
+    if self.fAttr == DOTA_ATTRIBUTE_INTELLECT or self.fAttr == DOTA_ATTRIBUTE_ALL then
+        local bonusValue = self:GetAbility():GetSpecialValueFor("int_amp_per_charge") * self:GetAbility():GetCurrentCharges()
+        
+        return defaultValue + bonusValue
+    else
+        return defaultValue
+    end
 end
 
 function modifier_bloodstone_strygwyr:GetModifierManaBonus()

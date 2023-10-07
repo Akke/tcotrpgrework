@@ -233,22 +233,77 @@ var ProgressionTalents = (function() {
             return this[`branch_${talentType}_Talent_${talentNum}_Container`]
         }
 
+        this.RemoveTalentTree = function () {
+            // Find the talent tree and disable it
+            var context = $.GetContextPanel()
+            var mainHud = context.GetParent().GetParent().GetParent()
+            const talentTree = mainHud
+                .FindChildTraverse("HUDElements")
+                .FindChildTraverse("lower_hud")
+                .FindChildTraverse("center_with_stats")
+                .FindChildTraverse("center_block")
+                .FindChildTraverse("AbilitiesAndStatBranch")
+                .FindChildTraverse("StatBranch");
+            talentTree.style.visibility = "collapse";
+            talentTree.SetPanelEvent("onmouseover", function () {});
+            talentTree.SetPanelEvent("onactivate", function () {});
+
+            const popupTalentTree = mainHud
+            .FindChildTraverse("DOTAStatBranch")
+            .FindChildTraverse("StatBranchOuter")
+            popupTalentTree.style.visibility = "collapse";
+            popupTalentTree.SetPanelEvent("onmouseover", function () {});
+            popupTalentTree.SetPanelEvent("onactivate", function () {});
+            popupTalentTree.SetPanelEvent("onmouseactivate", function () {});
+
+            // Disable the level up frame for the talent tree
+            const levelUpButton = mainHud
+                .FindChildTraverse("HUDElements")
+                .FindChildTraverse("lower_hud")
+                .FindChildTraverse("center_with_stats")
+                .FindChildTraverse("center_block")
+                .FindChildTraverse("level_stats_frame");
+            levelUpButton.style.visibility = "collapse";
+        }
+
         this.CreateTalentToggleButton = function() {
             // Make the button for the rune UI
-            var unitNamePanel = mainHud.FindChildTraverse("unitname")
-            unitNamePanel.style.opacity = "0"
-            unitNamePanel.style.visibility = "collapse"
+            const mainPanelParent = mainHud.FindChildTraverse("lower_hud")
 
-            var inventory = mainHud.FindChildTraverse("center_block")
-            const old = inventory.FindChildTraverse("ProgressionTalentsPlayerButton")
+            // Make the button for the rune UI
+            const StatBranch = mainHud.FindChildTraverse("StatBranch")
+
+            const parent = StatBranch.GetParent()
+
+            const old = parent.FindChildTraverse("ProgressionTalentsPlayerButton")
             if(old) {
                 old.RemoveAndDeleteChildren()
-                old.DeleteAsync(0)
+                old.DeleteAsync(0);
             }
 
+            _this.RemoveTalentTree()
+            
             const btn = $.CreatePanel("Label", context, "ProgressionTalentsPlayerButton");
-            btn.SetParent(inventory)
-            btn.text = "Global Talents"
+            btn.text = " "
+            const icon = $.CreatePanel("Image", btn, "ProgressionTalentsPlayerButtonIcon");
+            icon.SetImage("file://{resources}/images/custom_game/hex_icon_rarity_shadow_tier_5_large_selected_psd.png")
+            btn.SetParent(parent)
+
+            parent.MoveChildBefore(btn, parent.Children()[1])
+
+            btn.SetPanelEvent(
+                "onmouseover", 
+                function(){
+                  $.DispatchEvent("DOTAShowTextTooltip", btn, $.Localize("#progression_talents_name"));
+                }
+              )
+  
+              btn.SetPanelEvent(
+                "onmouseout", 
+                function(){
+                  $.DispatchEvent("DOTAHideTextTooltip");
+                }
+              )
         
             btn.SetPanelEvent(
                 "onmouseactivate", 
@@ -258,9 +313,11 @@ var ProgressionTalents = (function() {
                         if(container.style.visibility == "collapse") {
                             _this.opacity = "1"
                             _this.visibility = "visible"
+                            icon.GetParent().AddClass("active")
                         } else if(container.style.visibility == "visible") {
                             _this.opacity = "0"
                             _this.visibility = "collapse"
+                            icon.GetParent().RemoveClass("active")
                         }
 
                         container.style.opacity = _this.opacity

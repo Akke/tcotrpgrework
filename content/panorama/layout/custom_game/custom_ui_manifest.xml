@@ -29,7 +29,7 @@
         
 
         //$.GetContextPanel().GetParent().FindChildTraverse("DotaLoadingScreen").FindChildTraverse("LoadingScreenContent").FindChildTraverse("ChatTipBox").style.opacity = "1"
-        //chat
+    
     }
     (function()
     {
@@ -223,7 +223,7 @@ function OnUpdateQueryUnit()
     <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/custom_hero_selection.xml" />
     <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/new_game_plus.xml" />
     <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/RuneManager.xml" />
-    <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/TalentManager.xml" />
+    <!--<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/TalentManager.xml" />-->
     <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/WaveManagerModifierNotification.xml" />
     <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/WaveManagerCounter.xml" />
     <CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/WaveManagerEndScreen.xml" />

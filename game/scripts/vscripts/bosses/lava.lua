@@ -167,10 +167,6 @@ function modifier_boss_lava:OnDeath(event)
 
     local respawnTime = BOSS_RESPAWN_TIME
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
-    end
-
     Timers:CreateTimer(respawnTime, function()
         if IsPvP() then return end
         
@@ -309,8 +305,8 @@ function modifier_boss_lava_follower:OnDeath(event)
 
     if GetMapName() == "tcotrpg_1v1" then respawnTime = 15 end
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(parent) then
+        respawnTime = 1
     end
 
     -- Drops --
@@ -329,7 +325,7 @@ function modifier_boss_lava_follower:OnDeath(event)
         end
     end
 
-    if parent:GetUnitName() == "npc_dota_creature_140_crip_Robo" then
+    if parent:GetUnitName() == "npc_dota_creature_lava_2" then
         --if EnrageCrystal_Chance <= 0.45 and not _G.ItemDroppedEnrageCrystal then
             --DropNeutralItemAtPositionForHero("item_stygian_crystal", parent:GetAbsOrigin(), parent, 1, false)
         --    _G.ItemDroppedEnrageCrystal = true

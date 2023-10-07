@@ -5,11 +5,10 @@
 	IsTemplate = false
 	maps = 
 	[
-		"tcotrpgv2",
-		"tcotrpg1v1",
+		"tcotrpgv3"
 	]
 	CheckAFKPlayers = false
-	DefaultMap = "tcotrpgv2"
+	DefaultMap = "tcotrpgv3"
 	Default_Keys = 
 	[
 		{
@@ -29,15 +28,10 @@
 	map_options = 
 	[
 		{
-			map = "tcotrpgv2"
+			map = "tcotrpgv3"
 			MinPlayers = 1
 			MaxPlayers = 5
-		},
-		{
-			map = "tcotrpg1v1"
-			MinPlayers = 1
-			MaxPlayers = 6
-		},
+		}
 	]
 	PenaltiesEnabled = false
 	TeamCount = -1

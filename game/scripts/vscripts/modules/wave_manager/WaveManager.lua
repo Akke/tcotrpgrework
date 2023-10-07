@@ -38,6 +38,9 @@ function WaveManager:Init()
     self.triggerZone = Entities:FindByName(nil, "wave_manager_zone")
     self.primaryZone = Entities:FindByName(nil, "wave_manager_zone")
 
+    self.playerSpawnEntity = Entities:FindByName(nil, "wave_manager_player_spawn")
+    self.playerSpawnPoint = self.playerSpawnEntity:GetAbsOrigin()
+
     self.spawnInterval = 5
     self.minSpawnInterval = 1
 
@@ -64,8 +67,6 @@ function WaveManager:Init()
     self.allowedBosses = {
         "npc_dota_creature_30_boss",
         "npc_dota_creature_40_boss",
-        --"npc_dota_creature_80_boss",
-        --"npc_dota_creature_130_boss_death",
         "npc_dota_creature_100_boss",
         "npc_dota_creature_150_boss_last",
         "npc_dota_creature_100_boss_2",
@@ -145,8 +146,8 @@ function WaveManager:Init()
                 if hero:IsAlive() then
                     hero:Stop()
                     hero:AddNewModifier(hero, nil, "modifier_silence", { duration = 1.0 })
-                    hero:SetAbsOrigin(self.primaryZone:GetAbsOrigin())
-                    FindClearSpaceForUnit(hero, self.primaryZone:GetAbsOrigin(), false)
+                    hero:SetAbsOrigin(self.playerSpawnPoint)
+                    FindClearSpaceForUnit(hero, self.playerSpawnPoint, false)
                     hero:CenterCameraOnEntity(hero, 3)
                 end
 
@@ -508,10 +509,10 @@ function WaveManager:SpawnWaveUnit()
         end
         --]]
         
-        if RollPercentage(10) then
-            randomUnit = "npc_dota_creature_wave_enemy_razor"
-            isBoss = true
-        end
+        --if RollPercentage(10) then
+        --    randomUnit = "npc_dota_creature_wave_enemy_razor"
+        --    isBoss = true
+        --end
 
         --if RollPercentage(10) then
             --randomUnit = "npc_dota_creature_wave_enemy_underlord"
@@ -1038,7 +1039,7 @@ function modifier_wave_manager_player:OnCreated()
     -- Do not add this for abyssal season
     --parent:AddNewModifier(parent, nil, "modifier_season_death", {})
     
-    parent:AddNewModifier(parent, nil, "modifier_season_shock", {})
+    parent:AddNewModifier(parent, nil, "modifier_season_frenzy", {})
 
     self.primaryZone = Entities:FindByName(nil, "wave_manager_zone")
 

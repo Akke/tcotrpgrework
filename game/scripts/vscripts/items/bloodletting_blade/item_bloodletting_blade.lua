@@ -105,6 +105,8 @@ function modifier_bloodletting_blade:OnTakeDamage(event)
     local attacker = event.attacker
     local ability = self:GetAbility()
 
+    if event.unit:GetUnitName() == "npc_tcot_tormentor" then return end
+
     local allies = FindUnitsInRadius(attacker:GetTeam(), attacker:GetAbsOrigin(), nil,
         ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE,
         FIND_CLOSEST, false)

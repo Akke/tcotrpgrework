@@ -193,14 +193,22 @@ function Precache(context)
 	PrecacheResource("particle", "particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/creatures/aghanim/aghanim_crystal_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_beserkers_call_hero_effect.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/wraith_king/wraith_king_destruction_lord/wraith_king_destruction_lord_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/wraith_king/wraith_king_destruction_lord/wraith_king_destruction_lord_weapon.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf", context)
+	PrecacheResource("particle", "particles/creatures/aghanim/portal_summon_a.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal_2.vpcf", context)
 	
 	PrecacheResource("particle", "particles/econ/items/spectre/spectre_arcana/spectre_arcana_dispersion.vpcf", context)
 	
+	PrecacheModel("models/units/anakim_pet/anakim_pet.vmdl", context)
+	PrecacheModel("models/heroes/crystal_maiden_persona/crystal_maiden_persona_temp.vmdl", context)
 	PrecacheModel("models/heroes/phantom_assassin_persona/phantom_assassin_persona_head.vmdl", context)
 	PrecacheModel("models/heroes/phantom_assassin_persona/phantom_assassin_persona_armor.vmdl", context)
 	PrecacheModel("models/heroes/phantom_assassin_persona/phantom_assassin_persona_legs.vmdl", context)
 	PrecacheModel("models/heroes/phantom_assassin_persona/phantom_assassin_persona_weapon.vmdl", context)
-
+	
+	PrecacheModel("models/props_gameplay/temple_portal001.vmdl", context)
 	PrecacheModel("models/items/courier/mighty_chicken/mighty_chicken.vmdl", context)
 	PrecacheModel("models/props_generic/gate_wooden_locked_02.vmdl", context)
 	PrecacheModel("models/props_generic/gate_wooden_destruction_02.vmdl", context)
@@ -234,6 +242,7 @@ function Precache(context)
 	PrecacheModel("models/creeps/spiders/spider_kidnap.vmdl", context)
 	PrecacheModel("models/creeps/spiders/spidersack.vmdl", context)
 	PrecacheModel("models/creeps/omniknight_golem/omniknight_golem.vmdl", context)
+	PrecacheModel("models/props_structures/radiant_checkpoint_01.vmdl", context)
 	
 
 	PrecacheResource("particle_folder", "particles/dazzle/dazzle_shadow_step.vpcf", context)
@@ -269,9 +278,12 @@ function Precache(context)
 	PrecacheResource("soundfile", "soundevents/soundevents_aghanim.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_ui_imported.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_roshan_halloween.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_skeleton_king.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_snapfire.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts", context)
@@ -304,6 +316,7 @@ function Precache(context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts", context)
@@ -506,6 +519,14 @@ function Activate()
 	_G.GlobalTalentsInitiated = false
 
 	_G.PlayerList = {}
+
+	_G.AghanimTowers = {
+		[1] = false,
+		[2] = false,
+		[3] = false,
+		[4] = false,
+		[5] = false
+	}
 
 	if GetMapName() == "tcotrpg_1v1" then
 		InitDuel()

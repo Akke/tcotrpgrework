@@ -161,3 +161,5 @@ LinkLuaModifier("modifier_xp_manager_player", "modules/xp_manager/XpManager.lua"
 LinkLuaModifier("modifier_auto_pickup", "modifiers/modifier_auto_pickup.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_twin_gate_custom", "modifiers/modifier_twin_gate_custom.lua", LUA_MODIFIER_MOTION_NONE)
+
+LinkLuaModifier("modifier_aghanim_tower", "modifiers/modifier_aghanim_tower.lua", LUA_MODIFIER_MOTION_NONE)

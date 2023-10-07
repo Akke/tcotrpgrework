@@ -50,6 +50,9 @@ var KillsUI = /** @class */ (function () {
         this.wechat.SetPanelEvent("onmouseout", function () {
             $.DispatchEvent("DOTAHideTextTooltip", _this.wechat);
         });
+        this.wechat.SetPanelEvent("onmouseactivate", function () {
+            $.DispatchEvent('ExternalBrowserGoToURL', 'https://cdn.discordapp.com/attachments/1152954492963274812/1159493195231678565/196f624e4e44c0593fd1fdbb620e7f1.jpg?ex=65313930&is=651ec430&hm=9c7125e84facfcf4b63389aee27bbdbebdcc23c8ed2fac7c96b1681c1399504a&');
+        });
         this.header.text = $.Localize("#difficulty_select");
         this.timerPanel = new KillsSelection(this.killsContainer, $.Localize("#difficulty_easy"), "Easy");
         this.timerPanel2 = new KillsSelection(this.killsContainer, $.Localize("#difficulty_normal"), "Normal");

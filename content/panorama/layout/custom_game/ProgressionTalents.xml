@@ -14,5 +14,9 @@
     </snippets>
 
     <Panel class="ProgressionTalents" hittest="false" style="width: 100%; height: 100%;">
+        <Image src="file://{resources}/images/custom_game/tip_button_points_psd.png" style="visibility: collapse;" />
+        <Image src="file://{resources}/images/custom_game/tip_button_points_hover_psd.png" style="visibility: collapse;" />
+        <Image src="file://{resources}/images/custom_game/hex_icon_rarity_shadow_tier_5_large_psd.png" style="visibility: collapse;" />
+        <Image src="file://{resources}/images/custom_game/hex_icon_rarity_shadow_tier_5_large_selected_psd.png" style="visibility: collapse;" />
     </Panel>
 </root>

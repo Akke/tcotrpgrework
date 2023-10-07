@@ -117,14 +117,6 @@ function modifier_boss_divine:OnCreated(kv)
             end
         end
     end)
-
-    self:StartIntervalThink(1.0)
-end
-
-function modifier_boss_divine:OnIntervalThink()
-    if not self.boss:IsAlive() then return end
-
-    
 end
 
 function modifier_boss_divine:IsFollower(follower)
@@ -141,10 +133,6 @@ function modifier_boss_divine:OnDeath(event)
     if not IsServer() then return end
 
     local respawnTime = BOSS_RESPAWN_TIME
-
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
-    end
 
     Timers:CreateTimer(respawnTime, function()
         if IsPvP() then return end

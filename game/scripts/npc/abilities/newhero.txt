@@ -883,7 +883,7 @@
     "npc_dota_hero_arena_hero_akasha"
     {
         "override_hero" "npc_dota_hero_queenofpain"
-        "Model"     "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana.vmdl"
+        //"Model"     ""
         "SoundSet"      "Hero_QueenOfPain"
         "Enabled"       "1"
         "HeroUnlockOrder"       "1"
@@ -930,7 +930,7 @@
         "AttackAnimationPoint"      "0.560000"
         "AttackAcquisitionRange"        "800"
         "AttackRange"       "550"
-        "DisableWearables"              "1"
+        "DisableWearables"              "0"
         "AttackSpeedActivityModifiers"
             {
                 "fast"      "190"

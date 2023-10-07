@@ -199,10 +199,6 @@ function modifier_boss_lake:OnDeath(event)
 
     local respawnTime = BOSS_RESPAWN_TIME
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
-    end
-
     Timers:CreateTimer(respawnTime, function()
         if IsPvP() then return end
         
@@ -346,11 +342,11 @@ function modifier_boss_lake_follower:OnDeath(event)
 
     if GetMapName() == "tcotrpg_1v1" then respawnTime = 15 end
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(parent) then
+        respawnTime = 1
     end
 
-    if unitName == "npc_dota_creature_130_crip3_death" and event.attacker:GenerateDropChance() <= 20.0 then
+    if unitName == "npc_dota_creature_130_crip3_death" and event.attacker:GenerateDropChance() <= 30.0 then
         DropNeutralItemAtPositionForHero("item_blessed_book", parent:GetAbsOrigin(), parent, 1, false)
     end
 

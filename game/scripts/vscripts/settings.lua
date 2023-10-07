@@ -87,7 +87,7 @@ DIFFICULTY_GPOINTS_REWARD_WINTER = 1012
 DIFFICULTY_GPOINTS_REWARD_LAVA = 1518
 DIFFICULTY_GPOINTS_REWARD_HEAVEN = 2278
 
-CREEP_RESPAWN_TIME = 15
+CREEP_RESPAWN_TIME = 30
 BOSS_RESPAWN_TIME = 60
 
 ELITE_SPAWN_CHANCE = 10
@@ -518,7 +518,10 @@ BOOK_ABILITY_SELECTION = {
     "ursa_fury_swipes_custom",
     "necrolyte_death_coil_reaper",
     "necrolyte_death_aura",
-    "necrolyte_hollowed_ground"
+    "necrolyte_hollowed_ground",
+    "gabriel_purity",
+    "gabriel_divine_retribution",
+    "gabriel_heavenly_balance"
 }
 
 -- Abilities that won't be randomly given to players
