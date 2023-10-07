@@ -34,11 +34,13 @@ function modifier_templar_assassin_psi_blades_custom:DeclareFunctions()
 end
 
 function modifier_templar_assassin_psi_blades_custom:GetModifierAttackRangeBonus()
-    return self:GetAbility():GetSpecialValueFor("bonus_attack_range")
+    if self:GetParent():IsRangedAttacker() then return self:GetAbility():GetSpecialValueFor("bonus_attack_range") end
+
+    return 0
 end
 
 function modifier_templar_assassin_psi_blades_custom:OnTakeDamage(keys)
-    if keys.attacker == self:GetParent() and self:GetAbility():IsTrained() and not self:GetParent():PassivesDisabled() and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not keys.unit:IsBuilding() and (not keys.unit:IsOther() or (keys.unit:IsOther() and keys.damage > 0)) then
+    if keys.attacker == self:GetParent() and self:GetParent():IsRangedAttacker() and self:GetAbility():IsTrained() and not self:GetParent():PassivesDisabled() and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not keys.unit:IsBuilding() and (not keys.unit:IsOther() or (keys.unit:IsOther() and keys.damage > 0)) then
         if not self.meld_ability or self.meld_ability:IsNull() then
             self.meld_ability = self:GetCaster():FindAbilityByName("templar_assassin_psi_blades_custom")
         end
@@ -100,7 +102,7 @@ function modifier_templar_assassin_psi_blades_custom:OnTakeDamage(keys)
 end
 
 function modifier_templar_assassin_psi_blades_custom:OnAttack(keys)
-    if keys.attacker == self:GetParent() and self:GetAbility():IsTrained() and not self:GetParent():PassivesDisabled() and not keys.no_attack_cooldown then
+    if keys.attacker == self:GetParent() and self:GetParent():IsRangedAttacker() and self:GetAbility():IsTrained() and not self:GetParent():PassivesDisabled() and not keys.no_attack_cooldown then
         if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("attacks_to_accelerate") then
             self:IncrementStackCount()
         else
