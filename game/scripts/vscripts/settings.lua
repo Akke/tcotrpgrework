@@ -518,7 +518,10 @@ BOOK_ABILITY_SELECTION = {
     "ursa_fury_swipes_custom",
     "necrolyte_death_coil_reaper",
     "necrolyte_death_aura",
-    "necrolyte_hollowed_ground"
+    "necrolyte_hollowed_ground",
+    "gabriel_purity",
+    "gabriel_divine_retribution",
+    "gabriel_heavenly_balance"
 }
 
 -- Abilities that won't be randomly given to players

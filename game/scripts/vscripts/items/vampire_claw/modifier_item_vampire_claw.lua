@@ -68,7 +68,7 @@ function mod:OnAttackLanded(kv)
     if newChargesCount > maxCharges then newChargesCount = maxCharges end
 
     ability:SetCurrentCharges(newChargesCount)
-
+    if target:GetUnitName() == "npc_tcot_tormentor" then return end
     local damage = kv.damage
     local ursaSwipesModifierName = "modifier_ursa_fury_swipes_damage_increase"
     if kv.attacker:GetName() == "npc_dota_hero_ursa" and target:HasModifier(ursaSwipesModifierName)then

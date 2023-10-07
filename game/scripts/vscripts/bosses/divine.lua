@@ -117,14 +117,6 @@ function modifier_boss_divine:OnCreated(kv)
             end
         end
     end)
-
-    self:StartIntervalThink(1.0)
-end
-
-function modifier_boss_divine:OnIntervalThink()
-    if not self.boss:IsAlive() then return end
-
-    
 end
 
 function modifier_boss_divine:IsFollower(follower)

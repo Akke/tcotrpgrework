@@ -456,6 +456,7 @@ function SwapHeroWithTCOTRPG(npc, newHeroName, dummy)
     if not npc:IsRealHero() or IsSummonTCOTRPG(npc) then return end
 
     -- Talent hacks --
+    --[[
     TalentManager:ResetTalents(PlayerResource:GetPlayer(npc:GetPlayerID()), npc)
     _G.PlayerTalentList[npc:GetUnitName()] = nil
 
@@ -464,6 +465,7 @@ function SwapHeroWithTCOTRPG(npc, newHeroName, dummy)
     end
 
     local talents = TalentManager:GetKVDataForHero(newHeroName)
+    --]]
 
     npc:AddNewModifier(npc, nil, "modifier_stunned", {
       duration = 3
@@ -559,12 +561,14 @@ function SwapHeroWithTCOTRPG(npc, newHeroName, dummy)
             end
 
             -- Talent hacks --
+            --[[
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(newNPC:GetPlayerID()), "talent_manager_hero_changed", {
                 talents = talents,
                 a = RandomFloat(1,1000),
                 b = RandomFloat(1,1000),
                 c = RandomFloat(1,1000),
             })
+            --]]
             --
 
             local newAccountID = PlayerResource:GetSteamAccountID(newNPC:GetPlayerID())
@@ -1034,6 +1038,8 @@ function IsBossTCOTRPG(unit)
     "npc_dota_boss_keymaster_2",
     "npc_dota_boss_keymaster_3",
     "npc_dota_creature_wave_enemy_necrolyte",
+    "npc_tcot_tormentor",
+    "boss_destruction_lord",
   }
 
   for _,boss in ipairs(bossNames) do
@@ -1489,7 +1495,7 @@ function GetPlayerAbilities(player)
       local abil = player:GetAbilityByIndex(i)
       if abil ~= nil then
           local name = abil:GetAbilityName()
-          if not string.match(name, "special_bonus") and not string.match(name, "chicken_ability_1_cancel") and not string.match(name, "talent_") and not string.match(name, "generic_hidden") and name ~= "twin_gate_portal_warp" and name ~= "ability_pluck_famango" and name ~= "ability_lamp_use" and name ~= "ability_capture" and name ~= "abyssal_underlord_portal_warp" and name ~= "twin_gate_portal_warp_custom" then
+          if not string.match(name, "special_bonus") and not string.match(name, "chicken_ability_1_cancel") and not string.match(name, "talent_") and not string.match(name, "generic_hidden") and name ~= "twin_gate_portal_warp" and name ~= "ability_pluck_famango" and name ~= "ability_lamp_use" and name ~= "ability_capture" and name ~= "abyssal_underlord_portal_warp" and name ~= "twin_gate_portal_warp_custom" and name ~= "aghanim_tower_capture" then
             table.insert(t, abil:GetAbilityName())
           end
       end

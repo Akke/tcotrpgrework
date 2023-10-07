@@ -586,4 +586,56 @@
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
     }
+
+    "tormentor_unyielding_shield_custom"
+	{
+        "BaseClass" "ability_lua"
+        "AbilityTextureName" "miniboss_unyielding_shield"
+		"ScriptFile" "creeps/tormentor_unyielding_shield_custom.lua"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+        "precache"
+        {
+            "particle" "particles/neutral_fx/miniboss_10th_anniversary_loadout.vpcf"
+            "particle" "particles/neutral_fx/miniboss_death.vpcf"
+            "particle" "particles/neutral_fx/miniboss_shield.vpcf"
+            "model" "models/props_gameplay/divine_sentinel/divine_sentinel.vmdl"
+            "soundfile" "soundevents/game_sounds_creeps.vsndevts"
+        }
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+            "damage_absorb"		"10000"
+            "damage_absorb_per_minute"		"2500"
+            "regen_per_second"	"1000"
+		}
+	}
+
+    "tormentor_reflect_custom"
+	{
+        "BaseClass" "ability_lua"
+        "AbilityTextureName" "miniboss_reflect"
+		"ScriptFile" "creeps/tormentor_reflect_custom.lua"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+        "precache"
+        {
+            "particle" "particles/neutral_fx/miniboss_damage_reflect.vpcf"
+            "particle" "particles/neutral_fx/miniboss_damage_impact.vpcf"
+            "soundfile" "soundevents/game_sounds_creeps.vsndevts"
+        }
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+            "passive_reflection_pct"			"90"
+		}
+	}
 }

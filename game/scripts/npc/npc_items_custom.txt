@@ -43,6 +43,21 @@
 "item_recipe_rod_of_atos" "REMOVED"
 "item_rod_of_atos" "REMOVED"
 
+"item_lifesteal" "REMOVED"
+
+"item_vladmir" "REMOVED"
+"item_recipe_vladmir" "REMOVED"
+"item_vladmir2" "REMOVED"
+"item_recipe_vladmir2" "REMOVED"
+"item_vladmir3" "REMOVED"
+"item_recipe_vladmir3" "REMOVED"
+"item_vladmir4" "REMOVED"
+"item_recipe_vladmir4" "REMOVED"
+"item_recipe_mask_of_madness" "REMOVED"
+"item_mask_of_madness" "REMOVED"
+"item_mask_of_madness2" "REMOVED"
+"item_recipe_mask_of_madness2" "REMOVED"
+
 "item_ghost" "REMOVED"
 
 "item_recipe_desolator8" "REMOVED"
@@ -396,6 +411,12 @@
 "item_pendant_of_chronos_6" "REMOVED"
 "item_recipe_pendant_of_chronos_6" "REMOVED"
 
+"item_recipe_veil_of_discord_custom8" "REMOVED"
+"item_veil_of_discord_custom8" "REMOVED"
+"item_recipe_armor_piercing_crossbow_8" "REMOVED"
+"item_armor_piercing_crossbow_8" "REMOVED"
+"item_recipe_trident_custom_8" "REMOVED"
+
 "item_aghanims_shard"
   {
     // General
@@ -739,7 +760,7 @@
       "14"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"      "8 16 24 32 40 48"
+        "spell_amp"      "8"
       }
       "15"
       {
@@ -877,7 +898,7 @@
       "14"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"      "8 16 24 32 40 48"
+        "spell_amp"      "8"
       }
       "15"
       {
@@ -1015,7 +1036,7 @@
       "14"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"      "8 16 24 32 40 48"
+        "spell_amp"      "8"
       }
       "15"
       {
@@ -1152,7 +1173,7 @@
       "14"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"      "8 16 24 32 40 48"
+        "spell_amp"      "8"
       }
       "15"
       {
@@ -1289,7 +1310,7 @@
       "14"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"      "8 16 24 32 40 48"
+        "spell_amp"      "8"
       }
       "15"
       {
@@ -1426,7 +1447,7 @@
       "14"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"      "8 16 24 32 40 48"
+        "spell_amp"      "8"
       }
       "15"
       {
@@ -3531,7 +3552,7 @@
     "ItemQuality"         "rare"
     "ItemAliases"         ""
 
-    "ItemPurchasable"       "1"
+    "ItemPurchasable"       "0"
     "ItemSellable"          "0"
     "ItemKillable"          "1"
     "IsTempestDoubleClonable"   "0"
@@ -14782,7 +14803,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -14890,7 +14911,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -14998,7 +15019,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -15104,7 +15125,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -15209,7 +15230,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -15316,7 +15337,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -15424,7 +15445,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -15538,7 +15559,7 @@
       "02"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "spell_amp"                                "5 10 15 20 25 30 35 40"
+        "spell_amp"                                "10"
       }
       "03"
       {
@@ -16053,7 +16074,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -16202,7 +16223,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -16351,7 +16372,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -16500,7 +16521,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -16650,7 +16671,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -16800,7 +16821,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -16950,7 +16971,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -17100,7 +17121,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -17250,7 +17271,7 @@
             "04"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "spell_amp"                   "8 16 24 32 40 48 56 64 72"
+                "spell_amp"                   "10"
             }
 
             "06"
@@ -18153,7 +18174,7 @@
     "14"
     {
       "var_type"        "FIELD_FLOAT"
-      "spell_amp"      "15 30 45 60 75 90"
+      "spell_amp"      "15"
     }
 
     // After cast bonus
@@ -18295,7 +18316,7 @@
     "14"
     {
       "var_type"        "FIELD_FLOAT"
-      "spell_amp"      "15 30 45 60 75 90"
+      "spell_amp"      "15"
     }
 
     // After cast bonus
@@ -18437,7 +18458,7 @@
     "14"
     {
       "var_type"        "FIELD_FLOAT"
-      "spell_amp"      "15 30 45 60 75 90"
+      "spell_amp"      "15"
     }
 
     // After cast bonus
@@ -18579,7 +18600,7 @@
     "14"
     {
       "var_type"        "FIELD_FLOAT"
-      "spell_amp"      "15 30 45 60 75 90"
+      "spell_amp"      "15"
     }
 
     // After cast bonus
@@ -18721,7 +18742,7 @@
     "14"
     {
       "var_type"        "FIELD_FLOAT"
-      "spell_amp"      "15 30 45 60 75 90"
+      "spell_amp"      "15"
     }
 
     // After cast bonus
@@ -18863,7 +18884,7 @@
     "14"
     {
       "var_type"        "FIELD_FLOAT"
-      "spell_amp"      "15 30 45 60 75 90"
+      "spell_amp"      "15"
     }
 
     // After cast bonus
@@ -21100,7 +21121,7 @@
   "ItemResult"          "item_vampire_claw"
   "ItemRequirements"
   {
-    "01"            "item_lifesteal"
+    "01"            "item_blades_of_attack"
   }
 }
 
@@ -22596,7 +22617,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -22745,7 +22766,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -22893,7 +22914,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -23041,7 +23062,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -23189,7 +23210,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -23337,7 +23358,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -23487,7 +23508,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -23637,7 +23658,7 @@
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "05"
       {
@@ -25164,7 +25185,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -25312,7 +25333,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -25460,7 +25481,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -25608,7 +25629,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -25756,7 +25777,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -25904,7 +25925,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -26052,7 +26073,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -26200,7 +26221,7 @@
         "05"
         {
             "var_type"              "FIELD_INTEGER"
-            "spell_amp"         "14 28 42 56 70 84 98 112"
+            "spell_amp"         "15"
         }  
         "06"
         {
@@ -28350,7 +28371,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -28444,7 +28465,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -28538,7 +28559,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -28632,7 +28653,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -28726,7 +28747,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -28820,7 +28841,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -28915,7 +28936,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -29011,7 +29032,7 @@
       "06"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                             "5 10 15 20 25 30 35 40"
+        "bonus_spell_amp"                             "10"
       }
       "07"
       {
@@ -30711,7 +30732,7 @@
         {
                 "bonus_intellect" "32 64 128 256 512 1024"
                 "bonus_armor" "20 40 60 80 100 120"
-                "spell_amp" "8 16 24 32 40 48"
+                "spell_amp" "8"
                 "bonus_mana_regen_amp" "50"
                 "mana_flow_hp" "5.0"
                 "mana_flow_mana" "2.5"
@@ -30776,7 +30797,7 @@
         {
                 "bonus_intellect" "32 64 128 256 512 1024"
                 "bonus_armor" "20 40 60 80 100 120"
-                "spell_amp" "8 16 24 32 40 48"
+                "spell_amp" "8"
                 "bonus_mana_regen_amp" "50"
                 "mana_flow_hp" "5.0"
                 "mana_flow_mana" "2.5"
@@ -30842,7 +30863,7 @@
         {
                 "bonus_intellect" "32 64 128 256 512 1024"
                 "bonus_armor" "20 40 60 80 100 120"
-                "spell_amp" "8 16 24 32 40 48"
+                "spell_amp" "8"
                 "bonus_mana_regen_amp" "50"
                 "mana_flow_hp" "5.0"
                 "mana_flow_mana" "2.5"
@@ -30908,7 +30929,7 @@
         {
                 "bonus_intellect" "32 64 128 256 512 1024"
                 "bonus_armor" "20 40 60 80 100 120"
-                "spell_amp" "8 16 24 32 40 48"
+                "spell_amp" "8"
                 "bonus_mana_regen_amp" "50"
                 "mana_flow_hp" "5.0"
                 "mana_flow_mana" "2.5"
@@ -30974,7 +30995,7 @@
         {
                 "bonus_intellect" "32 64 128 256 512 1024"
                 "bonus_armor" "20 40 60 80 100 120"
-                "spell_amp" "8 16 24 32 40 48"
+                "spell_amp" "8"
                 "bonus_mana_regen_amp" "50"
                 "mana_flow_hp" "5.0"
                 "mana_flow_mana" "2.5"
@@ -31040,7 +31061,7 @@
         {
                 "bonus_intellect" "32 64 128 256 512 1024"
                 "bonus_armor" "20 40 60 80 100 120"
-                "spell_amp" "8 16 24 32 40 48"
+                "spell_amp" "8"
                 "bonus_mana_regen_amp" "50"
                 "mana_flow_hp" "5.0"
                 "mana_flow_mana" "2.5"
@@ -36486,12 +36507,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36534,12 +36555,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36568,12 +36589,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36616,12 +36637,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36664,12 +36685,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36712,12 +36733,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36760,12 +36781,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -36808,12 +36829,12 @@
         "bonus_int" "35 70 105 140 175 210 245 280"
         "bonus_str" "6 12 18 24 30 36 42 48"
         "bonus_armor" "5 10 15 20 25 30 35 40"
-        "bonus_spell_amp" "8 16 24 32 40 48 56 64"
+        "bonus_spell_amp" "8"
         "bonus_move_speed" "40"
         "bonus_mana" "250 500 750 1000 1250 1500 1750 2000"
         "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0"
         "chance" "35 40 45 50 55 60 65 70"
-        "consec_spell_amp" "40"
+        "consec_spell_amp" "10"
         "consec_spell_amp_duration" "12"
       }
   }
@@ -39379,7 +39400,7 @@
         {
           "bonus_int" "2500"
           "bonus_mana" "1000"
-          "bonus_spell_amp" "300"
+          "bonus_spell_amp" "30"
           "int_to_damage" "100"
           "duration" "10"
           "radius" "400"
@@ -39575,7 +39596,7 @@
 
       "ItemRequirements"
       {
-          "01"                                                "item_mask_of_madness;item_blight_stone"
+          "01"                                                "item_vampire_claw;item_quarterstaff;item_blight_stone"
       }
     }
 
@@ -40029,7 +40050,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40044,7 +40065,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40140,7 +40161,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40155,7 +40176,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40256,7 +40277,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40271,7 +40292,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40372,7 +40393,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40387,7 +40408,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40488,7 +40509,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40503,7 +40524,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40604,7 +40625,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40619,7 +40640,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40720,7 +40741,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40735,7 +40756,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40836,7 +40857,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40851,7 +40872,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -40952,7 +40973,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp"     "25 50 75 100 125 150 175 200 225"
+        "spell_amp"     "10"
       }
       "05"
       {
@@ -40967,7 +40988,7 @@
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "resist_shred_aura" "-25"
+        "resist_shred_aura" "-15 -20 -25 -30 -35 -40 -45 -50 -55"
       }
       "08"
       {
@@ -43265,7 +43286,7 @@
       "07"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_spell_amp"                                    "300"
+        "bonus_spell_amp"                                    "30"
       }
       "08"
       {
@@ -46118,7 +46139,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -46199,7 +46220,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -46280,7 +46301,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -46361,7 +46382,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -46442,7 +46463,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -46523,7 +46544,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -46604,7 +46625,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_mana_to_spell_amp"          "1.0"
+                "max_mana_to_spell_amp"          "0.15"
             }
             "06"
             {
@@ -47829,7 +47850,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -47894,7 +47915,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -47959,7 +47980,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -48024,7 +48045,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -48089,7 +48110,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -48154,7 +48175,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -48219,7 +48240,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -48284,7 +48305,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -48349,7 +48370,7 @@
           "stack_bonus_mult" "2.5"
           "bonus_int" "31 62 93 124 155 186 217 248 279"
           "bonus_armor" "4 8 12 16 20 24 28 32 36"
-          "bonus_spell_amp" "12 20 28 36 44 52 60 68 76"
+          "bonus_spell_amp" "15"
         }
       }
 
@@ -49382,7 +49403,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49455,7 +49476,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49528,7 +49549,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49601,7 +49622,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49674,7 +49695,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49747,7 +49768,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49820,7 +49841,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49893,7 +49914,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -49966,7 +49987,7 @@
             "bonus_intellect" "35 70 105 140 175 210 245 280 315"
             "bonus_strength" "6 12 18 24 30 36 42 48 54"
             "bonus_armor" "5 10 15 20 25 30 35 40 45"
-            "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+            "bonus_spell_amp" "10"
             "bonus_move_speed_flat" "40"
             "bonus_mana_regen" "2.25 4.5 6.75 9.0 11.25 13.5 15.75 18.0 20.25"
             "magic_amp_pct" "16"
@@ -51803,6 +51824,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -51866,6 +51889,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -51929,6 +51954,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -51992,6 +52019,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -52055,6 +52084,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -52118,6 +52149,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -52181,6 +52214,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -52244,6 +52279,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -52307,6 +52344,8 @@
     "ItemSellable"                  "1"
     "ItemDroppable"                 "1"
     "ItemPurchasable"				"1"
+
+    "AbilityCooldown" "5"
     
     //special
     "AbilityValues"
@@ -53363,7 +53402,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53445,7 +53484,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53527,7 +53566,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53609,7 +53648,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53691,7 +53730,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53773,7 +53812,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53855,7 +53894,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -53937,7 +53976,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -54019,7 +54058,7 @@
       "bonus_intellect" "16 32 48 64 80 96 112 128 144"
       "bonus_strength" "10 20 30 40 50 60 70 80 90"
       "bonus_armor" "5 10 15 20 25 30 35 40 45"
-      "bonus_spell_amp" "5 10 15 20 25 30 35 40 45"
+      "bonus_spell_amp" "10"
       "bonus_move_speed" "40"
       "bonus_projectile_speed" "300"
       "poison_attribute_scaling_multiplier" "3"
@@ -54581,7 +54620,7 @@
         "BaseClass"                                           "item_lua"
         "ScriptFile"                                          "items/item_swiftness_boots/item_swiftness_boots.lua"
         "AbilityTextureName"                                  "item_travel_boots"
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOASSIST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOASSIST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
         "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
         "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"

@@ -348,7 +348,7 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "crit_multiplier"           "200 250 300 350 400"
+                "crit_multiplier"           "125 150 175 200 225"
                 "LinkedSpecialBonus"        "special_bonus_unique_tusk"
             }
             "02"
@@ -489,7 +489,7 @@
     {
         "BaseClass"       "ability_lua"
         "ScriptFile" "creeps/ogre_seal_flop.lua"
-        "AbilityTextureName"      "tusk_walrus_kick"
+        "AbilityTextureName"      "centaur_double_edge"
         "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
@@ -525,7 +525,7 @@
             "slow"           			"-100"
             "max_bounces"				"2"
         }
-        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
     } 
 
     "boss_tusk_tag_team"

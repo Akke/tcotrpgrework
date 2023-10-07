@@ -126,6 +126,8 @@ function modifier_item_mom_custom:OnAttackLanded(event)
         disarmor:ForceRefresh()
     end
     ----------------------------
+    if event.target:GetUnitName() == "npc_tcot_tormentor" then return end
+    
     local lifestealAmount = self:GetAbility():GetSpecialValueFor("lifesteal")
 
     if attacker:HasModifier("modifier_item_mom_custom_toggle") then

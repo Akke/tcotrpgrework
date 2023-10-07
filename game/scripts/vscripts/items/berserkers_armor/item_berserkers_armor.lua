@@ -238,6 +238,8 @@ function modifier_berserkers_armor:OnAttackLanded(event)
         return
     end
 
+    if event.target:GetUnitName() == "npc_tcot_tormentor" then return end
+
     local lifestealAmount = self:GetAbility():GetSpecialValueFor("lifesteal")
 
     if lifestealAmount < 1 or not attacker:IsAlive() or attacker:GetHealth() < 1 or event.target:IsOther() or event.target:IsBuilding() then

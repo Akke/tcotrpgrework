@@ -44,7 +44,7 @@ end
 function item_swiftness_boots:CastFilterResultTarget(target)
     local caster = self:GetCaster()
 
-    if not target or target:IsNull() or caster == target then
+    if not target or target:IsNull() then
         return UF_FAIL_CUSTOM
     end
 
@@ -60,7 +60,7 @@ function item_swiftness_boots:CastFilterResultTarget(target)
         return nResult
     end
 
-    if not target:IsNull() and target ~= nil and not target:IsBuilding() then
+    if target ~= nil and not target:IsNull() and not target:IsBuilding() and target.IsBaseNPC then
         if not target:IsAlive() or not caster:IsAlive() or target:IsCourier() then
             return UF_FAIL_CUSTOM
         end
@@ -80,6 +80,28 @@ function item_swiftness_boots:OnSpellStart()
     local point = self:GetCursorPosition()
     local caster = self:GetCaster()
 
+    if self.target == nil then
+        local allies = FindUnitsInRadius(caster:GetTeam(), point, nil,
+            900, DOTA_UNIT_TARGET_TEAM_FRIENDLY, bit.bor(DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_BUILDING), DOTA_UNIT_TARGET_FLAG_NONE,
+                FIND_CLOSEST, false)
+        
+        if #allies > 0 then
+            for _,ally in ipairs(allies) do
+                self.target = ally
+                break
+            end
+        else
+            self.target = caster
+        end
+    end
+
+    if self.target == caster then
+        local startZone = Entities:FindByName(nil, "starting_zone_emitter")
+        if startZone then
+            self.target = startZone
+        end
+    end
+
     self.loc = self.target:GetAbsOrigin()
 
     self.particle = ParticleManager:CreateParticle("particles/items2_fx/teleport_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -97,12 +119,14 @@ function item_swiftness_boots:OnSpellStart()
     caster:AddNewModifier(caster, self, "modifier_swiftness_boots_teleporting", {
         duration = self:GetChannelTime()
     })
+
+    self.idFow = AddFOWViewer(DOTA_TEAM_GOODGUYS, self.loc, 300, self:GetChannelTime(), false)
 end
 
 function item_swiftness_boots:OnChannelThink(fInterval)
     if not IsServer() then return end
 
-    if not self.target:IsNull() then
+    if self.target ~= nil and not self.target:IsNull() then
         self.loc = self.target:GetAbsOrigin()
     end
 end
@@ -114,8 +138,18 @@ function item_swiftness_boots:OnChannelFinish(interrupted)
 
     caster:RemoveModifierByName("modifier_swiftness_boots_teleporting")
 
+    if self.idFow ~= nil then
+        RemoveFOWViewer(DOTA_TEAM_GOODGUYS, self.idFow)
+    end
+
     if not self.target or self.target:IsNull() then return end
-    if self.target == caster then return end
+
+    if self.target == caster then
+        local startZone = Entities:FindByName(nil, "starting_zone_emitter")
+        if startZone then
+            self.target = startZone
+        end
+    end
 
     caster:StopSound("Portal.Loop_Appear")
     self.target:StopSound("Portal.Loop_Appear")

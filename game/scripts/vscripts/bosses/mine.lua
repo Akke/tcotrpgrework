@@ -114,6 +114,8 @@ function modifier_boss_mine:OnCreated(kv)
     self.status = 25 * BOSS_STAGE
     self:InvokeStatusResistance()
 
+    self.devour = self.boss:FindAbilityByName("boss_doom_devour")
+
     -- Making sure they get leveled up properly --
     Timers:CreateTimer(1.0, function()
         for i = 0, self.boss:GetAbilityCount() - 1 do
@@ -124,91 +126,6 @@ function modifier_boss_mine:OnCreated(kv)
         end
     end)
 
-    local hero = self.boss
-
-    hero:SetOriginalModel("models/items/wraith_king/arcana/wraith_king_arcana.vmdl")
-    hero.PapichBloodShard = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/wraith_king/arcana/wraith_king_arcana_weapon.vmdl"})
-    hero.PapichBloodShard:FollowEntity(hero, true)
-    hero.PapichHead = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/wraith_king/arcana/wraith_king_arcana_head.vmdl"})
-    hero.PapichHead:FollowEntity(hero, true)
-    hero.PapichPauldrons = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/wraith_king/arcana/wraith_king_arcana_shoulder.vmdl"})
-    hero.PapichPauldrons:FollowEntity(hero, true)
-    hero.PapichPunch = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/wraith_king/blistering_shade/mesh/blistering_shade_alt.vmdl"})
-    hero.PapichPunch:FollowEntity(hero, true)
-    hero.PapichCape = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/wraith_king/arcana/wraith_king_arcana_back.vmdl"})
-    hero.PapichCape:FollowEntity(hero, true)
-    hero.PapichArmor = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/wraith_king/arcana/wraith_king_arcana_armor.vmdl"})
-    hero.PapichArmor:FollowEntity(hero, true)
-    hero.PapichEffect = ParticleManager:CreateParticle("particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero.PapichEffect)
-    ParticleManager:ReleaseParticleIndex(hero.PapichEffect)
-    hero.HeadEffect = ParticleManager:CreateParticle("particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_ambient_head.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero.PapichHead)
-    ParticleManager:ReleaseParticleIndex(hero.HeadEffect)
-    hero.AmbientEffect = ParticleManager:CreateParticle("particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_ambient.vpcf", PATTACH_POINT_FOLLOW, hero)
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 0, hero:GetAbsOrigin())
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 1, hero:GetAbsOrigin())
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 2, hero:GetAbsOrigin())
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 3, hero:GetAbsOrigin())
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 4, hero:GetAbsOrigin())
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 5, hero:GetAbsOrigin())
-    ParticleManager:SetParticleControl(hero.AmbientEffect, 6, hero:GetAbsOrigin())
-    ParticleManager:ReleaseParticleIndex(hero.AmbientEffect)
-
-    local children = self.boss:GetChildren()
-    local weaponEntity = nil
-
-    for _,child in pairs(children) do
-        if child:GetModelName() == "models/items/wraith_king/arcana/wraith_king_arcana_weapon.vmdl" then
-            weaponEntity = child
-            break
-        end
-    end
-
-    if weaponEntity ~= nil then
-        local weaponVfx = ParticleManager:CreateParticle("particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_weapon.vpcf", PATTACH_POINT_FOLLOW, weaponEntity)
-        
-        ParticleManager:SetParticleControlEnt(
-          weaponVfx,
-          0,
-          self.boss,
-          PATTACH_WORLDORIGIN,
-          "attach_attack2", --2 is used in other effects so assuming that's the correct one. although 1 doesn't work either.
-          Vector(0,0,0), -- unknown
-          true -- unknown, true
-        )
-
-        ParticleManager:SetParticleControlEnt(
-          weaponVfx,
-          1,
-          weaponEntity,
-          PATTACH_POINT_FOLLOW,
-          "attach_gem_top_fx", --2 is used in other effects so assuming that's the correct one. although 1 doesn't work either.
-          Vector(0,0,0), -- unknown
-          true -- unknown, true
-        )
-
-        ParticleManager:SetParticleControlEnt(
-          weaponVfx,
-          2,
-          weaponEntity,
-          PATTACH_POINT_FOLLOW,
-          "attach_gem_bot_fx", --2 is used in other effects so assuming that's the correct one. although 1 doesn't work either.
-          Vector(0,0,0), -- unknown
-          true -- unknown, true
-        )
-
-        ParticleManager:SetParticleControlEnt(
-          weaponVfx,
-          5,
-          weaponEntity,
-          PATTACH_POINT_FOLLOW,
-          "attach_weapon_fx", --2 is used in other effects so assuming that's the correct one. although 1 doesn't work either.
-          Vector(0,0,0), -- unknown
-          true -- unknown, true
-        )
-
-        ParticleManager:ReleaseParticleIndex(weaponVfx)
-    end
-
     self:StartIntervalThink(1)
 end
 
@@ -216,21 +133,13 @@ function modifier_boss_mine:OnIntervalThink()
     if self.boss:GetAggroTarget() == nil then return end
 
     -- Attempt to cast
-    local wraithFireBlast = self.boss:FindAbilityByName("boss_skeleton_king_hellfire_blast")
-    if not self.boss:IsSilenced() and not self.boss:IsHexed() and not self.boss:IsStunned() and wraithFireBlast:IsCooldownReady() and wraithFireBlast:IsFullyCastable() then
-        local victims = FindUnitsInRadius(self.boss:GetTeam(), self.boss:GetAbsOrigin(), nil,
-            1200, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
-            FIND_CLOSEST, false)
-
-        for _,victim in ipairs(victims) do
-            if victim:IsAlive() and self.boss:CanEntityBeSeenByMyTeam(victim) then
-                self.boss:StartGesture(ACT_DOTA_CAST_ABILITY_1)
-
-                Timers:CreateTimer(0.35, function()
-                    SpellCaster:Cast(wraithFireBlast, victim, true)
-                    self.boss:RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
-                end)
-                break
+    local target = self.boss:GetAggroTarget()
+    if target then
+        if self.devour and self.devour:GetLevel() > 0 then
+            if self.devour:IsFullyCastable() and not self.boss:IsStunned() and not self.boss:IsSilenced() and not self.boss:IsHexed() and self.boss:GetLevel() > target:GetLevel() then
+                if (target:GetAbsOrigin()-self.boss:GetAbsOrigin()):Length2D() <= self.devour:GetEffectiveCastRange(self.boss:GetAbsOrigin(), self.boss) then
+                    SpellCaster:Cast(self.devour, target, true)
+                end
             end
         end
     end

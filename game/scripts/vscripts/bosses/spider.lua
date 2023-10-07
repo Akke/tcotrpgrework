@@ -532,8 +532,45 @@ end
 --------------------------
 function modifier_boss_spider_follower_web_spider_ai:DeclareFunctions()
     return {
-        MODIFIER_EVENT_ON_DEATH
+        MODIFIER_EVENT_ON_DEATH,
+        MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+        MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
+        MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
+        MODIFIER_EVENT_ON_TAKEDAMAGE,
     }
+end
+
+function modifier_boss_spider_follower_web_spider_ai:GetAbsoluteNoDamagePhysical( params )
+    return 1
+end
+
+function modifier_boss_spider_follower_web_spider_ai:GetAbsoluteNoDamageMagical( params )
+    return 1
+end
+
+function modifier_boss_spider_follower_web_spider_ai:GetAbsoluteNoDamagePure( params )
+    return 1
+end
+
+function modifier_boss_spider_follower_web_spider_ai:OnTakeDamage(params)
+    if IsServer() then
+        if self:GetParent() == params.unit then
+            local nDamage = 0
+            if params.attacker then
+                local bDeathWard = params.attacker:FindModifierByName( "modifier_aghsfort_witch_doctor_death_ward" ) ~= nil
+                local bValidAttacker = params.attacker:IsRealHero() or bDeathWard
+                if not bValidAttacker then
+                    return 0
+                end
+            
+                nDamage = 1
+
+                self:GetParent():ModifyHealth( self:GetParent():GetHealth() - nDamage, nil, true, 0 )
+            end
+        end
+    end
+
+    return 0
 end
 
 function modifier_boss_spider_follower_web_spider_ai:OnDeath(event)

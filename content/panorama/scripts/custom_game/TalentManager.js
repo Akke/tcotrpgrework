@@ -280,7 +280,6 @@ var TalentManager = (function() {
 
         this.RemoveDotaTalentTree = function() {
             // Find the talent tree and disable it
-            //
             const talentTree = mainHud
                 .FindChildTraverse("HUDElements")
                 .FindChildTraverse("lower_hud")

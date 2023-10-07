@@ -264,6 +264,10 @@ function modifier_unit_on_death:OnDeath(event)
         amountTime = BOSS_RESPAWN_TIME
     end
 
+    if creep:GetUnitName() == "npc_tcot_tormentor" then
+        amountTime = 300
+    end
+
     --[[
     if creep:GetUnitName() == "npc_dota_creature_140_crip_Robo" or creep:GetUnitName() == "npc_dota_creature_100_crip" or creep:GetUnitName() == "npc_dota_creature_100_crip_2" then
         amountTime = 0.1
@@ -326,7 +330,7 @@ function modifier_unit_on_death:OnDeath(event)
                     unit:AddNewModifier(unit, nil, "modifier_unit_boss_2", {})
                 end
             else
-                if RollPercentage(ELITE_SPAWN_CHANCE) then
+                if RollPercentage(ELITE_SPAWN_CHANCE) and unit:GetUnitName() ~= "npc_tcot_tormentor" then
                     unit:AddNewModifier(unit, nil, "modifier_creep_elite", {})
                 end
             end
@@ -529,6 +533,9 @@ function SpawnAllUnits()
 
         -- Divine --
         SpawnBossInZone("spawn_boss_zeus", "npc_dota_creature_150_boss_last")
+
+        -- Tormentor --
+        SpawnUnitsInZone("spawn_tormentor", "npc_tcot_tormentor", 1)
     end
     --
     

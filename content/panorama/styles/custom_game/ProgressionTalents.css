@@ -285,7 +285,7 @@
 }
 
 #ProgressionTalentsPlayerButton {
-    background-image: url("file://{images}/custom_game/relic_rare_button_psd.png");
+    /*background-image: url("file://{images}/custom_game/relic_rare_button_psd.png");
     background-position: center;
     background-size: 100%;
     border-radius: 4px;
@@ -297,11 +297,29 @@
     text-transform: uppercase;
     font-size: 15px;
     margin-left: 60px;
-    margin-top: 50px;
+    margin-top: 50px;*/
+    vertical-align: bottom;
+    margin-bottom: 18px;
+    margin-left: 0px;
+    margin-right: 4px;
+    z-index: 3;
+    tooltip-position: top;
+    height: 78px;
+    width: 69px;
+    saturation: 0.75;
+    brightness: 0.25;
 }
 
-#ProgressionTalentsPlayerButton:hover {
-    color: #edba6f;
+#ProgressionTalentsPlayerButton:hover, #ProgressionTalentsPlayerButton.active {
+    saturation: 1.2;
+    brightness: 2;
+}
+
+#ProgressionTalentsPlayerButtonIcon {
+}
+
+#ProgressionTalentsPlayerButtonIcon:hover {
+
 }
 
 #ProgressionTalentsPlayerPersonalResetTalentButton {

@@ -5,7 +5,9 @@ function modifier_aghanim_portal:OnCreated()
 
     local parent = self:GetParent()
 
-    local model = "models/props_gameplay/team_portal/team_portal.vmdl"
+    parent:AddNoDraw()
+
+    local model = "models/props_gameplay/temple_portal001.vmdl"
 
     parent:SetOriginalModel(model)
     parent:SetModel(model)
@@ -15,30 +17,15 @@ function modifier_aghanim_portal:OnCreated()
 
     -- Set the new rotation angle for the entity
     parent:SetAngles(newAngles.x, newAngles.y, newAngles.z)
-
-    local particle = "particles/base_static/team_portal_active.vpcf"
-
-    self.vfxAwaiting = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, parent)
-    ParticleManager:SetParticleControl(self.vfxAwaiting, 0, parent:GetAbsOrigin())
     
-    self:StartIntervalThink(FrameTime())
+    self:StartIntervalThink(0.1)
 end
 
 function modifier_aghanim_portal:OnIntervalThink()
     local parent = self:GetParent()
 
-    if _G.AghanimCrystalCount >= _G.AghanimCrystalCountMax then
-        if self.vfxAwaiting ~= nil then
-            ParticleManager:DestroyParticle(self.vfxAwaiting, false)
-            ParticleManager:ReleaseParticleIndex(self.vfxAwaiting)
-        end
-
-        local particle = "particles/base_static/team_portal_ambient.vpcf"
-
-        self.vfx = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, parent)
-        ParticleManager:SetParticleControl(self.vfx, 1, parent:GetAbsOrigin())
-        ParticleManager:SetParticleControl(self.vfx, 2, parent:GetAbsOrigin())
-        ParticleManager:ReleaseParticleIndex(self.vfx)
+    if _G.AghanimTowers[1] and _G.AghanimTowers[2] and _G.AghanimTowers[3] and _G.AghanimTowers[4] and _G.AghanimTowers[5] then
+        parent:RemoveNoDraw()
         self:StartIntervalThink(-1)
     end
 end
@@ -50,7 +37,7 @@ function modifier_aghanim_portal:DeclareFunctions()
 end
 
 function modifier_aghanim_portal:GetModifierModelChange()
-    return "models/props_gameplay/team_portal/team_portal.vmdl"
+    return "models/props_gameplay/temple_portal001.vmdl"
 end
 
 function modifier_aghanim_portal:CheckState()
@@ -67,5 +54,6 @@ function modifier_aghanim_portal:CheckState()
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_INVULNERABLE] = true,
         [MODIFIER_STATE_PROVIDES_VISION] = false,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
     }
 end

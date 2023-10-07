@@ -135,6 +135,8 @@ function modifier_item_bloody_gauntlet:OnAttackLanded(event)
     local attacker = event.attacker
     local ability = self:GetAbility()
 
+    if target:GetUnitName() == "npc_tcot_tormentor" then return end
+
     local maxStacks = ability:GetSpecialValueFor("max_charges")
 
     if ability:GetCurrentCharges() < maxStacks then 

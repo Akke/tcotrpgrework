@@ -26,7 +26,7 @@ function modifier_weaver_time_lapse_custom:GetMinHealth()
     local parent = self:GetParent()
     local ability = self:GetAbility()
     
-    if self.preventDeath and self.check then
+    if not parent:IsIllusion() and self.preventDeath and self.check then
         if parent:GetHealth() <= 1 then
             local particlePath = "particles/units/heroes/hero_weaver/weaver_timelapse.vpcf"
     

@@ -45,7 +45,6 @@ function modifier_zombie_boss_raise_dead:OnIntervalThink()
     unit:SetMaximumGoldBounty(0)
     unit:SetMinimumGoldBounty(0)
     unit:SetDeathXP(0)
-    unit:SetCustomDeathXP(0)
 end
 ----------------
 function modifier_zombie_boss_raise_dead_zombie_ai:OnRemoved()

@@ -19,7 +19,7 @@ function modifier_dummy_target:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, --GetModifierIncomingDamage_Percentage
         MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
-        MODIFIER_PROPERTY_MIN_HEALTH 
+        MODIFIER_PROPERTY_MIN_HEALTH
     }
 
     return funcs
@@ -31,6 +31,10 @@ end
 
 function modifier_dummy_target:GetModifierProvidesFOWVision()
     return 1
+end
+
+function modifier_dummy_target:CanParentBeAutoAttacked()
+    return false
 end
 
 function modifier_dummy_target:OnCreated()
@@ -45,7 +49,8 @@ end
 
 function modifier_dummy_target:CheckState()
     local state = {
-        [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true
+        [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
     }
     return state
 end

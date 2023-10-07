@@ -96,6 +96,8 @@ function modifier_int_scaling:OnIntervalThink()
         end
     end
 
+    if npc == nil then return end 
+    if npc:IsNull() then return end
     if not npc:IsAlive() then return end
 
     -- Automatic gold bag pickup
@@ -188,18 +190,14 @@ function modifier_int_scaling:OnIntervalThink()
     local aghanimTrigger = Entities:FindByName(nil, "trigger_entrance_aghanim")
     if aghanimTrigger ~= nil then
         if IsInTrigger(npc, aghanimTrigger) then
-            if _G.AghanimCrystalCount >= _G.AghanimCrystalCountMax then
+            if _G.AghanimTowers[1] and _G.AghanimTowers[2] and _G.AghanimTowers[3] and _G.AghanimTowers[4] and _G.AghanimTowers[5] then
                 local point = Entities:FindByName(nil, "aghanim_tp")
 
-                EmitSoundOn("TwinGate.Teleport.Appear", aghanimTrigger)
-                EmitSoundOn("TwinGate.Channel.End", npc)
+                EmitSoundOn("DOTA_Item.BlinkDagger.Activate", aghanimTrigger)
 
                 FindClearSpaceForUnit(npc, point:GetAbsOrigin(), false)
-            else
-                if self.bDisplayErrorAghanim then
-                    DisplayError(npc:GetPlayerID(), "#aghanim_portal_not_functional")
-                    self.bDisplayErrorAghanim = false
-                end
+                CenterCameraOnUnit(npc:GetPlayerID(), npc)
+                npc:Stop()
             end
         else
             if not self.bDisplayErrorAghanim then
@@ -213,10 +211,10 @@ function modifier_int_scaling:IsHidden() return true end
 
 function modifier_int_scaling:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --GetModifierSpellAmplify_Percentage
-        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, --GetModifierMagicalResistanceBonus
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, --GetModifierMoveSpeedBonus_Constant (flat)
-        MODIFIER_EVENT_ON_ATTACK_LANDED,
+        --MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --GetModifierSpellAmplify_Percentage
+        --MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, --GetModifierMagicalResistanceBonus
+        --MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, --GetModifierMoveSpeedBonus_Constant (flat)
+        --MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION,
     }
 
@@ -311,7 +309,7 @@ end
 
 function modifier_int_scaling_int:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --GetModifierSpellAmplify_Percentage
+        --MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --GetModifierSpellAmplify_Percentage
     }
 
     return funcs
@@ -374,7 +372,7 @@ end
 
 function modifier_int_scaling_str:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, --GetModifierPhysicalArmorBonus (flat)
+        --MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, --GetModifierPhysicalArmorBonus (flat)
     }
 
     return funcs
@@ -437,7 +435,7 @@ end
 
 function modifier_int_scaling_agi:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE, --GetModifierBaseAttack_BonusDamage
+        --MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE, --GetModifierBaseAttack_BonusDamage
         
     }
 
