@@ -609,9 +609,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-            "damage_absorb"		"10000"
+            "damage_absorb"		"25000"
             "damage_absorb_per_minute"		"2500"
-            "regen_per_second"	"1000"
+            "regen_per_second_pct"	"10"
 		}
 	}
 
@@ -638,4 +638,134 @@
             "passive_reflection_pct"			"90"
 		}
 	}
+
+    "boss_destruction_lord_soul_slice"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/bosses/destruction_lord/boss_destruction_lord_soul_slice.lua"
+        "AbilityTextureName"            "soulslice"
+        "FightRecapLevel"               "1"
+        "MaxLevel"                      "5"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+            "particle"  "particles/econ/items/centaur/centaur_ti9/centaur_double_edge_ti9_2.vpcf"
+        }
+        
+        // Ability General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityCooldown" "3"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {           
+            "edge_damage"                   "50000 60000 70000 80000 90000"
+            "max_stacks" "3"
+            "duration" "7"
+            "radius"                        "350"
+        }
+    }
+
+    "boss_destruction_lord_soul_towers"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/bosses/destruction_lord/boss_destruction_lord_soul_towers.lua"
+        "AbilityTextureName"            "undying_tombstone"
+        "FightRecapLevel"               "1"
+        "MaxLevel"                      "5"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+        }
+        
+        // Ability General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        "AbilityCooldown" "60"
+
+        "AbilityCastPoint" "0"
+
+        "AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_2"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {           
+            "duration" "30"
+            "buff_duration" "60"
+            "buff_regen_pct" "25"
+            "buff_dmg_pct" "100"
+        }
+    }
+
+    "boss_destruction_tower_drain"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"               "1"
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "pugna_life_drain"
+        "ScriptFile"                    "heroes/bosses/destruction_lord/boss_destruction_tower_drain.lua"
+        "MaxLevel"                      "6"
+        
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+        "AbilityChannelAnimation"       "ACT_DOTA_CHANNEL_ABILITY_5"
+        "AnimationIgnoresModelScale"    "1"
+
+        "precache"
+        {
+            "particle" "particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+        }
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "1"
+        "AbilityChannelTime"            "30"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "interval"               "0.1"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "hp_drain_pct"          "10"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "search_radius"          "900"
+            }
+        }
+    }
 }

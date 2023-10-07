@@ -51,7 +51,7 @@ function modifier_tormentor_reflect_custom:GetModifierIncomingDamage_Percentage(
             victim = enemy,
             damage = damage,
             damage_type = event.damage_type,
-            damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+            damage_flags = bit.bor(DOTA_DAMAGE_FLAG_REFLECTION, DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL),
             ability = ability
         })
 

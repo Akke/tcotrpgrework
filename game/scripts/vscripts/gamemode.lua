@@ -743,7 +743,7 @@ function barebones:OnGameInProgress()
         _G.PlayerList = GetSteamIDPlayerList()
       end)
 
-      --boss_destruction_lord:Spawn("boss_destruction_lord")
+      boss_destruction_lord:Spawn("boss_destruction_lord")
 
       -- Aghanim's Portal
       local aghanimPortalSpawnPoint = Entities:FindByName(nil, "trigger_entrance_aghanim")

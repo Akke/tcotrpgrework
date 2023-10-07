@@ -134,10 +134,6 @@ function modifier_boss_divine:OnDeath(event)
 
     local respawnTime = BOSS_RESPAWN_TIME
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
-    end
-
     Timers:CreateTimer(respawnTime, function()
         if IsPvP() then return end
         

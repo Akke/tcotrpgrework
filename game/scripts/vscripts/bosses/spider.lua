@@ -223,10 +223,6 @@ function modifier_boss_spider:OnDeath(event)
 
     local respawnTime = BOSS_RESPAWN_TIME
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
-    end
-
     Timers:CreateTimer(respawnTime, function()
         if IsPvP() then return end
         
@@ -340,8 +336,8 @@ function modifier_boss_spider_follower:OnDeath(event)
 
     if GetMapName() == "tcotrpg_1v1" then respawnTime = 15 end
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        respawnTime = respawnTime / 2
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(parent) then
+        respawnTime = 1
     end
 
     if self.respawnTimer ~= nil then return end 

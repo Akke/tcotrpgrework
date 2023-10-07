@@ -27,7 +27,7 @@ function modifier_tormentor_unyielding_shield_custom:OnCreated()
     local gameTime = math.floor(GameRules:GetGameTime() / 60)
 
     self.maxShield = ability:GetSpecialValueFor("damage_absorb") + (gameTime * (ability:GetSpecialValueFor("damage_absorb_per_minute")))
-    self.regenPerSecond = ability:GetSpecialValueFor("regen_per_second")
+    self.regenPerSecond = ability:GetSpecialValueFor("regen_per_second_pct")
     self.shield = self.maxShield
 
     self.cShield = self.shield
@@ -36,7 +36,7 @@ function modifier_tormentor_unyielding_shield_custom:OnCreated()
 
     self.shield_pfx = ParticleManager:CreateParticle("particles/neutral_fx/miniboss_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
     
-    self:StartIntervalThink(1)
+    self:StartIntervalThink(0.1)
 
     self.pedestal_model = Entities:FindByModel(nil, "models/props_gameplay/divine_sentinel/divine_sentinel.vmdl") 
     if self.pedestal_model == nil then
@@ -48,8 +48,6 @@ function modifier_tormentor_unyielding_shield_custom:OnCreated()
     self.pedestal_model:SetModel("models/props_gameplay/divine_sentinel/divine_sentinel.vmdl")
     self.pedestal_model:SetModelScale(0.5)
     self.pedestal_model:AddNewModifier(parent, ability, "modifier_tormentor_unyielding_shield_custom_pedestal_model", {})
-
-    EmitSoundOn("Miniboss.Tormenter.Spawn", self.pedestal_model)
 end
 
 function modifier_tormentor_unyielding_shield_custom:OnDeath(event)
@@ -98,7 +96,7 @@ function modifier_tormentor_unyielding_shield_custom:InvokeShield()
 end
 
 function modifier_tormentor_unyielding_shield_custom:OnIntervalThink()
-    self.shield = self.shield + self.regenPerSecond
+    self.shield = self.shield + ((self.maxShield * (self.regenPerSecond/100))*0.1)
 
     if self.shield >= self.maxShield then 
         self.shield = self.maxShield

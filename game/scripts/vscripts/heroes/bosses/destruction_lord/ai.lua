@@ -94,6 +94,18 @@ function boss_destruction_lord_ai:OnCreated(params)
 
     -- Start the AI
     self:StartIntervalThink(AI_THINK_INTERVAL)
+
+    local level = GetLevelFromDifficulty()
+
+    -- Making sure they get leveled up properly --
+    Timers:CreateTimer(1.0, function()
+        for i = 0, self.unit:GetAbilityCount() - 1 do
+            local abil = self.unit:GetAbilityByIndex(i)
+            if abil ~= nil then
+                abil:SetLevel(level)
+            end
+        end
+    end)
 end
 
 function boss_destruction_lord_ai:OnTakeDamage(event)
@@ -148,7 +160,7 @@ function boss_destruction_lord_ai:OnIntervalThink()
                 self.aggroTarget = target
                 self.state = AI_STATE_AGGRESSIVE
             end
-        elseif (self.spawnPos - self.unit:GetAbsOrigin()):Length() > 100 then
+        elseif (self.spawnPos - self.unit:GetAbsOrigin()):Length() > 200 then
             self.unit:MoveToPosition(self.spawnPos)
         end
     end
@@ -175,24 +187,23 @@ function boss_destruction_lord_ai:OnIntervalThink()
                 self.unit:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
             end
 
-            -- Attempt to cast Scream of Pain
-            --[[
-            local screamOfPain = self.unit:FindAbilityByName("boss_destruction_lord_scream_of_pain")
-            if not self.unit:IsSilenced() and not self.unit:IsHexed() and not self.unit:IsStunned() and screamOfPain:IsCooldownReady() and screamOfPain:IsFullyCastable() and not self.globalCooldown then
+            -- Attempt to cast 
+            local soulTowers = self.unit:FindAbilityByName("boss_destruction_lord_soul_towers")
+            if not self.unit:IsSilenced() and not self.unit:IsHexed() and not self.unit:IsStunned() and soulTowers:IsCooldownReady() and soulTowers:IsFullyCastable() and not self.globalCooldown then
                 self.globalCooldown = true
 
                 Timers:CreateTimer(1, function()
                     local castPoint = 2
 
-                    if not self.unit:HasModifier("boss_destruction_lord_ai_frozen") and (not self.unit:IsSilenced() and not self.unit:IsHexed() and not self.unit:IsStunned() and screamOfPain:IsCooldownReady() and screamOfPain:IsFullyCastable()) then
-                        self.unit:AddNewModifier(self.unit, nil, "boss_destruction_lord_ai_frozen", { duration = castPoint })
-                        DrawWarningCircle(self.unit, self.unit:GetAbsOrigin(), screamOfPain:GetEffectiveCastRange(self.unit:GetAbsOrigin(), self.aggroTarget), castPoint)
+                    if not self.unit:HasModifier("boss_destruction_lord_ai_frozen") and (not self.unit:IsSilenced() and not self.unit:IsHexed() and not self.unit:IsStunned() and soulTowers:IsCooldownReady() and soulTowers:IsFullyCastable()) then
+                        self.unit:AddNewModifier(self.unit, nil, "boss_destruction_lord_ai_frozen", { duration = 30 })
+                        DrawWarningCircle(self.unit, self.unit:GetAbsOrigin(), soulTowers:GetEffectiveCastRange(self.unit:GetAbsOrigin(), self.aggroTarget), castPoint)
                     end
 
                     Timers:CreateTimer(castPoint, function()
                         if self.unit:IsChanneling() then return end
-                        if not self.unit:IsSilenced() and not self.unit:IsHexed() and not self.unit:IsStunned() and screamOfPain:IsCooldownReady() and screamOfPain:IsFullyCastable() then
-                            self.unit:CastAbilityNoTarget(screamOfPain, -1)
+                        if not self.unit:IsSilenced() and not self.unit:IsHexed() and not self.unit:IsStunned() and soulTowers:IsCooldownReady() and soulTowers:IsFullyCastable() then
+                            self.unit:CastAbilityNoTarget(soulTowers, -1)
                         end
                     end)
 
@@ -201,7 +212,6 @@ function boss_destruction_lord_ai:OnIntervalThink()
                     end)
                 end)
             end
-            --]]
 
             self.unit:SetForceAttackTarget(self.aggroTarget)
         end
@@ -273,14 +283,38 @@ function boss_destruction_lord_ai:OnDeath(event)
 end
 -------------------
 function boss_destruction_lord_ai_frozen:DeclareFunctions()
-    local funcs = {}
+    local funcs = {
+        MODIFIER_PROPERTY_DISABLE_TURNING
+    }
     return funcs
+end
+
+function boss_destruction_lord_ai_frozen:GetModifierDisableTurning()
+    return 1
+end
+
+function boss_destruction_lord_ai_frozen:OnCreated()
+    if not IsServer() then return end 
+
+    self:StartIntervalThink(1.77778)
+    self:OnIntervalThink()
+end
+
+function boss_destruction_lord_ai_frozen:OnIntervalThink()
+    EmitSoundOn("Visage_Familar.BellToll", self:GetParent())
+    self:GetParent():StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
+end
+
+function boss_destruction_lord_ai_frozen:OnDestroy()
+    self:GetParent():RemoveGesture(ACT_DOTA_GENERIC_CHANNEL_1)
 end
 
 function boss_destruction_lord_ai_frozen:GetPriority() return MODIFIER_PRIORITY_SUPER_ULTRA end
 function boss_destruction_lord_ai_frozen:CheckState()
     local state = {
         [MODIFIER_STATE_ROOTED] = true,
+        [MODIFIER_STATE_DISARMED] = true,
+        [MODIFIER_STATE_INVULNERABLE] = true,
     }
 
     return state
@@ -298,6 +332,8 @@ end
 function boss_destruction_lord_ai_tombstone:OnCreated(params)
     if not IsServer() then return end 
 
+    self.dead = false
+
     self.bossName = params.bossName
 end
 
@@ -306,6 +342,8 @@ function boss_destruction_lord_ai_tombstone:OnDeath(event)
 
     if self:GetParent() ~= event.unit then return end
 
+    if self.dead then return end
+
     local unit = CreateUnitByName(self.bossName, self:GetParent():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
 
     unit:SetIdleAcquire(true)
@@ -313,12 +351,14 @@ function boss_destruction_lord_ai_tombstone:OnDeath(event)
     unit:AddItemByName("item_gem")
     unit:AddNewModifier(unit, nil, "boss_destruction_lord_ai", { aggroRange = 600 })
 
-    EmitSoundOn("Hero_SkeletonKing.Death", unit)
-    EmitSoundOn("Hero_SkeletonKing.Reincarnate", unit)
+    EmitSoundOn("Hero_SkeletonKing.Death", event.unit)
+    EmitSoundOn("Hero_SkeletonKing.Reincarnate", event.unit)
 
     self.vfx = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
     ParticleManager:SetParticleControlEnt(self.vfx, 0, unit, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
     ParticleManager:ReleaseParticleIndex(self.vfx)
+
+    self.dead = true
 end
 
 function boss_destruction_lord_ai_tombstone:CheckState()

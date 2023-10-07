@@ -2,8 +2,7 @@ LinkLuaModifier("modifier_effect_scoreboard_first_hard", "modules/effects/player
 if not modifier_effect_scoreboard_first_hard then modifier_effect_scoreboard_first_hard = class({}) end
 
 FIRST_PLACE_SCOREBOARD_PRIVATE_IDS_HARD = {
-    "76561198840766123",
-    "76561198063757611",
+
 }
 
 function modifier_effect_scoreboard_first_hard:IsHidden()

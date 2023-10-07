@@ -11,11 +11,11 @@
 "item_recipe_thunders_stone"                 "REMOVED"
 "item_thunders_stone"                 "REMOVED"
 "item_shadow_amulet" "REMOVED"
-"item_great_bracer3" "REMOVED"
-"item_great_bracer" "REMOVED"
-"item_great_bracer2" "REMOVED"
+//"item_great_bracer3" "REMOVED"
+//"item_great_bracer" "REMOVED"
+//"item_great_bracer2" "REMOVED"
 //"item_butterfly4" "REMOVED"
-"item_recipe_great_bracer3" "REMOVED"
+//"item_recipe_great_bracer3" "REMOVED"
 //"item_recipe_butterfly4" "REMOVED"
 "item_tome_un_6000" "REMOVED"
 "item_tome_un_60000" "REMOVED"
@@ -42,6 +42,9 @@
 "item_sphere" "REMOVED"
 "item_recipe_rod_of_atos" "REMOVED"
 "item_rod_of_atos" "REMOVED"
+
+"item_wraith_band" "REMOVED"
+"item_recipe_wraith_band" "REMOVED"
 
 "item_lifesteal" "REMOVED"
 
@@ -7990,7 +7993,6 @@
 		"AbilityTextureName" 				"recipe"
 	// General
 	//-------------------------------------------------------------------------------------------------------------
-	"ID"							"3075"						
 	"Model"							"models/props_gameplay/recipe.vmdl"
 	"BaseClass"                     "item_datadriven"
 	
@@ -8006,11 +8008,6 @@
 	"ItemRequirements"
 	{
 		"01"						"item_bracer;item_bracer;"
-		"02"						"item_bracer;item_wraith_band;"
-		"04"						"item_bracer;item_null_talisman;"
-		"06"						"item_wraith_band;item_wraith_band;"
-		"07"						"item_null_talisman;item_null_talisman;"
-		"08"						"item_wraith_band;item_null_talisman;"
 	}
 }
         //=================================================================================================================
@@ -8043,12 +8040,12 @@
 	//special
 		"AbilityValues"
 		{
-			"bonus_strength"    "8 16 32"
-      "bonus_agility"   "8 16 32"
-      "bonus_intellect"   "8 16 32"
-      "bonus_damage"      "3 6 12"
-      "bonus_health_regen"  "1 2 4"
-      "clock_time"      "9999"
+			"bonus_strength"    "8 16 32 64"
+      "bonus_agility"   "8 16 32 64"
+      "bonus_intellect"   "8 16 32 64"
+      "bonus_damage"      "3 6 12 24"
+      "bonus_health_regen"  "1 2 4 8"
+      "clock_time"      "99999"
 		}
 }
 
@@ -12992,7 +12989,6 @@
 		"AbilityTextureName" 				"recipe"
 	// General
 	//-------------------------------------------------------------------------------------------------------------
-	"ID"							"1111"						
 	"Model"							"models/props_gameplay/recipe.vmdl"
 	"BaseClass"                     "item_datadriven"
 	
@@ -13040,12 +13036,12 @@
 	//special
 		"AbilityValues"
 		{
-			"bonus_strength"    "8 16 32"
-      "bonus_agility"   "8 16 32"
-      "bonus_intellect"   "8 16 32"
-      "bonus_damage"      "3 6 12"
-      "bonus_health_regen"  "1 2 4"
-      "clock_time"      "9999"
+			"bonus_strength"    "8 16 32 64"
+      "bonus_agility"   "8 16 32 64"
+      "bonus_intellect"   "8 16 32 64"
+      "bonus_damage"      "3 6 12 24"
+      "bonus_health_regen"  "1 2 4 8"
+      "clock_time"      "99999"
 		}
 }
 
@@ -13058,7 +13054,6 @@
 		"AbilityTextureName" 				"recipe"
 	// General
 	//-------------------------------------------------------------------------------------------------------------
-	"ID"							"1113"						
 	"Model"							"models/props_gameplay/recipe.vmdl"
 	"BaseClass"                     "item_datadriven"
 	
@@ -13106,12 +13101,12 @@
 	//special
 		"AbilityValues"
 		{
-			"bonus_strength"    "8 16 32"
-      "bonus_agility"   "8 16 32"
-      "bonus_intellect"   "8 16 32"
-      "bonus_damage"      "3 6 12"
-      "bonus_health_regen"  "1 2 4"
-      "clock_time"      "9999"
+			"bonus_strength"    "8 16 32 64"
+      "bonus_agility"   "8 16 32 64"
+      "bonus_intellect"   "8 16 32 64"
+      "bonus_damage"      "3 6 12 24"
+      "bonus_health_regen"  "1 2 4 8"
+      "clock_time"      "99999"
 		}
 }
 

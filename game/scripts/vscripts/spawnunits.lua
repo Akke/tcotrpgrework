@@ -274,8 +274,8 @@ function modifier_unit_on_death:OnDeath(event)
     end
     --]]
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
-        amountTime = amountTime / 2
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(creep) then
+        amountTime = 1
     end
 
     if IsBossTCOTRPG(creep) then

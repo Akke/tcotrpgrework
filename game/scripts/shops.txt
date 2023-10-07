@@ -19,6 +19,7 @@
     "item"  "item_refreshing_spring_water"
     "item" "item_cursed_shield"
     "item" "item_vampire_claw"
+    "item" "item_great_bracer3"
     "item" "item_moon_shard_custom"
     "item" "item_wings"
     "item"  "item_tome_lvlup"

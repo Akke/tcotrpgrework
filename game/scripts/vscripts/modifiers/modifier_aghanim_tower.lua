@@ -28,9 +28,20 @@ function modifier_aghanim_tower:CheckState()
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
         [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+        [MODIFIER_STATE_PROVIDES_VISION] = false,
     }
 end
 
 function modifier_aghanim_tower:CanParentBeAutoAttacked()
     return false
+end
+
+function modifier_aghanim_tower:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_PROVIDES_FOW_POSITION 
+    }
+end
+
+function modifier_aghanim_tower:GetModifierProvidesFOWVision()
+    return 0
 end

@@ -96,7 +96,7 @@ function modifier_aghanim_passive:OnDeath( params )
 
 			-- Drop Akasha --
 			if not _G.ItemDroppedAkashaConversion then
-				DropNeutralItemAtPositionForHero("item_akasha_conversion", Vector(pos.x+RandomInt(-100, 100), pos.y+RandomInt(-100, 100), pos.z), self:GetParent(), 1, false)
+				--DropNeutralItemAtPositionForHero("item_akasha_conversion", Vector(pos.x+RandomInt(-100, 100), pos.y+RandomInt(-100, 100), pos.z), self:GetParent(), 1, false)
 	            _G.ItemDroppedAkashaConversion = true
 	        end
 
