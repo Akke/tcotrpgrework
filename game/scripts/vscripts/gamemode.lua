@@ -2253,7 +2253,7 @@ function barebones:DamageFilter(event)
       --ability = EntIndexToHScript(event.entindex_inflictor_const)
     --end
 
-    if victim:IsBuilding() or (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom" or victim:GetUnitName() == "npc_dota_unit_aghanim_tower_custom") then
+    if victim:IsBuilding() and (victim:GetTeam() == DOTA_TEAM_GOODGUYS or victim:GetUnitName() == "npc_dota_unit_twin_gate_custom" or victim:GetUnitName() == "npc_dota_unit_aghanim_tower_custom") then
       event.damage = 0
     end
 
