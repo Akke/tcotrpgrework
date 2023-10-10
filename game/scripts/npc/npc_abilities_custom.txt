@@ -15261,7 +15261,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "mana_cost_per_second"  "5.0 7.5 10.0 12.5"
+                "mana_cost_per_second"  "5"
             }
             "02"
             {

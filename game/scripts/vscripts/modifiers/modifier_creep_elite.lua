@@ -174,7 +174,12 @@ function modifier_creep_elite:OnDeath(event)
             "item_socket_rune_legendary_medusa_split_shot",
             "item_socket_rune_legendary_faceless_void_time_lock",
             "item_socket_rune_legendary_faceless_void_chronosphere",
-            "item_socket_rune_legendary_lina_light_strike_array"
+            "item_socket_rune_legendary_lina_light_strike_array",
+            "item_socket_rune_legendary_tidehunter_anchor_smash",
+            "item_socket_rune_legendary_axe_counter_helix",
+            "item_socket_rune_legendary_axe_culling_blade",
+            "item_socket_rune_legendary_luna_moon_beam",
+            "item_socket_rune_legendary_lone_druid_bear",
         }
 
         local gemToDrop = legendaryHeroGems[RandomInt(1, #legendaryHeroGems)]

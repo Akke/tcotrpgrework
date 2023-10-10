@@ -125,6 +125,9 @@ function barebones:OnAllPlayersLoaded()
   -- Load donators 
   self:LoadDonators()
 
+  -- Load attribute talents
+  XpManager:Init()
+
   ----
   if tablelength(KILL_VOTE_RESULT) <= 0 then
     KILL_VOTE_RESULT = {tostring(KILL_VOTE_DEFAULT)} 
@@ -683,12 +686,7 @@ function barebones:OnGameInProgress()
     --- do not let them in
   end
   --]]
-  if (not IsDedicatedServer() or IsCheatMode()) and not IsInToolsMode() then
-    GameRules:SendCustomMessageToTeam("<font color='red'>Attribute Talents and Leaderboards are unavailable because of cheats mode or because you're playing on a local server.</font>", DOTA_TEAM_GOODGUYS, 0, 0)
-  end
-
   PlayerBuffs:Init()
-  XpManager:Init()
   
   CustomGameEventManager:Send_ServerToAllClients("duel_timer_changed", { isDuelActive = KILL_VOTE_RESULT:upper() })
 
