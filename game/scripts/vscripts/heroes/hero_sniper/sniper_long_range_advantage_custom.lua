@@ -45,8 +45,6 @@ function modifier_sniper_long_range_advantage_custom:OnAttackLanded(event)
 
     if parent ~= event.attacker then return end
 
-    if not parent:HasModifier("modifier_gun_joe_rifle") then return end
-
     local ability = self:GetAbility()
 
     local buff = parent:FindModifierByName("modifier_sniper_long_range_advantage_custom_buff")

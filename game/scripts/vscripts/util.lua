@@ -1077,7 +1077,13 @@ function ClearItems(mustHaveOwner)
         break
       end
 
-      if containedItem and (mustHaveOwner and owner == nil and ((gameTime - creationTime) > 90)) then
+      local limitSeconds = 90
+
+      if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" then
+        limitSeconds = 30
+      end
+
+      if containedItem and (mustHaveOwner and owner == nil and ((gameTime - creationTime) > limitSeconds)) then
         UTIL_RemoveImmediate(item)
         UTIL_RemoveImmediate(containedItem)
       end

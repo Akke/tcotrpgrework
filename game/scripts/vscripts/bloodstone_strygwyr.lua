@@ -304,6 +304,7 @@ function modifier_bloodstone_strygwyr:OnDeath(event)
         local charges = ability:GetCurrentCharges()
 
         local max_charges = ability:GetSpecialValueFor("max_charges")
+        local maxStacks = ability:GetSpecialValueFor("max_stacks")
 
         local buff = caster:FindModifierByName("modifier_bloodstone_strygwyr_kill_counter")
         if not buff then
@@ -322,11 +323,13 @@ function modifier_bloodstone_strygwyr:OnDeath(event)
             if buff:GetStackCount() >= max_charges then
                 buff:SetStackCount(0)
 
-                _G.BloodstoneCharges[caster:entindex()] = charges + ability:GetSpecialValueFor("kill_charges")
+                if _G.BloodstoneCharges[caster:entindex()] < maxStacks then
+                    _G.BloodstoneCharges[caster:entindex()] = charges + ability:GetSpecialValueFor("kill_charges")
 
-                ability:SetCurrentCharges(_G.BloodstoneCharges[caster:entindex()])
+                    ability:SetCurrentCharges(_G.BloodstoneCharges[caster:entindex()])
                 
-                caster:CalculateStatBonus(true)
+                    caster:CalculateStatBonus(true)
+                end
             end
 
             buff:ForceRefresh()

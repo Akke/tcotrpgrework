@@ -131,8 +131,8 @@ function modifier_faceless_void_time_lock_custom:OnAttackLanded(event)
                         enemyStacks:SetStackCount(enemyStacks:GetStackCount() + 1)
                     else
                         local caster = self:GetCaster()
-                        local talent = caster:FindAbilityByName("talent_faceless_void_2")
-                        if talent ~= nil and talent:GetLevel() > 0 and talent:IsCooldownReady() then
+                        local runeTimeLock = caster:FindModifierByName("modifier_item_socket_rune_legendary_faceless_void_time_lock")
+                        if runeTimeLock and runeTimeLock.cooldownReady then
                             enemyStacks:Destroy()
 
                             local chronosphere = caster:FindAbilityByName("faceless_void_chronosphere_custom")
@@ -141,11 +141,14 @@ function modifier_faceless_void_time_lock_custom:OnAttackLanded(event)
                                 if chronosphereMod ~= nil then
                                     local _chronosphere = chronosphereMod:GetAbility()
 
-                                    local talentRadius = talent:GetSpecialValueFor("chronosphere_radius")
-                                    local talentDuration = talent:GetSpecialValueFor("chronosphere_duration")
-                                    local talentCd = talent:GetSpecialValueFor("chronosphere_cooldown")
+                                    local talentRadius = runeTimeLock.chronosphereRadius
+                                    local talentDuration = runeTimeLock.chronosphereDuration
+                                    local talentCd = runeTimeLock.chronosphereCooldown
                                     _chronosphere:CreateChronosphere(talentRadius, enemy:GetAbsOrigin(), talentDuration)
-                                    talent:StartCooldown(talentCd)
+                                    runeTimeLock.cooldownReady = false
+                                    Timers:CreateTimer(talentCd, function()
+                                        runeTimeLock.cooldownReady = true
+                                    end)
                                 end
                             end
                         end

@@ -6,12 +6,6 @@ pudge_meat_hook_lua = class({
 	GetIntrinsicModifierName = function() return "modifier_meat_hook_bloodstained_lua" end,
 })
 
-function pudge_meat_hook_lua:GetBehavior()
-	if self:GetCaster():HasModifier("modifier_item_aghanims_shard") then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING +DOTA_ABILITY_BEHAVIOR_AUTOCAST end
-
-	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
-end
-
 if IsServer() then
 	function pudge_meat_hook_lua:OnAbilityPhaseStart()
 		self:GetCaster():StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
@@ -43,6 +37,11 @@ if IsServer() then
 	function pudge_meat_hook_lua:OnSpellStart()
 		local caster = self:GetCaster()
 		local hookCount = self:GetSpecialValueFor("hook_count")
+
+		if caster:HasModifier("modifier_item_aghanims_shard") then
+			hookCount = self:GetSpecialValueFor("hook_count_shard")
+		end
+
 		local hook_damage = self:GetSpecialValueFor("damage")
 		local hook_speed = self:GetSpecialValueFor("hook_speed")
 		local hook_width = self:GetSpecialValueFor("hook_width")
@@ -254,16 +253,16 @@ if IsServer() then
 		if not proj.hVictim or not table.includes(proj.hVictim, hTarget) then
 			hTarget:EmitSound("Hero_Pudge.AttackHookImpact")
 			self.projectile = proj
-			if not IsBossTCOTRPG(hTarget) then
-				hTarget:AddNewModifier(caster, self, "modifier_meat_hook_lua", nil)
-			end
+			--if not IsBossTCOTRPG(hTarget) then
+			--	hTarget:AddNewModifier(caster, self, "modifier_meat_hook_lua", nil)
+			--end
 			self.projectile = nil
 			if hTarget:GetTeamNumber() ~= caster:GetTeamNumber() then
 				ApplyDamage({
 					victim = hTarget,
 					attacker = caster,
 					damage = hook_damage + (caster:GetBaseStrength() * (self:GetSpecialValueFor("damage_str")/100)),
-					damage_type = DAMAGE_TYPE_MAGICAL,
+					damage_type = DAMAGE_TYPE_PURE,
 					ability = self
 				})
 
@@ -306,29 +305,10 @@ modifier_meat_hook_bloodstained_lua = class({
 
 function modifier_meat_hook_bloodstained_lua:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_TOOLTIP,
-		MODIFIER_EVENT_ON_ATTACK
+		MODIFIER_PROPERTY_TOOLTIP
 	}
 end
 
-function modifier_meat_hook_bloodstained_lua:OnAttack(event)
-	if not IsServer() then return end
-
-    if event.attacker ~= self:GetParent() then return end
-    if event.attacker == event.target then return end
-    if not event.target:IsAlive() then return end
-    if event.attacker:IsIllusion() then return end
-
-    local parent = self:GetParent()
-    local ability = self:GetAbility()
-    local victim = event.target
-
-    if not parent:HasModifier("modifier_item_aghanims_shard") then return end
-	if ability:GetAutoCastState() then return end
-    if not RollPercentage(ability:GetSpecialValueFor("chance")) then return end
-
-    SpellCaster:Cast(ability, victim, false)
-end
 function modifier_meat_hook_bloodstained_lua:OnTooltip()
 	local damage = self:GetStackCount() * self:GetAbility():GetSpecialValueFor("hook_damage_per_stack")
 	return damage
@@ -342,10 +322,10 @@ modifier_meat_hook_followthrough_lua = class({
 
 modifier_meat_hook_lua = class({
 	IsDebuff             = function() return true end,
-	IsStunDebuff         = function() return true end,
+	--IsStunDebuff         = function() return true end,
 	RemoveOnDeath        = function() return false end,
-	DeclareFunctions     = function() return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION} end,
-	GetOverrideAnimation = function() return ACT_DOTA_FLAIL end,
+	--DeclareFunctions     = function() return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION} end,
+	--GetOverrideAnimation = function() return ACT_DOTA_FLAIL end,
 	IsPurgable           = function() return false end,
 })
 
@@ -372,11 +352,12 @@ if IsServer() then
 		local caster = self:GetCaster()
 		if caster and self:GetParent() then
 			if caster:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and not self:GetParent():IsMagicImmune() then
-				return {[MODIFIER_STATE_STUNNED] = true}
+				--return {[MODIFIER_STATE_STUNNED] = true}
 			end
 		end
 	end
 
+	--[[
 	function modifier_meat_hook_lua:UpdateHorizontalMotion(me, dt)
 		local abs = self.Projectile:GetPosition()
 		if self.Projectile.newProjectile then
@@ -384,6 +365,7 @@ if IsServer() then
 		end
 		self:GetParent():SetOrigin(abs)
 	end
+	--]]
 
 	function modifier_meat_hook_lua:OnHorizontalMotionInterrupted()
 		self:Destroy()

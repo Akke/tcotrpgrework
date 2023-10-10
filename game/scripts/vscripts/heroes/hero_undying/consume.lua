@@ -86,6 +86,8 @@ function modifier_undying_consume_custom:OnDeath(event)
 
     local ability = self:GetAbility()
 
+    if not ability:IsCooldownReady() then return end
+
     local buff = unit:FindModifierByNameAndCaster("modifier_undying_consume_custom_buff_permanent", unit)
     local stacks = unit:GetModifierStackCount("modifier_undying_consume_custom_buff_permanent", unit)
     
@@ -99,5 +101,6 @@ function modifier_undying_consume_custom:OnDeath(event)
 
         unit:SetModifierStackCount("modifier_undying_consume_custom_buff_permanent", unit, (stacks + 1))
         buff:ForceRefresh()
+        ability:UseResources(false, false, false, true)
     end
 end

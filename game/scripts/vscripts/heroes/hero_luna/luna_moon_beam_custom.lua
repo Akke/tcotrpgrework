@@ -22,22 +22,25 @@ function luna_moon_beam_custom:GetAbilityTextureName()
 end
 
 function luna_moon_beam_custom:GetBehavior()
-    local talent = self:GetCaster():FindAbilityByName("talent_luna_1")
-    if talent ~= nil and talent:GetLevel() > 0 then
-        return DOTA_ABILITY_BEHAVIOR_PASSIVE
+    local caster = self:GetCaster()
+    local runeMoonBeam = caster:HasModifier("modifier_item_socket_rune_legendary_luna_moon_beam")
+    if runeMoonBeam then
+        return DOTA_ABILITY_BEHAVIOR_PASSIVE + DOTA_ABILITY_BEHAVIOR_AUTOCAST
     end
 end
 
 function luna_moon_beam_custom:GetManaCost()
-    local talent = self:GetCaster():FindAbilityByName("talent_luna_1")
-    if talent ~= nil and talent:GetLevel() > 0 then
+    local caster = self:GetCaster()
+    local runeMoonBeam = caster:HasModifier("modifier_item_socket_rune_legendary_luna_moon_beam")
+    if runeMoonBeam then
         return 0
     end
 end
 
 function luna_moon_beam_custom:GetCooldown()
-    local talent = self:GetCaster():FindAbilityByName("talent_luna_1")
-    if talent ~= nil and talent:GetLevel() > 0 then
+    local caster = self:GetCaster()
+    local runeMoonBeam = caster:HasModifier("modifier_item_socket_rune_legendary_luna_moon_beam")
+    if runeMoonBeam then
         return 0
     end
 end

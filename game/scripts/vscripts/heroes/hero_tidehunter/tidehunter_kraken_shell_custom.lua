@@ -57,9 +57,15 @@ end
 ------------
 function modifier_tidehunter_kraken_shell_custom:DeclareFunctions()
     return {
-        MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
+        MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
         MODIFIER_EVENT_ON_TAKEDAMAGE
     }
+end
+
+function modifier_tidehunter_kraken_shell_custom:OnCreated()
+    if not IsServer() then return end 
+
+    self.damageTaken = 0
 end
 
 function modifier_tidehunter_kraken_shell_custom:OnTakeDamage(event)
@@ -74,18 +80,22 @@ function modifier_tidehunter_kraken_shell_custom:OnTakeDamage(event)
 
     if parent == attacker then return end
 
-    if not IsCreepTCOTRPG(attacker) and not IsBossTCOTRPG(attacker) then return end 
+    if not IsCreepTCOTRPG(attacker) and not IsBossTCOTRPG(attacker) then return end
+    
+    self.damageTaken = self.damageTaken + event.damage
 
     local ability = self:GetAbility()
 
     if not ability:IsCooldownReady() then return end
 
-    local chance = ability:GetSpecialValueFor("chance")
+    local threshold = ability:GetSpecialValueFor("damage_threshold_pct")
     local radius = ability:GetSpecialValueFor("radius")
     local speed = ability:GetSpecialValueFor("speed")
     local maxDistance = ability:GetSpecialValueFor("max_distance")
 
-    if not RollPercentage(chance) then return end 
+    if self.damageTaken < (parent:GetMaxHealth() * (threshold/100)) then return end
+
+    self.damageTaken = 0
 
     parent:Purge(false, true, false, true, false)
 
@@ -121,8 +131,8 @@ function modifier_tidehunter_kraken_shell_custom:OnTakeDamage(event)
     ability:UseResources(false, false, false, true)
 end
 
-function modifier_tidehunter_kraken_shell_custom:GetModifierTotal_ConstantBlock(event)
+function modifier_tidehunter_kraken_shell_custom:GetModifierPhysical_ConstantBlock(event)
     if event.target ~= self:GetParent() or bit.band(event.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= 0 then return end
     
-    return self:GetParent():GetMaxHealth() * (self:GetAbility():GetSpecialValueFor("max_hp_block")/100)
+    return event.damage * (self:GetAbility():GetSpecialValueFor("passive_damage_block_pct")/100)
 end

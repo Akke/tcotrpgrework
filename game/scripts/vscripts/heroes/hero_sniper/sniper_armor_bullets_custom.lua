@@ -57,23 +57,6 @@ function sniper_armor_bullets_custom:OnSpellStart()
 
     EmitSoundOn("Hero_Sniper.TakeAim.Cast", caster)
 end
-------------
-function modifier_sniper_armor_bullets_custom:OnCreated()
-    if IsServer() then
-        self:StartIntervalThink(0.1)
-    end
-end
-
-function modifier_sniper_armor_bullets_custom:OnIntervalThink()
-    local caster = self:GetCaster()
-    local ability = self:GetAbility()
-
-    if not caster:HasModifier("modifier_gun_joe_rifle") and ability:IsActivated() then
-        ability:SetActivated(false)
-    elseif caster:HasModifier("modifier_gun_joe_rifle") and not ability:IsActivated() then
-        ability:SetActivated(true)
-    end
-end
 -----------
 function modifier_sniper_armor_bullets_custom_active:DeclareFunctions()
     return {

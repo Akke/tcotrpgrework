@@ -260,9 +260,7 @@ end
 function modifier_burning_blades:OnIntervalThink()
     local caster = self:GetCaster()
 
-    local ampFromDmg = caster:GetAverageTrueAttackDamage(caster) * (self:GetAbility():GetSpecialValueFor("spell_amp_from_attack")/100)
-
-    self.amp = self:GetAbility():GetSpecialValueFor("spell_amp") + ampFromDmg
+    self.amp = self:GetAbility():GetSpecialValueFor("spell_amp")
 
     self:InvokeSpellAmp()
 end
@@ -297,10 +295,6 @@ end
 ----------
 function modifier_burning_blades_aura_enemy:OnCreated()
     local ability = self:GetAbility()
-    
-    if ability and not ability:IsNull() then
-        self.burn = ability:GetLevelSpecialValueFor("max_hp_burn", (ability:GetLevel() - 1))
-    end
 
     if not IsServer() then return end
 
@@ -321,7 +315,7 @@ function modifier_burning_blades_aura_enemy:GetEffectName()
 end
 
 function modifier_burning_blades_aura_enemy:OnIntervalThink()
-    self.damageTable.damage = (self:GetAbility():GetSpecialValueFor("flat_burn") + (self:GetCaster():GetAverageTrueAttackDamage(self:GetCaster()) * (self.burn/100))),
+    self.damageTable.damage = self:GetAbility():GetSpecialValueFor("flat_burn"),
     
     ApplyDamage(self.damageTable)
 end

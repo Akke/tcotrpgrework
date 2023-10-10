@@ -249,16 +249,16 @@ function modifier_boss_spider:OnDeath(event)
     for _,hero in ipairs(heroes) do
         if UnitIsNotMonkeyClone(hero) and not hero:IsTempestDouble() then
             if PlayerResource:GetConnectionState(hero:GetPlayerID()) == DOTA_CONNECTION_STATE_CONNECTED then
-                if hero:FindItemInAnyInventory("item_spider_soul") == nil and _G.autoPickup[hero:GetPlayerID()] ~= AUTOLOOT_ON_NO_SOULS then
-                    --hero:AddItemByName("item_spider_soul")
+                if hero:FindItemInAnyInventory("item_elder_soul") == nil and _G.autoPickup[hero:GetPlayerID()] ~= AUTOLOOT_ON_NO_SOULS then
+                    --hero:AddItemByName("item_elder_soul")
                 end
                 
-                hero:ModifyGold(15000, false, 0)
+                hero:ModifyGold(30000, false, 0)
             end
         end
     end
 
-    DropNeutralItemAtPositionForHero("item_spider_soul", victim:GetAbsOrigin(), victim, -1, true)
+    DropNeutralItemAtPositionForHero("item_elder_soul", victim:GetAbsOrigin(), victim, -1, true)
 
     if RollPercentage(3) and not _G.ItemDroppedAsanBlade3 then
         local drop = DropNeutralItemAtPositionForHero("item_asan_dagger_3", victim:GetAbsOrigin(), victim, -1, true)
@@ -336,7 +336,7 @@ function modifier_boss_spider_follower:OnDeath(event)
 
     if GetMapName() == "tcotrpg_1v1" then respawnTime = 15 end
 
-    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(parent) then
+    if FAST_BOSSES_VOTE_RESULT:upper() == "ENABLE" and IsCreepTCOTRPG(parent) and parent:GetUnitName() ~= "npc_dota_creature_40_crip_10" and parent:GetUnitName() ~= "npc_dota_creature_40_crip_2" then
         respawnTime = 1
     end
 

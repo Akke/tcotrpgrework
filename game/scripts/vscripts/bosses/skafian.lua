@@ -362,6 +362,10 @@ function modifier_boss_skafian_follower:OnDeath(event)
     end
     --
 
+    if event.attacker:GenerateDropChance() <= 5 and (parent:GetUnitName() == "npc_dota_creature_1_crip" or parent:GetUnitName() == "npc_dota_creature_10_crip_2" or parent:GetUnitName() == "npc_dota_creature_10_crip_3" or parent:GetUnitName() == "npc_dota_creature_10_crip_4") then
+        DropNeutralItemAtPositionForHero("item_bracer", parent:GetAbsOrigin(), parent, -1, true)
+    end
+
     Timers:CreateTimer(respawnTime, function()        
       CreateUnitByNameAsync(unitName, self.spawnPosition, true, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
             --Async is faster and will help reduce stutter

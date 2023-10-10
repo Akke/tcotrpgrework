@@ -51,6 +51,8 @@ function troll_warlord_berserkers_rage_custom:OnToggle()
 
     local caster = self:GetCaster()
 
+    caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
+
     local ability = self
 
     if self:GetToggleState() then

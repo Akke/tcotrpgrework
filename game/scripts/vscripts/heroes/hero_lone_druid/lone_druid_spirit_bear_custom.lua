@@ -56,8 +56,8 @@ function lone_druid_spirit_bear_custom:OnSpellStart()
     local unitName = "npc_dota_lone_druid_bear_custom2"
     local hasTalent = false
 
-    local talent = caster:FindAbilityByName("talent_lone_druid_2")
-    if talent ~= nil and talent:GetLevel() > 0 then
+    local runeSpiritBear = caster:FindModifierByName("modifier_item_socket_rune_legendary_lone_druid_bear")
+    if runeSpiritBear then
         unitName = "npc_dota_lone_druid_bear_custom"
         hasTalent = true
     end
@@ -211,9 +211,9 @@ function modifier_lone_druid_spirit_bear_custom_thinker:OnIntervalThink()
     self.ability.bearInventory = {}
 
     -- Distance logic
-    local talent = owner:FindAbilityByName("talent_lone_druid_2")
+    local runeSpiritBear = owner:FindModifierByName("modifier_item_socket_rune_legendary_lone_druid_bear")
 
-    if talent ~= nil and talent:GetLevel() > 0 then
+    if runeSpiritBear then
         -- Inventory Logic
         for i=0,17 do
             local item = parent:GetItemInSlot(i)
@@ -223,7 +223,7 @@ function modifier_lone_druid_spirit_bear_custom_thinker:OnIntervalThink()
         end
     end
     
-    if talent ~= nil and talent:GetLevel() > 2 then
+    if runeSpiritBear then
         if parent:HasModifier("modifier_lone_druid_spirit_bear_custom_disarmed") then
             parent:RemoveModifierByName("modifier_lone_druid_spirit_bear_custom_disarmed")
         end
@@ -247,8 +247,9 @@ function modifier_lone_druid_spirit_bear_custom_thinker:OnDeath(event)
 
     if self:GetParent() ~= event.unit then 
         if self:GetParent():GetOwner() == event.unit then
-            local talent = self:GetParent():GetOwner():FindAbilityByName("talent_lone_druid_2")
-            if talent ~= nil and talent:GetLevel() > 2 then
+            local runeSpiritBear = self:GetParent():GetOwner():FindModifierByName("modifier_item_socket_rune_legendary_lone_druid_bear")
+            
+            if runeSpiritBear then
                 return
             end
 

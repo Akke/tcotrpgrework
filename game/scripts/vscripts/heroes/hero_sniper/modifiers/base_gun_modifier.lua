@@ -23,6 +23,7 @@ function mod:OnCreated( kv )
 	local name = self:GetName()
 	local caster = self:GetCaster()
 
+	--[[
 	if name == "modifier_gun_joe_rifle" then
 		local explosiveBullets = caster:FindAbilityByName("sniper_explosive_bullets_custom")
 		local rapidMachinery = caster:FindAbilityByName("sniper_rapid_machinery_custom")
@@ -108,6 +109,7 @@ function mod:OnCreated( kv )
 			end
 		end
 	end
+	--]]
 end
 
 function mod:OnRemoved()
@@ -122,6 +124,7 @@ function mod:OnRemoved()
 	local caster = self:GetCaster()
 	local name = self:GetName()
 
+	--[[
 	local explosiveBullets = caster:FindAbilityByName("sniper_explosive_bullets_custom")
 
 	if name == "modifier_gun_joe_rifle" then
@@ -205,6 +208,7 @@ function mod:OnRemoved()
 		shrapnel:SetActivated(true)
 		shrapnel:SetHidden(false)
 	end
+	--]]
 end
 
 mod.OnRefresh = mod.OnCreated

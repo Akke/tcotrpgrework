@@ -271,25 +271,7 @@ end
 -----------
 function modifier_gabriel_divine_retribution_autocast:DeclareFunctions()
     return {
-        MODIFIER_EVENT_ON_ATTACK
     }
-end
-
-function modifier_gabriel_divine_retribution_autocast:OnAttack(event)
-    if not IsServer() then return end
-
-    local parent = self:GetParent()
-
-    if event.attacker ~= parent or event.target == parent then return end
-    if not IsCreepTCOTRPG(event.target) and not IsBossTCOTRPG(event.target) then return end
-
-    if parent:HasModifier("modifier_gabriel_divine_retribution_caster") then return end
-
-    local ability = self:GetAbility()
-
-    if not ability:IsCooldownReady() or parent:IsSilenced() or not ability:GetAutoCastState() or ability:GetManaCost(-1) > parent:GetMana() then return end
-
-    SpellCaster:Cast(ability, parent:GetAbsOrigin(), true)
 end
 ------------
 function modifier_gabriel_divine_retribution_scepter_buff:DeclareFunctions()

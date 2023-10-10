@@ -268,6 +268,7 @@ function RuneManager:Init()
         if buff then
             buff:IncrementStackCount()
             buff:ForceRefresh()
+            assignedHero:CalculateStatBonus(true)
         end
 
         CustomGameEventManager:Send_ServerToPlayer(player, "rune_manager_rune_send", {

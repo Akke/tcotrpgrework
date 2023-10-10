@@ -1236,7 +1236,7 @@
 
         "HasShardUpgrade" "1"
 
-        "AbilityCooldown" "1"
+        "AbilityCooldown" "3"
 
         "precache"
         {
@@ -1249,12 +1249,12 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-            "max_hp_block" "10 15 20 25 30 35 40 45 50 55"
-            "chance" "36"
+            "passive_damage_block_pct" "12"
+            "damage_threshold_pct" "8" // based on max hp
             "radius" "150"
             "speed" "725"
             "max_distance" "937.5"
-            "max_hp_damage" "3"
+            "max_hp_damage" "3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5"
             "stun_duration"
             {
               "RequiresShard" "1"
@@ -2542,7 +2542,7 @@
           "radius" "1000"
           "stack_outgoing_damage" "1"
           "stack_attack_speed" "10"
-          "stack_spell_amp" "3"
+          "stack_spell_amp" "0.5"
           "max_stacks" "100"
         }
     }
@@ -3965,7 +3965,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-            "max_stacks" "30"
+            "max_stacks" "10"
             "damage_increase" "16 32 48 64"
             "duration" "24"
             "spell_damage_increase" "5"
@@ -4884,7 +4884,7 @@
         "AbilityValues"
         {
             "duration" "8"
-            "bonus_spell_amp" "14 22 30 38 46 54 62 70 78 86"
+            "bonus_spell_amp" "14 16 18 20 22 24 26 28 30 32"
             "aura_radius" "300"
             "damage_from_mana" "30"
             "interval" "0.5"
@@ -5187,7 +5187,7 @@
         "BaseClass"                     "ability_lua"
         "ScriptFile"                    "heroes/hero_gabriel/gabriel_divine_retribution.lua"
         "AbilityTextureName"            "gabriel_divine_retribution"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "MaxLevel" "10"
@@ -9956,7 +9956,7 @@
         }
         "spell_amp" 
         {
-          "value" "12 20 28 36 44 52 60 68 76 84"
+          "value" "10 12 14 16 18 20 22 24 26 28"
           "CalculateSpellDamageTooltip"   "0"
         }
         "radius" "600"
@@ -11608,7 +11608,7 @@
         "HasShardUpgrade" "1"
 
         "AbilityCooldown" "14"
-        "AbilityManaCost" "65 75 85 95 105 115 125 135 145 155"
+        "AbilityManaCost" "65"
         "AbilityCastPoint" "0"
 
         "precache"
@@ -11621,7 +11621,7 @@
         "AbilityValues"
         {
             "bonus_attack_speed" "90 130 170 210 250 290 330 370 410 450"
-            "attack_reduction" "-10"
+            "attack_reduction" "-30"
             "stun_duration" "3"
             "damage" "75 115 155 195 235 275 315 355 395 435"
             "agi_to_damage"
@@ -11646,31 +11646,33 @@
         "ScriptFile" "heroes/hero_troll_warlord/troll_warlord_battle_trance_custom.lua"
         "AbilityTextureName"      "troll_warlord_battle_trance"
         "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "MaxLevel" "4"
         "HasScepterUpgrade" "1"
 
-        "AbilityCooldown" "90 85 80 75"
+        "AbilityCooldown" "90 80 70 60"
+        "AbilityManaCost" "150"
+        "AbilityCastPoint" "0"
+        "AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_4"
 
         "precache"
         {
           "particle" "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
           "particle" "particles/status_fx/status_effect_troll_warlord_battletrance.vpcf"
+          "particle" "particles/generic_gameplay/generic_lifesteal.vpcf"
+          "soundfile" "soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
         }
         
         "AbilityValues"
         {
-            "damage_reduction" "-50 -60 -70 -80"
-            "health_threshold" "30"
-            "max_hp_heal" "40 50 60 70"
-            "speed_bonus" "10 20 30 40"
-            "health_restored_proc_auto" "30"
-            "duration" "7"
-            "outgoing_damage"
+            "duration" "10"
+            "bonus_movespeed_pct" "25 30 35 40"
+            "bonus_attack_speed" "140 170 200 230"
+            "bonus_lifesteal" "40 60 80 100"
+            "bonus_damage_pct"
             {
-              "value" "40"
-              "CalculateSpellDamageTooltip"   "0"
-              "RequiresScepter" "1"
+                "RequiresScepter" "1"
+                "value" "40"
             }
         }
     }
@@ -14222,7 +14224,7 @@
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "spell_amp_per_charge"              "10 20 30 40"
+                "spell_amp_per_charge"              "1 2 3 4"
                 "CalculateSpellDamageTooltip"   "0"
             }
             "03"
@@ -14234,7 +14236,7 @@
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "max_stacks"              "12"
+                "max_stacks"              "10"
                 "CalculateSpellDamageTooltip"   "0"
             }
             "04"
@@ -17574,7 +17576,7 @@
     "HasShardUpgrade"             "1"
     "AbilityValues"
     {
-        "stats_share_pct" "75"
+        "stats_share_pct" "10"
     }
   }
 "boss_shell_custom"
@@ -18095,7 +18097,7 @@
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"               "3.0"
+    "AbilityCooldown"               "0"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -18145,7 +18147,7 @@
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"               "3.0"
+    "AbilityCooldown"               "0"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -18219,7 +18221,7 @@
         "03"
         {
             "var_type"                  "FIELD_FLOAT"
-            "max_stacks"         "50"
+            "max_stacks"         "10"
         }
     }
 }
@@ -18434,12 +18436,12 @@
         "01"
         {
             "var_type"              "FIELD_FLOAT"
-            "attack_speed"          "1.0 1.25 1.50 1.75 2.0 2.25 2.50 2.75 3.0 3.25"
+            "attack_speed"          "4 7 10 13 16 19 22 25 28 31"
         }
         "02"
         {
             "var_type"              "FIELD_FLOAT"
-            "damage"                "1.0 1.35 1.70 2.05 2.40 2.75 3.10 3.45 3.80 4.15"
+            "damage"                "8 12 16 20 24 28 32 36 40 44"
         }
         "03"
         {
@@ -18465,7 +18467,7 @@
         "05"
         {
             "var_type"              "FIELD_FLOAT"
-            "max_stacks"              "100"
+            "max_stacks"              "12"
         }
     }
 }
@@ -18482,13 +18484,13 @@
         "ScriptFile"                    "heroes/hero_pudge/pudge_meat_hook_lua.lua"
         "AbilityTextureName"            "pudge_meat_hook"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "FightRecapLevel"               "1"
         "MaxLevel"                      "10"
-        "HasScepterUpgrade"             "1"
+        "HasScepterUpgrade"             "0"
         "HasShardUpgrade" "1"
-        "AbilityManaCost"               "120 150 180 220 240 280 320 360 400 440"
+        "AbilityManaCost"               "120"
         "AbilityCastRange"              "1000 1050 1100 1150 1200 1250 1300 1350 1400 1450"
 
         // Precache
@@ -18506,8 +18508,6 @@
             "damage"
             {
                 "value"            "90 140 190 240 290 340 390 440 490 540"
-                "LinkedSpecialBonus"            "special_bonus_unique_pudge_7"
-                "special_bonus_scepter" "+160"
             }
             "hook_speed"
             {
@@ -18527,8 +18527,7 @@
             }
             "AbilityCooldown"
             {
-                "value"      "20.0"
-                "special_bonus_scepter" "=8.0"
+                "value"      "8.0"
             }
             "hook_followthrough_constant"
             {
@@ -18540,13 +18539,18 @@
             }
             "damage_str"
             {
-                "value" "50"
+                "value" "100"
                 "CalculateSpellDamageTooltip"   "0"
             }
             "hook_count"
             {
                 "value"                         "1"
                 "special_bonus_unique_pudge_1"  "2"
+            }
+            "hook_count_shard"
+            {
+                "value"                         "3"
+                "RequiresShard"  "1"
             }
             "chance"
             {
@@ -18601,7 +18605,7 @@
         "05"
         {
             "var_type"              "FIELD_FLOAT"
-            "goal_3_bonus_spell_amp"              "50"
+            "goal_3_bonus_spell_amp"              "10"
             "CalculateSpellDamageTooltip"   "0"
         }
         "06"
@@ -18624,24 +18628,23 @@
     "BaseClass" "ability_lua"
     "AbilityTextureName"                            "pudge_flesh_heap"
     "ScriptFile" "heroes/hero_pudge/heap.lua"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "MaxLevel" "10"
-    "AbilitySpecial"
+
+    "AbilityCooldown" "30"
+    "AbilityManaCost" "90"
+    "AbilityCastPoint" "0"
+
+    "precache"
     {
-        "01"
-        {
-            "var_type"              "FIELD_FLOAT"
-            "str_gain"              "0.5 0.5 0.5 0.6 0.6 0.7 0.8 0.9 1.0 1.1"
-            "CalculateSpellDamageTooltip"   "0"
-        }
-        "02"
-        {
-            "var_type"              "FIELD_FLOAT"
-            "damage_block"              "7 9 11 13 15 17 19 21 23 25"
-            "CalculateSpellDamageTooltip"   "0"
-        }
+        "particle" "particles/units/heroes/hero_pudge/pudge_fleshheap_status_effect.vpcf"
+    }
+
+    "AbilityValues"
+    {
+        "str_gain"              "0.5 0.5 0.5 0.6 0.6 0.7 0.8 0.9 1.0 1.1"
+        "damage_block"              "10"
+        "duration" "10"
     }
 
 }
@@ -18691,19 +18694,18 @@
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "rot_damage"            "10 18 26 34 42 50 58 66 74 82"
-                "LinkedSpecialBonus"    "special_bonus_unique_pudge_2"
+                "rot_damage"            "30 40 50 60 70 80 90 100 110 120"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "rot_radius_scepter"            "475"
+                "rot_radius_scepter"            "450"
                 "RequiresScepter" "1"
             }
             "08"
             {
                 "var_type"              "FIELD_INTEGER"
-                "rot_damage_scepter"            "10 22 34 46 58 70 82 94 106 118"
+                "rot_damage_scepter"            "300"
                 "RequiresScepter" "1"
             }
             "09"
@@ -21578,6 +21580,7 @@
     "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
     "MaxLevel" "1"
     "HasShardUpgrade"               "1"
+    "AbilityCooldown" "3"
     "AbilitySpecial"
     {
         "01"
@@ -28203,6 +28206,62 @@
 		"AbilityValues"
 		{
 
+		}
+	}
+
+    "medusa_split_shot_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_medusa/medusa_split_shot_custom.lua"
+		"AbilityTextureName"			"medusa_split_shot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"10"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_modifier"		"-50"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_modifier_tooltip"		"50"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_INTEGER"
+				"arrow_count"				"1 1 1 1 2 2 2 3 3 4"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"split_shot_bonus_range"		"100"
+			}
 		}
 	}
 }

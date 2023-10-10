@@ -80,15 +80,13 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData( target, locatio
 	local damage = self:GetSpecialValueFor("arrow_damage_pct")
 
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_drow_ranger_1")
-    if talent and talent:GetLevel() > 0 then
-        if talent:GetLevel() > 2 then
-			target:AddNewModifier(caster, self, "modifier_drow_ranger_multishot_custom_debuff", {
-				duration = talent:GetSpecialValueFor("duration")
-			})
-		end
+	local runeMultishot = caster:FindModifierByName("modifier_item_socket_rune_legendary_drow_ranger_multishot")
+    if runeMultishot then
+		target:AddNewModifier(caster, self, "modifier_drow_ranger_multishot_custom_debuff", {
+			duration = runeMultishot.duration
+		})
 
-		damage = damage + talent:GetSpecialValueFor("multi_shot_damage_increase_pct")
+		damage = damage + runeMultishot.increasePct
     end
 
 	ApplyDamage({
@@ -158,9 +156,9 @@ function modifier_drow_ranger_multishot_custom:OnCreated( kv )
 	local wave_interval = self:GetAbility():GetSpecialValueFor( "wave_interval" )
 
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_drow_ranger_1")
-    if talent and talent:GetLevel() > 0 then
-        wave_interval = wave_interval + talent:GetSpecialValueFor("multishot_interval_decrease")
+	local runeMultishot = caster:FindModifierByName("modifier_item_socket_rune_legendary_drow_ranger_multishot")
+    if runeMultishot then
+        wave_interval = wave_interval + runeMultishot.intervalDecrease
     end
 
 	self.arrow_delay = 0.033
@@ -253,11 +251,11 @@ function modifier_drow_ranger_multishot_custom:OnIntervalThink()
 		self.current_wave = self.current_wave+1
 
         local caster = self:GetCaster()
-        local talent = caster:FindAbilityByName("talent_drow_ranger_1")
-        if talent and talent:GetLevel() > 1 then
+		local runeMultishot = caster:FindModifierByName("modifier_item_socket_rune_legendary_drow_ranger_multishot")
+        if runeMultishot then
 			local dist = caster:Script_GetAttackRange() * self:GetAbility():GetSpecialValueFor("arrow_range_multiplier")
 			
-            local maxUnits = talent:GetSpecialValueFor("arrow_count")
+            local maxUnits = runeMultishot.arrowCount
             local radius = caster:Script_GetAttackRange()
             local i = 0
             local victims = FindUnitsInCone(
@@ -339,9 +337,11 @@ function modifier_drow_ranger_multishot_custom_debuff:DeclareFunctions()
 end
 
 function modifier_drow_ranger_multishot_custom_debuff:GetModifierIncomingDamage_Percentage()
-    local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_drow_ranger_1")
-    if talent and talent:GetLevel() > 2 then
-        return talent:GetSpecialValueFor("damage_increase")
-    end
+	if IsServer() then
+		local caster = self:GetCaster()
+		local runeMultishot = caster:FindModifierByName("modifier_item_socket_rune_legendary_drow_ranger_multishot")
+		if runeMultishot then
+			return runeMultishot.damageIncrease
+		end
+	end
 end

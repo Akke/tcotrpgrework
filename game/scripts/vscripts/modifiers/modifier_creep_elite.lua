@@ -1,4 +1,5 @@
 LinkLuaModifier("modifier_creep_elite", "modifiers/modifier_creep_elite.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_creep_elite_cooldown", "modifiers/modifier_creep_elite.lua", LUA_MODIFIER_MOTION_NONE)
 
 local ItemBaseClass = {
     IsPurgable = function(self) return false end,
@@ -7,7 +8,16 @@ local ItemBaseClass = {
     IsStackable = function(self) return false end,
 }
 
+local ItemBaseClassDebuff = {
+    IsPurgable = function(self) return false end,
+    RemoveOnDeath = function(self) return false end,
+    IsHidden = function(self) return false end,
+    IsStackable = function(self) return false end,
+    IsDebuff = function(self) return true end,
+}
+
 modifier_creep_elite = class(ItemBaseClass)
+modifier_creep_elite_cooldown = class(ItemBaseClassDebuff)
 ------------------
 function modifier_creep_elite:OnCreated()
     if not IsServer() then return end 
@@ -149,51 +159,122 @@ function modifier_creep_elite:OnDeath(event)
 
     local attacker = event.attacker
 
+    if not attacker or attacker:IsNull() then return end 
+    if not attacker:IsRealHero() then return end
     
-
+    local cooldown = 30
+    
     local chance = attacker:GenerateDropChance()
+
+    -- Drops legendary hero gems
+    if chance <= 5 then
+        local legendaryHeroGems = {
+            "item_socket_rune_legendary_drow_ranger_multishot",
+            "item_socket_rune_legendary_drow_ranger_marksmanship",
+            "item_socket_rune_legendary_medusa_split_shot",
+            "item_socket_rune_legendary_faceless_void_time_lock",
+            "item_socket_rune_legendary_faceless_void_chronosphere",
+            "item_socket_rune_legendary_lina_light_strike_array"
+        }
+
+        local gemToDrop = legendaryHeroGems[RandomInt(1, #legendaryHeroGems)]
+
+        local originalString = attacker:GetUnitName()
+        local prefixToRemove = "npc_dota_hero_"
+
+        -- Check if the string starts with the prefix
+        if string.sub(originalString, 1, #prefixToRemove) == prefixToRemove then
+            -- Remove the prefix
+            local heroName = string.sub(originalString, #prefixToRemove + 1)
+
+            local heroIsSame = false
+
+            for _,legGem in ipairs(legendaryHeroGems) do
+                if string.find(legGem, heroName) then
+                    heroIsSame = true
+                    break
+                end
+            end
+
+            -- There's a 75% chance to drop a gem for the same hero as the player is using
+            if heroIsSame then
+                local matchingEntries = {}
+        
+                for _, gem in ipairs(legendaryHeroGems) do
+                    if string.find(gem, heroName) then
+                        table.insert(matchingEntries, gem)
+                    end
+                end
+
+                -- Print the matching entries
+                local increaseChanceToDropGems = {}
+                for _, entry in ipairs(matchingEntries) do
+                    table.insert(increaseChanceToDropGems, entry)
+                end
+                
+                if RollPercentage(75) then
+                    gemToDrop = increaseChanceToDropGems[RandomInt(1, #increaseChanceToDropGems)]
+                end
+            end
+        end
+
+        DropNeutralItemAtPositionForHero(gemToDrop, parent:GetAbsOrigin(), parent, 1, false)
+    end
+
+    -- Drops neutral items
+    if attacker:HasModifier("modifier_creep_elite_cooldown") then return end
 
     if parent:GetLevel() < 50 then
         if chance <= ELITE_NEUTRAL_T1_CHANCE then
             local randomNeutral = NEUTRAL_ITEM_LIST_T1[RandomInt(1, #NEUTRAL_ITEM_LIST_T1)]
             DropNeutralItemAtPositionForHero(randomNeutral, parent:GetAbsOrigin(), parent, 1, false)
+
+            attacker:AddNewModifier(attacker, nil, "modifier_creep_elite_cooldown", { duration = cooldown })
         end
     elseif parent:GetLevel() >= 100 and parent:GetLevel() < 300 then
         if chance <= ELITE_NEUTRAL_T2_CHANCE then
             local randomNeutral = NEUTRAL_ITEM_LIST_T2[RandomInt(1, #NEUTRAL_ITEM_LIST_T2)]
             DropNeutralItemAtPositionForHero(randomNeutral, parent:GetAbsOrigin(), parent, 1, false)
+
+            attacker:AddNewModifier(attacker, nil, "modifier_creep_elite_cooldown", { duration = cooldown })
             return
         end 
 
         if chance <= ELITE_NEUTRAL_T1_CHANCE then
             local randomNeutral = NEUTRAL_ITEM_LIST_T1[RandomInt(1, #NEUTRAL_ITEM_LIST_T1)]
             DropNeutralItemAtPositionForHero(randomNeutral, parent:GetAbsOrigin(), parent, 1, false)
+
+            attacker:AddNewModifier(attacker, nil, "modifier_creep_elite_cooldown", { duration = cooldown })
         end
     elseif parent:GetLevel() >= 300 then
         if chance <= ELITE_NEUTRAL_T3_CHANCE then
             local randomNeutral = NEUTRAL_ITEM_LIST_T3[RandomInt(1, #NEUTRAL_ITEM_LIST_T3)]
             DropNeutralItemAtPositionForHero(randomNeutral, parent:GetAbsOrigin(), parent, 1, false)
+
+            attacker:AddNewModifier(attacker, nil, "modifier_creep_elite_cooldown", { duration = cooldown })
             return
         end
 
         if chance <= ELITE_NEUTRAL_T2_CHANCE then
             local randomNeutral = NEUTRAL_ITEM_LIST_T2[RandomInt(1, #NEUTRAL_ITEM_LIST_T2)]
             DropNeutralItemAtPositionForHero(randomNeutral, parent:GetAbsOrigin(), parent, 1, false)
+
+            attacker:AddNewModifier(attacker, nil, "modifier_creep_elite_cooldown", { duration = cooldown })
             return
         end 
     end
 end
 
 function modifier_creep_elite:GetModifierExtraHealthPercentage()
-    return 300
+    return 50
 end
 
 function modifier_creep_elite:GetModifierDamageOutgoing_Percentage()
-    return 300
+    return 50
 end
 
 function modifier_creep_elite:GetModifierIncomingDamage_Percentage()
-    return -70
+    return -50
 end
 
 function modifier_creep_elite:GetEffectName() return "particles/units/heroes/hero_axe/axe_beserkers_call.vpcf" end

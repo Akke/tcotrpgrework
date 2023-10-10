@@ -34,7 +34,7 @@ function boss_doom_devour:OnSpellStart()
     ParticleManager:ReleaseParticleIndex(self.vfx)
 
     if caster:GetLevel() > target:GetLevel() then
-        target:ForceKill(false)
+        target:Kill(self, caster)
     end
 
     EmitSoundOn("Hero_DoomBringer.DevourCast", target)

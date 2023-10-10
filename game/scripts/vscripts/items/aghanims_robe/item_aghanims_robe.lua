@@ -61,12 +61,17 @@ function modifier_item_aghanims_robe:OnRefresh()
     local parent = self:GetParent()
     local flowHp = self:GetAbility():GetSpecialValueFor("mana_flow_hp")
     local flowMana = self:GetAbility():GetSpecialValueFor("mana_flow_mana")
+    local maxSpellDamage = self:GetAbility():GetSpecialValueFor("max_spell_amp")
 
     self.manaRegen = (parent:GetMaxHealth()) * (flowMana/100)
     self.hpRegen = (parent:GetMaxMana()) * (flowHp/100)
 
     self.spellAmp = self:GetAbility():GetSpecialValueFor("spell_amp") + (parent:GetManaRegen() * (self:GetAbility():GetSpecialValueFor("mana_regen_spell_amp")/100))
 
+    if self.spellAmp > maxSpellDamage then
+        self.spellAmp = maxSpellDamage
+    end
+    
     if parent:HasModifier("modifier_item_aghanims_robe_active") then
         self.manaRegen = self.manaRegen * 2
         self.hpRegen = self.hpRegen * 2

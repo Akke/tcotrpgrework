@@ -116,6 +116,8 @@ function modifier_boss_omniknight_repel:OnModifierAdded(event)
 
     if parent:PassivesDisabled() then return end
 
+    if (caster:GetAbsOrigin()-parent:GetAbsOrigin()):Length2D() > 1200 then return end
+
     EmitSoundOn("Hero_Omniknight.HammerOfPurity.Cast", parent)
 
     local info = 

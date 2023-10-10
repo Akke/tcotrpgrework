@@ -399,6 +399,12 @@ function SpawnAllUnits()
                         posY = unit:GetAbsOrigin().y,
                         posZ = unit:GetAbsOrigin().z,
                     }) 
+                elseif unitName == "npc_dota_creature_150_boss_last" then 
+                    unit:AddNewModifier(unit, nil, "modifier_boss_divine", {
+                        posX = unit:GetAbsOrigin().x,
+                        posY = unit:GetAbsOrigin().y,
+                        posZ = unit:GetAbsOrigin().z,
+                    }) 
                 else
                     unit:AddNewModifier(unit, nil, "modifier_unit_on_death", {
                         posX = unit:GetAbsOrigin().x,
@@ -461,6 +467,12 @@ function SpawnAllUnits()
                             posY = unit:GetAbsOrigin().y,
                             posZ = unit:GetAbsOrigin().z,
                         }):ForceRefresh() 
+                    elseif modifier_boss_divine:IsFollower(unit) then 
+                        unit:AddNewModifier(unit, nil, "modifier_boss_divine_follower", {
+                            posX = unit:GetAbsOrigin().x,
+                            posY = unit:GetAbsOrigin().y,
+                            posZ = unit:GetAbsOrigin().z,
+                        }):ForceRefresh() 
                     else 
                         unit:AddNewModifier(unit, nil, "modifier_unit_on_death", {
                             posX = unit:GetAbsOrigin().x,
@@ -477,7 +489,7 @@ function SpawnAllUnits()
     if IsPvP() then
         SpawnUnitsInZone("spawn_creep_1", "npc_dota_creature_1_crip", 1) -- Mole
         SpawnUnitsInZone("spawn_creep_2", "npc_dota_creature_30_crip", 3) -- Bear
-        SpawnUnitsInZone("spawn_creep_13", "npc_dota_creature_30_crip_2", 3) -- Wolf
+        SpawnUnitsInZone("spawn_creep_13", "npc_dota_creature_30_crip_2", 2) -- Wolf
         SpawnUnitsInZone("spawn_creep_10", "npc_dota_creature_10_crip_2", 1)
         SpawnUnitsInZone("spawn_creep_16", "npc_dota_creature_10_crip_4", 1)
         SpawnUnitsInZone("spawn_creep_11", "npc_dota_creature_10_crip_3", 1)

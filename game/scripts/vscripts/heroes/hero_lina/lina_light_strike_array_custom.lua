@@ -174,7 +174,12 @@ function modifier_lina_light_strike_array_custom:OnDestroy()
         end
 
         if debuff then
-            if debuff:GetStackCount() < self:GetAbility():GetSpecialValueFor("burn_max_stacks") then
+            local runeLightStrikeArray = caster:FindModifierByName("modifier_item_socket_rune_legendary_lina_light_strike_array")
+            if not runeLightStrikeArray then
+                if debuff:GetStackCount() < self:GetAbility():GetSpecialValueFor("burn_max_stacks") then
+                    debuff:IncrementStackCount()
+                end
+            else
                 debuff:IncrementStackCount()
             end
 
@@ -249,6 +254,15 @@ function modifier_lina_light_strike_array_custom_debuff:OnIntervalThink()
         ability = self:GetAbility(),
         damage_type = DAMAGE_TYPE_MAGICAL,
     })
+
+    local runeLightStrikeArray = caster:FindModifierByName("modifier_item_socket_rune_legendary_lina_light_strike_array")
+    if runeLightStrikeArray then
+        if RollPercentage(runeLightStrikeArray.stunChance) then
+            self:GetParent():AddNewModifier(caster, nil, "modifier_stunned", {
+                duration = runeLightStrikeArray.stunDuration
+            })
+        end
+    end
 end
 
 function modifier_lina_light_strike_array_custom_debuff:GetEffectName()

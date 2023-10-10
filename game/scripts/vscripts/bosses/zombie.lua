@@ -217,16 +217,16 @@ function modifier_boss_zombie:OnDeath(event)
     for _,hero in ipairs(heroes) do
         if UnitIsNotMonkeyClone(hero) and not hero:IsTempestDouble() then
             if PlayerResource:GetConnectionState(hero:GetPlayerID()) == DOTA_CONNECTION_STATE_CONNECTED then
-                if hero:FindItemInAnyInventory("item_elder_soul") == nil and _G.autoPickup[hero:GetPlayerID()] ~= AUTOLOOT_ON_NO_SOULS then
-                    --hero:AddItemByName("item_elder_soul")
+                if hero:FindItemInAnyInventory("item_spider_soul") == nil and _G.autoPickup[hero:GetPlayerID()] ~= AUTOLOOT_ON_NO_SOULS then
+                    --hero:AddItemByName("item_spider_soul")
                 end
                 
-                hero:ModifyGold(30000, false, 0)
+                hero:ModifyGold(15000, false, 0)
             end
         end
     end
 
-    DropNeutralItemAtPositionForHero("item_elder_soul", victim:GetAbsOrigin(), victim, -1, true)
+    DropNeutralItemAtPositionForHero("item_spider_soul", victim:GetAbsOrigin(), victim, -1, true)
 
     -- Drops --
     if event.attacker:GenerateDropChance() <= 10.0 then

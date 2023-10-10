@@ -739,4 +739,224 @@
         "ItemPurchasable"       "0"
         "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
     }
+
+    "item_socket_rune_legendary_drow_ranger_multishot" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_drow_ranger_marksmanship" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_medusa_split_shot" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_faceless_void_time_lock" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_faceless_void_chronosphere" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_lina_light_strike_array" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_tidehunter_anchor_smash" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_axe_counter_helix" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_axe_culling_blade" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_luna_moon_beam" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
+
+    "item_socket_rune_legendary_lone_druid_bear" 
+    {    
+        "BaseClass"           "item_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                          "runes/rune_hero"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPermanent"         "0"
+        "ItemKillable"                  "1"
+        "ItemSellable"                  "1"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"       "0"
+        "ItemShareability"        "ITEM_FULLY_SHAREABLE_STACKING"
+    }
 }

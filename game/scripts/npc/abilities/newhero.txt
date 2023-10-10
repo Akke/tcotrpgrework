@@ -254,9 +254,9 @@
         "Ability17"     "special_bonus_spell_amplify_18"
 
         "AttackRate"    "5.0"
-        "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
         "AttributePrimary"      "DOTA_ATTRIBUTE_INTELLECT"
-        "AttackRange"           "600"
+        "AttackRange"           "100"
         "ProjectileModel"       ""
         "AttributeBaseStrength" "15"
         "AttributeBaseIntelligence" "15"

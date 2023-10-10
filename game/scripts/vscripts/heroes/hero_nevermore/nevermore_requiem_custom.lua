@@ -248,13 +248,6 @@ function nevermore_requiem_custom:OnProjectileHit_ExtraData(target, location, ex
 	if scepter_line then
 		caster:Heal(damage_dealt, caster)
 	end
-	
-	-- F.E.A.R.	
-    if not target:HasModifier("modifier_nevermore_requiem_fear") then
-        target:AddNewModifier(self:GetCaster(), self, "modifier_nevermore_requiem_fear", {duration = self:GetSpecialValueFor("requiem_slow_duration") * (1 - target:GetStatusResistance())})
-    else
-        target:FindModifierByName("modifier_nevermore_requiem_fear"):SetDuration(math.min(target:FindModifierByName("modifier_nevermore_requiem_fear"):GetRemainingTime() + self:GetSpecialValueFor("requiem_slow_duration"), self:GetSpecialValueFor("requiem_slow_duration_max")) * (1 - target:GetStatusResistance()), true)
-    end
 end
 
 

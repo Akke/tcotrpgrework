@@ -208,8 +208,6 @@ function modifier_medusa_mana_shield_custom:GetModifierIncomingDamageConstant(ke
 
 	parent:Script_ReduceMana(manaCost, ability)
 
-	print(block)
-
 	return block
 end
 

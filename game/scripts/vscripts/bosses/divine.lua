@@ -125,6 +125,16 @@ function modifier_boss_divine:IsFollower(follower)
     return false
 end
 
+function modifier_boss_divine:ProgressToNext()
+    if PARTICLE_ID ~= nil then
+        ParticleManager:DestroyParticle(PARTICLE_ID, true)
+        ParticleManager:ReleaseParticleIndex(PARTICLE_ID)
+    end
+
+
+    EmitSoundOn("Hero_OgreMagi.Bloodlust.Target", self:GetParent())
+end
+
 function modifier_boss_divine:OnDeath(event)
     local victim = event.unit
 

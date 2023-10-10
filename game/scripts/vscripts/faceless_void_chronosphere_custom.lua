@@ -206,8 +206,8 @@ function modifier_faceless_void_chronosphere_custom_debuff:NotAffected()
 
     --only do this with talent
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_faceless_void_1")
-    if talent ~= nil and talent:GetLevel() > 0 then
+    local runeChronosphere = caster:FindModifierByName("modifier_item_socket_rune_legendary_faceless_void_chronosphere")
+    if runeChronosphere then
         if self:GetParent():GetTeamNumber()==self:GetCaster():GetTeamNumber() then return true end
     end
 end
@@ -251,11 +251,11 @@ function modifier_faceless_void_chronosphere_custom_debuff:GetModifierMoveSpeed_
 end
 
 function modifier_faceless_void_chronosphere_custom_debuff:GetModifierDamageOutgoing_Percentage(event)
-    if self:NotAffected() then
+    if self:NotAffected() and IsServer() then
         local caster = self:GetCaster()
-        local talent = caster:FindAbilityByName("talent_faceless_void_1")
-        if talent ~= nil and talent:GetLevel() > 2 then
-            return talent:GetSpecialValueFor("chrono_damage_increase")
+        local runeChronosphere = caster:FindModifierByName("modifier_item_socket_rune_legendary_faceless_void_chronosphere")
+        if runeChronosphere then
+            return runeChronosphere.damageIncrease
         end
     end
 end

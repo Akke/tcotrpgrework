@@ -150,7 +150,13 @@ function modifier_item_mark_of_shadow:OnRefresh()
     local parent = self:GetParent()
     local ability = self:GetAbility()
 
+    local maxSpellDamage = ability:GetSpecialValueFor("max_spell_amp")
+
     self.spell = parent:GetMaxMana() * (ability:GetSpecialValueFor("max_mana_to_spell_amp")/100)
+
+    if self.spell > maxSpellDamage then
+        self.spell = maxSpellDamage
+    end
 
     self:InvokeBonus()
 end

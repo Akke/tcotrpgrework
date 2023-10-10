@@ -97,7 +97,7 @@ function modifier_boss_destruction_lord_soul_slice:OnAttackLanded(event)
                 debuff:IncrementStackCount()
                 debuff:ForceRefresh()
             else
-                victim:ForceKill(false)
+                victim:Kill(ability, caster)
             end
         end
 

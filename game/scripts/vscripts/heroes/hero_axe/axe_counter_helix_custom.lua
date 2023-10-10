@@ -36,8 +36,8 @@ end
 
 function axe_counter_helix_custom:GetBehavior()
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_axe_1")
-    if talent ~= nil and talent:GetLevel() > 0 then
+    local runeCounterHelix = caster:HasModifier("modifier_item_socket_rune_legendary_axe_counter_helix")
+    if runeCounterHelix then
         return DOTA_ABILITY_BEHAVIOR_TOGGLE
     end
 
@@ -46,9 +46,9 @@ end
 
 function axe_counter_helix_custom:GetManaCost()
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_axe_1")
-    if talent ~= nil and talent:GetLevel() > 0 then
-        return caster:GetMaxMana() * (talent:GetSpecialValueFor("mana_per_sec_pct")/100)
+    local runeCounterHelix = caster:HasModifier("modifier_item_socket_rune_legendary_axe_counter_helix")
+    if runeCounterHelix then
+        return caster:GetMaxMana() * (5/100)
     end
 
     return 0
@@ -194,13 +194,13 @@ function modifier_axe_counter_helix_custom_toggle:OnCreated()
     if not IsServer() then return end 
 
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_axe_1")
+    local runeCounterHelix = caster:FindModifierByName("modifier_item_socket_rune_legendary_axe_counter_helix")
     
-    if not talent or (talent ~= nil and talent:GetLevel() < 1) then return end 
+    if not runeCounterHelix then return end 
 
-    local interval = talent:GetSpecialValueFor("interval")
+    local interval = runeCounterHelix.interval
 
-    self.cost = caster:GetMaxMana() * (talent:GetSpecialValueFor("mana_per_sec_pct")/100) * interval
+    self.cost = caster:GetMaxMana() * (runeCounterHelix.manaPerSec/100) * interval
 
     self.windCounter = 0
 
@@ -209,9 +209,9 @@ end
 
 function modifier_axe_counter_helix_custom_toggle:OnIntervalThink()
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_axe_1")
+    local runeCounterHelix = caster:FindModifierByName("modifier_item_socket_rune_legendary_axe_counter_helix")
 
-    if (not talent or (talent ~= nil and talent:GetLevel() < 1)) or self.cost > self:GetCaster():GetMana() then
+    if (not runeCounterHelix) or self.cost > self:GetCaster():GetMana() then
         if self:GetAbility():GetToggleState() then
             self:GetAbility():ToggleAbility()
         end
@@ -219,7 +219,7 @@ function modifier_axe_counter_helix_custom_toggle:OnIntervalThink()
         return 
     end 
 
-    self.windCounter = self.windCounter + talent:GetSpecialValueFor("interval")
+    self.windCounter = self.windCounter + runeCounterHelix.interval
 
     local enemies = FindUnitsInRadius(
         self:GetCaster():GetTeamNumber(),   -- int, your team number
@@ -255,8 +255,8 @@ function modifier_axe_counter_helix_custom_toggle:OnIntervalThink()
     self:GetCaster():SpendMana(self.cost, self:GetAbility())
 
     if self.windCounter >= 1 then
-    -- Thinker 
-    local windPos = caster:GetAbsOrigin()
+        --[[
+        local windPos = caster:GetAbsOrigin()
         CreateModifierThinker(
             caster,
             self:GetAbility(),
@@ -270,6 +270,7 @@ function modifier_axe_counter_helix_custom_toggle:OnIntervalThink()
         -- create vision
         AddFOWViewer(bit.bor(DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS), windPos, talent:GetSpecialValueFor("wind_radius"), talent:GetSpecialValueFor("wind_duration"), false)
         self.windCounter = 0
+        --]]
     end
 end
 

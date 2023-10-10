@@ -43,16 +43,23 @@ end
 
 function modifier_axe_culling_blade_custom_stacks:GetModifierExtraHealthPercentage()
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_axe_2")
-    if not talent or (talent ~= nil and talent:GetLevel() < 3) then return end
+    local runeCullingBlade = caster:HasModifier("modifier_item_socket_rune_legendary_axe_culling_blade")
+    
+    if not runeCullingBlade then return end
+    
+    local count = self:GetStackCount()
 
-    return self:GetStackCount() * self:GetAbility():GetSpecialValueFor("hp_per_stack")
+    if count < 200 then
+        return count * 0.25
+    end
 end
 
 function modifier_axe_culling_blade_custom_stacks:IsHidden()
     local caster = self:GetCaster()
-    local talent = caster:FindAbilityByName("talent_axe_2")
-    if not talent or (talent ~= nil and talent:GetLevel() < 3) then return true end
+
+    local runeCullingBlade = caster:HasModifier("modifier_item_socket_rune_legendary_axe_culling_blade")
+    
+    if not runeCullingBlade then return true end
 
     return false
 end
@@ -116,7 +123,9 @@ function modifier_axe_culling_blade_custom:OnDeath(event)
     })
 
     local talent = parent:FindAbilityByName("talent_axe_2")
-    if not talent or (talent ~= nil and talent:GetLevel() < 3) then return end
+    local runeCullingBlade = parent:FindModifierByName("modifier_item_socket_rune_legendary_axe_culling_blade")
+    
+    if not runeCullingBlade then return end
 
     -- Perma stacks
     local armor = parent:FindModifierByName("modifier_axe_culling_blade_custom_stacks")
@@ -126,6 +135,7 @@ function modifier_axe_culling_blade_custom:OnDeath(event)
 
     if armor then
         armor:IncrementStackCount()
+        parent:CalculateStatBonus(true)
     end
 end
 
@@ -147,6 +157,7 @@ function modifier_axe_culling_blade_custom:OnAttackStart( params )
         local victim = params.target
 
         local talent = caster:FindAbilityByName("talent_axe_2")
+        local runeCullingBlade = caster:FindModifierByName("modifier_item_socket_rune_legendary_axe_culling_blade")
 
         if not ability:IsCooldownReady() then return end
         if not RollPercentage(self:GetAbility():GetSpecialValueFor("chance")) then 
@@ -156,22 +167,20 @@ function modifier_axe_culling_blade_custom:OnAttackStart( params )
         if not self.attack then return end 
         if self.timer ~= nil then return end
         
-        if talent ~= nil and talent:GetLevel() > 0 then
-            local executeThreshold = talent:GetSpecialValueFor("execute_threshold")
-            local executeChance = talent:GetSpecialValueFor("execute_chance")
+        if runeCullingBlade then
+            local executeThreshold = runeCullingBlade.executeThreshold
+            local executeChance = runeCullingBlade.executeChance
 
             local enemies = FindUnitsInRadius(caster:GetTeam(), victim:GetAbsOrigin(), nil,
-                talent:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC), DOTA_UNIT_TARGET_FLAG_NONE,
+            runeCullingBlade.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, bit.bor(DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC), DOTA_UNIT_TARGET_FLAG_NONE,
                 FIND_CLOSEST, false)
 
             for _,enemy in ipairs(enemies) do
                 if not enemy:IsAlive() then break end
 
                 -- chance to execute them with the talent
-                if talent:GetLevel() > 1 then
-                    if enemy:GetHealthPercent() <= executeThreshold and RollPercentage(executeChance) then
-                        totaldamage = enemy:GetMaxHealth()
-                    end
+                if enemy:GetHealthPercent() <= executeThreshold and RollPercentage(executeChance) then
+                    totaldamage = enemy:GetMaxHealth()
                 end
 
                 -- Deal damage 

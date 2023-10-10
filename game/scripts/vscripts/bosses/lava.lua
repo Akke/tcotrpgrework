@@ -204,6 +204,28 @@ function modifier_boss_lava:OnDeath(event)
 
     DropNeutralItemAtPositionForHero("item_last_soul", victim:GetAbsOrigin(), victim, -1, true)
 end
+
+function modifier_boss_lava:ProgressToNext()
+    if PARTICLE_ID ~= nil then
+        ParticleManager:DestroyParticle(PARTICLE_ID, true)
+        ParticleManager:ReleaseParticleIndex(PARTICLE_ID)
+    end
+
+    --todo: you also need to apply the new stage abilities to them when they respawn.
+    --this just updates the currently spawned units.
+    local followers = FindUnitsInRadius(self.boss:GetTeam(), self.boss:GetAbsOrigin(), nil,
+        99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, bit.bor(DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_HERO), DOTA_UNIT_TARGET_FLAG_NONE,
+        FIND_CLOSEST, false)
+
+    for _,minion in ipairs(followers) do
+        if minion:GetUnitName() == "npc_dota_creature_lava_1" or
+        minion:GetUnitName() == "npc_dota_creature_lava_2" then
+            minion:FindModifierByNameAndCaster("modifier_boss_lava_follower", minion):ForceRefresh()
+        end
+    end
+
+    EmitSoundOn("Hero_OgreMagi.Bloodlust.Target", self:GetParent())
+end
 -----------
 function modifier_boss_lava_follower:DeclareFunctions(props)
     local funcs = {

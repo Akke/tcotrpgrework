@@ -68,11 +68,12 @@ function aghanim_tower_capture:OnChannelFinish(bInterrupted)
         local spawn = Entities:FindByName(nil, "spawn_boss_aghanim")
         if not spawn or spawn == nil then return end
 
-        local portal = Entities:FindByName(nil, "trigger_entrance_aghanim")
+        local portal = _G.AghanimGateUnit
         if portal ~= nil then
             portal:SetModel("models/props_structures/dungeon_temple_portal001.vmdl")
             portal:RemoveNoDraw()
-            local particle = ParticleManager:CreateParticle("particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal_2.vpcf", PATTACH_WORLDORIGIN, nil)   
+
+            local particle = ParticleManager:CreateParticle("particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal_2.vpcf", PATTACH_ABSORIGIN_FOLLOW, portal)   
             ParticleManager:SetParticleControlEnt(particle, 0, portal, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", portal:GetAbsOrigin(), false)
             ParticleManager:ReleaseParticleIndex(particle)
 
@@ -80,9 +81,8 @@ function aghanim_tower_capture:OnChannelFinish(bInterrupted)
             AddFOWViewer(DOTA_TEAM_GOODGUYS, portal:GetAbsOrigin(), 300, 99999, false)
         end
 
-        CreateUnitByNameAsync("npc_dota_boss_aghanim", spawn:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
-            unit:AddNewModifier(unit, nil, "modifier_unit_boss_2", {})
-        end)
+        local aghanimUnit = CreateUnitByName("npc_dota_boss_aghanim", spawn:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
+        aghanimUnit:AddNewModifier(aghanimUnit, nil, "modifier_unit_boss_2", {})
 
         GameRules:SendCustomMessage("<font color='lightblue'>— YOU HAVE BEEN GRANTED AN AUDIENCE WITH AGHANIM —</font>", 0, 0)
         EmitGlobalSound("TCOTRPG.Aghanim.Greetings.Intro")

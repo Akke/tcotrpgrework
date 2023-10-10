@@ -7,44 +7,65 @@ local ItemBaseClass = {
     IsHidden = function(self) return true end,
     IsStackable = function(self) return false end,
 }
+
 local ItemBaseClassBuff = {
     IsPurgable = function(self) return false end,
-    RemoveOnDeath = function(self) return false end,
+    RemoveOnDeath = function(self) return true end,
     IsHidden = function(self) return false end,
     IsStackable = function(self) return true end,
     IsDebuff = function(self) return false end,
 }
 
-
 pudge_flesh_heap_custom = class(ItemBaseClass)
 modifier_pudge_flesh_heap_custom = class(pudge_flesh_heap_custom)
 modifier_pudge_flesh_heap_custom_buff_permanent = class(ItemBaseClassBuff)
 -------------
-function modifier_pudge_flesh_heap_custom_buff_permanent:GetAttributes()
-    return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 function modifier_pudge_flesh_heap_custom_buff_permanent:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_STATS_STRENGTH_BONUS , --GetModifierBonusStats_Strength
-        MODIFIER_PROPERTY_MODEL_SCALE, --GetModifierModelScale
+        MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, --GetModifierBonusStats_Strength
     }
 
     return funcs
 end
 
-function modifier_pudge_flesh_heap_custom_buff_permanent:GetModifierModelScale()
-    return math.min(self:GetStackCount() * 0.2, 200)
-end
-
 function modifier_pudge_flesh_heap_custom_buff_permanent:GetModifierBonusStats_Strength()
     return self:GetStackCount() * self:GetAbility():GetSpecialValueFor("str_gain")
+end
+
+function modifier_pudge_flesh_heap_custom_buff_permanent:GetStatusEffectName()
+    return "particles/units/heroes/hero_pudge/pudge_fleshheap_status_effect.vpcf"
 end
 -------------
 function pudge_flesh_heap_custom:GetIntrinsicModifierName()
     return "modifier_pudge_flesh_heap_custom"
 end
 
+function pudge_flesh_heap_custom:OnSpellStart()
+    if not IsServer() then return end 
+
+    local caster = self:GetCaster()
+
+    local mod = caster:FindModifierByName("modifier_pudge_flesh_heap_custom")
+    local stacks = mod:GetStackCount()
+
+    local buff = caster:AddNewModifier(caster, self, "modifier_pudge_flesh_heap_custom_buff_permanent", {
+        duration = self:GetSpecialValueFor("duration")
+    })
+
+    if buff then
+        buff:SetStackCount(stacks)
+    end
+
+    caster:CalculateStatBonus(true)
+end
+---------------
+function modifier_pudge_flesh_heap_custom:IsHidden() return false end 
+
+function modifier_pudge_flesh_heap_custom:OnCreated()
+    if not IsServer() then return end 
+
+    self:SetStackCount(0)
+end
 
 function modifier_pudge_flesh_heap_custom:DeclareFunctions()
     local funcs = {
@@ -69,18 +90,9 @@ function modifier_pudge_flesh_heap_custom:OnDeath(event)
         return
     end
 
+    if victim:GetTeam() == parent:GetTeam() then return end
+
     local ability = self:GetAbility()
 
-    local buff = parent:FindModifierByNameAndCaster("modifier_pudge_flesh_heap_custom_buff_permanent", parent)
-    
-    if not buff then
-        buff = parent:AddNewModifier(parent, ability, "modifier_pudge_flesh_heap_custom_buff_permanent", {})
-    end
-
-    if buff ~= nil then
-        local preTotal = (buff:GetStackCount() * ability:GetSpecialValueFor("str_gain"))
-        if preTotal >= 1000000 then return end
-
-        buff:IncrementStackCount()
-    end
+    self:IncrementStackCount()
 end

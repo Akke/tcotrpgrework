@@ -143,8 +143,9 @@ function modifier_drow_ranger_marksmanship_custom:OnAttack( params )
 	-- procs, record attack
 	self.records[params.record] = true
 
-    local talent = params.attacker:FindAbilityByName("talent_drow_ranger_2")
-    if talent and talent:GetLevel() > 1 and RollPercentage(talent:GetSpecialValueFor("multishot_chance")) then
+	local caster = self:GetCaster()
+	local runeMarksmanship = caster:FindModifierByName("modifier_item_socket_rune_legendary_drow_ranger_marksmanship")
+    if runeMarksmanship and RollPercentage(runeMarksmanship.multishotChance) then
 		local multishot = params.attacker:FindAbilityByName("drow_ranger_multishot_custom")
 		if multishot and multishot:GetLevel() > 0 then
 			local point = params.target:GetAbsOrigin()
@@ -517,11 +518,12 @@ end
 
 function modifier_drow_ranger_marksmanship_custom_aura_crit:GetModifierPreAttack_CriticalStrike( params )
     if IsServer() and (not self:GetParent():PassivesDisabled()) then
-		local talent = self:GetCaster():FindAbilityByName("talent_drow_ranger_2")
-		if talent and talent:GetLevel() > 2 then
-			if RollPercentage(talent:GetSpecialValueFor("crit_chance")) then
+		local caster = self:GetCaster()
+		local runeMarksmanship = caster:FindModifierByName("modifier_item_socket_rune_legendary_drow_ranger_marksmanship")
+		if runeMarksmanship then
+			if RollPercentage(runeMarksmanship.critChance) then
 				self.record = params.record
-				return talent:GetSpecialValueFor("crit_damage")
+				return runeMarksmanship.critDamage
 			end
 		end
     end

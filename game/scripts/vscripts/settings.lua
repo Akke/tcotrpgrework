@@ -168,7 +168,7 @@ MAX_LEVEL = 300                         -- What level should we let heroes get t
 XP_PER_LEVEL_TABLE = {}
 XP_PER_LEVEL_TABLE[1] = 0
 for i=2,MAX_LEVEL do
-  XP_PER_LEVEL_TABLE[i] = XP_PER_LEVEL_TABLE[i-1] + i * 750
+  XP_PER_LEVEL_TABLE[i] = XP_PER_LEVEL_TABLE[i-1] + i * 250
 end
 
 ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?
@@ -196,7 +196,7 @@ end
 FOUNTAIN_CONSTANT_MANA_REGEN = 50       -- What should we use for the constant fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_MANA_REGEN = 500     -- What should we use for the percentage fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_HEALTH_REGEN = 500   -- What should we use for the percentage fountain health regen?  Use -1 to keep the default dota behavior.
-MAXIMUM_ATTACK_SPEED = 1100              -- What should we use for the maximum attack speed?
+MAXIMUM_ATTACK_SPEED = 650              -- What should we use for the maximum attack speed?
 MINIMUM_ATTACK_SPEED = 100               -- What should we use for the minimum attack speed?
 
 DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
@@ -359,7 +359,7 @@ BOOK_ABILITY_SELECTION = {
     "alchemist_chemical_greevils_greed_custom",
     "fenrir_summon_pup",
     "fenrir_ice_shards",
-    "medusa_split_shot",
+    "medusa_split_shot_custom",
     "primal_beast_onslaught_custom",
     "primal_beast_trample_custom",
     "primal_beast_uproar_custom",
@@ -521,19 +521,16 @@ BOOK_ABILITY_SELECTION = {
     "necrolyte_hollowed_ground",
     "gabriel_purity",
     "gabriel_divine_retribution",
-    "gabriel_heavenly_balance"
+    "gabriel_heavenly_balance",
+    "sniper_armor_bullets_custom",
+    "sniper_take_aim_custom",
 }
 
 -- Abilities that won't be randomly given to players
 BOOK_ABILITY_SELECTION_EXCEPTIONS = {
   "bloodseeker_bloodrage_custom",
   "bloodseeker_blood_mist_custom",
-  "tidehunter_kraken_shell_custom",
-  "tidehunter_anchor_smash_custom",
   "axe_culling_blade_custom",
-  "axe_counter_helix_custom",
-  "drow_ranger_multishot_custom",
-  "drow_ranger_marksmanship_custom",
   "night_stalker_dark_ascension_custom",
   "night_stalker_hunter_in_the_night_custom",
   "nevermore_necromastery_custom",
@@ -669,12 +666,6 @@ BOOK_ABILITY_SELECTION_EXCEPTIONS = {
   "lina_fiery_soul_custom",
   "lina_sun_ray_custom",
   "lina_laguna_blade_custom",
-  "sniper_explosive_bullets_custom",
-  "sniper_rapid_machinery_custom",
-  "sniper_shrapnel_custom",
-  "sniper_take_aim_custom",
-  "sniper_long_range_advantage_custom",
-  "sniper_armor_bullets_custom",
   "muerta_dead_shot_custom",
   "muerta_the_calling_custom",
 }
@@ -684,22 +675,8 @@ BOOK_ABILITY_CHANGE_PROHIBITED = {
   "medusa_mana_shield_custom",
   "lone_druid_spirit_bear_custom",
   "lone_druid_true_form_custom",
-  "faceless_void_time_lock_custom",
-  "faceless_void_chronosphere_custom",
-  "sniper_explosive_bullets_custom",
-  "sniper_rapid_machinery_custom",
-  "sniper_shrapnel_custom",
-  "sniper_take_aim_custom",
-  "sniper_long_range_advantage_custom",
-  "sniper_armor_bullets_custom",
   "primal_beast_onslaught_stop_custom",
   "grimstroke_soul_bind_custom",
-  "tidehunter_kraken_shell_custom",
-  "tidehunter_anchor_smash_custom",
-  "axe_culling_blade_custom",
-  "axe_counter_helix_custom",
-  "drow_ranger_multishot_custom",
-  "drow_ranger_marksmanship_custom",
   "night_stalker_dark_ascension_custom",
   "night_stalker_hunter_in_the_night_custom",
   "nevermore_necromastery_custom",
@@ -712,7 +689,6 @@ BOOK_ABILITY_CHANGE_PROHIBITED = {
   "spectre_dispersion_custom",
   "talent_sniper_1_sub",
   "techies_explosive_expert_custom",
-  "luna_moon_beam_custom",
   "luna_might_of_the_moon_custom",
   "bristleback_quill_spray_custom",
   "bristleback_warpath_custom",
@@ -1080,6 +1056,6 @@ TRIDENT_CRITICAL_IGNORE = {
 }--]]
 
 SERVER_KEY = "1.0"
-SERVER_DATE_KEY = "20231007"
+SERVER_DATE_KEY = "20231008"
 SERVER_URI = "http://70.34.214.112:4000"
 --SERVER_URI = "http://localhost:4000"

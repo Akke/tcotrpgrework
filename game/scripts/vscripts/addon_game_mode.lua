@@ -404,6 +404,8 @@ function Activate()
 
 	_G.DebugEnabled = false
 
+	_G.AghanimGateUnit = nil
+
 	_G.tPlayers 				= {}
 	_G.tHeroesRadiant 			= {}
 	_G.tHeroesDire 				= {}
@@ -528,14 +530,16 @@ function Activate()
 		[5] = false
 	}
 
+	_G.PlayerNeutralDropTimer = {}
+
 	if GetMapName() == "tcotrpg_1v1" then
 		InitDuel()
 	end
 
 	-- Clear drops --
-	Timers:CreateTimer(10.0, function()
+	Timers:CreateTimer(3.0, function()
 		ClearItems(true) -- Removes containers, etc. dropped on the ground by creeps
-		return 10.0
+		return 3.0
 	end)
 
 	--PrintTable(LoadKeyValues("scripts/npc/npc_abilities.txt"))

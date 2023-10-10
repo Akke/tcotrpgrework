@@ -68,7 +68,6 @@ function WaveManager:Init()
         "npc_dota_creature_30_boss",
         "npc_dota_creature_40_boss",
         "npc_dota_creature_100_boss",
-        "npc_dota_creature_150_boss_last",
         "npc_dota_creature_100_boss_2",
         "npc_dota_creature_100_boss_4",
     }

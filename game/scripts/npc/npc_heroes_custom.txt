@@ -369,7 +369,8 @@
     {
         "Ability2" "alchemist_chemical_gold_transfusion_custom"
         "Ability3" "alchemist_chemical_greevils_greed_custom"
-        "Ability4" "alchemist_berserk_potion"
+        "Ability1" "alchemist_berserk_potion"
+        "Ability4" "generic_hidden"
         "Ability5" "generic_hidden"
         "Ability6" "alchemist_chemical_rage_custom"
         "Ability7" "generic_hidden"
@@ -603,6 +604,7 @@
     }
     "npc_dota_hero_medusa"
     {
+        "Ability1" "medusa_split_shot_custom"
         "Ability3" "medusa_mana_shield_custom"
         "Ability2" "medusa_heavy_arrows"
         "Ability4" "medusa_mana_leech"
@@ -757,10 +759,10 @@
     {
         "Ability1"              "gun_joe_machine_gun"
         "Ability2"              "gun_joe_rifle"
-        "Ability3"              "sniper_explosive_bullets_custom"
-        "Ability4"              "sniper_rapid_machinery_custom"
+        "Ability3"              "sniper_armor_bullets_custom"
+        "Ability4"              "sniper_take_aim_custom"
         "Ability5"              "generic_hidden"
-        "Ability6"              "sniper_shrapnel_custom"
+        "Ability6"              "sniper_long_range_advantage_custom"
 
         "Ability10"             "special_bonus_unique_hidden_custom"
         "Ability11"             "special_bonus_unique_hidden_custom"
@@ -1244,7 +1246,7 @@
         "Ability1"     "spectre_spectral_dagger_custom"
         "Ability2"     "spectre_desolate_custom"
         "Ability3"     "spectre_dispersion_custom"
-        "Ability4"     "spectre_reality_custom"
+        "Ability4"     "generic_hidden"
         "Ability5"     "generic_hidden"
         "Ability6"     "spectre_spectral_strike_custom"
 

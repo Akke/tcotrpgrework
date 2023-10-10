@@ -30,5 +30,10 @@ function modifier_xp_intellect_talent_10:GetModifierSpellAmplify_Percentage()
     local parent = self:GetParent()
     local intellect = parent:GetIntellect()
 
-    return 0.01 * (intellect * self:GetStackCount())
+    local amp = 0.01 * (intellect * self:GetStackCount())
+    if amp > 50 then
+        amp = 50
+    end
+
+    return amp
 end

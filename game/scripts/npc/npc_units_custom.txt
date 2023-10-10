@@ -3322,9 +3322,9 @@
             {
               "Item"
               {
-                "1"       "item_bracer"
+                "1"       ""
               }
-              "Chance"      "10"
+              "Chance"      ""
             }
             "Trinkets"
             {

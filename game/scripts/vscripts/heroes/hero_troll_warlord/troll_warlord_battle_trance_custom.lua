@@ -1,5 +1,4 @@
 LinkLuaModifier("modifier_troll_warlord_battle_trance_custom", "heroes/hero_troll_warlord/troll_warlord_battle_trance_custom.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_troll_warlord_battle_trance_custom_buff", "heroes/hero_troll_warlord/troll_warlord_battle_trance_custom.lua", LUA_MODIFIER_MOTION_NONE)
 
 local ItemBaseClass = {
     IsPurgable = function(self) return false end,
@@ -17,82 +16,28 @@ local ItemBaseClassBuff = {
 }
 
 troll_warlord_battle_trance_custom = class(ItemBaseClass)
-modifier_troll_warlord_battle_trance_custom = class(troll_warlord_battle_trance_custom)
-modifier_troll_warlord_battle_trance_custom_buff = class(ItemBaseClassBuff)
+modifier_troll_warlord_battle_trance_custom = class(ItemBaseClassBuff)
 -------------
-function troll_warlord_battle_trance_custom:GetIntrinsicModifierName()
-    return "modifier_troll_warlord_battle_trance_custom"
-end
+function troll_warlord_battle_trance_custom:OnSpellStart()
+    if not IsServer() then return end 
 
-function modifier_troll_warlord_battle_trance_custom:DeclareFunctions()
-    local funcs = {
-        MODIFIER_EVENT_ON_TAKEDAMAGE
-    }
-    return funcs
-end
+    local caster = self:GetCaster()
 
+    caster:AddNewModifier(caster, self, "modifier_troll_warlord_battle_trance_custom", {
+        duration = self:GetSpecialValueFor("duration")
+    })
+
+    EmitSoundOn("Hero_TrollWarlord.BattleTrance.Cast", caster)
+end
+----------
 function modifier_troll_warlord_battle_trance_custom:OnCreated()
-    if not IsServer() then return end
-end
-
-function modifier_troll_warlord_battle_trance_custom:OnTakeDamage(event)
-    local unit = event.attacker
-    local parent = self:GetParent()
-    local caster = self:GetCaster()
-    local victim = event.unit
-
-    if victim ~= parent then
-        return
-    end
-
-    local ability = self:GetAbility()
-
-    if caster:HasModifier("modifier_troll_warlord_battle_trance_custom_buff") or not ability:IsCooldownReady() then return end
-
-    local threshold = ability:GetSpecialValueFor("health_threshold")
-
-    if parent:GetMaxHealth() <= threshold or (((parent:GetHealth() - event.damage)/parent:GetMaxHealth())*100) <= threshold then
-        caster:AddNewModifier(caster, ability, "modifier_troll_warlord_battle_trance_custom_buff", {
-            duration = ability:GetSpecialValueFor("duration")
-        })
-
-        ability:UseResources(true, false, false, true)
-    end
-end
----
-function modifier_troll_warlord_battle_trance_custom_buff:GetStatusEffectName()
-    return "particles/status_fx/status_effect_troll_warlord_battletrance.vpcf"
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE  
-    }
-    return funcs
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:GetModifierPreAttack_BonusDamage()
-    if self:GetParent():HasScepter() then
-        return self.fDamage
-    end
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:OnCreated()
-    self:SetHasCustomTransmitterData(true)
-
-    if not IsServer() then return end
-
-    self.effect_cast = nil
+    if not IsServer() then return end 
 
     local caster = self:GetCaster()
-
-    self.damage = caster:GetAverageTrueAttackDamage(caster) * (self:GetAbility():GetSpecialValueFor("outgoing_damage")/100)
 
     -- Get Resources
     local particle_cast = "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
-    local sound_cast = "Hero_TrollWarlord.BattleTrance.Cast"
+
     -- Create Particle
     self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, caster )
     ParticleManager:SetParticleControlEnt(
@@ -104,61 +49,80 @@ function modifier_troll_warlord_battle_trance_custom_buff:OnCreated()
         Vector(0,0,0), -- unknown
         true -- unknown, true
     )
+
     ParticleManager:SetParticleControl( self.effect_cast, 0, caster:GetOrigin() )
-
-    -- Create Sound
-    EmitSoundOn( sound_cast, caster )
-
-    self:InvokeBonusDamage()
 end
 
-function modifier_troll_warlord_battle_trance_custom_buff:AddCustomTransmitterData()
-    return
-    {
-        damage = self.fDamage
-    }
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:HandleCustomTransmitterData(data)
-    if data.damage ~= nil then
-        self.fDamage = tonumber(data.damage)
-    end
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:InvokeBonusDamage()
-    if IsServer() == true then
-        self.fDamage = self.damage
-
-        self:SendBuffRefreshToClients()
-    end
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:GetModifierPreAttack_BonusDamage()
-    return self.fDamage
-end
-
-function modifier_troll_warlord_battle_trance_custom_buff:OnRemoved()
+function modifier_troll_warlord_battle_trance_custom:OnDestroy()
     if not IsServer() then return end
 
     if self.effect_cast ~= nil then
         ParticleManager:DestroyParticle(self.effect_cast, true)
         ParticleManager:ReleaseParticleIndex(self.effect_cast)
     end
+end
 
-    local caster = self:GetCaster()
+function modifier_troll_warlord_battle_trance_custom:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_MIN_HEALTH,
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        MODIFIER_EVENT_ON_ATTACK_LANDED,
+        MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE 
+    }
+end
+
+function modifier_troll_warlord_battle_trance_custom:GetStatusEffectName()
+    return "particles/status_fx/status_effect_troll_warlord_battletrance.vpcf"
+end
+
+function modifier_troll_warlord_battle_trance_custom:GetMinHealth()
+    return 1
+end
+
+function modifier_troll_warlord_battle_trance_custom:GetModifierMoveSpeedBonus_Percentage()
+    return self:GetAbility():GetSpecialValueFor("bonus_movespeed_pct")
+end
+
+function modifier_troll_warlord_battle_trance_custom:GetModifierAttackSpeedBonus_Constant()
+    return self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+end
+
+function modifier_troll_warlord_battle_trance_custom:GetModifierDamageOutgoing_Percentage()
+    if self:GetCaster():HasScepter() then
+        return self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
+    end
+end
+
+function modifier_troll_warlord_battle_trance_custom:OnAttackLanded(event)
+    if not IsServer() then return end
+
+    if event.attacker ~= self:GetParent() then return end
+
+    local target = event.target
+    local attacker = event.attacker
     local ability = self:GetAbility()
 
-    local heal = caster:GetMaxHealth() * (ability:GetSpecialValueFor("max_hp_heal")/100)
+    if target:GetUnitName() == "npc_tcot_tormentor" then return end
 
-    caster:Heal(heal, ability)
+    local lifestealAmount = self:GetAbility():GetSpecialValueFor("bonus_lifesteal")
 
-    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, heal, nil)
-end
+    if lifestealAmount < 1 or not attacker:IsAlive() or attacker:GetHealth() < 1 or event.target:IsOther() or event.target:IsBuilding() then
+        return
+    end
 
-function modifier_troll_warlord_battle_trance_custom_buff:GetModifierIncomingDamage_Percentage()
-    return self:GetAbility():GetSpecialValueFor("damage_reduction")
-end
+    local heal = event.damage * (lifestealAmount/100)
 
-function modifier_troll_warlord_battle_trance_custom_buff:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetAbility():GetSpecialValueFor("speed_bonus")
+    if attacker:IsIllusion() then -- Illusions only heal for 10% of the value
+        heal = heal * 0.1
+    end
+    
+    if heal < 0 or heal > INT_MAX_LIMIT then
+        heal = self:GetParent():GetMaxHealth()
+    end
+
+    attacker:Heal(heal, nil)
+
+    local particle = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
+    ParticleManager:ReleaseParticleIndex(particle)
 end

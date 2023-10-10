@@ -139,11 +139,15 @@ function modifier_fervor_custom:GetModifierProcAttack_Feedback(params)
     if not IsServer() then return end
     
     if parent:IsIllusion() then return end
-    if params.target:GetUnitName() == "npc_dota_creature_target_dummy" then return false end
     if params.target:GetTeamNumber() == parent:GetTeamNumber() then return end
 
     parent:AddNewModifier(parent, self:GetAbility(), "modifier_fervor_custom_effect", {})
     local stack_count = params.attacker:GetModifierStackCount("modifier_fervor_custom_effect", parent)
+
+    if params.target:GetUnitName() == "npc_dota_creature_target_dummy" then 
+        self:SetStacksCustom(stack_count) 
+        return false 
+    end
 
     if not parent:HasModifier("modifier_item_aghanims_shard") then
         if stack_count < self:GetAbility():GetSpecialValueFor("max_stacks") then

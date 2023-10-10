@@ -85,6 +85,8 @@ function modifier_item_havoc:OnAttack(event)
 
     local target = event.target
 
+    if IsBossTCOTRPG(target) then return end
+
     if not RollPercentage(chance) then return end
 
     self:PlayEffects(target)

@@ -227,21 +227,10 @@ function XpManager:Init()
     _G.GlobalTalentsInitiated = true
 end
 
-function XpManager:GetLevel(experience)
-    local baseExperience = 100  -- Experience required for the first level
-    local growthFactor = 1.15  -- Experience growth factor (20% increase per level)
-
-    local level = math.floor(math.log((experience / baseExperience), growthFactor)) + 1
-    local nextLevelExperience = math.floor(baseExperience * math.pow(growthFactor, level))
-    local prevLevelExperience = math.floor(baseExperience * math.pow(growthFactor, level - 1))
-    
-    if level < 1 or experience < baseExperience then
-        nextLevelExperience = baseExperience
-        level = 0
-        prevLevelExperience = 0
+function XpManager:OnPlayerSpawnedForTheFirstTime(player)
+    if UnitIsNotMonkeyClone(player) and not player:IsIllusion() and player:IsRealHero() and not player:IsClone() and not player:IsTempestDouble() and not IsSummonTCOTRPG(player) then
+        self:LoadPlayerTalentData(player)
     end
-
-    return level, nextLevelExperience, prevLevelExperience
 end
 
 function XpManager:LoadTalentData()
@@ -258,20 +247,22 @@ function XpManager:LoadTalentData()
 
             self.talents = res.Body
 
-            --[[CustomGameEventManager:Send_ServerToAllClients("xp_manager_fetch_talents_complete", {
+            CustomGameEventManager:Send_ServerToAllClients("xp_manager_fetch_talents_complete", {
                 talents = self.talents,
                 a = RandomFloat(1,1000),
                 b = RandomFloat(1,1000),
                 c = RandomFloat(1,1000),
-            })--]]
+            })
 
             -- Load player specific data 
+            --[[
             local heroes = HeroList:GetAllHeroes()
             for _,hero in ipairs(heroes) do
                 if UnitIsNotMonkeyClone(hero) and not hero:IsIllusion() and hero:IsRealHero() and not hero:IsClone() and not hero:IsTempestDouble() and not IsSummonTCOTRPG(hero) then
                     self:LoadPlayerTalentData(hero)
                 end
             end
+            --]]
         end
     end)
 end
@@ -349,6 +340,23 @@ function XpManager:LoadPlayerTalentData(player)
             })
         end
     end)
+end
+
+function XpManager:GetLevel(experience)
+    local baseExperience = 100  -- Experience required for the first level
+    local growthFactor = 1.15  -- Experience growth factor (20% increase per level)
+
+    local level = math.floor(math.log((experience / baseExperience), growthFactor)) + 1
+    local nextLevelExperience = math.floor(baseExperience * math.pow(growthFactor, level))
+    local prevLevelExperience = math.floor(baseExperience * math.pow(growthFactor, level - 1))
+    
+    if level < 1 or experience < baseExperience then
+        nextLevelExperience = baseExperience
+        level = 0
+        prevLevelExperience = 0
+    end
+
+    return level, nextLevelExperience, prevLevelExperience
 end
 
 function XpManager:UpdateDatabaseRecord(player, talent, level)

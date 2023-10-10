@@ -214,9 +214,9 @@ function barebones:OnAllPlayersLoaded()
     --end
 
     if FAST_BOSSES_VOTE_RESULT == "ENABLE" then
-      GameRules:SendCustomMessage("<font color='yellow'>=== FAST RESPAWN [<b color='lightgreen'>ENABLED</b>] ===</font>", 0, 0)
+      GameRules:SendCustomMessage("<font color='yellow'>=== INSTANT RESPAWN [<b color='lightgreen'>ENABLED</b>] ===</font>", 0, 0)
     else
-      GameRules:SendCustomMessage("<font color='yellow'>=== FAST RESPAWN [<b color='red'>DISABLED</b>] ===</font>", 0, 0)
+      GameRules:SendCustomMessage("<font color='yellow'>=== INSTANT RESPAWN [<b color='red'>DISABLED</b>] ===</font>", 0, 0)
     end
 
     if GOLD_VOTE_RESULT == "ENABLE" then
@@ -683,7 +683,12 @@ function barebones:OnGameInProgress()
     --- do not let them in
   end
   --]]
+  if (not IsDedicatedServer() or IsCheatMode()) and not IsInToolsMode() then
+    GameRules:SendCustomMessageToTeam("<font color='red'>Attribute Talents and Leaderboards are unavailable because of cheats mode or because you're playing on a local server.</font>", DOTA_TEAM_GOODGUYS, 0, 0)
+  end
+
   PlayerBuffs:Init()
+  XpManager:Init()
   
   CustomGameEventManager:Send_ServerToAllClients("duel_timer_changed", { isDuelActive = KILL_VOTE_RESULT:upper() })
 
@@ -739,7 +744,6 @@ function barebones:OnGameInProgress()
 
     Timers:CreateTimer(1.0, function()
       Timers:CreateTimer(2.0, function()
-        XpManager:Init()
         _G.PlayerList = GetSteamIDPlayerList()
       end)
 
@@ -748,8 +752,8 @@ function barebones:OnGameInProgress()
       -- Aghanim's Portal
       local aghanimPortalSpawnPoint = Entities:FindByName(nil, "trigger_entrance_aghanim")
       if aghanimPortalSpawnPoint ~= nil then
-        local portal = CreateUnitByName("outpost_placeholder_unit", aghanimPortalSpawnPoint:GetAbsOrigin(), false, nil, nil, DOTA_TEAM_NEUTRALS)
-        portal:AddNewModifier(portal, nil, "modifier_aghanim_portal", {})
+        _G.AghanimGateUnit = CreateUnitByName("outpost_placeholder_unit", aghanimPortalSpawnPoint:GetAbsOrigin(), false, nil, nil, DOTA_TEAM_NEUTRALS)
+        _G.AghanimGateUnit:AddNewModifier(_G.AghanimGateUnit, nil, "modifier_aghanim_portal", {})
       end
 
       -- CHICKEN 
@@ -2699,28 +2703,6 @@ function barebones:OnNPCSpawned(keys)
 
   if IsSummonTCOTRPG(npc) then return end -- Mostly for Spirit Bear
 
-  --[[
-  if npc:GetUnitName() == "npc_dota_creature_1_crip" then
-      Timers:CreateTimer(1.0, function()
-        print("----------------")
-        for _,xmod in ipairs(npc:FindAllModifiers()) do
-          print(xmod:GetName())
-        end
-        print("----------------")
-        return 1.0
-      end)
-
-      Timers:CreateTimer(15.0, function()
-        print("----------------")
-        print("REMOVING ALL MODIFIERS")
-        for _,xmod in ipairs(npc:FindAllModifiers()) do
-          xmod:Destroy()
-        end
-        print("----------------")
-      end)
-  end
-  --]]
-
 	if npc:IsRealHero() then 
     if npc:GetHealth() <= 1 or npc:GetHealth() > INT_MAX_LIMIT then
       npc:SetHealth(INT_MAX_LIMIT)
@@ -2762,12 +2744,7 @@ function barebones:OnNPCSpawned(keys)
       end
     end
 
-    --[[
-    if _G.lostItems[npc:GetPlayerID()] == nil then
-      _G.lostItems[npc:GetPlayerID()] = 0
-    end
-    --]]
-
+    -- Anything inside this block is only run on the first spawn
     if not _G.receivedGold[keys.entindex] then
       _G.autoPickup[npc:GetPlayerID()] = AUTOLOOT_OFF
       if npc:IsDonator() and not npc:HasModifier("modifier_auto_pickup") then
@@ -2786,6 +2763,7 @@ function barebones:OnNPCSpawned(keys)
       _G.PlayerBonusDropChance[accountID] = 0
 
       PlayerEffects:OnPlayerSpawnedForTheFirstTime(npc)
+      XpManager:OnPlayerSpawnedForTheFirstTime(npc)
 
       local mode = KILL_VOTE_RESULT:upper()
 
@@ -2950,7 +2928,7 @@ function barebones:OnNPCSpawned(keys)
     _G.PerformanceUnitsTable[npc:entindex()] = npc
   end
 
-  if (IsCreepTCOTRPG(npc) or IsBossTCOTRPG(npc)) and (npc:GetOwner() == nil) and #KILL_VOTE_RESULT > 0 and npc:GetUnitName() ~= "npc_dota_creature_target_dummy" and npc:GetUnitName() ~= "npc_dota_creature_greedy_goblin" and not string.find(npc:GetUnitName(), "npc_dota_wave") and not IsBossAghanim(npc) then
+  if (IsCreepTCOTRPG(npc) or IsBossTCOTRPG(npc)) and (npc:GetOwner() == nil) and #KILL_VOTE_RESULT > 0 and npc:GetUnitName() ~= "npc_dota_creature_target_dummy" and npc:GetUnitName() ~= "npc_tcot_tormentor" and npc:GetUnitName() ~= "npc_dota_creature_greedy_goblin" and not string.find(npc:GetUnitName(), "npc_dota_wave") and not IsBossAghanim(npc) then
     local mode = KILL_VOTE_RESULT:upper()
     local multiplierDamage = 0
     local multiplierHealth = 0
@@ -3077,11 +3055,6 @@ function barebones:OnNPCSpawned(keys)
       npc:SetPhysicalArmorBaseValue(armor)
 
       barebones:InitiateBoonsAndBuffs(mode, npc, 2)
-
-      npc:AddNewModifier(npc, nil, "modifier_new_game_plus_thinker", {
-        damage = damageBase,
-        armor = armorBase
-      })
     end
   end
 

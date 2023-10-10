@@ -419,6 +419,7 @@
 "item_recipe_armor_piercing_crossbow_8" "REMOVED"
 "item_armor_piercing_crossbow_8" "REMOVED"
 "item_recipe_trident_custom_8" "REMOVED"
+"item_trident_custom_8" "REMOVED"
 
 "item_aghanims_shard"
   {
@@ -724,7 +725,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_hp_burn"      "100"
+        "max_hp_burn"      "0"
       }
       "07"
       {
@@ -779,12 +780,12 @@
       "17"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp_from_attack"      "0.5"
+        "spell_amp_from_attack"      "0"
       }
       "18"
       {
         "var_type"        "FIELD_INTEGER"
-        "burn_interval"      "0.3"
+        "burn_interval"      "0.5"
       }
     }
   }
@@ -862,7 +863,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_hp_burn"      "100"
+        "max_hp_burn"      "0"
       }
       "07"
       {
@@ -917,12 +918,12 @@
       "17"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp_from_attack"      "0.5"
+        "spell_amp_from_attack"      "0"
       }
       "18"
       {
         "var_type"        "FIELD_INTEGER"
-        "burn_interval"      "0.3"
+        "burn_interval"      "0.5"
       }
     }
   }
@@ -1000,7 +1001,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_hp_burn"      "100"
+        "max_hp_burn"      "0"
       }
       "07"
       {
@@ -1055,12 +1056,12 @@
       "17"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp_from_attack"      "0.5"
+        "spell_amp_from_attack"      "0"
       }
       "18"
       {
         "var_type"        "FIELD_INTEGER"
-        "burn_interval"      "0.3"
+        "burn_interval"      "0.5"
       }
     }
   }
@@ -1137,7 +1138,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_hp_burn"      "100"
+        "max_hp_burn"      "0"
       }
       "07"
       {
@@ -1192,12 +1193,12 @@
       "17"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp_from_attack"      "0.5"
+        "spell_amp_from_attack"      "0"
       }
       "18"
       {
         "var_type"        "FIELD_INTEGER"
-        "burn_interval"      "0.3"
+        "burn_interval"      "0.5"
       }
     }
   }
@@ -1274,7 +1275,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_hp_burn"      "100"
+        "max_hp_burn"      "0"
       }
       "07"
       {
@@ -1329,12 +1330,12 @@
       "17"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp_from_attack"      "0.5"
+        "spell_amp_from_attack"      "0"
       }
       "18"
       {
         "var_type"        "FIELD_INTEGER"
-        "burn_interval"      "0.3"
+        "burn_interval"      "0.5"
       }
     }
   }
@@ -1411,7 +1412,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_hp_burn"      "100"
+        "max_hp_burn"      "0"
       }
       "07"
       {
@@ -1466,12 +1467,12 @@
       "17"
       {
         "var_type"        "FIELD_INTEGER"
-        "spell_amp_from_attack"      "0.5"
+        "spell_amp_from_attack"      "0"
       }
       "18"
       {
         "var_type"        "FIELD_INTEGER"
-        "burn_interval"      "0.3"
+        "burn_interval"      "0.5"
       }
     }
   }
@@ -7999,7 +8000,7 @@
 	
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"0"	
+	"ItemCost"						"100"	
 	"ItemShopTags"					"artifacts"
 	
 	// Recipe
@@ -12995,7 +12996,7 @@
 	
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"0"	
+	"ItemCost"						"100"	
 	"ItemShopTags"					"artifacts"
 	
 	// Recipe
@@ -13060,7 +13061,7 @@
 	
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"0"	
+	"ItemCost"						"100"	
 	"ItemShopTags"					"artifacts"
 	
 	// Recipe
@@ -16076,7 +16077,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -16112,7 +16113,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -16130,7 +16131,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -16149,6 +16150,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -16225,7 +16232,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -16261,7 +16268,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -16279,7 +16286,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -16298,6 +16305,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -16374,7 +16387,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -16410,7 +16423,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -16428,7 +16441,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -16447,6 +16460,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -16523,7 +16542,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -16559,7 +16578,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -16577,7 +16596,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -16596,6 +16615,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -16673,7 +16698,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -16709,7 +16734,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -16727,7 +16752,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -16746,6 +16771,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -16823,7 +16854,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -16859,7 +16890,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -16877,7 +16908,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -16896,6 +16927,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -16973,7 +17010,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -17009,7 +17046,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -17027,7 +17064,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -17046,6 +17083,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -17123,7 +17166,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -17159,7 +17202,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -17177,7 +17220,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -17196,6 +17239,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -17273,7 +17322,7 @@
             "06"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "lifesteal"                                    "40"
+                "lifesteal"                                    "10"
             }
 
             "07"
@@ -17309,7 +17358,7 @@
             "18"
             {
                 "var_type"              "FIELD_INTEGER"
-                "shield_max_from_hp" "100"
+                "shield_max_from_hp" "30"
             }
 
             "09"
@@ -17327,7 +17376,7 @@
             "10"
             {
                 "var_type"              "FIELD_FLOAT"
-                "agi_attack_damage"        "360"
+                "agi_attack_damage"        "100"
             }
 
             "10"
@@ -17346,6 +17395,12 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "universal_chance"        "33"
+            }
+
+            "12"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "max_stacks"        "100"
             }
         }
     }
@@ -30735,6 +30790,7 @@
                 "cast_time_threshold" "50"
                 "mana_regen_spell_amp" "2.5"
                 "duration" "9"
+                "max_spell_amp" "50"
         }
 }
 "item_recipe_aghanims_robe_2"
@@ -30800,6 +30856,7 @@
                 "cast_time_threshold" "50"
                 "mana_regen_spell_amp" "2.5"
                 "duration" "9"
+                "max_spell_amp" "50"
         }
 }
 
@@ -30866,6 +30923,7 @@
                 "cast_time_threshold" "50"
                 "mana_regen_spell_amp" "2.5"
                 "duration" "9"
+                "max_spell_amp" "50"
         }
 }
 
@@ -30932,6 +30990,7 @@
                 "cast_time_threshold" "50"
                 "mana_regen_spell_amp" "2.5"
                 "duration" "9"
+                "max_spell_amp" "50"
         }
 }
 
@@ -30998,6 +31057,7 @@
                 "cast_time_threshold" "50"
                 "mana_regen_spell_amp" "2.5"
                 "duration" "9"
+                "max_spell_amp" "50"
         }
 }
 
@@ -31064,6 +31124,7 @@
                 "cast_time_threshold" "50"
                 "mana_regen_spell_amp" "2.5"
                 "duration" "9"
+                "max_spell_amp" "50"
         }
 }
 "item_recipe_crystalline"
@@ -37799,11 +37860,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -37863,11 +37924,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -37927,11 +37988,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -37991,11 +38052,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -38055,11 +38116,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -38119,11 +38180,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -38183,11 +38244,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -38248,11 +38309,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -38313,11 +38374,11 @@
         "chance" "30"
         "damage" "90 180 270 360 450 540 630 720 810"
         "damage_strength_pct" "100"
-        "slow" "-40"
-        "stun_duration" "3"
+        "slow" "-15"
+        "stun_duration" "1"
         "stun_decrease" "0.25"
         "min_stun_duration" "0.1"
-        "stun_cooldown" "3"
+        "stun_cooldown" "10"
         "slow_duration" "5"
         "radius" "400"
         "max_stacks"          "12"
@@ -39397,7 +39458,7 @@
           "bonus_int" "2500"
           "bonus_mana" "1000"
           "bonus_spell_amp" "30"
-          "int_to_damage" "100"
+          "int_to_damage" "10"
           "duration" "10"
           "radius" "400"
           "interval" "0.4"
@@ -39409,9 +39470,9 @@
           "damage_interval" "1"
           "vision_distance" "500"
           "end_vision_duration" "3.0"
-          "main_damage" "3000"
+          "main_damage" "500"
           "burn_duration" "5"
-          "burn_dps" "900"
+          "burn_dps" "90"
 
           "chance" "24"
         }
@@ -46142,6 +46203,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
             }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
+            }
         }
     }
 
@@ -46222,6 +46288,11 @@
             {
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
             }
         }
       }
@@ -46304,6 +46375,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
             }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
+            }
         }
       }
 
@@ -46384,6 +46460,11 @@
             {
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
             }
         }
       }
@@ -46466,6 +46547,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
             }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
+            }
         }
       }
 
@@ -46547,6 +46633,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
             }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
+            }
         }
       }
 
@@ -46627,6 +46718,11 @@
             {
                 "var_type"              "FIELD_INTEGER"
                 "bonus_mana_pct"          "10 13 16 19 22 25 28"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_spell_amp"          "50"
             }
         }
       }
@@ -48788,7 +48884,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -48856,7 +48952,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -48924,7 +49020,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -48992,7 +49088,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -49060,7 +49156,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -49128,7 +49224,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -49196,7 +49292,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -49264,7 +49360,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"
@@ -49332,7 +49428,7 @@
             "bonus_evasion" "15"
             "magic_res" "-50"
             "radius" "325"
-            "attack_as_damage" "100 120 140 160 180 200 220 240 260"
+            "attack_as_damage" "16"
             "debuff_duration" "7"
             "duration" "8"
             "attribute_difference_damage_pct" "50 75 100 125 150 175 200 225 250"

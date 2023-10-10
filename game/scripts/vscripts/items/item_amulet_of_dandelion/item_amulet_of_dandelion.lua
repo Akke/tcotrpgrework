@@ -24,12 +24,12 @@ end
 
 function modifier_item_amulet_of_dandelion:GetModifierMagical_ConstantBlock()
     if IsServer() then
+        local ability = self:GetAbility()
 
-    local ability = self:GetAbility()
-
-    if ability:IsCooldownReady() then
-        ability:UseResources(false, false, false, true)
-        return self:GetParent():GetMaxMana() * (self:GetAbility():GetSpecialValueFor("max_mana_to_block_pct")/100)
+        if ability:IsCooldownReady() then
+            ability:UseResources(false, false, false, true)
+            return self:GetParent():GetMaxMana() * (self:GetAbility():GetSpecialValueFor("max_mana_to_block_pct")/100)
+        end
     end
 end
 

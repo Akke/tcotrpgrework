@@ -24,6 +24,27 @@ function boss_doom_doom_aura:GetIntrinsicModifierName()
     return "modifier_boss_doom_doom_aura"
 end
 -------------
+function modifier_boss_doom_doom_aura:DeclareFunctions()
+    return {
+        MODFIIER_EVENT_ON_DEATH
+    }
+end
+
+function modifier_boss_doom_doom_aura:OnDeath(event)
+    if not IsServer() then return end 
+
+    local parent = self:GetParent()
+
+    if parent ~= event.unit then return end 
+
+    StopSoundOn("Hero_DoomBringer.Doom", parent)
+
+    if self.vfx ~= nil then
+        ParticleManager:DestroyParticle(self.vfx, true)
+        ParticleManager:ReleaseParticleIndex(self.vfx)
+    end
+end
+
 function modifier_boss_doom_doom_aura:OnCreated()
     if not IsServer() then return end 
 
@@ -34,20 +55,8 @@ function modifier_boss_doom_doom_aura:OnCreated()
     ParticleManager:SetParticleControl( self.vfx, 0, parent:GetAbsOrigin() )
     ParticleManager:SetParticleControl( self.vfx, 3, parent:GetAbsOrigin() )
     ParticleManager:SetParticleControl( self.vfx, 4, parent:GetAbsOrigin() )
-    self:AddParticle(self.vfx,false,false,-1,false,false)
 
     EmitSoundOn("Hero_DoomBringer.Doom", parent)
-end
-
-function modifier_boss_doom_doom_aura:OnDestroy()
-    if not IsServer() then return end
-
-    if self.vfx ~= nil then
-        ParticleManager:DestroyParticle(self.vfx, false)
-        ParticleManager:ReleaseParticleIndex(self.vfx)
-    end
-
-    StopSoundOn("Hero_DoomBringer.Doom", self:GetParent())
 end
 
 function modifier_boss_doom_doom_aura:IsAura()

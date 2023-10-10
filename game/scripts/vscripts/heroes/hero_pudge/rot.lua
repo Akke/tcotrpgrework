@@ -93,7 +93,7 @@ function modifier_pudge_rot_custom:OnIntervalThink()
     local ability = self:GetAbility()
 
     local fleshHeapMultiplier = ability:GetSpecialValueFor("flesh_heap_multiplier")
-    local fleshHeapStacks = caster:FindModifierByName("modifier_pudge_flesh_heap_custom_buff_permanent")
+    local fleshHeapStacks = caster:FindModifierByName("modifier_pudge_flesh_heap_custom")
 
     local bonusDamage = 0
 

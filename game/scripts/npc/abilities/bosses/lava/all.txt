@@ -39,9 +39,9 @@
         {
             "ground_duration" "7"
             "radius" "300"
-            "damage" "50000"
+            "damage" "10000 15000 20000 25000 30000"
             "burn_duration" "3"
-            "slow" "-50"
+            "slow" "-15"
         }
     }
 

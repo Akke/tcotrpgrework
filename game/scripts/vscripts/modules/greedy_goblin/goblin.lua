@@ -10,15 +10,21 @@ local BaseClass = {
 
 GreedyGoblin = class(BaseClass)
 modifier_GreedyGoblin = class(GreedyGoblin)
+GreedyGoblin.canSpawn = true
 -------------
 function GreedyGoblin:Spawn(pos)
     if not IsServer() then return end
+
+    if not self.canSpawn then return end
 
     CreateUnitByNameAsync("npc_dota_creature_greedy_goblin", pos, false, nil, nil, DOTA_TEAM_NEUTRALS, function(unit)
       unit:AddNewModifier(unit, nil, "modifier_GreedyGoblin", {
         duration = 8
       })
-      --unit:SetRenderColor(255, 215, 0) Makes it green for some reason
+      self.canSpawn = false
+      Timers:CreateTimer(60.0, function()
+        self.canSpawn = true
+      end)
     end)
 end
 ---

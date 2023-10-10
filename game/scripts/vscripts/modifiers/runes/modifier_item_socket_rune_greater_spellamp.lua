@@ -16,5 +16,5 @@ function modifier_item_socket_rune_greater_spellamp:DeclareFunctions()
 end
 
 function modifier_item_socket_rune_greater_spellamp:GetModifierSpellAmplify_Percentage()
-    return 30 * self:GetStackCount()
+    return 7.5 * self:GetStackCount()
 end

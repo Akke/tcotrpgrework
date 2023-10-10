@@ -16,6 +16,14 @@ function tormentor_unyielding_shield_custom:GetIntrinsicModifierName()
     return "modifier_tormentor_unyielding_shield_custom"
 end
 ------------
+function modifier_tormentor_unyielding_shield_custom:CheckState()
+    local state = {
+        [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true
+    }   
+
+    return state
+end
+
 function modifier_tormentor_unyielding_shield_custom:OnCreated()
     self:SetHasCustomTransmitterData(true)
 
@@ -118,9 +126,11 @@ function modifier_tormentor_unyielding_shield_custom:GetModifierIncomingDamageCo
         return self.fcShield
     end
 
-    if event.target ~= self:GetParent() or bit.band(event.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= 0 then return end
-    if event.attacker:GetTeam() == self:GetCaster():GetTeam() then return 0 end
-    if self.shield <= 0 then return end
+    local parent = self:GetParent()
+
+    if event.target ~= parent then print("1") return end
+    if event.attacker:GetTeam() == parent:GetTeam() then print("2") return 0 end
+    if self.shield <= 0 then print("3") return end
 
     local block = 0
     local negated = self.shield - event.damage 
@@ -138,7 +148,7 @@ function modifier_tormentor_unyielding_shield_custom:GetModifierIncomingDamageCo
         self.cShield = 0
 
         self:InvokeShield()
-
+        print("4")
         return
     else
         self.cShield = self.shield
