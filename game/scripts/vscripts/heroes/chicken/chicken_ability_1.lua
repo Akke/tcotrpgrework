@@ -48,7 +48,14 @@ function modifier_chicken_ability_1:DeclareFunctions()
         MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
         MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
         MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
+        MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE 
     }
+end
+
+function modifier_chicken_ability_1:GetModifierTotalDamageOutgoing_Percentage(event)
+    if not IsServer() then return end 
+
+    if event.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return -9999 end
 end
 
 function modifier_chicken_ability_1:GetAbsoluteNoDamagePhysical(event)

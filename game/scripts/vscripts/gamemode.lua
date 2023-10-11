@@ -2359,19 +2359,6 @@ function barebones:DamageFilter(event)
     end
     --
 
-    -- Troll Ult --
-    if victim:HasModifier("modifier_troll_warlord_battle_trance_custom") and not victim:HasModifier("modifier_troll_warlord_battle_trance_custom_buff") then
-      local battleTrance = victim:FindModifierByName("modifier_troll_warlord_battle_trance_custom"):GetAbility()
-      if event.damage >= victim:GetHealth() and battleTrance:IsCooldownReady() then
-        event.damage = 0
-        victim:SetHealth(victim:GetMaxHealth()*(battleTrance:GetSpecialValueFor("health_restored_proc_auto")/100))
-        victim:AddNewModifier(victim, battleTrance, "modifier_troll_warlord_battle_trance_custom_buff", {
-            duration = battleTrance:GetSpecialValueFor("duration")
-        })
-        battleTrance:UseResources(true, false, false, true)
-      end
-    end
-
     -- Shallow Grave --
     if victim:HasModifier("modifier_dazzle_shallow_grave_custom_aura") and not victim:HasModifier("modifier_dazzle_shallow_grave_custom_buff") and not victim:HasModifier("modifier_dazzle_shallow_grave_custom_cooldown") then
       if event.damage >= victim:GetHealth() then
@@ -2605,6 +2592,18 @@ function barebones:DamageFilter(event)
 
     ----
     if attacker:GetUnitName() == "npc_dota_hero_wisp" and not attacker:HasModifier("modifier_chicken_ability_1_self_transmute") then event.damage = 0 return false end
+    if attacker:GetUnitName() == "npc_dota_hero_wisp" and attacker:HasModifier("modifier_chicken_ability_1_self_transmute") then 
+      local chickenMod = attacker:FindModifierByName("modifier_chicken_ability_1_self_transmute")
+      if chickenMod then
+        local chickenHost = chickenMod:GetCaster()
+        if chickenHost ~= nil and not chickenHost:IsNull() then
+          if chickenHost:IsAlive() and victim:GetTeam() ~= attacker:GetTeam() and (IsCreepTCOTRPG(victim) or IsBossTCOTRPG(victim)) then
+            -- This will make it so if chicken damages enemies, they will attack the host instead since chicken can't be targeted
+            victim:SetForceAttackTarget(chickenHost)
+          end
+        end
+      end
+    end
     ----
 
     if victim:HasModifier("modifier_chicken_ability_1_target_transmute") then

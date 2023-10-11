@@ -85,9 +85,13 @@ function modifier_silencer_silent_bliss_custom:OnTakeDamage(event)
 
     local ability = self:GetAbility()
 
+    if not ability:IsCooldownReady() then return end
+
     local mana = event.damage * (ability:GetSpecialValueFor("mana_restore_pct")/100)
 
     parent:GiveMana(mana)
 
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, parent, mana, nil)
+
+    ability:UseResources(false, false, false, true)
 end

@@ -346,22 +346,6 @@ function modifier_boss_skafian_follower:OnDeath(event)
         respawnTime = 1
     end
 
-    -- Drops --
-    if event.attacker:GenerateDropChance() <= 2.5 then
-        local runes = {
-            "item_socket_rune_lesser_strength",
-            "item_socket_rune_lesser_agility",
-            "item_socket_rune_lesser_intellect",
-            "item_socket_rune_lesser_armor",
-            "item_socket_rune_lesser_spellamp"
-        }
-
-        local rune = runes[RandomInt(1, #runes)]
-
-        DropNeutralItemAtPositionForHero(rune, parent:GetAbsOrigin(), parent, -1, true)
-    end
-    --
-
     if event.attacker:GenerateDropChance() <= 5 and (parent:GetUnitName() == "npc_dota_creature_1_crip" or parent:GetUnitName() == "npc_dota_creature_10_crip_2" or parent:GetUnitName() == "npc_dota_creature_10_crip_3" or parent:GetUnitName() == "npc_dota_creature_10_crip_4") then
         DropNeutralItemAtPositionForHero("item_bracer", parent:GetAbsOrigin(), parent, -1, true)
     end

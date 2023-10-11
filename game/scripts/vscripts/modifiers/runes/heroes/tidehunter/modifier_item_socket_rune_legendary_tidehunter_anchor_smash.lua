@@ -11,7 +11,7 @@ local BaseClass = {
 modifier_item_socket_rune_legendary_tidehunter_anchor_smash = class(BaseClass)
 ----------------------------------------------------------------
 function modifier_item_socket_rune_legendary_tidehunter_anchor_smash:OnCreated()
-    self.maxDamageMultiplier = 200
+    self.maxDamageMultiplier = 100
     self.interval = 1.0
     self.speed = 725
     self.radius = 1250

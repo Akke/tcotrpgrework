@@ -254,9 +254,9 @@
         "Ability17"     "special_bonus_spell_amplify_18"
 
         "AttackRate"    "5.0"
-        "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
         "AttributePrimary"      "DOTA_ATTRIBUTE_INTELLECT"
-        "AttackRange"           "100"
+        "AttackRange"           "180"
         "ProjectileModel"       ""
         "AttributeBaseStrength" "15"
         "AttributeBaseIntelligence" "15"
@@ -271,8 +271,8 @@
         "VoiceFile"     ""
         "particle_folder"       ""
         "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
-        "ProjectileModel"       "particles/econ/events/frostivus/frostivus_fireworks.vpcf"
-        "ProjectileSpeed"       "1100"
+        "ProjectileModel"       ""
+        "ProjectileSpeed"       ""
         "MovementSpeed"                               "2000"
 
         "DamgeSubTypeResistance"

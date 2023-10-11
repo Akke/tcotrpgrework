@@ -49,9 +49,7 @@ function modifier_axe_culling_blade_custom_stacks:GetModifierExtraHealthPercenta
     
     local count = self:GetStackCount()
 
-    if count < 200 then
-        return count * 0.25
-    end
+    return count * 0.25
 end
 
 function modifier_axe_culling_blade_custom_stacks:IsHidden()
@@ -133,7 +131,7 @@ function modifier_axe_culling_blade_custom:OnDeath(event)
         armor = parent:AddNewModifier(parent, ability, "modifier_axe_culling_blade_custom_stacks", {})
     end
 
-    if armor then
+    if armor and armor:GetStackCount() < 200 then
         armor:IncrementStackCount()
         parent:CalculateStatBonus(true)
     end

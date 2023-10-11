@@ -6203,6 +6203,8 @@
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
         "MaxLevel" "10"
 
+        "AbilityCooldown" "10"
+
         "AbilityValues"
         {
             "mana_restore_pct" "5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0"
@@ -16590,12 +16592,12 @@
       "06"
       {
         "var_type"          "FIELD_FLOAT"
-        "stat_loss_pct"       "15"
+        "stat_loss_pct"       "10"
       }
       "07"
       {
         "var_type"          "FIELD_FLOAT"
-        "max_stacks"          "7"
+        "max_stacks"          "3"
       }
       "08"
       {
@@ -19877,7 +19879,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-            "max_hp_heal" "9 13 17 21 25 29 33 37 41 45"
+            "max_hp_heal" "5 6 7 8 9 10 11 12 13 14"
             "max_stacks" "3"
             "max_counter" "6"
         }
