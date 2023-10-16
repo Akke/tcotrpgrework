@@ -176,3 +176,5 @@ LinkLuaModifier("modifier_item_socket_rune_legendary_axe_counter_helix", "modifi
 LinkLuaModifier("modifier_item_socket_rune_legendary_axe_culling_blade", "modifiers/runes/heroes/axe/modifier_item_socket_rune_legendary_axe_culling_blade.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_socket_rune_legendary_luna_moon_beam", "modifiers/runes/heroes/luna/modifier_item_socket_rune_legendary_luna_moon_beam.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_socket_rune_legendary_lone_druid_bear", "modifiers/runes/heroes/lone_druid/modifier_item_socket_rune_legendary_lone_druid_bear.lua", LUA_MODIFIER_MOTION_NONE)
+
+LinkLuaModifier("modifier_hero_tanya", "heroes/hero_tanya/modifier_hero_tanya.lua", LUA_MODIFIER_MOTION_NONE)

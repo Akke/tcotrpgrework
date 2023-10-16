@@ -2100,6 +2100,12 @@ function barebones:OrderFilter(event)
       local slot = event.entindex_target
       local neutralSlotIndex = NeutralSlot:GetSlotIndex()
 
+      -- Do not allow people to move items in Eternal Torment
+      if _G.FinalGameWavesEnabled and slot < 0 then 
+        DisplayError(player:GetPlayerID(), "You Cannot Do That Right Now.")
+        return false 
+      end
+
       if NeutralSlot:NeedToNeutralSlot(hItem:GetName()) and not player:IsCourier() then
         if slot >= DOTA_ITEM_SLOT_1 and slot <= DOTA_ITEM_SLOT_6 then
           if player:GetItemInSlot(neutralSlotIndex) == nil then
@@ -2504,61 +2510,6 @@ function barebones:DamageFilter(event)
           event.damage = event.damage * (1+(viperStrike:GetSpecialValueFor("dmg_multi")/100)) * abilitySpellAmp
         end
       end
-
-      if ability:GetAbilityName() == "treant_natures_grasp" or ability:GetAbilityName() == "treant_leech_seed" then
-        event.damage = event.damage + ((attacker:GetStrength() * (ability:GetSpecialValueFor("str_to_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "dragon_knight_fireball" or ability:GetAbilityName() == "dragon_knight_breathe_fire" then
-        event.damage = event.damage + ((attacker:GetStrength() * (ability:GetSpecialValueFor("str_to_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "viper_poison_attack" or ability:GetAbilityName() == "viper_nethertoxin" or ability:GetAbilityName() == "viper_corrosive_skin" or ability:GetAbilityName() == "viper_viper_strike" then
-        event.damage = event.damage + ((attacker:GetAgility() * (ability:GetSpecialValueFor("agility_to_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "lion_fireball" then
-        event.damage = event.damage + ((attacker:GetIntellect() * (ability:GetSpecialValueFor("int_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "alchemist_acid_spray" then
-        event.damage = event.damage + ((attacker:GetStrength() * (ability:GetSpecialValueFor("str_to_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "leshrac_diabolic_edict" or ability:GetAbilityName() == "leshrac_split_earth" then
-        if ability:GetAbilityName() == "leshrac_diabolic_edict" then
-          event.damagetype_const = DAMAGE_TYPE_MAGICAL
-        end
-
-        event.damage = event.damage + ((attacker:GetIntellect() * (ability:GetSpecialValueFor("int_to_damage")/100)) * abilitySpellAmp)
-
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "shredder_flamethrower" then
-        event.damage = event.damage + ((attacker:GetStrength() * (ability:GetSpecialValueFor("str_damage_pct")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "luna_lucent_beam" then
-        event.damage = event.damage + ((attacker:GetAgility() * (ability:GetSpecialValueFor("agility_to_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "nevermore_shadowraze1_custom" or ability:GetAbilityName() == "nevermore_shadowraze2_custom" or ability:GetAbilityName() == "nevermore_shadowraze3_custom" then
-        event.damage = event.damage + ((attacker:GetAgility() * (ability:GetSpecialValueFor("agi_damage_pct")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
-
-      if ability:GetAbilityName() == "lina_dragon_slave" or ability:GetAbilityName() == "lina_light_strike_array" or ability:GetAbilityName() == "lina_laguna_blade_custom" then
-        event.damage = event.damage + ((attacker:GetIntellect() * (ability:GetSpecialValueFor("int_to_damage")/100)) * abilitySpellAmp)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, victim, event.damage, nil)
-      end
     end
     ----
     if victim:HasModifier("modifier_necrolyte_aesthetics_death_enemy_execute_debuff") and ability == nil then
@@ -2814,6 +2765,10 @@ function barebones:OnNPCSpawned(keys)
           npc:RemoveItem(tpScroll)
         end
       end)
+
+      if npc:GetUnitName() == "npc_dota_hero_antimage" then
+        npc:AddNewModifier(npc, nil, "modifier_hero_tanya", {})
+      end
 
       --[[
       Timers:CreateTimer(1.0, function()

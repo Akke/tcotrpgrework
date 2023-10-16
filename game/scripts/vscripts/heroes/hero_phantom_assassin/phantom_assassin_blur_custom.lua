@@ -33,11 +33,13 @@ function modifier_phantom_assassin_blur_custom_buff:DeclareFunctions()
 end
 
 function modifier_phantom_assassin_blur_custom_buff:GetModifierBonusStats_Agility()
+    if not IsServer() then return end 
+    
     if self.lockAgility then return 0 end
 
     self.lockAgility = true
 
-    local agility = self:GetParent():GetAgility()
+    local agility = self:GetParent():GetBaseAgility()
 
     self.lockAgility = false
 

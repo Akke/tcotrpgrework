@@ -282,6 +282,7 @@ function modifier_chicken_ability_1_target_transmute:OnDeath(event)
             local item = bloodstone:GetAbility()
             if item ~= nil then
                 local maxCharges = item:GetSpecialValueFor("max_charges")
+                local maxStacks = item:GetSpecialValueFor("max_stacks")
 
                 local buff = chicken:FindModifierByName("modifier_bloodstone_strygwyr_kill_counter")
                 if not buff then
@@ -296,10 +297,12 @@ function modifier_chicken_ability_1_target_transmute:OnDeath(event)
                     if buff:GetStackCount() >= maxCharges then
                         buff:SetStackCount(0)
 
-                        _G.BloodstoneCharges[chicken:entindex()] = item:GetCurrentCharges() + item:GetSpecialValueFor("kill_charges")
+                        if _G.BloodstoneCharges[chicken:entindex()] < maxStacks then
+                            _G.BloodstoneCharges[chicken:entindex()] = item:GetCurrentCharges() + item:GetSpecialValueFor("kill_charges")
 
-                        item:SetCurrentCharges(_G.BloodstoneCharges[chicken:entindex()])
-                        item:OnHeroCalculateStatBonus()
+                            item:SetCurrentCharges(_G.BloodstoneCharges[chicken:entindex()])
+                            item:OnHeroCalculateStatBonus()
+                        end
                     end
 
                     buff:ForceRefresh()

@@ -256,7 +256,7 @@
         "AttackRate"    "5.0"
         "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
         "AttributePrimary"      "DOTA_ATTRIBUTE_INTELLECT"
-        "AttackRange"           "180"
+        "AttackRange"           "0"
         "ProjectileModel"       ""
         "AttributeBaseStrength" "15"
         "AttributeBaseIntelligence" "15"
@@ -1517,10 +1517,10 @@
     "npc_dota_hero_arena_hero_timmy"
     {
         "Enabled"       "1"
-        "HeroID"        "1"
+        "HeroID"        "51"
         "DisableWearables"              "1"
         "SoundSet"      "n_creep_Melee"
-        "override_hero" "npc_dota_hero_antimage"
+        "override_hero" "npc_dota_hero_rattletrap"
         "base_hero" "npc_dota_hero_arena_base"
         "Ability1"  "timmy_swordsmanship"
         "Ability2"  "timmy_crit"
@@ -1564,5 +1564,80 @@
             "DAMAGE_SUBTYPE_DARK"   "0"
             "DAMAGE_SUBTYPE_LIGHT"  "50"
         }
+    }
+
+    "npc_dota_hero_arena_hero_tanya"
+    {
+        "Enabled"       "1"
+        "HeroID"        "1"
+        "DisableWearables"              "1"
+        "SoundSet"      "Hero_Antimage"
+        "override_hero" "npc_dota_hero_antimage"
+        "base_hero" "npc_dota_hero_arena_base"
+        "Ability1"  "tanya_sharp_edges"
+        "Ability2"  "tanya_glaive_rush"
+        "Ability3"  "tanya_counterattack"
+        "Ability4"  "generic_hidden"
+        "Ability5"  "generic_hidden"
+        "Ability6"  "tanya_convergence"
+        "Ability10"     "special_bonus_evasion_15"
+        "Ability11"     "special_bonus_magic_resistance_15"
+        "Ability12"     "special_bonus_status_resistance_10"
+        "Ability13"     "special_bonus_spell_amplify_10"
+        "Ability14"     "special_bonus_cooldown_reduction_10"
+        "Ability15"     "special_bonus_cleave_100"
+        "Ability16"     "special_bonus_hp_800"
+        "Ability17"     "special_bonus_spell_lifesteal_50"
+        "Model"     "models/heroes/antimage_female/antimage_female.vmdl"
+        "ModelScale"    "1.05"
+        "AttackRate"		"1.400000"
+		"AttackAnimationPoint"		"0.300000"
+        "ArmorPhysical"     "5"
+        "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_AGILITY"
+        "AttackRange"   "150"
+        "ProjectileModel"       ""
+        "AttributeBaseStrength" "19"
+        "AttributeBaseIntelligence" "12"
+        "AttributeBaseAgility"  "24"
+        "AttributeStrengthGain" "1.6"
+        "AttributeIntelligenceGain" "1.2"
+        "AttributeAgilityGain"  "2.8"
+        "AttackDamageMin"   "29"
+        "AttackDamageMax"   "33"
+        "LoadoutScale"      "0"
+
+        "particle_folder"		"particles/units/heroes/hero_antimage"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		"VoiceFile"		"soundevents/game_sounds_vo_tanya.vsndevts"
+
+        "Creature"
+        {
+            "AttachWearables"
+            {   
+                "1" { "ItemDef" "29280" } 
+                "2" { "ItemDef" "29279" } 
+            }
+        }
+
+        "RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_antimage/antimage_loadout.vpcf"		"loadout"
+			}
+		}
+        
+        "Persona"
+		{
+			"1"
+			{
+				"name"					"npc_dota_hero_antimage_persona1"
+				"token"					"#npc_dota_hero_antimage_persona1"
+				"token_english"			"#npc_dota_hero_antimage_persona1__en"
+				"Model"					"models/heroes/antimage_female/antimage_female.vmdl"	// For tools only
+				"ModelScale"		"1.05"
+			}
+		}
     }
 }

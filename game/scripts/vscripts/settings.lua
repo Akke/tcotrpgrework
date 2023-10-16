@@ -196,7 +196,7 @@ end
 FOUNTAIN_CONSTANT_MANA_REGEN = 50       -- What should we use for the constant fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_MANA_REGEN = 500     -- What should we use for the percentage fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_HEALTH_REGEN = 500   -- What should we use for the percentage fountain health regen?  Use -1 to keep the default dota behavior.
-MAXIMUM_ATTACK_SPEED = 650              -- What should we use for the maximum attack speed?
+MAXIMUM_ATTACK_SPEED = 700              -- What should we use for the maximum attack speed?
 MINIMUM_ATTACK_SPEED = 100               -- What should we use for the minimum attack speed?
 
 DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
@@ -524,6 +524,9 @@ BOOK_ABILITY_SELECTION = {
     "gabriel_heavenly_balance",
     "sniper_armor_bullets_custom",
     "sniper_take_aim_custom",
+    "tanya_sharp_edges",
+    "tanya_glaive_rush",
+    "tanya_counterattack"
 }
 
 -- Abilities that won't be randomly given to players

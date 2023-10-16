@@ -95,8 +95,6 @@ end
   
 ]]
 function barebones:OnHeroInGame(hero)
-	
-
 	-- Innate abilities like Earth Spirit Stone Remnant (abilities that a hero needs to have auto-leveled up at the start of the game)
 	-- Add all custom innate abilities here
 	local innate_abilities = {

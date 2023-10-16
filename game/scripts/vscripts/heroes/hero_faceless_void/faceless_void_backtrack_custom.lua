@@ -46,7 +46,10 @@ function modifier_faceless_void_backtrack_custom:GetModifierIncomingDamage_Perce
         ParticleManager:SetParticleControl(vfx, 0, parent:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(vfx)
 
-        parent:Heal(parent:GetMaxHealthTCOTRPG()*(ability:GetSpecialValueFor("max_health_heal")/100), ability)
+        if ability:IsCooldownReady() then
+            parent:Heal(parent:GetMaxHealthTCOTRPG()*(ability:GetSpecialValueFor("max_health_heal")/100), ability)
+            ability:UseResources(false, false, false, true)
+        end
 
         if parent:HasShard() then
             parent:RemoveModifierByName("modifier_faceless_void_backtrack_custom_buff")
@@ -67,9 +70,11 @@ function modifier_faceless_void_backtrack_custom_buff:DeclareFunctions()
 end
 
 function modifier_faceless_void_backtrack_custom_buff:OnCreated()
-    self.agility = self:GetParent():GetAgility() * (self:GetAbility():GetSpecialValueFor("shard_agility_pct")/100)
+    self.agility = self:GetParent():GetBaseAgility() * (self:GetAbility():GetSpecialValueFor("shard_agility_pct")/100)
 end
 
 function modifier_faceless_void_backtrack_custom_buff:GetModifierBonusStats_Agility()
+    if not IsServer() then return end 
+    
     return self.agility
 end

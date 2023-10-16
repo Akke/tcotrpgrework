@@ -258,7 +258,8 @@ var AbilitySelectionUI = /** @class */ (function () {
             "fenrir",
             "asan",
             "saber",
-            "gabriel"
+            "gabriel",
+            "tanya"
         ];
         this.storedAbilities = [];
         // Load snippet into panel

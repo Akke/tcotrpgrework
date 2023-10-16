@@ -161,7 +161,8 @@ class AbilitySelectionUI {
             "fenrir",
             "asan",    
             "saber",
-            "gabriel"
+            "gabriel",
+            "tanya"
         ]
 
         this.storedAbilities = []

@@ -11,7 +11,216 @@
 #base "overrides/xp_talents/all/talents.txt"
 
 "DOTAAbilities"
-{  
+{   
+    "tanya_convergence"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_tanya/tanya_convergence.lua"
+        "AbilityTextureName"            "tanya_convergence_png"
+
+        "HasScepterUpgrade" "1"
+
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "FightRecapLevel"               "1"
+
+        "MaxLevel" "4"
+
+        "AbilityCooldown"		"60"
+        "AbilityManaCost" "100"
+        
+
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+            "particle" "particles/units/heroes/hero_antimage/antimage_counter.vpcf"
+            "particle" "particles/econ/items/antimage/antimage_weapon_basher_ti5/am_manaburn_basher_ti_5.vpcf"
+            "particle" "particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "duration" "10"
+            "max_hp_shield" "100 200 300 400"
+            "damage_reduction" "75"
+            "damage_to_pure"
+            {
+                "value" "8 16 24 32"
+                "RequiresScepter" "1"
+            }
+            "number_of_hits" 
+            {
+                "value" "2"
+                "RequiresScepter" "1"
+            }
+            "radius"
+            {
+                "value" "400"
+                "RequiresScepter" "1"
+            }
+            "hp_damage_diff"
+            {
+                "value" "18"
+                "RequiresScepter" "1"
+            }
+            "slow_duration"
+            {
+                "value" "1"
+                "RequiresScepter" "1"
+            }
+            "move_slow_pct"
+            {
+                "value" "-100"
+                "RequiresScepter" "1"
+            }
+            "attack_slow"
+            {
+                "value" "-200"
+                "RequiresScepter" "1"
+            }
+        }
+
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    }
+
+    "tanya_sharp_edges"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_tanya/tanya_sharp_edges.lua"
+        "AbilityTextureName"            "tanya_sharp_edges_png"
+
+        "AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"               "1"
+
+        "MaxLevel" "10"
+
+        "AbilityCooldown"		"0.5"
+
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+            "particle" "particles/econ/items/antimage/antimage_weapon_basher_ti5/am_manaburn_basher_ti_5.vpcf"
+            "particle" "particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
+            "particle" "particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf"
+            "particle" "particles/units/heroes/hero_antimage/antimage_counter.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "bat_decrease" "0.2"
+            "bleed_from_attack" "8"
+            "interval" "0.3"
+            "max_stacks" "3 4 5 6 7 8 9 10 11 12"
+            "duration" "6"
+        }
+    }
+
+    "tanya_counterattack"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_tanya/tanya_counterattack.lua"
+        "AbilityTextureName"            "tanya_counter_attack_png"
+
+        "AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "FightRecapLevel"               "1"
+
+        "MaxLevel" "10"
+
+        "AbilityCooldown"		"0.2"
+
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+            "particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_hit_2.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "number_of_hits" "2"
+            "chance" "12 14 16 18 20 22 24 26 28 30"
+        }
+    }
+
+    "tanya_glaive_rush"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_tanya/tanya_glaive_rush.lua"
+        "AbilityTextureName"            "tanya_glaiverush"
+
+        "AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"               "1"
+
+        "MaxLevel" "10"
+
+        "AbilityCastRange"		"600"
+        "AbilityCooldown"		"3"
+        "AbilityCastPoint"		"0"
+        "AbilityManaCost"		"40"
+
+        "HasShardUpgrade" "1"
+
+        "precache"
+        {
+            "particle" "particles/econ/items/antimage/antimage_ti7/antimage_blink_start_ti7_2.vpcf"
+            "particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+            "particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur_light.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "crit_damage"
+            {
+                "value" "150 175 200 225 250 275 300 325 350 375"
+                "CalculateSpellDamageTooltip" "0"
+            }
+            "crit_damage_per_agility"
+            {
+                "value" "0.2"
+                "CalculateSpellDamageTooltip" "0"
+            }
+            "reset_chance" "30"
+            "speed" "3000"
+            "cd_refresh_window" "3"
+            "shard_damage_pct"
+            {
+                "value" "30"
+                "RequiresShard" "1"
+            }
+            "shard_max_stacks"
+            {
+                "value" "3"
+                "RequiresShard" "1"
+            }
+            "shard_duration"
+            {
+                "value" "6"
+                "RequiresShard" "1"
+            }
+        }
+
+        "AbilityCastAnimation"      "ACT_DOTA_GENERIC_CHANNEL_1"
+    }
+
     "lone_druid_return_custom"
     {
         "BaseClass"                     "ability_lua"
@@ -303,6 +512,8 @@
 
         "HasShardUpgrade" "1"
 
+        "AbilityCooldown" "5"
+
         "precache"
         {
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
@@ -313,8 +524,8 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-            "chance" "24 26 28 30 32 34 36 38 40 42"
-            "max_health_heal" "5.0"
+            "chance" "15 16 17 18 19 20 21 22 23 24"
+            "max_health_heal" "10.0"
             "shard_agility_pct"
             {
                 "value" "35"
@@ -6026,7 +6237,7 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "40.0"
+        "AbilityCooldown"               "100.0"
     
         // Cost
         //-------------------------------------------------------------------------------------------------------------
@@ -6039,7 +6250,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "strength_increase_pct"      "100 140 180 220"   
+                "strength_increase_pct"      "100 125 150 175"   
             }
             "02"
             {
@@ -6049,7 +6260,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shard_attribute_conversion"      "50" 
+                "shard_attribute_conversion"      "15" 
                 "RequiresShard" "1"  
             }
         }   
@@ -14492,7 +14703,7 @@
           "02"
           {
               "var_type"          "FIELD_FLOAT"
-              "magic_shred"     "-90"
+              "magic_shred"     "-50"
           }
           "03"
           {

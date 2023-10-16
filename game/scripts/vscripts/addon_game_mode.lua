@@ -198,6 +198,10 @@ function Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf", context)
 	PrecacheResource("particle", "particles/creatures/aghanim/portal_summon_a.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal_2.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/antimage_female/nemesis_slayer/nemesis_weapon_l_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/antimage_female/nemesis_slayer/nemesis_weapon_r_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/antimage_female/nemesis_slayer/nemesis_head_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/antimage_female/nemesis_slayer/nemesis_armor_ambient.vpcf", context)
 	
 	PrecacheResource("particle", "particles/econ/items/spectre/spectre_arcana/spectre_arcana_dispersion.vpcf", context)
 	
@@ -243,6 +247,11 @@ function Precache(context)
 	PrecacheModel("models/creeps/spiders/spidersack.vmdl", context)
 	PrecacheModel("models/creeps/omniknight_golem/omniknight_golem.vmdl", context)
 	PrecacheModel("models/props_structures/radiant_checkpoint_01.vmdl", context)
+	PrecacheModel("models/heroes/antimage_female/antimage_female.vmdl", context)
+	PrecacheModel("models/items/antimage_female/anti_mage_nemesis_slayer_armor_persona_1/anti_mage_nemesis_slayer_armor_persona_1.vmdl", context)
+	PrecacheModel("models/items/antimage_female/anti_mage_nemesis_slayer_head_persona_1/anti_mage_nemesis_slayer_head_persona_1.vmdl", context)
+	PrecacheModel("models/items/antimage_female/anti_mage_nemesis_slayer_offhand_weapon_persona_1/anti_mage_nemesis_slayer_offhand_weapon_persona_1.vmdl", context)
+	PrecacheModel("models/items/antimage_female/anti_mage_nemesis_slayer_weapon_persona_1/anti_mage_nemesis_slayer_weapon_persona_1.vmdl", context)
 	
 
 	PrecacheResource("particle_folder", "particles/dazzle/dazzle_shadow_step.vpcf", context)
@@ -343,6 +352,7 @@ function Precache(context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_creeps.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_arena.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_asan.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_vo_tanya.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_waves.vsndevts", context)
 
 

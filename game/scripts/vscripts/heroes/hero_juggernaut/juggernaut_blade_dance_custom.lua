@@ -168,7 +168,7 @@ function modifier_juggernaut_blade_dance_custom_agility_boost:OnRefresh()
     local ability = self:GetAbility()
     local parent = self:GetParent()
 
-    self.total = ((parent:GetAgility()-self.total) * (ability:GetSpecialValueFor("agility_per_stack_pct")/100)) * self:GetStackCount()
+    self.total = (parent:GetBaseAgility() * (ability:GetSpecialValueFor("agility_per_stack_pct")/100)) * self:GetStackCount()
 
     self:InvokeBonus()
 end

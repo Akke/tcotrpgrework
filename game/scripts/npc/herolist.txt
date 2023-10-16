@@ -154,5 +154,5 @@
     "npc_dota_hero_arena_hero_carl" "0"
     "npc_dota_hero_arena_hero_gabriel" "1"
     "npc_dota_hero_arena_hero_timmy" "0"
-
+	"npc_dota_hero_arena_hero_tanya" "1"
 }

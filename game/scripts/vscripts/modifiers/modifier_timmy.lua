@@ -66,7 +66,7 @@ function modifier_timmy:OnAbilityExecuted(event)
 
     if self.mango[event.unit:GetUnitName()] ~= nil and self.moonShard[event.unit:GetUnitName()] ~= nil then
         if self.mango[event.unit:GetUnitName()] >= 30 and self.moonShard[event.unit:GetUnitName()] >= 10 and parent:HasModifier("modifier_legion_commander_press_the_attack_custom_aura") then
-            SwapHeroWithTCOTRPG(event.unit, "npc_dota_hero_antimage", nil)
+            SwapHeroWithTCOTRPG(event.unit, "npc_dota_hero_rattletrap", nil)
             GameRules:SendCustomMessage("<font color='lightgreen'>Timmy, the Deserter</font>: Thank you, fellow adventurer, I will not let you down!", 0, 0)
             parent:ForceKill(false)
         end
