@@ -90,8 +90,7 @@ function modifier_octarines_blessing:OnCreated()
     local caster = self:GetCaster()
     local ability = self:GetAbility()
 
-    self.spell_lifesteal_percent_hero = ability:GetLevelSpecialValueFor("hero_lifesteal", (ability:GetLevel() - 1))
-    self.spell_lifesteal_percent_creep = ability:GetLevelSpecialValueFor("creep_lifesteal", (ability:GetLevel() - 1))
+    self.spell_lifesteal_percent = ability:GetLevelSpecialValueFor("creep_lifesteal", (ability:GetLevel() - 1))
 end
 
 function modifier_octarines_blessing:OnTakeDamage(event)
@@ -104,21 +103,12 @@ function modifier_octarines_blessing:OnTakeDamage(event)
 
             if not event.attacker:IsAlive() or event.attacker:GetHealth() < 1 then return end
             
-            if event.unit:IsCreep() then
-                local lifestealCreep = self.spell_lifesteal_percent_creep
-                local healAmount = math.max(event.damage, 0) * lifestealCreep * 0.01
-                if healAmount < 0 or healAmount > INT_MAX_LIMIT then
-                    healAmount = self:GetParent():GetMaxHealth()
-                end
-                event.attacker:Heal(healAmount, event.attacker)
-            else
-                local lifestealHero = self.spell_lifesteal_percent_hero
-                local healAmount = math.max(event.damage, 0) * lifestealHero * 0.01
-                if healAmount < 0 or healAmount > INT_MAX_LIMIT then
-                    healAmount = self:GetParent():GetMaxHealth()
-                end
-                event.attacker:Heal(healAmount, event.attacker)
+            local lifestealCreep = self.spell_lifesteal_percent
+            local healAmount = math.max(event.damage, 0) * lifestealCreep * 0.01
+            if healAmount < 0 or healAmount > INT_MAX_LIMIT then
+                healAmount = self:GetParent():GetMaxHealth()
             end
+            event.attacker:Heal(healAmount, event.attacker)
         end
     end
 end

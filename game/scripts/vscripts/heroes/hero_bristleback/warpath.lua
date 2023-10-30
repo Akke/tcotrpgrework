@@ -35,11 +35,6 @@ function modifier_bristleback_warpath_custom_stacks:DeclareFunctions()
     return funcs
 end
 
-function modifier_bristleback_warpath_custom_stacks:GetModifierSpellAmplify_Percentage()
-    if not self:GetCaster():HasScepter() then return end
-    return self:GetAbility():GetSpecialValueFor("spell_amp_per_stack") * self:GetStackCount()
-end
-
 function modifier_bristleback_warpath_custom_stacks:OnTooltip()
     return ((self:GetAbility():GetSpecialValueFor("damage_per_stack") + self.fDamage) * self:GetStackCount())
 end

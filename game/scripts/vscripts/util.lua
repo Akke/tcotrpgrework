@@ -1040,6 +1040,7 @@ function IsBossTCOTRPG(unit)
     "npc_dota_creature_wave_enemy_necrolyte",
     "npc_tcot_tormentor",
     "boss_destruction_lord",
+    "boss_arc_warden",
   }
 
   for _,boss in ipairs(bossNames) do

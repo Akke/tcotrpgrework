@@ -245,6 +245,8 @@ function modifier_unit_on_death:OnDeath(event)
         return
     end
 
+    if creep:GetUnitName() == "boss_arc_warden" then return end
+
     if creep:GetUnitName() == "npc_dota_creature_roshan_boss" then
         local heroes = HeroList:GetAllHeroes()
         for _,hero in ipairs(heroes) do
@@ -548,6 +550,9 @@ function SpawnAllUnits()
 
         -- Tormentor --
         SpawnUnitsInZone("spawn_tormentor", "npc_tcot_tormentor", 1)
+
+        -- Uber Boss: Arc Warden
+        SpawnUnitsInZone("spawn_boss_arc_warden", "boss_arc_warden", 1)
     end
     --
     

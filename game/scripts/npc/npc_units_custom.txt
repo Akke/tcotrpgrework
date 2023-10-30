@@ -10228,7 +10228,7 @@
 
         // Status
         //----------------------------------------------------------------
-        "StatusHealth"              "9374989"
+        "StatusHealth"              "9374989" 
         "StatusHealthRegen"         "10000"
         "StatusMana"                "9374989"
         "StatusManaRegen"           "1000"
@@ -14271,4 +14271,122 @@
 		//----------------------------------------------------------------
 		"HasInventory"				"1"
 	}	
+
+  "boss_arc_warden"
+    {
+        // General
+        //----------------------------------------------------------------
+        "BaseClass"                 "npc_dota_creature"
+        "Model"                     "models/heroes/arc_warden/arc_warden.vmdl"
+        "SoundSet"                  "Hero_ArcWarden"
+        "IdleSoundLoop"             "Hero_ArcWarden.IdleLoop"
+        "Level"                     "301"
+        "ModelScale"                "2.5"
+        "ConsideredHero"            "1"
+        "IsAncient"                 "1"
+        "UseNeutralCreepBehavior"                             "1"
+        "IsNeutralUnitType"            "1"
+        "VoiceFile"                 "soundevents/voscripts/game_sounds_vo_arc_warden.vsndevts"
+
+        // Minimap
+        //----------------------------------------------------------------
+        "MinimapIcon"               "minimap_death" 
+        "MinimapIconSize"           "500"
+        "MinimapDisableTint"        "1"
+
+        // Abilities
+        //----------------------------------------------------------------
+        "Ability1"                 "aghanim_dispersion"
+        "Ability2"                 "aghanim_backtrack"
+        "Ability3"                 "boss_shell_custom"
+        "Ability4"                 "necronomicon_warrior_sight"
+        "Ability5"                 "boss_arc_warden_summon_double"
+        "Ability6"                 "boss_arc_warden_magnetic_field_collapse"
+        "Ability7"                 "boss_arc_warden_essence_flux"
+
+
+        // Armor
+        //----------------------------------------------------------------
+        "ArmorPhysical"             "1500"
+        "MagicalResistance"         "90"
+
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "AttackDamageMin"           "20800000"
+        "AttackDamageMax"           "20800000"
+        "AttackRate"                "0.1"
+        "AttackAnimationPoint"      "0.3"
+        "AttackAcquisitionRange"    "1800"
+        "AttackRange"               "600"
+        "ProjectileModel"           "particles/units/heroes/hero_arc_warden/arc_warden_base_attack.vpcf"
+        "ProjectileSpeed"           "1000"
+
+        "AttackSpeedActivityModifiers"
+        {
+          "fast"		"170"
+          "faster"	"275"
+          "fastest"	"350"
+        }
+
+        // Bounds
+        //----------------------------------------------------------------
+        "RingRadius"                "75"
+        "HealthBarOffset"           "600"
+        "BoundsHullName"            "DOTA_HULL_SIZE_HUGE"
+
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyXP"                  "0"
+        "BountyGoldMin"             "0"
+        "BountyGoldMax"             "0"
+
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"             "325"
+        "MovementTurnRate"          "0.5"
+
+        "MovementSpeedActivityModifiers"
+        {
+          "walk"		"0"
+          "run"		"325"
+          "run_fast"		"400"
+        }
+
+        // Status
+        //----------------------------------------------------------------
+        "StatusHealth"              "9374989"
+        "StatusHealthRegen"         "10000"
+        "StatusMana"                "9374989"
+        "StatusManaRegen"           "1000"
+        
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"        "5000"
+        "VisionNighttimeRange"      "5000"
+
+        // Team
+        //----------------------------------------------------------------
+        "TeamName"                  "DOTA_TEAM_BADGUYS"
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+        "HasInventory"              "0"
+
+        // Creature Data
+        //----------------------------------------------------------------
+        "Creature"
+        {
+            "AttachWearables"
+            {
+
+                "1" { "ItemDef" "13826" } 
+                "2" { "ItemDef" "13827" }
+                "3" { "ItemDef" "13828" } 
+                "4" { "ItemDef" "13825" } 
+            }
+        }
+    }
 }

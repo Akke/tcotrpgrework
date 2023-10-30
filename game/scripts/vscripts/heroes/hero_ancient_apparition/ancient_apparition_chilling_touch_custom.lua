@@ -37,18 +37,14 @@ function ancient_apparition_chilling_touch_custom:GetProjectileName()
     return "particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
 end
 
-function ancient_apparition_chilling_touch_custom:GetCastRange()
+function ancient_apparition_chilling_touch_custom:GetCastRange(vLocation, hTarget)
     if IsServer() then
         local caster = self:GetCaster()
         local ability = self
 
         local range = ability:GetSpecialValueFor("attack_range_bonus")
 
-        if caster:HasTalent("special_bonus_unique_ancient_apparition_7") then
-            range = range + caster:FindAbilityByName("special_bonus_unique_ancient_apparition_7"):GetSpecialValueFor("value")
-        end
-
-        return caster:Script_GetAttackRange() + range
+        return self.BaseClass.GetCastRange( self, vLocation, hTarget ) + range
     end
 end
 

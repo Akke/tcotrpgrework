@@ -529,8 +529,9 @@
         "Ability1" "ancient_apparition_chilling_barrier"
         "Ability2" "ancient_apparition_chilling_ground"
         "Ability3" "ancient_apparition_chilling_touch_custom"
-        "Ability5" "ancient_apparition_frozen_time"
-        "Ability6" "ancient_apparition_sharp_ice"
+        "Ability4" "generic_hidden"
+        "Ability5" "generic_hidden"
+        "Ability6" "ancient_apparition_ice_blast_custom"
         "Ability7"      "generic_hidden"
 
         "Ability10"     "special_bonus_hp_250"

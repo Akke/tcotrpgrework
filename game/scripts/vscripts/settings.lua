@@ -675,6 +675,7 @@ BOOK_ABILITY_SELECTION_EXCEPTIONS = {
 
 -- Abilities you can't change or replace
 BOOK_ABILITY_CHANGE_PROHIBITED = {
+  "ancient_apparition_ice_blast_stop_custom",
   "medusa_mana_shield_custom",
   "lone_druid_spirit_bear_custom",
   "lone_druid_true_form_custom",
@@ -787,6 +788,7 @@ BOOK_ABILITY_FORBIDDEN_SWAP = {
   "chicken_ability_5",
   "chicken_ability_6",
   "chicken_ability_7",
+  "ancient_apparition_ice_blast_stop_custom",
 }
 
 -- EASY --
@@ -1059,6 +1061,6 @@ TRIDENT_CRITICAL_IGNORE = {
 }--]]
 
 SERVER_KEY = "1.0"
-SERVER_DATE_KEY = "20231008"
+SERVER_DATE_KEY = "20231021"
 SERVER_URI = "http://70.34.214.112:4000"
 --SERVER_URI = "http://localhost:4000"

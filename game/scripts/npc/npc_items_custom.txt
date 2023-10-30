@@ -22119,7 +22119,7 @@
             "09"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "creep_lifesteal"                                    "15 20 25 30 35 40"
+                "creep_lifesteal"                                    "20 30 40 50 60 70"
             }
         }
     }
@@ -22214,7 +22214,7 @@
             "09"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "creep_lifesteal"                                    "15 20 25 30 35 40"
+                "creep_lifesteal"                                    "20 30 40 50 60 70"
             }
         }
     }
@@ -22309,7 +22309,7 @@
             "09"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "creep_lifesteal"                                    "15 20 25 30 35 40"
+                "creep_lifesteal"                                    "20 30 40 50 60 70"
             }
         }
     }
@@ -22404,7 +22404,7 @@
             "09"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "creep_lifesteal"                                    "15 20 25 30 35 40"
+                "creep_lifesteal"                                    "20 30 40 50 60 70"
             }
         }
     }
@@ -22499,7 +22499,7 @@
             "09"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "creep_lifesteal"                                    "15 20 25 30 35 40"
+                "creep_lifesteal"                                    "20 30 40 50 60 70"
             }
         }
     }
@@ -22594,7 +22594,7 @@
             "09"
             {
                 "var_type"                                        "FIELD_INTEGER"
-                "creep_lifesteal"                                    "15 20 25 30 35 40"
+                "creep_lifesteal"                                    "20 30 40 50 60 70"
             }
         }
     }
@@ -39455,8 +39455,8 @@
         //special
         "AbilityValues"
         {
-          "bonus_int" "2500"
-          "bonus_mana" "1000"
+          "bonus_int" "250"
+          "bonus_mana" "100"
           "bonus_spell_amp" "30"
           "int_to_damage" "10"
           "duration" "10"
@@ -43323,17 +43323,17 @@
       "03"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_str"                                    "1000"
+        "bonus_str"                                    "100"
       }
       "04"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_int"                                    "3500"
+        "bonus_int"                                    "350"
       }
       "05"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "bonus_agi"                                    "1000"
+        "bonus_agi"                                    "100"
       }
       "06"
       {
@@ -43348,7 +43348,7 @@
       "08"
       {
         "var_type"                                        "FIELD_INTEGER"
-        "kill_chance"                                    "5"
+        "kill_chance"                                    "1"
       }
       "09"
       {
@@ -54758,5 +54758,85 @@
           }
         }
       }
+    
+    "item_cursed_blade"
+    {
+        "BaseClass"                     "item_lua"
+        "ScriptFile" "items/item_cursed_blade/item_cursed_blade.lua"
+        "AbilityTextureName" "item_disperser"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "FightRecapLevel"               "1"
+
+        "ItemBaseLevel"                 "1"
+
+        "precache"
+        {
+            "particle" "particles/generic_gameplay/generic_lifesteal.vpcf"
+            "particle" "particles/items_fx/disperser_buff.vpcf"
+        }
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "99999"
+        "ItemShopTags"                  "cursed blade"
+        "ItemQuality"                   "epic"
+        "ItemAliases"                   "cursed blade"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        "ShouldBeSuggested"             "1"
+
+        "ItemPermanent"                 "0"
+        "ItemKillable"                  "0"
+        "ItemSellable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemPurchasable"               "0"
+
+        "ItemShareability"                                    "ITEM_FULLY_SHAREABLE"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+          "bonus_magic_res" "90"
+          "bonus_attack_speed" "750"
+          "bonus_damage" "95000"
+          "bonus_mana_regen" "100"
+          "bonus_intellect" "1000"
+          "bonus_strength" "2000"
+          "debuff_spell_damage" "-35"
+          "debuff_attack_reduction" "-30"
+          "debuff_attack_reduction_duration" "4"
+          "buff_attack_reduction_steal" "50"
+          "buff_attack_reduction_steal_duration" "8"
+          "buff_aura_radius" "600"
+          "buff_lifesteal" "100"
+          "debuff_max_hp_reduction" "-5"
+          "debuff_health_regen_reduction" "-20"
+          "buff_kill_attack_damage" "10"
+          "debuff_reduction_amp_pct" "2.5"
+          "debuff_reduction_amp_max_stacks" "10"
+
+        }
+      }
+
+      "item_cursed_blade_piece_1"
+      {
+        "BaseClass"                                           "item_datadriven"
+        "AbilityBehavior"                                     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityTextureName"                                  "cursedbladepiece1"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCorePointCost"                                   "0"
+        "ItemCost"                                            "0"
+        "ItemPurchasable"                                     "0"
+        "ItemSellable"                                      "0"
+        "ItemKillable"                                        "0"
+        "IsTempestDoubleClonable"       "0"
+        "ItemShareability"                                    "ITEM_FULLY_SHAREABLE"
+        "ItemPurchasable" "0"
+    }
 }
 

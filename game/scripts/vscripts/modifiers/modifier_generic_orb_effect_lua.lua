@@ -46,9 +46,21 @@ function modifier_generic_orb_effect_lua:DeclareFunctions()
         MODIFIER_EVENT_ON_ORDER,
 
         MODIFIER_PROPERTY_PROJECTILE_NAME,
+
+        MODIFIER_PROPERTY_ATTACK_RANGE_BONUS 
     }
 
     return funcs
+end
+
+function modifier_generic_orb_effect_lua:GetModifierAttackRangeBonus()
+    if IsServer() then
+        local parent = self:GetParent()
+        local chillingTouch = parent:FindAbilityByName("ancient_apparition_chilling_touch_custom")
+        if chillingTouch ~= nil and chillingTouch:GetLevel() > 0 and chillingTouch:GetAutoCastState() then
+            return chillingTouch:GetSpecialValueFor("attack_range_bonus")
+        end
+    end
 end
 
 function modifier_generic_orb_effect_lua:OnAttack( params )

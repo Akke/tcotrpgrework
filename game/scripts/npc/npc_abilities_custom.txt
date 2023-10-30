@@ -43,7 +43,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-            "duration" "10"
+            "duration" "15"
             "max_hp_shield" "100 200 300 400"
             "damage_reduction" "75"
             "damage_to_pure"
@@ -6696,7 +6696,7 @@
         {
             "attacks"       
             { 
-                "value"             "3"
+                "value"             "2"
                 "CalculateSpellDamageTooltip" "0"
             }
             "damage_from_attack"       
@@ -11952,7 +11952,7 @@
         {
             "damage_amp" "4"
             "max_stacks" "3 4 5 6 7 8 9 10 11 12"
-            "magic_res" "6"
+            "magic_res" "90"
             "slow" "-3"
             "cooldown" "10"
             "duration" "3"
@@ -11989,7 +11989,7 @@
       // Ability Resource
       //-------------------------------------------------------------------------------------------------------------
       "AbilityCooldown"       "90 80 70 60"
-      "AbilityManaCost"       "300 400 500 600"
+      "AbilityManaCost"       "300"
 
       // Damage
       //-------------------------------------------------------------------------------------------------------------
@@ -12035,7 +12035,7 @@
         "07"
         {
           "var_type"      "FIELD_INTEGER"
-          "interval"      "0.75"
+          "interval"      "0.25"
         } 
         "08"
         {
@@ -12051,13 +12051,6 @@
         {
           "var_type"      "FIELD_INTEGER"
           "freeze_duration"      "5"
-        } 
-        "11"
-        {
-          "var_type"      "FIELD_INTEGER"
-          "damage_reduction"      "-50"
-          "CalculateSpellDamageTooltip"   "0"
-          "RequiresScepter" "1"
         } 
       }
       "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
@@ -12118,7 +12111,7 @@
 
       // Ability Resource
       //-------------------------------------------------------------------------------------------------------------
-      "AbilityCooldown"       "18 16 15 14 13 12 11 10 9 8"
+      "AbilityCooldown"       "8"
       "AbilityManaCost"       "85 100 115 130 145 160 175 190 205 220"
 
       // Damage
@@ -12171,7 +12164,7 @@
         "10"
         {
           "var_type"      "FIELD_INTEGER"
-          "damage"      "45 75 105 135 165 195 225 255 285 315"
+          "damage"      "90 165 240 315 390 465 540 615 690 765"
         }
         "11"
         {
@@ -12216,7 +12209,7 @@
         }
 
         "AbilityCastPoint"              "0.3"
-        "AbilityCooldown" "12 11 10 9 8 7 6 5 4 3"
+        "AbilityCooldown" "3"
         "AbilityManaCost"               "40 55 70 85 100 115 130 145 160 175"
 
         // Special
@@ -12227,9 +12220,9 @@
             {
                 "value"                                     "425"
             }
-            "movespeed_slow"                "-10"
-            "attackspeed_slow"              "-10"
-            "duration"                      "1"
+            "movespeed_slow"                "-20"
+            "attackspeed_slow"              "-20"
+            "duration"                      "3"
             "vision_duration"               "3.0"
             "damage"
             {
@@ -15073,11 +15066,11 @@
 
       // Cost
       //-------------------------------------------------------------------------------------------------------------
-      "AbilityManaCost"               "30 50 70 90 110 130 150 170 190 210"    
+      "AbilityManaCost"               "40"    
 
       // Time     
       //-------------------------------------------------------------------------------------------------------------
-      "AbilityCooldown"               "20 19 18 17 16 15 14 13 12 11"
+      "AbilityCooldown"               "11"
       
       // Cast Range
       //-------------------------------------------------------------------------------------------------------------
@@ -15090,22 +15083,22 @@
         "01"
         {
           "var_type"          "FIELD_INTEGER"
-          "attack_slow"          "-10"
+          "attack_slow"          "-50"
         }
         "02"
         {
           "var_type"          "FIELD_INTEGER"
-          "move_slow"          "-20"
+          "move_slow"          "-50"
         }
         "03"
         {
           "var_type"          "FIELD_INTEGER"
-          "speed_bonus"          "10 20 30 40 50 60 70 80 90 100"
+          "speed_bonus"          "40"
         }
         "04"
         {
           "var_type"          "FIELD_INTEGER"
-          "damage_reduction"          "10"
+          "damage_reduction"          "10 12 14 16 18 20 22 24 26 28"
         }
         "05"
         {
@@ -15147,7 +15140,7 @@
 
       // Cost
       //-------------------------------------------------------------------------------------------------------------
-      "AbilityManaCost"               "125 165 205 245 285 325 365 405 445 485"    
+      "AbilityManaCost"               "90"    
 
       // Time     
       //-------------------------------------------------------------------------------------------------------------
@@ -15164,27 +15157,27 @@
         "01"
         {
           "var_type"          "FIELD_INTEGER"
-          "radius"          "275"
+          "radius"          "550"
         }
         "02"
         {
           "var_type"          "FIELD_INTEGER"
-          "slow"          "-3 -6 -9 -12 -15 -18 -21 -24 -27 -30"
+          "slow"          "-30"
         }
         "03"
         {
           "var_type"          "FIELD_INTEGER"
-          "resistance"          "-3 -6 -9 -12 -15 -18 -21 -24 -27 -30"
+          "resistance"          "-40"
         }
         "04"
         {
           "var_type"          "FIELD_INTEGER"
-          "damage"          "30 60 90 120 150 180 210 240 270 300"
+          "damage"          "90 165 240 315 390 465 540 615 690 765"
         }
         "05"
         {
           "var_type"          "FIELD_INTEGER"
-          "time_limit"          "5"
+          "time_limit"          "3"
         }
         "06"
         {
@@ -15224,7 +15217,7 @@
         "AbilitySound"                  "Hero_Ancient_Apparition.ChillingTouchCast"
         "HasShardUpgrade" "1"
         "MaxLevel" "10"
-        "AbilityManaCost" "45 90 135 180 225 270 315 360 405 450"
+        "AbilityManaCost" "45"
 
         "precache"
         {
@@ -17278,7 +17271,7 @@
 
     // Ability Resource
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "3 3 3 3 2 2 2 2 1 1"
+    "AbilityCooldown"       "3"
     "AbilityManaCost"       "35 40 45 50 55 60 65 70 75 80"
 
     // Damage
@@ -17320,7 +17313,7 @@
       "06"
       {
         "var_type"        "FIELD_INTEGER"
-        "strength_damage_bonus_pct"    "30" // is applied to both stack bonus and base damage
+        "strength_damage_bonus_pct"    "100" // is applied to both stack bonus and base damage
         "CalculateSpellDamageTooltip"   "0"
       }
       "07"
@@ -17342,7 +17335,6 @@
         "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
         "MaxLevel" "4"
-        "HasScepterUpgrade"       "1"
 
         "precache"
         {
@@ -17384,12 +17376,6 @@
             {
                 "var_type"                      "FIELD_INTEGER"
                 "str_damage_pct_per_stack"                    "4"
-            }
-            "06"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "spell_amp_per_stack"                    "5"
-                "RequiresScepter" "1"
             }
         }
     }
@@ -17686,8 +17672,8 @@
     "AbilityValues"
     {
         "cast_time_reduction" "50"
-        "bat_decrease" "0.1 0.15 0.2 0.25 0.30 0.35 0.40 0.45 0.50 0.55"
-        "mana_drain_pct" "5"
+        "bat_decrease" "0.2"
+        "mana_drain_pct" "4.5 4.0 3.5 3.0 2.5 2.0 1.5 1.0 0.5 0.0"
     }
   }
   "chicken_ability_3"
@@ -17728,7 +17714,7 @@
 
     "AbilityValues"
     {
-      "chance" "25 50 75 100"
+      "chance" "20 25 30 35"
     }
   }
   "chicken_ability_5"
@@ -18720,7 +18706,7 @@
         {
             "damage"
             {
-                "value"            "90 140 190 240 290 340 390 440 490 540"
+                "value"            "150 300 450 600 750 900 1050 1200 1350 1500"
             }
             "hook_speed"
             {
@@ -18748,7 +18734,7 @@
             }
             "hook_damage_per_stack"
             {
-                "value" "10 15 20 25 30 35 40 45 50 55"
+                "value" "300"
             }
             "damage_str"
             {
@@ -18762,7 +18748,7 @@
             }
             "hook_count_shard"
             {
-                "value"                         "3"
+                "value"                         "4"
                 "RequiresShard"  "1"
             }
             "chance"
@@ -27164,6 +27150,7 @@
       "AbilityTextureName"      "bristleback_bristleback"
       "FightRecapLevel"       "1"
       "MaxLevel"            "10"
+      "HasScepterUpgrade" "1"
       "precache"
       {
         "soundfile" "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
@@ -27218,6 +27205,24 @@
         {
           "var_type"            "FIELD_INTEGER"
           "quill_release_threshold_max_quills"       "10"
+        }
+        "07"
+        {
+          "var_type"            "FIELD_INTEGER"
+          "quill_procs"       "30"
+          "RequiresScepter" "1"
+        }
+        "08"
+        {
+          "var_type"            "FIELD_INTEGER"
+          "quill_procs_cd"       "15"
+          "RequiresScepter" "1"
+        }
+        "09"
+        {
+          "var_type"            "FIELD_INTEGER"
+          "quill_procs_mana_cost"       "75"
+          "RequiresScepter" "1"
         }
       }
     }
@@ -27837,7 +27842,7 @@
         "AbilityTextureName" "boss_dispersion"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "MaxLevel" "6"
+        "MaxLevel" "1"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -27846,7 +27851,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reflection_pct" "40 60"
+                "damage_reflection_pct" "60"
                 "LinkedSpecialBonus"        "special_bonus_unique_spectre_5"
             }
             "02"
@@ -27868,7 +27873,7 @@
         "BaseClass" "faceless_void_backtrack"
         "AbilityTextureName" "faceless_void_backtrack"        
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "MaxLevel" "6"
+        "MaxLevel" "1"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -27877,7 +27882,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "dodge_chance_pct"      "30 60"
+                "dodge_chance_pct"      "60"
             }
         }
     }
@@ -28477,6 +28482,67 @@
 			}
 		}
 	}
+
+    "ancient_apparition_ice_blast_custom"
+    {
+      "BaseClass"                                           "ability_lua"
+      "ScriptFile"                                          "heroes/hero_ancient_apparition/ancient_apparition_ice_blast_custom.lua"
+      "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+      "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+      "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
+      "AbilityTextureName" "ancient_apparition_ice_blast"
+      "MaxLevel" "4"
+
+      "HasScepterUpgrade" "1"
+
+      "precache"
+      {
+          "particle"          "particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast__2final_ti5.vpcf"
+          "particle" "particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_explode_ti5.vpcf"
+          "particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
+          "particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_debuff.vpcf"
+          "particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
+          "particle" "particles/status_fx/status_effect_frost_lich.vpcf"
+          "model" "models/development/invisiblebox.vmdl"
+          "soundfile"          "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
+      }
+
+      // Cost
+      //-------------------------------------------------------------------------------------------------------------
+      "AbilityManaCost"               "300"    
+
+      // Time     
+      //-------------------------------------------------------------------------------------------------------------
+      "AbilityCooldown"               "30"
+      
+      // Special
+      //-------------------------------------------------------------------------------------------------------------
+      "AbilityValues"
+      {
+        "duration" "10"
+        "damage" "360 720 1080 1440"
+        "damage_increase_per_sec_pct" "30"
+        "max_hp_damage_pct" "4"
+        "frostbite_radius" "600"
+        "frostbite_duration" "13"
+        "frozen_duration" "4"
+        "execution_threshold" "20"
+        "int_to_damage" "100"
+        "radius" "275"
+        "speed" "750"
+        "turn_rate" "90"
+      }
+    }
+
+    "ancient_apparition_ice_blast_stop_custom"
+    {
+      "BaseClass"                                           "ability_lua"
+      "ScriptFile"                                          "heroes/hero_ancient_apparition/ancient_apparition_ice_blast_custom.lua"
+      "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+      "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+      "AbilityTextureName" "ancient_apparition_ice_blast"
+      "MaxLevel" "1"
+    }
 }
 
 #base "abilities/bosses/all.txt"

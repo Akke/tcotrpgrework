@@ -47,6 +47,7 @@ function modifier_tanya_counterattack:OnAttackLanded(event)
 
     if parent ~= event.target then return end
     if parent:IsRangedAttacker() then return end
+    if parent:IsIllusion() then return end 
 
     local ability = self:GetAbility()
 

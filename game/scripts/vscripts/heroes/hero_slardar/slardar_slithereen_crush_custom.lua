@@ -65,15 +65,6 @@ function slardar_slithereen_crush_custom:OnSpellStart()
             unit:AddNewModifier(caster, nil, "modifier_stunned", {
                 duration = self:GetSpecialValueFor("stun_duration")
             })
-
-            if caster:HasModifier("modifier_item_aghanims_shard") then
-                local haze = caster:FindAbilityByName("slardar_amplify_damage_custom")
-                if haze ~= nil and haze:GetLevel() > 0 then
-                    unit:AddNewModifier(caster, haze, "modifier_slardar_amplify_damage_custom_debuff", {
-                        duration = haze:GetSpecialValueFor("duration")
-                    })
-                end
-            end
         end
     end
 
@@ -185,6 +176,24 @@ function modifier_slardar_slithereen_crush_custom_emitter:GetAuraEntityReject(en
     return false
 end
 --------------
+function modifier_slardar_slithereen_crush_custom_emitter_aura:OnCreated()
+    if not IsServer() then return end 
+
+    local caster = self:GetCaster()
+    local parent = self:GetParent()
+
+    if caster:GetTeam() ~= parent:GetTeam() then
+        if caster:HasModifier("modifier_item_aghanims_shard") then
+            local haze = caster:FindAbilityByName("slardar_amplify_damage_custom")
+            if haze ~= nil and haze:GetLevel() > 0 then
+                parent:AddNewModifier(caster, haze, "modifier_slardar_amplify_damage_custom_debuff", {
+                    duration = haze:GetSpecialValueFor("duration")
+                })
+            end
+        end
+    end
+end
+
 function modifier_slardar_slithereen_crush_custom_emitter_aura:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,

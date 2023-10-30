@@ -415,6 +415,8 @@ function Activate()
 	_G.DebugEnabled = false
 
 	_G.AghanimGateUnit = nil
+	_G.AghanimDefeated = false
+	_G.UberBossesGateUnit = nil
 
 	_G.tPlayers 				= {}
 	_G.tHeroesRadiant 			= {}

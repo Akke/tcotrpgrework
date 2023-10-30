@@ -78,6 +78,7 @@ function modifier_zombie_boss_decay:OnAttackLanded(event)
             if debuff then
                 debuff:IncrementStackCount()
                 debuff:ForceRefresh()
+                victim:CalculateStatBonus(true)
             end
 
             EmitSoundOn("Hero_Undying.Decay.Target", victim)

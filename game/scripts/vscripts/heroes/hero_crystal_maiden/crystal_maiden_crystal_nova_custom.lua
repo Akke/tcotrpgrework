@@ -41,6 +41,14 @@ end
 function crystal_maiden_crystal_nova_custom:GetAOERadius()
     return self:GetSpecialValueFor("radius")
 end
+
+function crystal_maiden_crystal_nova_custom:GetCooldown(level)
+    if self:GetCaster():HasModifier("modifier_item_aghanims_shard") then
+        return 0
+    else
+        return self.BaseClass.GetCooldown(self, level)
+    end
+end
 ---------
 function modifier_crystal_maiden_crystal_nova_custom:DeclareFunctions()
     local funcs = {
@@ -95,7 +103,7 @@ function modifier_crystal_maiden_crystal_nova_custom:FireCrystalNova(ability, ca
     for _,victim in ipairs(victims) do
         if victim:IsMagicImmune() or victim:IsInvulnerable() then break end
 
-        if victim:HasModifier("modifier_crystal_maiden_frostbite_custom_debuff_frozen") then
+        if caster:HasModifier("modifier_item_aghanims_shard") and victim:HasModifier("modifier_crystal_maiden_frostbite_custom_debuff_frozen") then
             damage = damage * 2
         end
 

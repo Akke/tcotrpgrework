@@ -205,20 +205,29 @@ function modifier_int_scaling:OnIntervalThink()
             end
         end
     end
+    --
+    local uberBossesTrigger = Entities:FindByName(nil, "trigger_entrance_uber_bosses")
+    if uberBossesTrigger ~= nil then
+        if IsInTrigger(npc, uberBossesTrigger) then
+            if _G.AghanimDefeated then
+                local point = Entities:FindByName(nil, "uber_bosses_tp")
+
+                EmitSoundOn("DOTA_Item.BlinkDagger.Activate", uberBossesTrigger)
+
+                FindClearSpaceForUnit(npc, point:GetAbsOrigin(), false)
+                CenterCameraOnUnit(npc:GetPlayerID(), npc)
+                npc:Stop()
+            end
+        end
+    end
 end
 
 function modifier_int_scaling:IsHidden() return true end
 
 function modifier_int_scaling:DeclareFunctions()
-    local funcs = {
-        --MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --GetModifierSpellAmplify_Percentage
-        --MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, --GetModifierMagicalResistanceBonus
-        --MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, --GetModifierMoveSpeedBonus_Constant (flat)
-        --MODIFIER_EVENT_ON_ATTACK_LANDED,
-        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION,
+    return {
+        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION
     }
-
-    return funcs
 end
 
 -- Valve added MR per int and you can't remove this with derived values yet so here we go...

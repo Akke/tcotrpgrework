@@ -2,7 +2,15 @@ LinkLuaModifier("modifier_effect_thirdplace_rank", "modules/effects/player/first
 if not modifier_effect_thirdplace_rank then modifier_effect_thirdplace_rank = class({}) end
 
 THIRD_PLACE_RANK_PRIVATE_IDS = {
-
+    "76561198415231883",
+    "76561198007338005",
+    "76561198815618025",
+    "76561199154514273",
+    "76561199082379294",
+    "76561197999938469",
+    "76561198071317896",
+    "76561198079733573",
+    "76561198090081362",
 }
 
 function modifier_effect_thirdplace_rank:IsHidden()

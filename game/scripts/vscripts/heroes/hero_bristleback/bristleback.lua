@@ -7,6 +7,64 @@ function bristleback_bristleback_custom:GetIntrinsicModifierName()
     return "modifier_bristleback_bristleback_custom"
 end
 
+function bristleback_bristleback_custom:GetBehavior()
+    local caster = self:GetCaster()
+    if caster:HasScepter() then
+        return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+    else
+        return DOTA_ABILITY_BEHAVIOR_PASSIVE
+    end
+end
+
+function bristleback_bristleback_custom:GetCooldown()
+    local caster = self:GetCaster()
+    if caster:HasScepter() then
+        return self:GetSpecialValueFor("quill_procs_cd")
+    else
+        return 0
+    end
+end
+
+function bristleback_bristleback_custom:GetManaCost()
+    local caster = self:GetCaster()
+    if caster:HasScepter() then
+        return self:GetSpecialValueFor("quill_procs_mana_cost")
+    else
+        return 0
+    end
+end
+
+function bristleback_bristleback_custom:OnSpellStart()
+    if not IsServer() then return end 
+
+    local caster = self:GetCaster()
+
+    if not caster:HasScepter() then return end
+    
+    local quill = caster:FindAbilityByName("bristleback_quill_spray_custom")
+
+    if not quill or (quill ~= nil and quill:GetLevel() < 1) then return end 
+
+    local amount = self:GetSpecialValueFor("quill_procs")
+
+    self.procs = 0
+
+    Timers:CreateTimer(0.01, function()
+        if not caster or caster:IsNull() then return end 
+        if not caster:IsAlive() then return end
+        if not caster:HasScepter() then return end
+        if not quill or (quill ~= nil and quill:GetLevel() < 1) then return end 
+
+        if self.procs >= amount then return end 
+
+        SpellCaster:Cast(quill, caster, false)
+        
+        self.procs = self.procs + 1 
+
+        return 0.2
+    end)
+end
+
 modifier_bristleback_bristleback_custom = class({})
 
 --------------------------------------------------------------------------------
@@ -22,6 +80,8 @@ end
 function modifier_bristleback_bristleback_custom:IsPurgable()
     return false
 end
+
+
 
 --------------------------------------------------------------------------------
 -- Initializations

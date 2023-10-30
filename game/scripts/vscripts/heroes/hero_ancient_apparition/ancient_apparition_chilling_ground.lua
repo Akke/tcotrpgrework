@@ -103,6 +103,7 @@ function modifier_ancient_apparition_chilling_ground_emitter:OnCreated(params)
 
     self.vfx = ParticleManager:CreateParticle("particles/econ/items/ancient_apparition/ancient_apparation_ti8/ancient_ice_vortex_ti8.vpcf", PATTACH_WORLDORIGIN, self.parent)
     ParticleManager:SetParticleControl(self.vfx, 0, self.parent:GetAbsOrigin())
+    ParticleManager:SetParticleControl(self.vfx, 5, Vector(self.radius, self.radius, self.radius))
 end
 
 function modifier_ancient_apparition_chilling_ground_emitter:OnIntervalThink()

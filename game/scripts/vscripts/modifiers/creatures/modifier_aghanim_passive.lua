@@ -94,11 +94,26 @@ function modifier_aghanim_passive:OnDeath( params )
 		if self:GetParent() == params.unit and self:GetParent().AI and self:GetParent().AI.bDefeated == false then 			
 			local pos = self:GetParent():GetAbsOrigin()
 
-			-- Drop Akasha --
-			if not _G.ItemDroppedAkashaConversion then
-				--DropNeutralItemAtPositionForHero("item_akasha_conversion", Vector(pos.x+RandomInt(-100, 100), pos.y+RandomInt(-100, 100), pos.z), self:GetParent(), 1, false)
-	            _G.ItemDroppedAkashaConversion = true
-	        end
+			_G.AghanimDefeated = true
+
+			local uberPortalSpawnPoint = Entities:FindByName(nil, "trigger_entrance_uber_bosses")
+			if uberPortalSpawnPoint ~= nil then
+				_G.UberBossesGateUnit = CreateUnitByName("outpost_placeholder_unit", uberPortalSpawnPoint:GetAbsOrigin(), false, nil, nil, DOTA_TEAM_NEUTRALS)
+				_G.UberBossesGateUnit:AddNewModifier(_G.UberBossesGateUnit, nil, "modifier_uber_bosses_portal", {})
+			end
+
+			local portal = _G.UberBossesGateUnit
+			if portal ~= nil then
+				portal:SetModel("models/props_structures/dungeon_temple_portal001.vmdl")
+				portal:RemoveNoDraw()
+
+				local particle = ParticleManager:CreateParticle("particles/econ/items/underlord/underlord_2021_immortal/underlord_2021_immortal_portal_2.vpcf", PATTACH_ABSORIGIN_FOLLOW, portal)   
+				ParticleManager:SetParticleControlEnt(particle, 0, portal, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", portal:GetAbsOrigin(), false)
+				ParticleManager:ReleaseParticleIndex(particle)
+
+				EmitSoundOn("Hero_Underlord.Portal.Spawn", portal)
+				AddFOWViewer(DOTA_TEAM_GOODGUYS, portal:GetAbsOrigin(), 300, 99999, false)
+			end
 
 			-- Drop Everything Else --
 			local dropAmount = 5

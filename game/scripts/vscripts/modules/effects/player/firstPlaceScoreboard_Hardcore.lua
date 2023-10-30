@@ -5,7 +5,9 @@ FIRST_PLACE_SCOREBOARD_PRIVATE_IDS_HARDCORE = {
     "76561198082943320", -- This is me
     --"76561198059398095", -- This is beb
     --
-
+    "76561199006819391",
+    "76561199275169474",
+    "76561198105337871"
 }
 
 function modifier_effect_scoreboard_first_hardcore:IsHidden()

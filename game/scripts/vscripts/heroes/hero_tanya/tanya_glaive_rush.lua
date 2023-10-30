@@ -108,7 +108,7 @@ function modifier_tanya_glaive_rush:UpdateHorizontalMotion( me, dt )
                     EmitSoundOn("Hero_Antimage.Attack.Persona", units[i])
 
                     local chance = self.ability:GetSpecialValueFor("reset_chance")
-                    if RollPercentage(chance) then
+                    if RollPercentage(chance) and not self.parent:HasModifier("modifier_tanya_glaive_rush_cooldown_refresh") then
                         local mod = self.parent:FindModifierByName("modifier_tanya_glaive_rush_cooldown_refresh")
 
                         if not mod then

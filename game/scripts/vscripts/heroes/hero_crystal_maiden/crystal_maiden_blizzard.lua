@@ -123,6 +123,19 @@ function modifier_crystal_maiden_blizzard_emitter:OnIntervalThink()
             })
         end
     end
+
+    -- Crystal Nova --
+    if not caster:HasScepter() then return end
+
+    local crystalNova = caster:FindAbilityByName("crystal_maiden_crystal_nova_custom")
+    if not crystalNova or (crystalNova ~= nil and crystalNova:GetLevel() < 1) then return end 
+
+    local parentPos = parent:GetAbsOrigin()
+    local randomOffsetY = RandomInt(-self.radius, self.radius)
+    local randomOffsetX = RandomInt(-self.radius, self.radius)
+    local randomPos = Vector(parentPos.x+randomOffsetX, parentPos.y+randomOffsetY, parentPos.z)
+
+    SpellCaster:Cast(crystalNova, randomPos, false)
 end
 
 function modifier_crystal_maiden_blizzard_emitter:OnDestroy()
@@ -162,7 +175,7 @@ function modifier_crystal_maiden_blizzard_emitter:GetAuraSearchType()
 end
 
 function modifier_crystal_maiden_blizzard_emitter:GetAuraSearchTeam()
-  return bit.bor(DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_TEAM_FRIENDLY)
+  return DOTA_UNIT_TARGET_TEAM_ENEMY
 end
 
 function modifier_crystal_maiden_blizzard_emitter:GetAuraRadius()
@@ -176,13 +189,7 @@ end
 function modifier_crystal_maiden_blizzard_emitter:GetAuraEntityReject(ent) 
     if ent:GetUnitName() == "outpost_placeholder_unit" then return true end
 
-    if ent:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
-        if not self:GetCaster():HasScepter() then return true end
-        
-        self.auraName = "modifier_crystal_maiden_blizzard_emitter_aura_friendly"
-    else
-        self.auraName = "modifier_crystal_maiden_blizzard_emitter_aura"
-    end
+    self.auraName = "modifier_crystal_maiden_blizzard_emitter_aura"
 
     return false
 end

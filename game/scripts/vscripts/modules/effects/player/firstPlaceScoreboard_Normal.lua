@@ -2,7 +2,10 @@ LinkLuaModifier("modifier_effect_scoreboard_first_normal", "modules/effects/play
 if not modifier_effect_scoreboard_first_normal then modifier_effect_scoreboard_first_normal = class({}) end
 
 FIRST_PLACE_SCOREBOARD_PRIVATE_IDS_NORMAL = {   
-
+    "76561198397971499",
+    "76561199239556906",
+    "76561198994227720",
+    "76561199213022283"
 }
 
 function modifier_effect_scoreboard_first_normal:IsHidden()

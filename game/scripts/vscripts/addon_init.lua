@@ -163,6 +163,7 @@ LinkLuaModifier("modifier_auto_pickup", "modifiers/modifier_auto_pickup.lua", LU
 LinkLuaModifier("modifier_twin_gate_custom", "modifiers/modifier_twin_gate_custom.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_aghanim_tower", "modifiers/modifier_aghanim_tower.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_uber_bosses_portal", "modifiers/modifier_uber_bosses_portal.lua", LUA_MODIFIER_MOTION_NONE)
 
 -- Runes --
 LinkLuaModifier("modifier_item_socket_rune_legendary_drow_ranger_multishot", "modifiers/runes/heroes/drow_ranger/modifier_item_socket_rune_legendary_drow_ranger_multishot.lua", LUA_MODIFIER_MOTION_NONE)
@@ -178,3 +179,5 @@ LinkLuaModifier("modifier_item_socket_rune_legendary_luna_moon_beam", "modifiers
 LinkLuaModifier("modifier_item_socket_rune_legendary_lone_druid_bear", "modifiers/runes/heroes/lone_druid/modifier_item_socket_rune_legendary_lone_druid_bear.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_hero_tanya", "heroes/hero_tanya/modifier_hero_tanya.lua", LUA_MODIFIER_MOTION_NONE)
+
+LinkLuaModifier("modifier_boss_arc_warden_ai", "heroes/bosses/arc_warden/ai.lua", LUA_MODIFIER_MOTION_NONE)
