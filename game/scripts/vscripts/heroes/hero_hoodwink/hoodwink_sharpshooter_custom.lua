@@ -1,4 +1,5 @@
 LinkLuaModifier("modifier_hoodwink_sharpshooter_custom", "heroes/hero_hoodwink/hoodwink_sharpshooter_custom.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hoodwink_sharpshooter_custom_buff", "heroes/hero_hoodwink/hoodwink_sharpshooter_custom.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hoodwink_sharpshooter_custom_debuff", "heroes/hero_hoodwink/hoodwink_sharpshooter_custom.lua", LUA_MODIFIER_MOTION_NONE)
 
 local ItemBaseClass = {
@@ -25,7 +26,8 @@ local ItemBaseClassDebuff = {
 }
 
 hoodwink_sharpshooter_custom = class(ItemBaseClass)
-modifier_hoodwink_sharpshooter_custom = class(ItemBaseClassBuff)
+modifier_hoodwink_sharpshooter_custom = class(hoodwink_sharpshooter_custom)
+modifier_hoodwink_sharpshooter_custom_buff = class(ItemBaseClassBuff)
 hoodwink_sharpshooter_cancel_custom = class(ItemBaseClass)
 modifier_hoodwink_sharpshooter_custom_debuff = class(ItemBaseClassDebuff)
 
@@ -54,9 +56,13 @@ function hoodwink_sharpshooter_cancel_custom:OnSpellStart()
     sharpshooter:UseResources(false, false, false, true)
 
     -- Add modifier
-    caster:RemoveModifierByName("modifier_hoodwink_sharpshooter_custom")
+    caster:RemoveModifierByName("modifier_hoodwink_sharpshooter_custom_buff")
 end
 -----------------------------------------------------------------
+function hoodwink_sharpshooter_custom:GetIntrinsicModifierName()
+    return "modifier_hoodwink_sharpshooter_custom"
+end
+
 function hoodwink_sharpshooter_custom:OnSpellStart()
     if not IsServer() then return end
 
@@ -82,7 +88,7 @@ function hoodwink_sharpshooter_custom:OnSpellStart()
     cancel:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges())
 
     -- Add modifier
-    caster:AddNewModifier(caster, self, "modifier_hoodwink_sharpshooter_custom", {})
+    caster:AddNewModifier(caster, self, "modifier_hoodwink_sharpshooter_custom_buff", {})
 end
 
 function hoodwink_sharpshooter_custom:OnProjectileHitHandle( target, location, handle )
@@ -171,10 +177,8 @@ end
 -----------------------------------------------------------------
 function modifier_hoodwink_sharpshooter_custom:DeclareFunctions()
     return {
-        MODIFIER_EVENT_ON_ATTACK,
         MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-        MODIFIER_PROPERTY_MAX_ATTACK_RANGE,
-        MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE  
+        MODIFIER_PROPERTY_MAX_ATTACK_RANGE 
     }
 end
 
@@ -185,18 +189,20 @@ end
 function modifier_hoodwink_sharpshooter_custom:GetModifierAttackRangeBonus()
     return self:GetAbility():GetSpecialValueFor("arrow_range")
 end
-
-function modifier_hoodwink_sharpshooter_custom:GetModifierAttackSpeedPercentage()
-    return self:GetAbility():GetSpecialValueFor("bat_decrease_pct")
+-----------------------------------------------------------------
+function modifier_hoodwink_sharpshooter_custom_buff:DeclareFunctions()
+    return {
+        MODIFIER_EVENT_ON_ATTACK 
+    }
 end
 
-function modifier_hoodwink_sharpshooter_custom:OnCreated()
+function modifier_hoodwink_sharpshooter_custom_buff:OnCreated()
     if not IsServer() then return end
 
     local caster = self:GetCaster()
 end
 
-function modifier_hoodwink_sharpshooter_custom:OnDestroy()
+function modifier_hoodwink_sharpshooter_custom_buff:OnDestroy()
     if not IsServer() then return end
 
     local caster = self:GetCaster()
@@ -213,7 +219,7 @@ function modifier_hoodwink_sharpshooter_custom:OnDestroy()
     ability:SetCurrentAbilityCharges(charge)
 end
 
-function modifier_hoodwink_sharpshooter_custom:OnAttack(event)
+function modifier_hoodwink_sharpshooter_custom_buff:OnAttack(event)
     if not IsServer() then return end
 
     local unit = event.attacker
@@ -230,6 +236,8 @@ function modifier_hoodwink_sharpshooter_custom:OnAttack(event)
     end
 
     if not IsCreepTCOTRPG(victim) and not IsBossTCOTRPG(victim) then return end
+
+    if event.no_attack_cooldown then return end
 
     local cancel = caster:FindAbilityByName("hoodwink_sharpshooter_cancel_custom")
     if not cancel or cancel == nil then return end

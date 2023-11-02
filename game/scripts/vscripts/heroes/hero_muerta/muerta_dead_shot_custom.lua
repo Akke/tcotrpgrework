@@ -90,9 +90,9 @@ function muerta_dead_shot_custom:OnProjectileHit_ExtraData(target, location, ext
     local caster = self:GetCaster()
     local ability = self
 
-    local damage = ability:GetSpecialValueFor("damage")
+    local damage = ability:GetSpecialValueFor("damage") + (caster:GetAverageTrueAttackDamage(caster) * (ability:GetSpecialValueFor("damage_from_attack")/100))
     local slowDuration = ability:GetSpecialValueFor("impact_duration")
-    local ricochetDamage = ability:GetSpecialValueFor("ricochet_damage")
+    local ricochetDamage = ability:GetSpecialValueFor("ricochet_damage") + (caster:GetAverageTrueAttackDamage(caster) * (ability:GetSpecialValueFor("damage_from_attack")/100))
     local ricochetFearDuration = ability:GetSpecialValueFor("ricochet_magic_res_duration")
 
     -- Primary shot --

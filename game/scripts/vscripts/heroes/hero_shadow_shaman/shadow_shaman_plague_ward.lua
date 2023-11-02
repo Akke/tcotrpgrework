@@ -141,6 +141,11 @@ function shadow_shaman_plague_ward:OnSpellStart()
     corrosion:SetActivated(true)
     corrosion:SetHidden(false)
 
+    local splitshot = unit:AddAbility("plague_ward_splitshot")
+    splitshot:SetLevel(self:GetLevel())
+    splitshot:SetActivated(true)
+    splitshot:SetHidden(false)
+
     unit:AddNewModifier(unit, self, "modifier_shadow_shaman_plague_ward_thinker", {})
 
     EmitSoundOn("Hero_Venomancer.Plague_Ward", caster)

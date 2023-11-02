@@ -268,7 +268,7 @@ function CBossAghanim:OnHealthPercentThreshold( nPct )
     if nPct < self.nLevelUpPct and self.bHasLeveledUp == false then
         self.bHasLeveledUp = true
         self.me:CreatureLevelUp( 1 )
-        GameRules:SendCustomMessage("<font color='blue'>Aghanim has grown tired of your games and empowers himself.</font>", 0, 0)
+        --GameRules:SendCustomMessage("<font color='blue'>Aghanim has grown tired of your games and empowers himself.</font>", 0, 0)
     end
     
 

@@ -169,6 +169,11 @@ function modifier_item_star_shard:OnAbilityFullyCast(event)
     local target = self:GetParent()
     local attacker = event.unit
     local ability = self:GetAbility()
+    local abilityName = ability:GetAbilityName()
+
+    if string.match(abilityName, "item_") then
+        return end
+    end
 
     if not RollPercentage(ability:GetSpecialValueFor("star_chance")) then return end
 

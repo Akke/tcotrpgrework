@@ -104,7 +104,7 @@ ALLOW_SAME_HERO_SELECTION = false       -- Should we let people select the same 
 LOCK_TEAMS = false                      -- Should we Lock (true) or unlock (false) team assignemnt. If team assignment is locked players cannot change teams.
 
 CUSTOM_GAME_SETUP_TIME = 25.0           -- How long should custom game setup last - the screen where players pick a team?
-HERO_SELECTION_TIME = 180.0              -- How long should we let people select their hero? Should be at least 5 seconds.
+HERO_SELECTION_TIME = 59940.0              -- How long should we let people select their hero? Should be at least 5 seconds.
 HERO_SELECTION_PENALTY_TIME = 30.0      -- How long should the penalty time for not picking a hero last? During this time player loses gold.
 ENABLE_BANNING_PHASE = false            -- Should we enable banning phase? Set to true if "EnablePickRules" is "1" in 'addoninfo.txt'
 BANNING_PHASE_TIME = 20.0               -- How long should the banning phase last? This will work only if "EnablePickRules" is "1" in 'addoninfo.txt'
@@ -397,7 +397,7 @@ BOOK_ABILITY_SELECTION = {
     "crystal_maiden_freezing_field_custom",
     "crystal_maiden_arcane_aura_custom",
     "riki_decoy",
-    "riki_poisonous_dagger",
+    "riki_backstab_custom",
     "techies_stasis_trap_custom",
     "viper_corrosive_skin",
     "viper_nethertoxin",

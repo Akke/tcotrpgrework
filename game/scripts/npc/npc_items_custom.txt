@@ -31847,10 +31847,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -31899,10 +31899,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -31951,10 +31951,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -32003,10 +32003,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -32055,10 +32055,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -32107,10 +32107,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -32159,10 +32159,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -32211,10 +32211,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
 
@@ -32263,10 +32263,10 @@
       "bonus_int" "20 40 60 80 100 120 140 180 200"
       "bonus_attack_speed" "10 20 30 40 50 60 70 80 90"
       "bonus_mana_regen" "1.25 2.5 3.75 5.0 6.25 7.5 8.75 10.0 11.25"
-      "shared_health_pct" "20 25 30 35 40 45 50 55 60"
-      "shared_damage_pct" "40 45 50 55 60 65 70 75 80"
+      "shared_health_pct" "25 50 75 100 125 150 175 200 225"
+      "shared_damage_pct" "100 125 150 175 200 225 250 300 325"
       "shared_attack_speed_pct" "50"
-      "shared_armor_pct" "25"
+      "shared_armor_pct" "90"
     }
   }
   
@@ -43449,8 +43449,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43523,8 +43523,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43597,8 +43597,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43671,8 +43671,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43745,8 +43745,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43819,8 +43819,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43893,8 +43893,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -43967,8 +43967,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }
@@ -44041,8 +44041,8 @@
             "bonus_strength"        "6 12 18 24 30 36 42 48 54"
             "bonus_mana_regen"      "2 3 4 5 6 7 8 9 10"
             "bonus_base_attack_time" "1.0"
-            "archer_health" "1250 2500 3750 5000 6250 7500 8750 10000 11250"
-            "archer_damage" "110 220 330 440 550 660 770 880 990"
+            "archer_health" "10000 15000 20000 25000 30000 35000 40000 45000 50000"
+            "archer_damage" "150 300 600 1200 2400 4800 9600 19200 38400"
             "archer_armor" "5 10 20 40 60 80 100 200 400"
         }
     }

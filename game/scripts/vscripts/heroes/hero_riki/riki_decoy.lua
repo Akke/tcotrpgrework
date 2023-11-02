@@ -215,7 +215,8 @@ function modifier_riki_decoy_emitter:CheckState()
         [MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES] = true,
         [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
         [MODIFIER_STATE_STUNNED] = true,
-        [MODIFIER_STATE_MAGIC_IMMUNE] = true
+        [MODIFIER_STATE_MAGIC_IMMUNE] = true,
+        [MODIFIER_STATE_SPECIALLY_UNDENIABLE] = true
     }   
 
     return state

@@ -62,7 +62,7 @@ function modifier_jagged_blade_debuff:OnRefresh()
     local parent = self:GetParent()
     local caster = self:GetCaster()
 
-    local baseArmor = parent:GetPhysicalArmorValue(false)
+    local baseArmor = parent:GetPhysicalArmorBaseValue()
     local stacks = self:GetStackCount()
     local limit = false
 

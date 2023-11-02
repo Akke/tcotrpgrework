@@ -93,6 +93,14 @@ function modifier_item_scorched_orchid:OnTakeDamage(event)
     local chance = ability:GetSpecialValueFor("ethereal_crit_chance")
     local critdamage = ability:GetSpecialValueFor("ethereal_crit_damage")
 
+    local witchBlade = parent:FindModifierByName("modifier_item_witch_blade_custom")
+    if witchBlade ~= nil and event.unit:HasModifier("modifier_item_witch_blade_custom_poison") then
+        local witchBladeItem = witchBlade:GetAbility()
+        if witchBladeItem ~= nil then
+            critdamage = critdamage + witchBladeItem:GetSpecialValueFor("poison_critical_multiplier")
+        end
+    end
+
     if RollPercentage(chance) then
         local damage = event.damage * (critdamage/100)
 

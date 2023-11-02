@@ -184,7 +184,7 @@ function modifier_hoodwink_acorn_shot_custom_bounce_thinker:OnIntervalThink()
         Ability = ability, 
         
         EffectName = "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf",
-        iMoveSpeed = 900,
+        iMoveSpeed = 2200,
         bDodgeable = false,                           -- Optional
     
         bVisibleToEnemies = true,                         -- Optional

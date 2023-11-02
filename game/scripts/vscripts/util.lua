@@ -1502,7 +1502,7 @@ function GetPlayerAbilities(player)
       local abil = player:GetAbilityByIndex(i)
       if abil ~= nil then
           local name = abil:GetAbilityName()
-          if not string.match(name, "special_bonus") and not string.match(name, "chicken_ability_1_cancel") and not string.match(name, "talent_") and not string.match(name, "generic_hidden") and name ~= "twin_gate_portal_warp" and name ~= "ability_pluck_famango" and name ~= "ability_lamp_use" and name ~= "ability_capture" and name ~= "abyssal_underlord_portal_warp" and name ~= "twin_gate_portal_warp_custom" and name ~= "aghanim_tower_capture" then
+          if not string.match(name, "special_bonus") and not string.match(name, "chicken_ability_1_cancel") and not string.match(name, "talent_") and not string.match(name, "generic_hidden") and name ~= "twin_gate_portal_warp" and name ~= "ability_pluck_famango" and name ~= "ability_lamp_use" and name ~= "ability_capture" and name ~= "abyssal_underlord_portal_warp" and name ~= "twin_gate_portal_warp_custom" and name ~= "aghanim_tower_capture" and name ~= "hoodwink_sharpshooter_cancel_custom" then
             table.insert(t, abil:GetAbilityName())
           end
       end

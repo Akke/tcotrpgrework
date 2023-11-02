@@ -85,32 +85,32 @@ function modifier_item_havoc:OnAttack(event)
 
     local target = event.target
 
-    if IsBossTCOTRPG(target) then return end
-
     if not RollPercentage(chance) then return end
 
     self:PlayEffects(target)
 
     -- Stun logic
-    if target:HasModifier("modifier_item_havoc_stunned") then
-        self.counter[target:entindex()] = self.counter[target:entindex()] or 0
-        self.counter[target:entindex()] = self.counter[target:entindex()] + 1
-    end
+    if not IsBossTCOTRPG(target) then
+        if target:HasModifier("modifier_item_havoc_stunned") then
+            self.counter[target:entindex()] = self.counter[target:entindex()] or 0
+            self.counter[target:entindex()] = self.counter[target:entindex()] + 1
+        end
 
-    if self.counter[target:entindex()] ~= nil and self.counter[target:entindex()] > 0 and not target:HasModifier("modifier_item_havoc_stun_cooldown") then
-        stun_duration = stun_duration - (ability:GetSpecialValueFor("stun_decrease") * self.counter[target:entindex()])
-        if stun_duration <= min_stun then
-            stun_duration = min_stun
-            target:AddNewModifier(parent, ability, "modifier_item_havoc_stun_cooldown", {
-                duration = ability:GetSpecialValueFor("stun_cooldown")
+        if self.counter[target:entindex()] ~= nil and self.counter[target:entindex()] > 0 and not target:HasModifier("modifier_item_havoc_stun_cooldown") then
+            stun_duration = stun_duration - (ability:GetSpecialValueFor("stun_decrease") * self.counter[target:entindex()])
+            if stun_duration <= min_stun then
+                stun_duration = min_stun
+                target:AddNewModifier(parent, ability, "modifier_item_havoc_stun_cooldown", {
+                    duration = ability:GetSpecialValueFor("stun_cooldown")
+                })
+            end
+        end
+
+        if not target:HasModifier("modifier_item_havoc_stun_cooldown") then
+            target:AddNewModifier(parent, ability, "modifier_item_havoc_stunned", {
+                duration = stun_duration
             })
         end
-    end
-
-    if not target:HasModifier("modifier_item_havoc_stun_cooldown") then
-        target:AddNewModifier(parent, ability, "modifier_item_havoc_stunned", {
-            duration = stun_duration
-        })
     end
 
     -- Damage

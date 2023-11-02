@@ -51,7 +51,7 @@ function modifier_item_array_of_specialists:OnIntervalThink()
 
     if not ability:IsCooldownReady() then return end 
 
-    if parent:IsIllusion() then return end
+    if not parent:IsAlive() or parent:IsIllusion() then return end
 
     if not parent:IsRangedAttacker() then return end 
     
